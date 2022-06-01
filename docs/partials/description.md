@@ -1,0 +1,1 @@
+`<auro-datepicker>` is the combination of [dropdown](http://auro.alaskaair.com/components/auro/dropdown), [input](http://auro.alaskaair.com/components/auro/input), and [calendar](http://auro.alaskaair.com/components/auro/calendar) and allows users to type or select a date from calendar in the dropdown bib.
