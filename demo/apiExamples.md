@@ -16,9 +16,10 @@
 
 ## Events
 
-| Event                  | Type               |
-|------------------------|--------------------|
-| `aurodatepicker-ready` | `CustomEvent<any>` |
+| Event                  | Type               | Description                                      |
+|------------------------|--------------------|--------------------------------------------------|
+| `auroDatePicker-ready` |                    | Notifies that the component has finished initializing. |
+| `aurodatepicker-ready` | `CustomEvent<any>` |                                                  |
 
 ## Slots
 
@@ -36,15 +37,7 @@
   <div>
     <div class="exampleWrapper">
       <auro-datepicker>
-        <span slot="label">Name</span>
-        <auro-menu>
-          <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-          <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-          <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-          <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-          <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-          <auro-menuoption static nomatch>No matching option</auro-menuoption>
-        </auro-menu>
+        <span slot="label">Date of Birth</span>
       </auro-datepicker>
     </div>
 <auro-accordion lowProfile justifyRight>
@@ -52,15 +45,7 @@
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 
@@ -73,15 +58,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Name</span>
-    <auro-menu>
-      <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-      <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-      <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-      <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-      <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-      <auro-menuoption static nomatch>No matching option</auro-menuoption>
-    </auro-menu>
+    <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -89,15 +66,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 
@@ -110,15 +79,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Name</span>
-    <auro-menu>
-      <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-      <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-      <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-      <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-      <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-      <auro-menuoption static nomatch>No matching option</auro-menuoption>
-    </auro-menu>
+    <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -126,15 +87,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 
@@ -147,15 +100,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Name</span>
-    <auro-menu>
-      <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-      <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-      <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-      <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-      <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-      <auro-menuoption static nomatch>No matching option</auro-menuoption>
-    </auro-menu>
+    <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -163,15 +108,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 
@@ -184,15 +121,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Name</span>
-    <auro-menu>
-      <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-      <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-      <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-      <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-      <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-      <auro-menuoption static nomatch>No matching option</auro-menuoption>
-    </auro-menu>
+    <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -200,15 +129,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 
@@ -221,15 +142,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Name</span>
-    <auro-menu>
-      <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-      <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-      <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-      <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-      <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-      <auro-menuoption static nomatch>No matching option</auro-menuoption>
-    </auro-menu>
+    <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -237,15 +150,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Name</span>
-  <auro-menu>
-    <auro-menuoption value="Apples" id="option-0">Apples</auro-menuoption>
-    <auro-menuoption value="Oranges" id="option-1">Oranges</auro-menuoption>
-    <auro-menuoption value="Peaches" id="option-2">Peaches</auro-menuoption>
-    <auro-menuoption value="Grapes" id="option-3">Grapes</auro-menuoption>
-    <auro-menuoption value="Cherries" id="option-4">Cherries</auro-menuoption>
-    <auro-menuoption static nomatch>No matching option</auro-menuoption>
-  </auro-menu>
+  <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
 

@@ -19,24 +19,25 @@ import styleCss from "./style-css.js";
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {Object} optionSelected - Specifies the current selected option.
- * @prop {String} value - Value selected for the dropdown menu.
+ * @prop {String} value - Value selected for the date picker.
  * @attr {Boolean} error - Sets a persistent error state (e.g. an error state returned from the server).
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
  * @attr {Boolean} triggerIcon - If set, the `icon` attribute will be applied to the trigger `auro-input` element.
  * @attr {String} type - Applies the defined value as the type attribute on auro-input.
- * @slot - Default slot for the menu content.
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
+ * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
  */
 
 // build the component class
-class Aurodatepicker extends LitElement {
+class AuroDatePicker extends LitElement {
   constructor() {
     super();
 
     this.value = null;
-    this.optionSelected = null;
+    // this.optionSelected = null;
+    this.type = "month-day-year";
 
     this.privateDefaults();
   }
@@ -111,50 +112,6 @@ class Aurodatepicker extends LitElement {
   }
 
   /**
-   * Processes hidden state of all menu options and determines if there are any available options not hidden.
-   * @private
-   * @returns {void}
-   */
-  handleMenuOptions() {
-    this.availableOptions = [];
-
-    let noMatchOption = undefined; // eslint-disable-line no-undef-init
-
-    this.options.forEach((option) => {
-      let matchString = option.innerText.toLowerCase();
-
-      if (option.hasAttribute('nomatch')) {
-        noMatchOption = option;
-      }
-
-      if (option.hasAttribute('persistent')) {
-        this.availableOptions.push(option);
-      }
-
-      if (option.hasAttribute('suggest')) {
-        matchString = `${matchString} ${option.getAttribute('suggest')}`.toLowerCase();
-      }
-
-      // only count options that match the typed input value AND are not currently selected
-      if (matchString.includes(this.triggerInput.value.toLowerCase())) {
-        option.removeAttribute('hidden');
-        this.availableOptions.push(option);
-      } else if (!option.hasAttribute('persistent')) {
-        // Hide all other non-persistent options
-        option.setAttribute('hidden', '');
-      }
-    });
-
-    if (noMatchOption) {
-      if (this.availableOptions.length === 0) {
-        noMatchOption.removeAttribute('hidden');
-      } else {
-        noMatchOption.setAttribute('hidden', '');
-      }
-    }
-  }
-
-  /**
    * Determines the element error state based on the `required` attribute and input value.
    * @private
    * @returns {void}
@@ -171,22 +128,22 @@ class Aurodatepicker extends LitElement {
 
   firstUpdated() {
     this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
-    this.menu = this.querySelector('auro-menu');
+    // this.calendar = this.querySelector('auro-calendar');
     this.input = this.dropdown.querySelector('auro-input');
 
     this.dropdown.addEventListener('auroDropdown-ready', () => {
       this.auroDropdownReady = true;
     });
 
-    this.menu.addEventListener('auroMenu-ready', () => {
-      this.auroMenuReady = true;
-    });
+    // this.calendar.addEventListener('auroCalendar-ready', () => {
+    //   this.auroCalendarReady = true;
+    // });
 
     this.input.addEventListener('auroInput-ready', () => {
       this.auroInputReady = true;
     });
 
-    this.dropdown.setAttribute('role', 'datepicker');
+    this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
       if (!this.isPopoverVisible && this.triggerInput.value.length > 0 && this.availableOptions) {
@@ -199,51 +156,15 @@ class Aurodatepicker extends LitElement {
     }
 
 
-    if (this.menu) {
-      this.options = this.menu.querySelectorAll('auro-menuoption');
-    } else {
-      this.options = [];
-    }
-
     this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
-
-    // handle the menu event for an option selection
-    this.addEventListener('auroMenu-selectedOption', () => {
-      if (this.auroInputHelpText === this.msgSelectionMissing) {
-        this.auroInputHelpText = undefined; /* eslint-disable-line camelcase */
-      }
-
-      this.removeAttribute('error');
-      this.optionSelected = this.menu.optionSelected;
-      this.value = this.optionSelected.value;
-      this.displayValue = this.optionSelected.innerText;
-      this.triggerInput.value = this.optionSelected.value;
-      this.classList.add('datepicker-filled');
-
-      // dropdown bib should hide when making a selection
-      if (this.dropdown.isPopoverVisible) {
-        this.dropdown.hide();
-      }
-
-      // update the hidden state of options based on newly selected value
-      this.handleMenuOptions();
-    });
-
-    this.addEventListener('auroMenu-customEventFired', () => {
-      if (this.dropdown.isPopoverVisible) {
-        this.dropdown.hide();
-      }
-    });
-
-    this.addEventListener('auroMenu-activatedOption', (evt) => {
-      this.optionActive = evt.detail;
-    });
 
     this.addEventListener('keydown', (evt) => {
       if (evt.key === 'Enter') {
         if (this.dropdown.isPopoverVisible) {
-          this.menu.makeSelection();
-        } else if (this.triggerInput.value.length > 0 && this.availableOptions) {
+          // this needs to handle the keyboard navigation of the menu and making a selection
+          // this.calendar.makeSelection();
+          this.dropdown.hide();
+        } else {
           this.dropdown.show();
         }
       }
@@ -252,44 +173,40 @@ class Aurodatepicker extends LitElement {
         this.dropdown.hide();
       }
 
-      /**
-       * Prevent moving the cursor position while navigating the menu options.
-       */
-      if (evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
-        if (this.dropdown.isPopoverVisible) {
-          evt.preventDefault();
-        }
-      }
+      // /**
+      //  * Prevent moving the cursor position while navigating the calendar.
+      //  */
+      // if (evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
+      //   if (this.dropdown.isPopoverVisible) {
+      //     evt.preventDefault();
+      //   }
+      // }
 
-      if (this.dropdown.isPopoverVisible && this.availableOptions.length > 0) {
-        if (evt.key === 'ArrowUp') {
-          this.menu.selectNextItem('up');
-        }
+      // if (this.dropdown.isPopoverVisible && this.availableOptions.length > 0) {
+      //   if (evt.key === 'ArrowUp') {
+      //     this.menu.selectNextItem('up');
+      //   }
 
-        if (evt.key === 'ArrowDown') {
-          this.menu.selectNextItem('down');
-        }
-      }
+      //   if (evt.key === 'ArrowDown') {
+      //     this.menu.selectNextItem('down');
+      //   }
+      // }
     });
 
     this.triggerInput.addEventListener('input', () => {
       // pass the input value to menu to do match highlighting
-      this.menu.matchWord = this.triggerInput.value;
 
       // reset all states
       this.displayValue = this.triggerInput.value;
       this.value = null;
-      this.optionSelected = null;
-      this.optionActive = null;
-      this.menu.resetOptionsStates();
-      this.handleMenuOptions();
+      // this.menu.resetOptionsStates();
       this.handleRequired();
 
       // hide the menu if the value is empty otherwise show if there are available suggestions
       if (this.triggerInput.value.length === 0) {
         this.dropdown.hide();
         this.classList.remove('datepicker-filled');
-      } else if (!this.dropdown.isPopoverVisible && this.availableOptions) {
+      } else if (!this.dropdown.isPopoverVisible) {
         this.dropdown.show();
         this.classList.add('datepicker-filled');
       }
@@ -300,18 +217,14 @@ class Aurodatepicker extends LitElement {
       }
     });
 
-    this.triggerInput.addEventListener('blur', () => {
-      this.menu.resetOptionsStates();
+    // this.triggerInput.addEventListener('blur', () => {
+    //   this.menu.resetOptionsStates();
 
-      if (this.triggerInput.value.length > 0 && !this.optionSelected) {
-        this.setAttribute('error', '');
-        this.auroInputHelpText = this.msgSelectionMissing; /* eslint-disable-line camelcase */
-      }
-    });
-
-    this.menu.addEventListener('auroMenu-selectValueFailure', () => {
-      this.setAttribute('error', '');
-    });
+    //   if (this.triggerInput.value.length > 0 && !this.optionSelected) {
+    //     this.setAttribute('error', '');
+    //     this.auroInputHelpText = this.msgSelectionMissing; /* eslint-disable-line camelcase */
+    //   }
+    // });
 
     this.triggerInput.addEventListener('auroInput-validated', (evt) => {
       if (evt.detail.isValid) {
@@ -335,7 +248,7 @@ class Aurodatepicker extends LitElement {
   notifyReady() {
     this.ready = true;
 
-    this.dispatchEvent(new CustomEvent('aurodatepicker-ready', {
+    this.dispatchEvent(new CustomEvent('auroDatePicker-ready', {
       bubbles: true,
       cancelable: false,
       composed: true,
@@ -348,7 +261,8 @@ class Aurodatepicker extends LitElement {
    * @returns {void}
    */
   checkReadiness() {
-    if (this.auroDropdownReady && this.auroInputReady && this.auroMenuReady) {
+    if (this.auroDropdownReady && this.auroInputReady) {
+      // && this.auroCalendarReady
       this.readyActions();
       this.notifyReady();
     } else {
@@ -376,16 +290,16 @@ class Aurodatepicker extends LitElement {
    * @returns {void}
    */
   readyActions() {
-    // Set the initial value in auro-menu if defined
+    // Set the initial value in auro-calendar if defined
     if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
-      this.menu.value = this.value;
+      // this.calendar.value = this.value;
     }
   }
 
   updated(changedProperties) {
-    // After the component is ready, send direct value changes to auro-menu.
+    // After the component is ready, send direct value changes to auro-calendar.
     if (this.ready && changedProperties.has('value')) {
-      this.menu.value = this.value;
+      // this.calendar.value = this.value;
     }
   }
 
@@ -417,8 +331,8 @@ class Aurodatepicker extends LitElement {
             ?icon="${this.triggerIcon}">
             <slot name="label" slot="label"></slot>
           </auro-input>
-          <div class="menuWrapper">
-            <slot></slot>
+          <div class="calendarWrapper">
+            PUT THE CALENDAR HERE!
           </div>
           <span slot="helpText">
             ${this.auroInputHelpText
@@ -452,5 +366,5 @@ class Aurodatepicker extends LitElement {
 
 // define the name of the custom component
 if (!customElements.get("auro-datepicker")) {
-  customElements.define("auro-datepicker", Aurodatepicker);
+  customElements.define("auro-datepicker", AuroDatePicker);
 }

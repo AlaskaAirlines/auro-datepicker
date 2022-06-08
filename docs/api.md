@@ -14,9 +14,10 @@
 
 ## Events
 
-| Event                  | Type               |
-|------------------------|--------------------|
-| `aurodatepicker-ready` | `CustomEvent<any>` |
+| Event                  | Type               | Description                                      |
+|------------------------|--------------------|--------------------------------------------------|
+| `auroDatePicker-ready` |                    | Notifies that the component has finished initializing. |
+| `aurodatepicker-ready` | `CustomEvent<any>` |                                                  |
 
 ## Slots
 
