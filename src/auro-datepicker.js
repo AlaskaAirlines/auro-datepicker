@@ -6,6 +6,8 @@
 // If using litElement base class
 import { LitElement, html } from "lit-element";
 
+import '@aurodesignsystem/auro-calendar';
+
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
 // import { html, css } from "lit-element";
@@ -332,7 +334,7 @@ class AuroDatePicker extends LitElement {
             <slot name="label" slot="label"></slot>
           </auro-input>
           <div class="calendarWrapper">
-            PUT THE CALENDAR HERE!
+            <auro-calendar></auro-calendar>
           </div>
           <span slot="helpText">
             ${this.auroInputHelpText
