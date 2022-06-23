@@ -36,7 +36,7 @@
 <div class="twoColDemoRow">
   <div>
     <div class="exampleWrapper">
-      <auro-datepicker>
+      <auro-datepicker selectedDate="11/1/2022">
         <span slot="label">Date of Birth</span>
       </auro-datepicker>
     </div>
@@ -44,7 +44,7 @@
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -57,7 +57,7 @@
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker>
+  <auro-datepicker selectedDate="11/1/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -65,7 +65,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -78,7 +78,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker>
+  <auro-datepicker selectedDate="11/1/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -86,7 +86,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -99,7 +99,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker>
+  <auro-datepicker selectedDate="11/1/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -107,7 +107,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -120,7 +120,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker>
+  <auro-datepicker selectedDate="11/1/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -128,7 +128,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -141,7 +141,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker>
+  <auro-datepicker selectedDate="11/1/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -149,7 +149,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker>
+<auro-datepicker selectedDate="11/1/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```

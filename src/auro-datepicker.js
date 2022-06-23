@@ -41,6 +41,16 @@ class AuroDatePicker extends LitElement {
     // this.optionSelected = null;
     this.type = "month-day-year";
 
+    // Lion options
+    this.centralDate = new Date(); /* default to today */
+    this.disableDates = undefined;
+    this.firstDayOfWeek = 0;
+    this.locale = undefined;
+    this.maxDate = undefined;
+    this.minDate = undefined;
+    this.selectedDate = undefined;
+    this.weekdayHeaderNotation = 'narrow'; /* long|short|narrow */
+
     this.privateDefaults();
   }
 
@@ -83,6 +93,40 @@ class AuroDatePicker extends LitElement {
         reflect: true
       },
       value: {
+        type: String,
+        reflect: true
+      },
+
+      // lion calendar attributes
+      centralDate: {
+        type: Date,
+        reflect: true
+      },
+      disableDates: {
+        type: String,
+        reflect: true
+      },
+      firstDayOfWeek: {
+        type: Number,
+        reflect: true
+      },
+      locale: {
+        type: String,
+        reflect: true
+      },
+      maxDate: {
+        type: Date,
+        reflect: true
+      },
+      minDate: {
+        type: Date,
+        reflect: true
+      },
+      selectedDate: {
+        type: Date,
+        reflect: true
+      },
+      weekdayHeaderNotation: {
         type: String,
         reflect: true
       },
@@ -130,16 +174,16 @@ class AuroDatePicker extends LitElement {
 
   firstUpdated() {
     this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
-    // this.calendar = this.querySelector('auro-calendar');
+    this.calendar = this.shadowRoot.querySelector('auro-calendar');
     this.input = this.dropdown.querySelector('auro-input');
 
     this.dropdown.addEventListener('auroDropdown-ready', () => {
       this.auroDropdownReady = true;
     });
 
-    // this.calendar.addEventListener('auroCalendar-ready', () => {
-    //   this.auroCalendarReady = true;
-    // });
+    this.calendar.addEventListener('auroCalendar-ready', () => {
+      this.auroCalendarReady = true;
+    });
 
     this.input.addEventListener('auroInput-ready', () => {
       this.auroInputReady = true;
@@ -148,7 +192,7 @@ class AuroDatePicker extends LitElement {
     this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
-      if (!this.isPopoverVisible && this.triggerInput.value.length > 0 && this.availableOptions) {
+      if (!this.isPopoverVisible) {
         this.dropdown.show();
       }
     });
@@ -263,8 +307,7 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   checkReadiness() {
-    if (this.auroDropdownReady && this.auroInputReady) {
-      // && this.auroCalendarReady
+    if (this.auroDropdownReady && this.auroInputReady && this.auroCalendarReady) {
       this.readyActions();
       this.notifyReady();
     } else {
@@ -334,7 +377,15 @@ class AuroDatePicker extends LitElement {
             <slot name="label" slot="label"></slot>
           </auro-input>
           <div class="calendarWrapper">
-            <auro-calendar></auro-calendar>
+            <auro-calendar
+              .centralDate=${new Date(this.centralDate)}
+              .firstDayOfWeek=${this.firstDayOfWeek}
+              .locale=${new Date(this.locale)}
+              .minDate=${new Date(this.minDate)}
+              .maxDate=${new Date(this.maxDate)}
+              .selectedDate=${new Date(this.selectedDate)}
+              .weekdayHeaderNotation=${this.weekdayHeaderNotation}>
+            </auro-calendar>
           </div>
           <span slot="helpText">
             ${this.auroInputHelpText
