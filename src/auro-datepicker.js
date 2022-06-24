@@ -174,6 +174,7 @@ class AuroDatePicker extends LitElement {
 
   firstUpdated() {
     this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
+    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
     this.calendar = this.shadowRoot.querySelector('auro-calendar');
     this.input = this.dropdown.querySelector('auro-input');
 
@@ -200,9 +201,6 @@ class AuroDatePicker extends LitElement {
     if (!this.dropdown.hasAttribute('aria-expanded')) {
       this.dropdown.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
     }
-
-
-    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
 
     this.addEventListener('keydown', (evt) => {
       if (evt.key === 'Enter') {
@@ -237,6 +235,32 @@ class AuroDatePicker extends LitElement {
       //     this.menu.selectNextItem('down');
       //   }
       // }
+    });
+
+
+    this.calendar.addEventListener('auroCalendar-dateSelected', () => {
+      if (this.selectedDate !== this.calendar.selectedDate) {
+        this.selectedDate = this.calendar.selectedDate;
+      }
+
+      const year = this.calendar.selectedDate.getFullYear().toString();
+
+      let month = this.calendar.selectedDate.getMonth();
+      month += 1;
+      month = month.toString();
+      if (month.length === 1) {
+        month = '0'.concat(month);
+      }
+
+      let date = this.calendar.selectedDate.getDate().toString();
+      if (date.length === 1) {
+        date = '0'.concat(date);
+      }
+
+      const dateString = month.concat('/', date, '/', year);
+
+      this.input.value = dateString;
+      this.centralDate = new Date(dateString);
     });
 
     this.triggerInput.addEventListener('input', () => {
