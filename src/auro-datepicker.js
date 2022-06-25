@@ -41,7 +41,7 @@ class AuroDatePicker extends LitElement {
     // this.optionSelected = null;
     this.type = "month-day-year";
 
-    // Lion options
+    // Lion Calendar options
     this.centralDate = new Date(); /* default to today */
     this.disableDates = undefined;
     this.firstDayOfWeek = 0;
@@ -172,6 +172,41 @@ class AuroDatePicker extends LitElement {
     }
   }
 
+  /**
+   * Handle changes to the input value and trigger changes that should result.
+   * @private
+   * @returns {void}
+   */
+  handleInputValueChange() {
+    this.calendar.selectedDate = undefined;
+
+    /** Control the input label state based on input value. */
+    if (this.triggerInput.value.length === 0) {
+      this.classList.remove('datepicker-filled');
+    } else {
+      this.classList.add('datepicker-filled');
+
+      /**
+       * We can't rely on Date.parse() to check if a full date has been entered.
+       * Entering even a single digit will return a valid date.
+       * Check if the full date has been typed in by looking at the length of the value.
+       */
+      const lengthOfValidDateStr = 10;
+      if (this.triggerInput.value.length === lengthOfValidDateStr) {
+        /** Once we have a full date pass it to the calender for selection. */
+        this.calendar.selectedDate = this.triggerInput.value;
+        /**
+         * Also make the newly selected year/month be the new central date
+         * so that that month is in view.
+         */
+        this.calendar.centralDate = this.triggerInput.value;
+
+      }
+    }
+
+    this.handleRequired();
+  }
+
   firstUpdated() {
     this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
     this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
@@ -190,9 +225,11 @@ class AuroDatePicker extends LitElement {
       this.auroInputReady = true;
     });
 
+    // TODO: is this the right role for a datepicker?
     this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
+      // TODO: Why is this event being received when typing characters with focus on the input? Should only be on trigger click
       if (!this.isPopoverVisible) {
         this.dropdown.show();
       }
@@ -205,8 +242,6 @@ class AuroDatePicker extends LitElement {
     this.addEventListener('keydown', (evt) => {
       if (evt.key === 'Enter') {
         if (this.dropdown.isPopoverVisible) {
-          // this needs to handle the keyboard navigation of the menu and making a selection
-          // this.calendar.makeSelection();
           this.dropdown.hide();
         } else {
           this.dropdown.show();
@@ -216,25 +251,6 @@ class AuroDatePicker extends LitElement {
       if (evt.key === 'Tab' && this.dropdown.isPopoverVisible) {
         this.dropdown.hide();
       }
-
-      // /**
-      //  * Prevent moving the cursor position while navigating the calendar.
-      //  */
-      // if (evt.key === 'ArrowUp' || evt.key === 'ArrowDown') {
-      //   if (this.dropdown.isPopoverVisible) {
-      //     evt.preventDefault();
-      //   }
-      // }
-
-      // if (this.dropdown.isPopoverVisible && this.availableOptions.length > 0) {
-      //   if (evt.key === 'ArrowUp') {
-      //     this.menu.selectNextItem('up');
-      //   }
-
-      //   if (evt.key === 'ArrowDown') {
-      //     this.menu.selectNextItem('down');
-      //   }
-      // }
     });
 
 
@@ -260,41 +276,13 @@ class AuroDatePicker extends LitElement {
       const dateString = month.concat('/', date, '/', year);
 
       this.input.value = dateString;
+      this.handleInputValueChange();
       this.centralDate = new Date(dateString);
     });
 
-    this.triggerInput.addEventListener('input', () => {
-      // pass the input value to menu to do match highlighting
-
-      // reset all states
-      this.displayValue = this.triggerInput.value;
-      this.value = null;
-      // this.menu.resetOptionsStates();
-      this.handleRequired();
-
-      // hide the menu if the value is empty otherwise show if there are available suggestions
-      if (this.triggerInput.value.length === 0) {
-        this.dropdown.hide();
-        this.classList.remove('datepicker-filled');
-      } else if (!this.dropdown.isPopoverVisible) {
-        this.dropdown.show();
-        this.classList.add('datepicker-filled');
-      }
-
-      // force the dropdown bib to hide if the input value has no matching suggestions
-      if (!this.availableOptions) {
-        this.dropdown.hide();
-      }
+    this.input.addEventListener('input', () => {
+      this.handleInputValueChange();
     });
-
-    // this.triggerInput.addEventListener('blur', () => {
-    //   this.menu.resetOptionsStates();
-
-    //   if (this.triggerInput.value.length > 0 && !this.optionSelected) {
-    //     this.setAttribute('error', '');
-    //     this.auroInputHelpText = this.msgSelectionMissing; /* eslint-disable-line camelcase */
-    //   }
-    // });
 
     this.triggerInput.addEventListener('auroInput-validated', (evt) => {
       if (evt.detail.isValid) {
