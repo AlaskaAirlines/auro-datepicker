@@ -194,12 +194,12 @@ class AuroDatePicker extends LitElement {
       const lengthOfValidDateStr = 10;
       if (this.triggerInput.value.length === lengthOfValidDateStr) {
         /** Once we have a full date pass it to the calender for selection. */
-        this.calendar.selectedDate = this.triggerInput.value;
+        this.calendar.selectedDate = new Date(this.triggerInput.value);
         /**
          * Also make the newly selected year/month be the new central date
          * so that that month is in view.
          */
-        this.calendar.centralDate = this.triggerInput.value;
+        this.calendar.centralDate = new Date(this.triggerInput.value);
 
       }
     }
