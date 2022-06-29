@@ -4,28 +4,34 @@
 
 ## Properties
 
-| Property         | Attribute        | Type      | Default | Description                                      |
-|------------------|------------------|-----------|---------|--------------------------------------------------|
-| [disabled](#disabled)       | `disabled`       | `Boolean` |         | If set, disables the datepicker.                 |
-| [error](#error)          | `error`          | `Boolean` |         | Sets a persistent error state (e.g. an error state returned from the server). |
-| [optionSelected](#optionSelected) | `optionSelected` | `Object`  | null    | Specifies the current selected option.           |
-| [required](#required)       | `required`       | `Boolean` |         | Populates the `required` attribute on the input. Used for client-side validation. |
-| [triggerIcon](#triggerIcon)    | `triggerIcon`    | `Boolean` |         | If set, the `icon` attribute will be applied to the trigger `auro-input` element. |
-| [type](#type)           | `type`           | `String`  |         | Applies the defined value as the type attribute on auro-input. |
-| [value](#value)          | `value`          | `String`  | null    | Value selected for the dropdown menu.            |
+| Property                | Attribute               | Type      | Default          | Description                                      |
+|-------------------------|-------------------------|-----------|------------------|--------------------------------------------------|
+| [centralDate](#centralDate)           | `centralDate`           |           |                  |                                                  |
+| [disableDates](#disableDates)          | `disableDates`          | `string`  | "undefined"      |                                                  |
+| [disabled](#disabled)              | `disabled`              | `Boolean` |                  | If set, disables the datepicker.                 |
+| [error](#error)                 | `error`                 | `Boolean` |                  | Sets a persistent error state (e.g. an error state returned from the server). |
+| [firstDayOfWeek](#firstDayOfWeek)        | `firstDayOfWeek`        | `number`  | 0                |                                                  |
+| [locale](#locale)                | `locale`                | `string`  | "undefined"      |                                                  |
+| [maxDate](#maxDate)               | `maxDate`               |           | "undefined"      |                                                  |
+| [minDate](#minDate)               | `minDate`               |           | "undefined"      |                                                  |
+| [optionSelected](#optionSelected)        | `optionSelected`        | `Object`  |                  | Specifies the current selected option.           |
+| [required](#required)              | `required`              | `Boolean` |                  | Populates the `required` attribute on the input. Used for client-side validation. |
+| [selectedDate](#selectedDate)          | `selectedDate`          |           | "undefined"      |                                                  |
+| [triggerIcon](#triggerIcon)           | `triggerIcon`           | `Boolean` |                  | If set, the `icon` attribute will be applied to the trigger `auro-input` element. |
+| [type](#type)                  | `type`                  | `String`  | "month-day-year" | Applies the defined value as the type attribute on auro-input. |
+| [value](#value)                 | `value`                 | `String`  | null             | Value selected for the date picker.              |
+| [weekdayHeaderNotation](#weekdayHeaderNotation) | `weekdayHeaderNotation` | `string`  | "narrow"         |                                                  |
 
 ## Events
 
 | Event                  | Type               | Description                                      |
 |------------------------|--------------------|--------------------------------------------------|
-| `auroDatePicker-ready` |                    | Notifies that the component has finished initializing. |
-| `aurodatepicker-ready` | `CustomEvent<any>` |                                                  |
+| `auroDatePicker-ready` | `CustomEvent<any>` | Notifies that the component has finished initializing. |
 
 ## Slots
 
 | Name       | Description                          |
 |------------|--------------------------------------|
-|            | Default slot for the menu content.   |
 | [helpText](#helpText) | Defines the content of the helpText. |
 | [label](#label)    | Defines the content of the label.    |
 
@@ -36,7 +42,7 @@
 <div class="twoColDemoRow">
   <div>
     <div class="exampleWrapper">
-      <auro-datepicker selectedDate="11/1/2022">
+      <auro-datepicker minDate="6/15/2022">
         <span slot="label">Date of Birth</span>
       </auro-datepicker>
     </div>
@@ -44,7 +50,7 @@
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -57,7 +63,7 @@
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker selectedDate="11/1/2022">
+  <auro-datepicker minDate="6/15/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -65,7 +71,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -78,7 +84,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker selectedDate="11/1/2022">
+  <auro-datepicker minDate="6/15/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -86,7 +92,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -99,7 +105,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker selectedDate="11/1/2022">
+  <auro-datepicker minDate="6/15/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -107,7 +113,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -120,7 +126,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker selectedDate="11/1/2022">
+  <auro-datepicker minDate="6/15/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -128,7 +134,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -141,7 +147,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker selectedDate="11/1/2022">
+  <auro-datepicker minDate="6/15/2022">
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -149,7 +155,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker selectedDate="11/1/2022">
+<auro-datepicker minDate="6/15/2022">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```

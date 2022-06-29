@@ -25,6 +25,9 @@ auro-input {
 }
 
 :host {
+  width: 410px;
+  display: inline-block;
+
   auro-dropdown {
     &::part(trigger) {
       padding-right: var(--auro-size-sm);
