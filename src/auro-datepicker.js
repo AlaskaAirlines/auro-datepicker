@@ -196,7 +196,7 @@ class AuroDatePicker extends LitElement {
     } else {
       this.classList.add('datepicker-filled');
 
-      this.value = new Date(this.triggerInput.value);
+      this.value = undefined;
 
       /**
        * We can't rely on Date.parse() to check if a full date has been entered.
@@ -205,6 +205,8 @@ class AuroDatePicker extends LitElement {
        */
       const lengthOfValidDateStr = 10;
       if (this.triggerInput.value.length === lengthOfValidDateStr) {
+
+        this.value = this.selectedDate;
 
         /** Once we have a full date pass it to the calender for selection. */
         this.calendar.selectedDate = new Date(this.triggerInput.value);
@@ -362,14 +364,6 @@ class AuroDatePicker extends LitElement {
   render() {
     return html`
       <div>
-        <div aria-live="polite" class="util_displayHiddenVisually">
-          ${this.optionActive && this.availableOptions.length > 0
-            ? html`
-              ${`${this.optionActive.innerText}, selected, ${this.availableOptions.indexOf(this.optionActive) + 1} of ${this.availableOptions.length}`}
-            `
-            : undefined
-          }
-        </div>
         <auro-dropdown
           for="dropdownMenu"
           bordered
@@ -380,7 +374,7 @@ class AuroDatePicker extends LitElement {
           <auro-input
             slot="trigger"
             borderless
-            value="${this.displayValue === null ? `` : this.displayValue}"
+            value="${this.value}"
             ?required="${this.required}"
             .type="${this.type}"
             ?icon="${this.triggerIcon}">
@@ -403,21 +397,7 @@ class AuroDatePicker extends LitElement {
                 ${this.auroInputHelpText}
               `
               : html`
-                ${this.error
-                  ? html`
-                    ${this.required
-                      ? html`
-                        ${this.msgSelectionMissing}
-                      `
-                      : html`
-                        <slot name="helpText"></slot>
-                      `
-                    }
-                  `
-                  : html`
-                    <slot name="helpText"></slot>
-                  `
-                }
+                <slot name="helpText"></slot>
               `
             }
           </span>
