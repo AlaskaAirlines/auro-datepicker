@@ -58,7 +58,7 @@ import "@aurodesignsystem/auro-datepicker";
 **Reference component in HTML**
 
 ```html
-<auro-datepicker minDate="6/15/2022">
+<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -90,7 +90,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ### Default auro-datepicker
 
 ```html
-<auro-datepicker minDate="6/15/2022">
+<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```

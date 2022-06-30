@@ -3,6 +3,8 @@
 
 // ---------------------------------------------------------------------
 
+/* eslint-disable max-lines */
+
 // If using litElement base class
 import { LitElement, html } from "lit-element";
 
@@ -12,8 +14,6 @@ import '@aurodesignsystem/auro-calendar';
 // See instructions for importing auroElement base class https://git.io/JULq4
 // import { html, css } from "lit-element";
 // import AuroElement from '@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
-
-/* eslint-disable max-lines */
 
 // Import touch detection lib
 import styleCss from "./style-css.js";
@@ -37,32 +37,19 @@ class AuroDatePicker extends LitElement {
   constructor() {
     super();
 
-    this.value = null;
-    // this.optionSelected = null;
+    this.value = undefined;
     this.type = "month-day-year";
+    this.error = false;
 
     // Lion Calendar options
-    this.centralDate = new Date(); /* default to today */
+    this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
     this.disableDates = undefined;
     this.firstDayOfWeek = 0;
     this.locale = undefined;
     this.maxDate = undefined;
     this.minDate = undefined;
     this.selectedDate = undefined;
-    this.weekdayHeaderNotation = 'narrow'; /* long|short|narrow */
-
-    this.privateDefaults();
-  }
-
-  /**
-   * @private
-   * @returns {void} Internal defaults.
-   */
-  privateDefaults() {
-    this.displayValue = null;
-    this.availableOptions = [];
-    this.optionActive = null;
-    this.msgSelectionMissing = 'Please select an option.';
+    this.weekdayHeaderNotation = 'narrow'; /* long|short|narrow */ // eslint-disable-line no-inline-comments
   }
 
   // This function is to define props used within the scope of this component
@@ -163,13 +150,36 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleRequired() {
-    if (this.required) {
+    if (this.required && !this.error) {
       if (!this.triggerInput.value || this.triggerInput.value.length === 0) {
         this.error = true;
       } else {
         this.error = false;
       }
     }
+  }
+
+  /**
+   * Validates if the selected date is within defined range.
+   * @private
+   * @returns {void}
+   */
+  validateDate() {
+    let error = false;
+
+    if (this.minDate) {
+      if (new Date(this.minDate) > new Date(this.value)) {
+        error = true;
+      }
+    }
+
+    if (this.maxDate) {
+      if (new Date(this.maxDate) < new Date(this.value)) {
+        error = true;
+      }
+    }
+
+    this.error = error;
   }
 
   /**
@@ -186,6 +196,8 @@ class AuroDatePicker extends LitElement {
     } else {
       this.classList.add('datepicker-filled');
 
+      this.value = new Date(this.triggerInput.value);
+
       /**
        * We can't rely on Date.parse() to check if a full date has been entered.
        * Entering even a single digit will return a valid date.
@@ -193,14 +205,17 @@ class AuroDatePicker extends LitElement {
        */
       const lengthOfValidDateStr = 10;
       if (this.triggerInput.value.length === lengthOfValidDateStr) {
+
         /** Once we have a full date pass it to the calender for selection. */
         this.calendar.selectedDate = new Date(this.triggerInput.value);
+
         /**
          * Also make the newly selected year/month be the new central date
          * so that that month is in view.
          */
         this.calendar.centralDate = new Date(this.triggerInput.value);
 
+        this.validateDate();
       }
     }
 
@@ -229,7 +244,6 @@ class AuroDatePicker extends LitElement {
     this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
-      // TODO: Why is this event being received when typing characters with focus on the input? Should only be on trigger click
       if (!this.isPopoverVisible) {
         this.dropdown.show();
       }
@@ -246,10 +260,6 @@ class AuroDatePicker extends LitElement {
         } else {
           this.dropdown.show();
         }
-      }
-
-      if (evt.key === 'Tab' && this.dropdown.isPopoverVisible) {
-        this.dropdown.hide();
       }
     });
 
@@ -285,16 +295,9 @@ class AuroDatePicker extends LitElement {
       this.handleInputValueChange();
     });
 
-    this.triggerInput.addEventListener('auroInput-validated', (evt) => {
-      if (evt.detail.isValid) {
-        this.removeAttribute('error');
-      } else {
-        this.setAttribute('error', '');
-      }
-    });
 
     this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
-      this.auroInputHelpText = evt.detail.message; /* eslint-disable-line camelcase */
+      this.auroInputHelpText = evt.detail.message;
     });
 
     this.checkReadiness();
@@ -350,13 +353,6 @@ class AuroDatePicker extends LitElement {
   readyActions() {
     // Set the initial value in auro-calendar if defined
     if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
-      // this.calendar.value = this.value;
-    }
-  }
-
-  updated(changedProperties) {
-    // After the component is ready, send direct value changes to auro-calendar.
-    if (this.ready && changedProperties.has('value')) {
       // this.calendar.value = this.value;
     }
   }

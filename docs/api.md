@@ -7,7 +7,7 @@
 | `centralDate`           | `centralDate`           |           |                  |                                                  |
 | `disableDates`          | `disableDates`          | `string`  | "undefined"      |                                                  |
 | `disabled`              | `disabled`              | `Boolean` |                  | If set, disables the datepicker.                 |
-| `error`                 | `error`                 | `Boolean` |                  | Sets a persistent error state (e.g. an error state returned from the server). |
+| `error`                 | `error`                 | `Boolean` | false            | Sets a persistent error state (e.g. an error state returned from the server). |
 | `firstDayOfWeek`        | `firstDayOfWeek`        | `number`  | 0                |                                                  |
 | `locale`                | `locale`                | `string`  | "undefined"      |                                                  |
 | `maxDate`               | `maxDate`               |           | "undefined"      |                                                  |
@@ -17,7 +17,7 @@
 | `selectedDate`          | `selectedDate`          |           | "undefined"      |                                                  |
 | `triggerIcon`           | `triggerIcon`           | `Boolean` |                  | If set, the `icon` attribute will be applied to the trigger `auro-input` element. |
 | `type`                  | `type`                  | `String`  | "month-day-year" | Applies the defined value as the type attribute on auro-input. |
-| `value`                 | `value`                 | `String`  | null             | Value selected for the date picker.              |
+| `value`                 | `value`                 | `String`  | "undefined"      | Value selected for the date picker.              |
 | `weekdayHeaderNotation` | `weekdayHeaderNotation` | `string`  | "narrow"         |                                                  |
 
 ## Events
