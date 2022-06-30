@@ -42,7 +42,7 @@
 <div class="twoColDemoRow">
   <div>
     <div class="exampleWrapper">
-      <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+      <auro-datepicker>
         <span slot="label">Date of Birth</span>
       </auro-datepicker>
     </div>
@@ -50,7 +50,7 @@
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -63,7 +63,7 @@
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -71,7 +71,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -84,7 +84,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -92,7 +92,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -105,7 +105,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -113,7 +113,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -126,7 +126,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -134,7 +134,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
@@ -147,7 +147,7 @@ Explanation and use description.
 Explanation and use description.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -155,7 +155,7 @@ Explanation and use description.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```

@@ -242,7 +242,6 @@ class AuroDatePicker extends LitElement {
       this.auroInputReady = true;
     });
 
-    // TODO: is this the right role for a datepicker?
     this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {

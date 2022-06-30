@@ -11,7 +11,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ## Example(s)
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+  <auro-datepicker>
     <span slot="label">Date of Birth</span>
   </auro-datepicker>
 </div>
@@ -19,7 +19,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="6/15/2022" maxDate="6/30/2030">
+<auro-datepicker>
   <span slot="label">Date of Birth</span>
 </auro-datepicker>
 ```
