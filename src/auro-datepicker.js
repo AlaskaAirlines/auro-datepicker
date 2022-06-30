@@ -289,6 +289,7 @@ class AuroDatePicker extends LitElement {
       this.handleInputValueChange();
       this.centralDate = new Date(dateString);
       this.dropdown.hide();
+      this.input.focus();
     });
 
     this.input.addEventListener('input', () => {
