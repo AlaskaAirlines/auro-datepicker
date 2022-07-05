@@ -183,6 +183,11 @@ class AuroDatePicker extends LitElement {
     this.error = error;
   }
 
+  /**
+   * Converts date object into a string.
+   * @private
+   * @returns {string} date formatted as a string
+   */
   formatDateString(date) {
     const dd = String(date.getDate());
     const mm = String(date.getMonth() + 1);
