@@ -38,9 +38,13 @@ class AuroDatePicker extends LitElement {
     super();
 
     this.value = undefined;
-    this.inputValue = undefined;
     this.type = "month-day-year";
     this.error = false;
+
+    /**
+     * @private
+     */
+    this.inputValue = undefined;
 
     // Lion Calendar options
     this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
@@ -186,7 +190,8 @@ class AuroDatePicker extends LitElement {
   /**
    * Converts date object into a string.
    * @private
-   * @returns {string} date formatted as a string
+   * @param {Object} date - Date to convert.
+   * @returns {string} Date formatted as a string.
    */
   formatDateString(date) {
     const dd = String(date.getDate());
@@ -303,7 +308,6 @@ class AuroDatePicker extends LitElement {
       this.input.value = dateString;
       this.handleInputValueChange();
       this.centralDate = new Date(dateString);
-      this.dropdown.hide();
       this.input.focus();
     });
 
