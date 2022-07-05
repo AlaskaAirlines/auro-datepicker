@@ -38,6 +38,7 @@ class AuroDatePicker extends LitElement {
     super();
 
     this.value = undefined;
+    this.inputValue = undefined;
     this.type = "month-day-year";
     this.error = false;
 
@@ -182,6 +183,14 @@ class AuroDatePicker extends LitElement {
     this.error = error;
   }
 
+  formatDateString(date) {
+    const dd = String(date.getDate());
+    const mm = String(date.getMonth() + 1);
+    const yyyy = date.getFullYear();
+
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
   /**
    * Handle changes to the input value and trigger changes that should result.
    * @private
@@ -205,8 +214,8 @@ class AuroDatePicker extends LitElement {
        */
       const lengthOfValidDateStr = 10;
       if (this.triggerInput.value.length === lengthOfValidDateStr) {
-
         this.value = this.selectedDate;
+        this.inputValue = this.formatDateString(new Date(this.selectedDate));
 
         /** Once we have a full date pass it to the calender for selection. */
         this.calendar.selectedDate = new Date(this.triggerInput.value);
@@ -373,7 +382,7 @@ class AuroDatePicker extends LitElement {
           <auro-input
             slot="trigger"
             borderless
-            value="${this.value}"
+            value="${this.inputValue}"
             ?required="${this.required}"
             .type="${this.type}"
             ?icon="${this.triggerIcon}">
