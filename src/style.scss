@@ -34,6 +34,9 @@ auro-input {
 
   auro-dropdown {
     &::part(trigger) {
+      display: inline-block;
+
+      height: 56px;
       padding-right: var(--auro-size-sm);
     }
   }
