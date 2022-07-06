@@ -269,16 +269,21 @@ class AuroDatePicker extends LitElement {
       }
     });
 
+    this.dropdown.addEventListener('auroDropdown-toggled', () => {
+      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+    });
+
+    /**
+     * Use css transition effect tied to :focus-within to detect tabbing out of the datepicker
+     * while the dropdown bib is open. Trap the focus in the datepicker while the bib is shown.
+     */
+    this.dropdown.addEventListener('transitionend', () => {
+      this.input.focus();
+    });
+
     if (!this.dropdown.hasAttribute('aria-expanded')) {
       this.dropdown.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
     }
-
-    this.addEventListener('keydown', (evt) => {
-      if (evt.key === 'Enter') {
-        this.dropdown.show();
-      }
-    });
-
 
     this.calendar.addEventListener('auroCalendar-dateSelected', () => {
       if (this.selectedDate !== this.calendar.selectedDate) {
@@ -305,6 +310,12 @@ class AuroDatePicker extends LitElement {
       this.handleInputValueChange();
       this.centralDate = new Date(dateString);
       this.input.focus();
+    });
+
+    this.calendar.addEventListener('keydown', (evt) => {
+      if (evt.key === 'Escape') {
+        this.input.focus();
+      }
     });
 
     this.input.addEventListener('input', () => {

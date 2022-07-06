@@ -39,6 +39,19 @@ auro-input {
   }
 }
 
+/* This is used in hte JS to detect focus has left the datepicker so we can return it to the input */
+:host([aria-expanded='true']) {
+  auro-dropdown {
+    opacity: 1;
+
+    &:not(:focus-within) {
+      opacity: .9999999; // stylelint-disable-line number-max-precision
+
+      transition: opacity .01s;
+    }
+  }
+}
+
 /* stylelint-disable selector-class-pattern */
 :host(:not(.datepicker-filled)) {
   /* stylelint-enable selector-class-pattern */
