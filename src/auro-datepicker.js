@@ -398,6 +398,7 @@ class AuroDatePicker extends LitElement {
             borderless
             value="${this.inputValue}"
             ?required="${this.required}"
+            ?noValidate="${this.noValidate}"
             .type="${this.type}"
             ?icon="${this.triggerIcon}">
             <slot name="label" slot="label"></slot>
