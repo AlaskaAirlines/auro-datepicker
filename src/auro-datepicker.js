@@ -275,11 +275,7 @@ class AuroDatePicker extends LitElement {
 
     this.addEventListener('keydown', (evt) => {
       if (evt.key === 'Enter') {
-        if (this.dropdown.isPopoverVisible) {
-          this.dropdown.hide();
-        } else {
-          this.dropdown.show();
-        }
+        this.dropdown.show();
       }
     });
 
