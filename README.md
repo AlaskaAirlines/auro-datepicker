@@ -74,7 +74,7 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 ```html
 <!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
 <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
+<link rel="stylesheet" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
 <script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
 <script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.es5.js" nomodule></script>
 ```

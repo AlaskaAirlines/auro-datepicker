@@ -12,14 +12,14 @@
 
 // Import baseline library dependencies
 // Mixins
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
 
 // Creates baseline output in CSS
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/fonts';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/normalize';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/headings';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/fonts';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/normalize';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/headings';
 $paragraph: true;
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/essentials';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/essentials';
 
 // Import Utility classes (will produce CSS in output)
 $layout-properties: margin;
@@ -27,7 +27,7 @@ $layout-extensions: Right;
 $layout-modifiers: (
   'md': $auro-size-md
 );
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/utilityMixins/layoutPropertiesGenerator';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityMixins/layoutPropertiesGenerator';
 
 // Custom styles per demo pages
 body {
@@ -39,16 +39,17 @@ pre[class*='language-'] {
 }
 
 main {
-  margin: 0 auto;
   max-width: 60rem;
+  margin: 0 auto;
 }
 
 .exampleWrapper {
   $stripe: #f3f3f3;
   $background: var(--auro-color-base-white);
 
-  background: repeating-linear-gradient( 45deg, $stripe, $stripe 10px, $background 10px, $background 20px);
   overflow: auto;
+
+  background: repeating-linear-gradient( 45deg, $stripe, $stripe 10px, $background 10px, $background 20px);
 }
 
 .exampleWrapper--ondark {
@@ -60,19 +61,22 @@ main {
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-:not(pre) > code[class*='language-'], pre[class*='language-'] {
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
   background: #f8f8f8;
 }
 
 auro-accordion {
   pre[class*='language-'] {
-    background: none;
     margin-bottom: 0;
     padding: 0;
+
+    background: none;
   }
 }
 
-code[class*='language-'], pre[class*='language-'] {
+code[class*='language-'],
+pre[class*='language-'] {
   font-family: monospace;
 }
 
@@ -83,14 +87,17 @@ code:not(.html):not(.css):not(.js) {
 }
 
 blockquote {
-  margin-left: 0;
-  border-left: 1px solid var(--auro-color-border-active-on-light);
-  padding: var(--auro-size-xs);
-  padding-left: var(--auro-size-xl);
-  color: var(--auro-color-text-secondary-on-light);
-  font-weight: 200;
   margin-top: var(--auro-size-lg);
   margin-bottom: var(--auro-size-lg);
+  margin-left: 0;
+  padding: var(--auro-size-xs);
+  padding-left: var(--auro-size-xl);
+
+  border-left: 1px solid var(--auro-color-border-active-on-light);
+
+  color: var(--auro-color-text-secondary-on-light);
+
+  font-weight: 200;
 
   p {
     line-height: 2;
@@ -142,10 +149,12 @@ strong {
   @extend .heading--300;
 }
 
-pre  {
-  overflow: auto;
-  background-color: var(--auro-color-base-gray-100);
+pre {
   margin-bottom: var(--auro-size-xxl);
+
+  overflow: auto;
+
+  background-color: var(--auro-color-base-gray-100);
 
   code {
     font-size: .9rem;
@@ -153,12 +162,23 @@ pre  {
 }
 
 table {
+  @include auro_breakpoint--sm {
+    display: table;
+
+    width: 100%;
+  }
+
   display: block;
-  border-collapse: collapse;
-  overflow: scroll;
+
   width: auto;
-  border-spacing: var(--auro-size-sm);
   margin-bottom: var(--auro-size-xl);
+
+  overflow: scroll;
+
+  border-spacing: var(--auro-size-sm);
+
+  border-collapse: collapse;
+
   font-weight: var(--auro-text-heading-display-weight);
 
   tr {
@@ -168,25 +188,22 @@ table {
   }
 
   th {
-    text-align: left;
     font-weight: var(--auro-text-heading-default-weight);
+
+    text-align: left;
   }
 
   img {
-   max-width: unset;
-  }
-
-  @include auro_breakpoint--sm {
-    width: 100%;
-    display: table;
+    max-width: unset;
   }
 }
 
 thead {
-  border-bottom: 1px solid var(--auro-color-base-gray-200);
   border-collapse: collapse;
+  border-bottom: 1px solid var(--auro-color-base-gray-200);
 }
 
-th, td {
+th,
+td {
   padding: var(--auro-size-md);
 }
