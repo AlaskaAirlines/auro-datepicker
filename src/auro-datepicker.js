@@ -29,6 +29,7 @@ import styleCss from "./style-css.js";
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
+ * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
  */
 
 // build the component class
@@ -37,13 +38,17 @@ class AuroDatePicker extends LitElement {
     super();
 
     this.value = undefined;
-    this.type = "month-day-year";
     this.error = false;
 
     /**
      * @private
      */
     this.inputValue = undefined;
+
+    /**
+     * @private
+     */
+    this.type = "month-day-year";
 
     // Lion Calendar options
     this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
@@ -161,6 +166,15 @@ class AuroDatePicker extends LitElement {
   }
 
   /**
+   * Focuses the combobox trigger input.
+   * @returns {void}
+   */
+  focus() {
+    this.shadowRoot.querySelector('auro-dropdown').querySelector('auro-input').
+      focus();
+  }
+
+  /**
    * Determines the element error state based on the `required` attribute and input value.
    * @private
    * @returns {void}
@@ -238,6 +252,12 @@ class AuroDatePicker extends LitElement {
         this.value = this.selectedDate;
         this.inputValue = this.formatDateString(new Date(this.selectedDate));
 
+        this.dispatchEvent(new CustomEvent('auroDatePicker-valueSet', {
+          bubbles: true,
+          cancelable: false,
+          composed: true,
+        }));
+
         /** Once we have a full date pass it to the calender for selection. */
         this.calendar.selectedDate = new Date(this.triggerInput.value);
 
@@ -259,6 +279,18 @@ class AuroDatePicker extends LitElement {
     this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
     this.calendar = this.shadowRoot.querySelector('auro-calendar');
     this.input = this.dropdown.querySelector('auro-input');
+
+    if (this.value) {
+      this.selectedDate = new Date(this.value);
+    }
+
+    if (this.selectedDate) {
+      this.selectedDate = new Date(this.selectedDate);
+      this.value = new Date(this.selectedDate);
+      this.centralDate = new Date(this.selectedDate);
+      this.inputValue = this.formatDateString(new Date(this.selectedDate));
+      this.classList.add('datepicker-filled');
+    }
 
     this.dropdown.addEventListener('auroDropdown-ready', () => {
       this.auroDropdownReady = true;
@@ -412,6 +444,8 @@ class AuroDatePicker extends LitElement {
             value="${this.inputValue}"
             ?required="${this.required}"
             ?noValidate="${this.noValidate}"
+            ?disabled="${this.disabled}"
+            ?error="${this.error}"
             .type="${this.type}">
             <slot name="label" slot="label"></slot>
           </auro-input>
