@@ -18,13 +18,14 @@ import styleCss from "./style-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * @prop {Object} optionSelected - Specifies the current selected option.
  * @prop {String} value - Value selected for the date picker.
  * @attr {Boolean} error - Sets a persistent error state (e.g. an error state returned from the server).
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
- * @attr {Boolean} triggerIcon - If set, the `icon` attribute will be applied to the trigger `auro-input` element.
- * @attr {String} type - Applies the defined value as the type attribute on auro-input.
+ * @prop {Object} centralDate - The date that determines the currently visible month.
+ * @prop {Date} maxDate - Maximum date. All dates after will be disabled.
+ * @prop {Date} minDate - Minimum date. All dates before will be disabled.
+ * @prop {Date | undefined} selectedDate - The selected date.
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
@@ -46,12 +47,29 @@ class AuroDatePicker extends LitElement {
 
     // Lion Calendar options
     this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
-    this.disableDates = undefined;
-    this.firstDayOfWeek = 0;
-    this.locale = undefined;
+
     this.maxDate = undefined;
     this.minDate = undefined;
     this.selectedDate = undefined;
+
+    /**
+     * @private
+     */
+    this.disableDates = undefined;
+
+    /**
+     * @private
+     */
+    this.firstDayOfWeek = 0;
+
+    /**
+     * @private
+     */
+    this.locale = undefined;
+
+    /**
+     * @private
+     */
     this.weekdayHeaderNotation = 'narrow'; /* long|short|narrow */ // eslint-disable-line no-inline-comments
   }
 
@@ -69,12 +87,7 @@ class AuroDatePicker extends LitElement {
         type: Boolean,
         reflect: true
       },
-      optionSelected: { type: Object },
       required: {
-        type: Boolean,
-        reflect: true
-      },
-      triggerIcon: {
         type: Boolean,
         reflect: true
       },
@@ -399,8 +412,7 @@ class AuroDatePicker extends LitElement {
             value="${this.inputValue}"
             ?required="${this.required}"
             ?noValidate="${this.noValidate}"
-            .type="${this.type}"
-            ?icon="${this.triggerIcon}">
+            .type="${this.type}">
             <slot name="label" slot="label"></slot>
           </auro-input>
           <div class="calendarWrapper">

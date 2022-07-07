@@ -4,23 +4,17 @@
 
 ## Properties
 
-| Property                | Attribute               | Type      | Default          | Description                                      |
-|-------------------------|-------------------------|-----------|------------------|--------------------------------------------------|
-| [centralDate](#centralDate)           | `centralDate`           |           |                  |                                                  |
-| [disableDates](#disableDates)          | `disableDates`          | `string`  | "undefined"      |                                                  |
-| [disabled](#disabled)              | `disabled`              | `Boolean` |                  | If set, disables the datepicker.                 |
-| [error](#error)                 | `error`                 | `Boolean` | false            | Sets a persistent error state (e.g. an error state returned from the server). |
-| [firstDayOfWeek](#firstDayOfWeek)        | `firstDayOfWeek`        | `number`  | 0                |                                                  |
-| [locale](#locale)                | `locale`                | `string`  | "undefined"      |                                                  |
-| [maxDate](#maxDate)               | `maxDate`               |           | "undefined"      |                                                  |
-| [minDate](#minDate)               | `minDate`               |           | "undefined"      |                                                  |
-| [optionSelected](#optionSelected)        | `optionSelected`        | `Object`  |                  | Specifies the current selected option.           |
-| [required](#required)              | `required`              | `Boolean` |                  | Populates the `required` attribute on the input. Used for client-side validation. |
-| [selectedDate](#selectedDate)          | `selectedDate`          |           | "undefined"      |                                                  |
-| [triggerIcon](#triggerIcon)           | `triggerIcon`           | `Boolean` |                  | If set, the `icon` attribute will be applied to the trigger `auro-input` element. |
-| [type](#type)                  | `type`                  | `String`  | "month-day-year" | Applies the defined value as the type attribute on auro-input. |
-| [value](#value)                 | `value`                 | `String`  | "undefined"      | Value selected for the date picker.              |
-| [weekdayHeaderNotation](#weekdayHeaderNotation) | `weekdayHeaderNotation` | `string`  | "narrow"         |                                                  |
+| Property       | Attribute      | Type                | Default          | Description                                      |
+|----------------|----------------|---------------------|------------------|--------------------------------------------------|
+| [centralDate](#centralDate)  | `centralDate`  | `Object`            |                  | The date that determines the currently visible month. |
+| [disabled](#disabled)     | `disabled`     | `Boolean`           |                  | If set, disables the datepicker.                 |
+| [error](#error)        | `error`        | `Boolean`           | false            | Sets a persistent error state (e.g. an error state returned from the server). |
+| [maxDate](#maxDate)      | `maxDate`      | `Date`              | "undefined"      | Maximum date. All dates after will be disabled.  |
+| [minDate](#minDate)      | `minDate`      | `Date`              | "undefined"      | Minimum date. All dates before will be disabled. |
+| [required](#required)     | `required`     | `Boolean`           |                  | Populates the `required` attribute on the input. Used for client-side validation. |
+| [selectedDate](#selectedDate) | `selectedDate` | `Date \| undefined` | "undefined"      | The selected date.                               |
+| [type](#type)         | `type`         | `string`            | "month-day-year" |                                                  |
+| [value](#value)        | `value`        | `String`            | "undefined"      | Value selected for the date picker.              |
 
 ## Events
 
