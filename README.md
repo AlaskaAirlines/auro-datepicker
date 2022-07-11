@@ -19,7 +19,7 @@ The following sections are editable by making changes to the following files:
 
 # Datepicker
 
-`<auro-datepicker>` is the combination of [dropdown](http://auro.alaskaair.com/components/auro/dropdown), [input](http://auro.alaskaair.com/components/auro/input), and [calendar](http://auro.alaskaair.com/components/auro/calendar) and allows users to type or select a date from calendar in the dropdown bib.
+`<auro-datepicker>` lets guests select a date by displaying them on a calendar. The user can either type in a date in the input field or make a selection on the calendar itself to choose a date. `<auro-datepicker>` is the combination of [dropdown](http://auro.alaskaair.com/components/auro/dropdown), [input](http://auro.alaskaair.com/components/auro/input), and [calendar](http://auro.alaskaair.com/components/auro/calendar).
 
 ## UI development browser support
 
@@ -59,7 +59,7 @@ import "@aurodesignsystem/auro-datepicker";
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -74,7 +74,7 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 ```html
 <!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
 <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
+<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
 <script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
 <script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.es5.js" nomodule></script>
 ```
@@ -83,7 +83,8 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 
 The `<auro-datepicker>` element should be used in situations where users may:
 
-* LOREM IPSUM SOLAR
+* select a single date
+* select a starting date and an ending date (with two separate datepickers)
 
 ## API Code Examples
 
@@ -91,7 +92,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 

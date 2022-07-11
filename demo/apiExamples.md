@@ -43,7 +43,7 @@
   <div>
     <div class="exampleWrapper">
       <auro-datepicker>
-        <span slot="label">Date of Birth</span>
+        <span slot="label">Choose a date</span>
       </auro-datepicker>
     </div>
 <auro-accordion lowProfile justifyRight>
@@ -51,7 +51,7 @@
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -65,7 +65,7 @@ Date that determines the currently visible month.
 
 <div class="exampleWrapper">
   <auro-datepicker centralDate="06/16/1980">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -73,7 +73,7 @@ Date that determines the currently visible month.
 
 ```html
 <auro-datepicker centralDate="06/16/1980">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -85,7 +85,7 @@ If set, disables the datepicker.
 
 <div class="exampleWrapper">
   <auro-datepicker disabled>
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -93,7 +93,7 @@ If set, disables the datepicker.
 
 ```html
 <auro-datepicker disabled>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -105,7 +105,7 @@ Sets a persistent error state (e.g. an error state returned from the server).
 
 <div class="exampleWrapper">
   <auro-datepicker error>
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -113,7 +113,7 @@ Sets a persistent error state (e.g. an error state returned from the server).
 
 ```html
 <auro-datepicker error>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -125,7 +125,7 @@ To give a higher limit you can bind a date to the `maxDate` property.
 
 <div class="exampleWrapper">
   <auro-datepicker maxDate="06/16/1980">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -133,7 +133,7 @@ To give a higher limit you can bind a date to the `maxDate` property.
 
 ```html
 <auro-datepicker maxDate="06/16/1980">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -145,7 +145,7 @@ To give a lower limit you can bind a date to the `minDate` property.
 
 <div class="exampleWrapper">
   <auro-datepicker minDate="06/16/2030">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -153,7 +153,7 @@ To give a lower limit you can bind a date to the `minDate` property.
 
 ```html
 <auro-datepicker minDate="06/16/2030">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -165,7 +165,7 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 <div class="exampleWrapper">
   <auro-datepicker required>
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -173,7 +173,7 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 ```html
 <auro-datepicker required>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -190,7 +190,7 @@ Can be used to pre-set the value of the datepicker.
 
 <div class="exampleWrapper">
   <auro-datepicker selectedDate="06/16/2022">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -198,7 +198,7 @@ Can be used to pre-set the value of the datepicker.
 
 ```html
 <auro-datepicker selectedDate="06/16/2022">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -210,7 +210,7 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
 
 <div class="exampleWrapper">
   <auro-datepicker value="03/16/2025">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -218,7 +218,7 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
 
 ```html
 <auro-datepicker value="03/16/2025">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -234,7 +234,7 @@ The focus method will apply focus state to the datepicker input field.
   <auro-button id="focusExampleBtn">Apply focus to combobox</auro-button>
   <br /><br />
   <auro-datepicker id="focusExample">
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -259,7 +259,7 @@ function processFocusExample() {
 <auro-button id="focusExampleBtn">Apply focus to combobox</auro-button>
 <br /><br />
 <auro-datepicker id="focusExample">
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -273,7 +273,7 @@ Explanation and use description.
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -281,7 +281,7 @@ Explanation and use description.
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -295,8 +295,8 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Date of Birth</span>
-    <span slot="helpText">Date of birth must be today or earlier.</span>
+    <span slot="label">Choose a date</span>
+    <span slot="helpText">Choose a date must be today or earlier.</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -304,16 +304,16 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
-  <span slot="helpText">Date of birth must be today or earlier.</span>
+  <span slot="label">Choose a date</span>
+  <span slot="helpText">Choose a date must be today or earlier.</span>
 </auro-datepicker>
 ```
 
 </auro-accordion>
 <div class="exampleWrapper">
   <auro-datepicker error value="01/01/2030">
-    <span slot="label">Date of Birth</span>
-    <span slot="helpText">Date of birth must be today or earlier.</span>
+    <span slot="label">Choose a date</span>
+    <span slot="helpText">Choose a date must be today or earlier.</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -321,8 +321,8 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 
 ```html
 <auro-datepicker error value="01/01/2030">
-  <span slot="label">Date of Birth</span>
-  <span slot="helpText">Date of birth must be today or earlier.</span>
+  <span slot="label">Choose a date</span>
+  <span slot="helpText">Choose a date must be today or earlier.</span>
 </auro-datepicker>
 ```
 
@@ -334,7 +334,7 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Date of Birth</span>
+    <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -342,7 +342,7 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
