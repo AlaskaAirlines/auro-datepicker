@@ -8,7 +8,7 @@
 auro-input {
   margin-left: var(--auro-size-sm);
 
-  &::part(iconcontainer) {
+  &::part(iconContainer) {
     top: 0;
 
     display: flex;
@@ -18,11 +18,11 @@ auro-input {
     align-items: center;
   }
 
-  &::part(accenticon) {
+  &::part(accentIcon) {
     transition: all .3s cubic-bezier(.215, .61, .355, 1);
   }
 
-  &::part(helptext) {
+  &::part(helpText) {
     display: none;
   }
 }
@@ -33,11 +33,18 @@ auro-input {
   width: 410px;
 
   auro-dropdown {
+    &::part(helpText) {
+      margin-top: -3px;
+    }
+
     &::part(trigger) {
       display: inline-block;
 
-      height: 56px;
       padding-right: var(--auro-size-sm);
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 }
