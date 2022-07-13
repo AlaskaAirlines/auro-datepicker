@@ -265,28 +265,6 @@ function processFocusExample() {
 
 </auro-accordion>
 
-### Event Examples
-
-#### eventName
-
-Explanation and use description.
-
-<div class="exampleWrapper">
-  <auro-datepicker>
-    <span slot="label">Choose a date</span>
-  </auro-datepicker>
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-```html
-<auro-datepicker>
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
-```
-
-</auro-accordion>
-
 ### Slot Examples
 
 #### helpText
