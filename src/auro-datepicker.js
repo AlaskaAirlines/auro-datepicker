@@ -312,6 +312,10 @@ class AuroDatePicker extends LitElement {
       this.auroInputReady = true;
     });
 
+    this.input.addEventListener('blur', () => {
+      this.handleRequired();
+    });
+
     this.dropdown.setAttribute('role', 'dialog');
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
