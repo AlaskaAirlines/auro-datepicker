@@ -232,11 +232,19 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleInputValueChange() {
-    this.calendar.selectedDate = undefined;
 
-    /** Control the input label state based on input value. */
-    if (this.triggerInput.value.length === 0) {
-      this.classList.remove('datepicker-filled');
+    /* Control the input label state based on input value. */
+    const dateStrLength = 10;
+
+    if (this.triggerInput.value.length < dateStrLength) {
+      this.selectedDate = undefined;
+      this.value = undefined;
+
+      if (this.triggerInput.value.length === 0) {
+        this.classList.remove('datepicker-filled');
+      } else {
+        this.dropdown.show();
+      }
     } else {
       this.classList.add('datepicker-filled');
 
@@ -331,6 +339,7 @@ class AuroDatePicker extends LitElement {
     this.calendar.addEventListener('auroCalendar-dateSelected', () => {
       if (this.selectedDate !== this.calendar.selectedDate) {
         this.selectedDate = this.calendar.selectedDate;
+        this.centralDate = this.calendar.selectedDate;
       }
 
       const year = this.calendar.selectedDate.getFullYear().toString();
