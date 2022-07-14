@@ -243,11 +243,10 @@ class AuroDatePicker extends LitElement {
       if (this.triggerInput.value.length === 0) {
         this.classList.remove('datepicker-filled');
       } else {
+        this.classList.add('datepicker-filled');
         this.dropdown.show();
       }
     } else {
-      this.classList.add('datepicker-filled');
-
       this.value = undefined;
 
       /**
