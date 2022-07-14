@@ -3,7 +3,7 @@ repository:
   # See https://github.com/apps/settings for app settings
 
   # A short description of the repository that will show up on GitHub
-  description: Custom element that ....
+  description: Custom element that allows users to select a date, either with text input or by displaying a calendar.
 
   # A URL with more information about the repository
   homepage: https://auro.alaskaair.com/components/auro/datepicker
