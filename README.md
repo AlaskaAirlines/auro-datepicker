@@ -19,7 +19,7 @@ The following sections are editable by making changes to the following files:
 
 # Datepicker
 
-`<auro-datepicker>` is the combination of [dropdown](http://auro.alaskaair.com/components/auro/dropdown), [input](http://auro.alaskaair.com/components/auro/input), and [calendar](http://auro.alaskaair.com/components/auro/calendar) and allows users to type or select a date from calendar in the dropdown bib.
+The `<auro-datepicker>` element allows users to select a date, either with text input or by displaying a calendar. The `<auro-datepicker>` element is the combination of [auro-dropdown](http://auro.alaskaair.com/components/auro/dropdown), [auro-input](http://auro.alaskaair.com/components/auro/input), and [auro-calendar](http://auro.alaskaair.com/components/auro/calendar).
 
 ## UI development browser support
 
@@ -59,7 +59,7 @@ import "@aurodesignsystem/auro-datepicker";
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -83,7 +83,8 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 
 The `<auro-datepicker>` element should be used in situations where users may:
 
-* LOREM IPSUM SOLAR
+* select a single date
+* select a starting date and an ending date (with two separate datepickers)
 
 ## API Code Examples
 
@@ -91,7 +92,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 
 ```html
 <auro-datepicker>
-  <span slot="label">Date of Birth</span>
+  <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
 

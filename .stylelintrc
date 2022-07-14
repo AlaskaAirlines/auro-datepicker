@@ -27,6 +27,21 @@
     "declaration-block-no-duplicate-properties": true,
     "declaration-block-no-redundant-longhand-properties": true,
     "declaration-block-semicolon-newline-before": "never-multi-line",
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested",
+          "after-comment",
+        ],
+        ignore: [
+          "after-comment",
+          "after-declaration",
+          "first-nested",
+          "inside-single-line-block"
+        ]
+      }
+    ],
     "declaration-no-important": true,
     "font-family-name-quotes": "always-where-recommended",
     "font-weight-notation": "numeric",

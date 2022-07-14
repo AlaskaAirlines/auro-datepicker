@@ -3,15 +3,18 @@
 
 /* stylelint-disable max-nesting-depth */
 
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/utilityClasses/displayProperties';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityClasses/displayProperties';
 
 auro-input {
   margin-left: var(--auro-size-sm);
 
   &::part(iconContainer) {
     top: 0;
+
     display: flex;
+
     height: 100%;
+
     align-items: center;
   }
 
@@ -25,14 +28,43 @@ auro-input {
 }
 
 :host {
+  display: inline-block;
+
+  width: 410px;
+
   auro-dropdown {
+    &::part(helpText) {
+      margin-top: -3px;
+    }
+
     &::part(trigger) {
+      display: inline-block;
+
       padding-right: var(--auro-size-sm);
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 }
 
-:host(:not(.datepicker-filled)) { /* stylelint-disable-line selector-class-pattern */
+/* This is used in hte JS to detect focus has left the datepicker so we can return it to the input */
+:host([aria-expanded='true']) {
+  auro-dropdown {
+    opacity: 1;
+
+    &:not(:focus-within) {
+      opacity: .9999999; // stylelint-disable-line number-max-precision
+
+      transition: opacity .01s;
+    }
+  }
+}
+
+/* stylelint-disable selector-class-pattern */
+:host(:not(.datepicker-filled)) {
+  /* stylelint-enable selector-class-pattern */
   auro-input {
     &:not(:focus-within) {
       &::part(label) {

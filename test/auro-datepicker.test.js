@@ -2,14 +2,13 @@ import { fixture, html, expect } from '@open-wc/testing';
 import '../src/auro-datepicker.js';
 
 describe('auro-datepicker', () => {
-  // it('sets the CSS class on auro-datepicker > div element', async () => {
-  //   const el = await fixture(html`
-  //     <auro-datepicker cssclass="testClass"></auro-datepicker>
-  //   `);
+  it('sets the CSS class on auro-datepicker > div element', async () => {
+    const el = await fixture(html`
+      <auro-datepicker class="testClass"></auro-datepicker>
+    `);
 
-  //   const div = el.shadowRoot.querySelector('div');
-  //   expect(div.className).to.equal('testClass');
-  // });
+    expect(el.className).to.equal('testClass');
+  });
 
   // it('auro-datepicker is accessible', async () => {
   //   const el = await fixture(html`
