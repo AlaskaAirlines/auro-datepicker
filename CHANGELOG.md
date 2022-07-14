@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.0...v1.0.1) (2022-07-14)
+
+
+### Bug Fixes
+
+* **config:** add missing config files ([125f50a](https://github.com/AlaskaAirlines/auro-datepicker/commit/125f50a3f208a0c8d04fe45c474544f7c206af0e))
+
 # 1.0.0 (2022-07-14)
 
 
