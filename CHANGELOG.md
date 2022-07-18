@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.1...v1.0.2) (2022-07-18)
+
+
+### Bug Fixes
+
+* **input:** incomplete dates still apply --filled class [#21](https://github.com/AlaskaAirlines/auro-datepicker/issues/21) ([af61674](https://github.com/AlaskaAirlines/auro-datepicker/commit/af6167406f0f9d7f28cd920bc6a53f36355b4f2c))
+
 ## [1.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.0...v1.0.1) (2022-07-14)
 
 
