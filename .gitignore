@@ -17,5 +17,8 @@ src/*.css.map
 dist/
 build/
 
+## template docs
+docTemplates/
+
 ## Karma code coverage reports
 coverage/

@@ -4,7 +4,7 @@ const markdownMagic = require('markdown-magic');
 const fs = require('fs');
 const https = require('https');
 
-const readmeTemplateUrl = 'https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/README.md';
+const readmeTemplateUrl = 'https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/README_v4.md';
 const dirDocTemplates = './docTemplates';
 const readmeFilePath = dirDocTemplates + '/README.md';
 
