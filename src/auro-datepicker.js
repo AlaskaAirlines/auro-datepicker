@@ -183,8 +183,10 @@ class AuroDatePicker extends LitElement {
     if (this.required && !this.error) {
       if (!this.triggerInput.value || this.triggerInput.value.length === 0) {
         this.error = true;
+        this.setAttribute('error', '');
       } else {
         this.error = false;
+        this.removeAttribute('error');
       }
     }
   }
@@ -198,18 +200,24 @@ class AuroDatePicker extends LitElement {
     let error = false;
 
     if (this.minDate) {
-      if (new Date(this.minDate) > new Date(this.value)) {
+      if (new Date(this.minDate) > new Date(this.input.value)) {
         error = true;
       }
     }
 
     if (this.maxDate) {
-      if (new Date(this.maxDate) < new Date(this.value)) {
+      if (new Date(this.maxDate) < new Date(this.input.value)) {
         error = true;
       }
     }
 
     this.error = error;
+
+    if (this.error) {
+      this.setAttribute('error', '');
+    } else {
+      this.removeAttribute('error');
+    }
   }
 
   /**
@@ -410,14 +418,14 @@ class AuroDatePicker extends LitElement {
       this.notifyReady();
     } else {
       // Start a retry counter to limit the retry count
-      if (!this.readyRetryCount) {
+      if (!this.readyRetryCount && this.readyRetryCount !== 0) {
         this.readyRetryCount = 0;
       } else {
         this.readyRetryCount += 1;
       }
 
-      const readyTimer = 200;
-      const readyRetryLimit = 20;
+      const readyTimer = 0;
+      const readyRetryLimit = 200;
 
       if (this.readyRetryCount <= readyRetryLimit) {
         setTimeout(() => {
@@ -435,7 +443,7 @@ class AuroDatePicker extends LitElement {
   readyActions() {
     // Set the initial value in auro-calendar if defined
     if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
-      // this.calendar.value = this.value;
+      this.selectedDate = new Date(this.value);
     }
   }
 
