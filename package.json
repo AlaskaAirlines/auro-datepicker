@@ -33,8 +33,8 @@
   },
   "devDependencies": {
     "@alaskaairux/design-tokens": "^3.7.0",
-    "@aurodesignsystem/webcorestylesheets": "^4.0.0",
     "@aurodesignsystem/eslint-config": "^1.3.0",
+    "@aurodesignsystem/webcorestylesheets": "^4.0.0",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@open-wc/testing": "^3.1.2",
