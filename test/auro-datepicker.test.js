@@ -1,4 +1,4 @@
-import { fixture, html, expect, oneEvent, waitUntil } from '@open-wc/testing';
+import { fixture, html, expect } from '@open-wc/testing';
 import '../src/auro-datepicker.js';
 import '@aurodesignsystem/auro-calendar';
 import '@aurodesignsystem/auro-dropdown';
