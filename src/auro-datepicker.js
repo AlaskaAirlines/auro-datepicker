@@ -369,6 +369,7 @@ class AuroDatePicker extends LitElement {
 
       const dateString = month.concat('/', date, '/', year);
 
+      this.classList.add('datepicker-filled');
       this.input.value = dateString;
       this.handleInputValueChange();
       this.centralDate = new Date(dateString);
