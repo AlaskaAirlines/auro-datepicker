@@ -13,14 +13,6 @@ describe('auro-datepicker', () => {
   //   await expect(el).to.be.accessible();
   // });
 
-  it('sets the CSS class on auro-datepicker > div element', async () => {
-    const el = await fixture(html`
-      <auro-datepicker class="testClass"></auro-datepicker>
-    `);
-
-    expect(el.className).to.equal('testClass');
-  });
-
   it('custom element is defined', async () => {
     const el = await !!customElements.get("auro-datepicker");
 
