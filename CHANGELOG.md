@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [1.1.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.2...v1.1.0) (2022-07-21)
+
+
+### Bug Fixes
+
+* **filled:** add filled style when clicking to set date [#28](https://github.com/AlaskaAirlines/auro-datepicker/issues/28) ([fa5b506](https://github.com/AlaskaAirlines/auro-datepicker/commit/fa5b5062fe556b0e16cfb5ba2f6ac317aa54f5b2))
+
+
+### Features
+
+* **testing:** add automated testing [#18](https://github.com/AlaskaAirlines/auro-datepicker/issues/18) ([1778f77](https://github.com/AlaskaAirlines/auro-datepicker/commit/1778f7738d1ff5e27b18dc9df9bd6718821a720f))
+
 ## [1.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.1...v1.0.2) (2022-07-18)
 
 
