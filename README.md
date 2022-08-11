@@ -37,6 +37,18 @@ $ npm i @aurodesignsystem/auro-datepicker
 
 Installing as a direct, dev or peer dependency is up to the user installing the package. If you are unsure as to what type of dependency you should use, consider reading this [stack overflow](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies) answer.
 
+### Peer dependencies
+
+The following Auro peer dependencies must be included.
+
+```shell
+$ npm i @alaskaairux/auro-icon
+$ npm i @aurodesignsystem/auro-calendar
+$ npm i @aurodesignsystem/auro-dropdown
+$ npm i @aurodesignsystem/auro-input
+$ npm i @aurodesignsystem/webcorestylesheets
+```
+
 ### Design Token CSS Custom Property dependency
 
 The use of any Auro custom element has a dependency on the [Auro Design Tokens](https://auro.alaskaair.com/getting-started/developers/design-tokens).
@@ -73,6 +85,17 @@ In cases where the project is not able to process JS assets, there are pre-proce
 <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
 <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
 <script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
+```
+
+### Peer dependencies
+
+The following Auro peer dependencies must be included.
+
+```html
+<script src="https://unpkg.com/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
+<script src="https://unpkg.com/@aurodesignsystem/auro-calendar@latest/dist/auro-calendar__bundled.js" type="module"></script>
+<script src="https://unpkg.com/@aurodesignsystem/auro-dropdown@latest/dist/auro-dropdown__bundled.js" type="module"></script>
+<script src="https://unpkg.com/@aurodesignsystem/auro-input@latest/dist/auro-input__bundled.js" type="module"></script>
 ```
 
 ## auro-datepicker use cases

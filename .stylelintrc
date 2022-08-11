@@ -34,7 +34,7 @@
           "first-nested",
           "after-comment",
         ],
-        ignore: [
+        "ignore": [
           "after-comment",
           "after-declaration",
           "first-nested",

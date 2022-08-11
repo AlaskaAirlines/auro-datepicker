@@ -17,8 +17,9 @@ src/*.css.map
 dist/
 build/
 
-## template docs
-docTemplates/
+# Temporarily disable this option
+# ## template docs
+# docTemplates/
 
 ## Karma code coverage reports
 coverage/
