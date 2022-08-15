@@ -12,7 +12,6 @@ auro-input {
     top: 0;
 
     display: flex;
-
     height: 100%;
 
     align-items: center;
@@ -28,28 +27,20 @@ auro-input {
 }
 
 :host {
-  display: inline-block;
-
-  width: 410px;
-
   auro-dropdown {
-    &::part(helpText) {
-      margin-top: -3px;
-    }
-
     &::part(trigger) {
-      display: inline-block;
-
       padding-right: var(--auro-size-sm);
 
-      &:hover {
-        background-color: transparent;
+      @media (hover: hover) {
+        &:hover {
+          background-color: transparent;
+        }
       }
     }
   }
 }
 
-/* This is used in hte JS to detect focus has left the datepicker so we can return it to the input */
+/* This is used in the JS to detect focus has left the datepicker so we can return it to the input */
 :host([aria-expanded='true']) {
   auro-dropdown {
     opacity: 1;
