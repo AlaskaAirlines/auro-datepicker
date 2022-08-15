@@ -240,20 +240,18 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleInputValueChange() {
-
-    /* Control the input label state based on input value. */
     const dateStrLength = 10;
+
+    if (this.triggerInput.value.length === 0) {
+      this.classList.remove('datepicker-filled');
+    } else {
+      this.classList.add('datepicker-filled');
+      this.dropdown.show();
+    }
 
     if (this.triggerInput.value.length < dateStrLength) {
       this.selectedDate = undefined;
       this.value = undefined;
-
-      if (this.triggerInput.value.length === 0) {
-        this.classList.remove('datepicker-filled');
-      } else {
-        this.classList.add('datepicker-filled');
-        this.dropdown.show();
-      }
     } else {
       this.value = undefined;
 
