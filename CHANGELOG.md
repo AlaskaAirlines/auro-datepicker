@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.1.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.0...v1.1.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* **template:** adjust layout to allow dynamic width of trigger [#38](https://github.com/AlaskaAirlines/auro-datepicker/issues/38) ([f8e9c44](https://github.com/AlaskaAirlines/auro-datepicker/commit/f8e9c4426aa4034683bd5c82925d6d8fad1ce905))
+
 # [1.1.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.0.2...v1.1.0) (2022-07-21)
 
 
