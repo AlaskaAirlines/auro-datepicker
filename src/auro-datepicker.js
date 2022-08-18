@@ -227,8 +227,10 @@ class AuroDatePicker extends LitElement {
    * @returns {string} Date formatted as a string.
    */
   formatDateString(date) {
-    const dd = String(date.getDate());
-    const mm = String(date.getMonth() + 1);
+    /* eslint-disable prefer-template, no-magic-numbers */
+    const dd = String("0" + date.getDate()).slice(-2);
+    const mm = String("0" + (date.getMonth() + 1)).slice(-2);
+    /* eslint-enable prefer-template, no-magic-numbers */
     const yyyy = date.getFullYear();
 
     return `${mm}/${dd}/${yyyy}`;
