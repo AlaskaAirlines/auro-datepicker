@@ -50,6 +50,11 @@ class AuroDatePicker extends LitElement {
      */
     this.type = "month-day-year";
 
+    /**
+     * @private
+     */
+    this.activeLabel = false;
+
     // Lion Calendar options
     this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
 
@@ -244,10 +249,7 @@ class AuroDatePicker extends LitElement {
   handleInputValueChange() {
     const dateStrLength = 10;
 
-    if (this.triggerInput.value.length === 0) {
-      this.classList.remove('datepicker-filled');
-    } else {
-      this.classList.add('datepicker-filled');
+    if (this.triggerInput.value.length > 0) {
       this.dropdown.show();
     }
 
@@ -333,6 +335,10 @@ class AuroDatePicker extends LitElement {
 
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+      this.activeLabel = this.dropdown.isPopoverVisible;
+      if (this.activeLabel) {
+        this.input.setAttribute('activeLabel', '');
+      }
     });
 
     /**
@@ -386,6 +392,16 @@ class AuroDatePicker extends LitElement {
       this.handleInputValueChange();
     });
 
+    this.input.addEventListener('blur', () => {
+      if (this.input.value.length === 0) {
+        if (!this.dropdown.isPopoverVisible) {
+          this.activeLabel = false;
+          this.input.removeAttribute('activeLabel');
+        } else {
+          this.activeLabel = true;
+        }
+      }
+    });
 
     this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
       this.auroInputHelpText = evt.detail.message;
@@ -461,8 +477,9 @@ class AuroDatePicker extends LitElement {
           disableEventShow>
           <auro-input
             slot="trigger"
-            borderless
+            bordered
             value="${this.inputValue}"
+            ?activeLabel="${this.activeLabel}"
             ?required="${this.required}"
             ?noValidate="${this.noValidate}"
             ?disabled="${this.disabled}"
