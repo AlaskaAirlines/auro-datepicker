@@ -26,8 +26,8 @@
   },
   "peerDependencies": {
     "@alaskaairux/design-tokens": "^3.6.0",
-    "@aurodesignsystem/auro-calendar": "^1.0.0",
-    "@aurodesignsystem/auro-dropdown": "^2.1.1",
+    "@aurodesignsystem/auro-calendar": "^1.0.2",
+    "@aurodesignsystem/auro-dropdown": "^2.8.0",
     "@aurodesignsystem/auro-input": "^2.8.0",
     "@aurodesignsystem/webcorestylesheets": "^4.0.0"
   },

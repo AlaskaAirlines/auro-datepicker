@@ -209,7 +209,11 @@ Can be used to pre-set the value of the datepicker.
 Value selected for the datepicker. Can be used to pre-set the value of the datepicker.
 
 <div class="exampleWrapper">
-  <auro-datepicker value="03/16/2025">
+  <auro-button id="validValueExampleBtn">Set Value to Valid Option</auro-button>
+  <auro-button id="invalidValueExampleBtn">Set Value to Invalid Option</auro-button>
+  <auro-button id="undefinedValueExampleBtn">Set Value to Undefined</auro-button>
+  <br/><br/>
+  <auro-datepicker id="valueExample" value="06/16/2023">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
@@ -217,7 +221,11 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker value="03/16/2025">
+<auro-button id="validValueExampleBtn">Set Value to Valid Option</auro-button>
+<auro-button id="invalidValueExampleBtn">Set Value to Invalid Option</auro-button>
+<auro-button id="undefinedValueExampleBtn">Set Value to Undefined</auro-button>
+<br/><br/>
+<auro-datepicker id="valueExample" value="06/16/2023">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
