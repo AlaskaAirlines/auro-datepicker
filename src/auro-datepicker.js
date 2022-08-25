@@ -8,6 +8,8 @@
 // If using litElement base class
 import { LitElement, html } from "lit-element";
 
+import '@aurodesignsystem/auro-input';
+
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
 // import { html, css } from "lit-element";
@@ -25,7 +27,6 @@ import styleCss from "./style-css.js";
  * @prop {Object} centralDate - The date that determines the currently visible month.
  * @prop {Date} maxDate - Maximum date. All dates after will be disabled.
  * @prop {Date} minDate - Minimum date. All dates before will be disabled.
- * @prop {Date | undefined} selectedDate - The selected date.
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
@@ -57,9 +58,12 @@ class AuroDatePicker extends LitElement {
 
     // Lion Calendar options
     this.centralDate = new Date(); /* default to today */ // eslint-disable-line no-inline-comments
-
     this.maxDate = undefined;
     this.minDate = undefined;
+
+    /**
+     * @private
+     */
     this.selectedDate = undefined;
 
     /**
@@ -247,17 +251,23 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleInputValueChange() {
+    // console.log("handle input SD", this.triggerInput.value.length);
+    // console.log(this.triggerInput.value.length);
     const dateStrLength = 10;
 
     if (this.triggerInput.value.length > 0) {
       this.dropdown.show();
     }
 
+    // console.log("trigger value length", this.triggerInput.value.length);
     if (this.triggerInput.value.length < dateStrLength) {
       this.selectedDate = undefined;
       this.value = undefined;
     } else {
+      // console.log("handle input else", this.value, this.triggerInput.value);
       this.value = undefined;
+
+      // console.log("in else", this.selectedDate);
 
       /**
        * We can't rely on Date.parse() to check if a full date has been entered.
@@ -266,8 +276,9 @@ class AuroDatePicker extends LitElement {
        */
       const lengthOfValidDateStr = 10;
       if (this.triggerInput.value.length === lengthOfValidDateStr) {
-        this.value = this.selectedDate;
+        // this.value = this.selectedDate;
         this.inputValue = this.formatDateString(new Date(this.selectedDate));
+        // this.triggerInput.value = this.inputValue;
 
         this.dispatchEvent(new CustomEvent('auroDatePicker-valueSet', {
           bubbles: true,
@@ -288,41 +299,18 @@ class AuroDatePicker extends LitElement {
       }
     }
 
+    // console.log("after value change", this.value);
     this.handleRequired();
   }
 
-  firstUpdated() {
-    this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
-    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
-    this.calendar = this.shadowRoot.querySelector('auro-calendar');
-    this.input = this.dropdown.querySelector('auro-input');
-
-    if (this.value) {
-      this.selectedDate = new Date(this.value);
-    }
-
-    if (this.selectedDate) {
-      this.selectedDate = new Date(this.selectedDate);
-      this.value = new Date(this.selectedDate);
-      this.centralDate = new Date(this.selectedDate);
-      this.inputValue = this.formatDateString(new Date(this.selectedDate));
-      this.classList.add('datepicker-filled');
-    }
-
+  /**
+   * Binds all behavior needed to the dropdown after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureDropdown() {
     this.dropdown.addEventListener('auroDropdown-ready', () => {
       this.auroDropdownReady = true;
-    });
-
-    this.calendar.addEventListener('auroCalendar-ready', () => {
-      this.auroCalendarReady = true;
-    });
-
-    this.input.addEventListener('auroInput-ready', () => {
-      this.auroInputReady = true;
-    });
-
-    this.input.addEventListener('blur', () => {
-      this.handleRequired();
     });
 
     this.dropdown.setAttribute('role', 'dialog');
@@ -352,6 +340,41 @@ class AuroDatePicker extends LitElement {
     if (!this.dropdown.hasAttribute('aria-expanded')) {
       this.dropdown.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
     }
+  }
+
+  /**
+   * Binds all behavior needed to the input after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureInput() {
+    this.input.addEventListener('auroInput-ready', () => {
+      this.auroInputReady = true;
+    });
+
+    this.input.addEventListener('blur', () => {
+      this.handleRequired();
+    });
+
+    this.input.addEventListener('input', () => {
+      console.log("input event");
+      this.handleInputValueChange();
+    });
+
+    this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
+      this.auroInputHelpText = evt.detail.message;
+    });
+  }
+
+  /**
+   * Binds all behavior needed to the dropdown after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureCalendar() {
+    this.calendar.addEventListener('auroCalendar-ready', () => {
+      this.auroCalendarReady = true;
+    });
 
     this.calendar.addEventListener('auroCalendar-dateSelected', () => {
       if (this.selectedDate !== this.calendar.selectedDate) {
@@ -377,7 +400,7 @@ class AuroDatePicker extends LitElement {
 
       this.classList.add('datepicker-filled');
       this.input.value = dateString;
-      this.handleInputValueChange();
+      // this.handleInputValueChange();
       this.centralDate = new Date(dateString);
       this.input.focus();
     });
@@ -387,25 +410,48 @@ class AuroDatePicker extends LitElement {
         this.input.focus();
       }
     });
+  }
 
-    this.input.addEventListener('input', () => {
-      this.handleInputValueChange();
-    });
+  updated(changedProperties) {
+    if (changedProperties.has('value') && this.value) {
+      this.triggerInput.value = this.formatDateString(new Date(this.value));
+      this.selectedDate = this.value;
+    }
+  }
 
-    this.input.addEventListener('blur', () => {
-      if (this.input.value.length === 0) {
-        if (!this.dropdown.isPopoverVisible) {
-          this.activeLabel = false;
-          this.input.removeAttribute('activeLabel');
-        } else {
-          this.activeLabel = true;
-        }
-      }
-    });
+  firstUpdated() {
+    this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
+    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
+    this.input = this.dropdown.querySelector('auro-input');
+    this.calendar = this.shadowRoot.querySelector('auro-calendar');
 
-    this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
-      this.auroInputHelpText = evt.detail.message;
-    });
+    if (this.value) {
+      this.selectedDate = new Date(this.value);
+    }
+
+    // if (this.selectedDate) {
+    //   this.selectedDate = new Date(this.selectedDate);
+    //   this.value = new Date(this.selectedDate);
+    //   this.centralDate = new Date(this.selectedDate);
+    //   this.inputValue = this.formatDateString(new Date(this.selectedDate));
+    //   this.classList.add('datepicker-filled');
+    // }
+
+    // console.log("first updated - value", this.value);
+    // console.log("first updated - selected date", this.selectedDate);
+    // console.log("first updated - trigger input", this.triggerInput);
+
+    this.configureDropdown();
+    // console.log("after dropdown - value", this.value);
+    // console.log("after dropdown - selected date", this.selectedDate);
+
+    this.configureInput();
+    // console.log("after input - value", this.value);
+    // console.log("after input - selected date", this.selectedDate);
+
+    this.configureCalendar();
+    // console.log("after calendar - value", this.value);
+    // console.log("after calendar - selected date", this.selectedDate);
 
     this.checkReadiness();
   }
