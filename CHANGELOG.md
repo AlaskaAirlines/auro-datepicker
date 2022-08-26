@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.1.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.2...v1.1.3) (2022-08-26)
+
+
+### Bug Fixes
+
+* **input:** use new activeLabel attribute [#31](https://github.com/AlaskaAirlines/auro-datepicker/issues/31) [#47](https://github.com/AlaskaAirlines/auro-datepicker/issues/47) ([d3dd7a5](https://github.com/AlaskaAirlines/auro-datepicker/commit/d3dd7a5df60a0c9ec0819bb08a3405a2d39e03ed))
+
 ## [1.1.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.1...v1.1.2) (2022-08-19)
 
 
