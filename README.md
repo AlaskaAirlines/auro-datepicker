@@ -30,6 +30,7 @@ For the most up to date information on [UI development browser support](https://
 [![Build Status](https://img.shields.io/github/workflow/status/AlaskaAirlines/auro-datepicker/Test%20and%20publish?branch=master&style=for-the-badge)](https://github.com/AlaskaAirlines/auro-datepicker/actions?query=workflow%3A%22test+and+publish%22)
 [![See it on NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-datepicker?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-datepicker)
 [![License](https://img.shields.io/npm/l/@aurodesignsystem/auro-datepicker?color=blue&style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/@aurodesignsystem/auro-datepicker?style=for-the-badge)](https://snyk.io/test/npm/@aurodesignsystem/auro-datepicker?tab=issues)
 
 ```shell
 $ npm i @aurodesignsystem/auro-datepicker
