@@ -4,16 +4,15 @@
 
 ## Properties
 
-| Property       | Attribute      | Type                | Default     | Description                                      |
-|----------------|----------------|---------------------|-------------|--------------------------------------------------|
-| [centralDate](#centralDate)  | `centralDate`  | `Object`            |             | The date that determines the currently visible month. |
-| [disabled](#disabled)     | `disabled`     | `Boolean`           |             | If set, disables the datepicker.                 |
-| [error](#error)        | `error`        | `Boolean`           | false       | Sets a persistent error state (e.g. an error state returned from the server). |
-| [maxDate](#maxDate)      | `maxDate`      | `Date`              | "undefined" | Maximum date. All dates after will be disabled.  |
-| [minDate](#minDate)      | `minDate`      | `Date`              | "undefined" | Minimum date. All dates before will be disabled. |
-| [required](#required)     | `required`     | `Boolean`           |             | Populates the `required` attribute on the input. Used for client-side validation. |
-| [selectedDate](#selectedDate) | `selectedDate` | `Date \| undefined` | "undefined" | The selected date.                               |
-| [value](#value)        | `value`        | `String`            | "undefined" | Value selected for the date picker.              |
+| Property      | Attribute     | Type      | Default     | Description                                      |
+|---------------|---------------|-----------|-------------|--------------------------------------------------|
+| [centralDate](#centralDate) | `centralDate` | `Object`  |             | The date that determines the currently visible month. |
+| [disabled](#disabled)    | `disabled`    | `Boolean` |             | If set, disables the datepicker.                 |
+| [error](#error)       | `error`       | `Boolean` | false       | Sets a persistent error state (e.g. an error state returned from the server). |
+| [maxDate](#maxDate)     | `maxDate`     | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
+| [minDate](#minDate)     | `minDate`     | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
+| [required](#required)    | `required`    | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
+| [value](#value)       | `value`       | `String`  | "undefined" | Value selected for the date picker.              |
 
 ## Methods
 
@@ -209,25 +208,19 @@ Can be used to pre-set the value of the datepicker.
 Value selected for the datepicker. Can be used to pre-set the value of the datepicker.
 
 <div class="exampleWrapper">
-  <auro-button id="validValueExampleBtn">Set Value to Valid Option</auro-button>
-  <auro-button id="invalidValueExampleBtn">Set Value to Invalid Option</auro-button>
-  <auro-button id="undefinedValueExampleBtn">Set Value to Undefined</auro-button>
-  <br/><br/>
-  <auro-datepicker id="valueExample" value="06/16/2023">
+  <auro-datepicker id="valueExample">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
+  <auro-button id="validValueExampleBtn">Set To Valid Date</auro-button>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-button id="validValueExampleBtn">Set Value to Valid Option</auro-button>
-<auro-button id="invalidValueExampleBtn">Set Value to Invalid Option</auro-button>
-<auro-button id="undefinedValueExampleBtn">Set Value to Undefined</auro-button>
-<br/><br/>
-<auro-datepicker id="valueExample" value="06/16/2023">
+<auro-datepicker id="valueExample">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
+<auro-button id="validValueExampleBtn">Set To Valid Date</auro-button>
 ```
 
 </auro-accordion>

@@ -31,17 +31,6 @@ describe('auro-datepicker', () => {
     await expect(el.shadowRoot.activeElement).to.be.equal(input);
   });
 
-  it('opens the bib when starting to type a date', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
-
-    setInputValue(el, '01/01');
-
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-    await expect(dropdown.isPopoverVisible).to.be.true;
-  });
-
   it('opens the bib when clicking on the dropdown trigger', async () => {
     const el = await fixture(html`
       <auro-datepicker></auro-datepicker>
@@ -156,6 +145,7 @@ function padTo2Digits(num) {
 }
 
 function formatDate(date) {
+  date = new Date(date);
   return [
     padTo2Digits(date.getDate()),
     padTo2Digits(date.getMonth() + 1),
