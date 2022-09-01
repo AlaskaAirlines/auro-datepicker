@@ -242,17 +242,10 @@ The focus method will apply focus state to the datepicker input field.
   <span slot="trigger">See code</span>
 
 ```js
-setTimeout(processFocusExample, 500);
-
-function processFocusExample() {
-  const focusExampleBtnElem = document.querySelector('#focusExampleBtn');
-  const focusExampleElem = document.querySelector('#focusExample');
-
-  if (focusExampleElem && focusExampleBtnElem) {
-    focusExampleBtnElem.addEventListener('click', () => {
-      focusExampleElem.focus();
-    })
-  }
+export function focusExample(elem) {
+  document.querySelector('#focusExampleBtn').addEventListener('click', () => {
+    elem.focus();
+  })
 }
 ```
 
