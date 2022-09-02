@@ -6,8 +6,6 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityClasses/displayProperties';
 
 auro-input {
-  margin-left: var(--auro-size-sm);
-
   &::part(iconContainer) {
     top: 0;
 
@@ -31,20 +29,6 @@ auro-input {
     border-color: unset !important;
     outline: unset !important;
     /* stylelint-enable declaration-no-important */
-  }
-}
-
-:host {
-  auro-dropdown {
-    &::part(trigger) {
-      padding-right: var(--auro-size-sm);
-
-      @media (hover: hover) {
-        &:hover {
-          background-color: transparent;
-        }
-      }
-    }
   }
 }
 
