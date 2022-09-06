@@ -25,14 +25,14 @@
     "lit-html": "^1.4.1"
   },
   "peerDependencies": {
-    "@alaskaairux/design-tokens": "^3.6.0",
+    "@alaskaairux/design-tokens": "^3.9.1",
     "@aurodesignsystem/auro-calendar": "^1.0.3",
     "@aurodesignsystem/auro-dropdown": "^2.9.0",
     "@aurodesignsystem/auro-input": "^2.8.2",
     "@aurodesignsystem/webcorestylesheets": "^4.0.0"
   },
   "devDependencies": {
-    "@alaskaairux/design-tokens": "^3.7.0",
+    "@alaskaairux/design-tokens": "^3.9.1",
     "@aurodesignsystem/eslint-config": "^1.3.0",
     "@aurodesignsystem/webcorestylesheets": "^4.0.0",
     "@commitlint/cli": "^16.2.3",
