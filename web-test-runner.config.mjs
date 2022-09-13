@@ -4,7 +4,7 @@ export default {
   coverageConfig: {
     threshold: {
       statements: 90,
-      branches: 90,
+      branches: 80,
       functions: 90,
       lines: 90
     }
