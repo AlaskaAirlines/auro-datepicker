@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.1.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.4...v1.1.5) (2022-09-13)
+
+
+### Reverts
+
+* Revert "chore(release): 1.1.4 [skip ci]" ([1a9dacf](https://github.com/AlaskaAirlines/auro-datepicker/commit/1a9dacfa74e4eb6fc022e7d8f1bbecabc40ff5c1))
+
 ## [1.1.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.2...v1.1.3) (2022-08-26)
 
 
