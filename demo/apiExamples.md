@@ -8,10 +8,10 @@
 |---------------|---------------|-----------|-------------|--------------------------------------------------|
 | [centralDate](#centralDate) | `centralDate` | `Object`  |             | The date that determines the currently visible month. |
 | [disabled](#disabled)    | `disabled`    | `Boolean` |             | If set, disables the datepicker.                 |
+| [error](#error)       | `error`       | `Boolean` | false       | Sets a persistent error state (e.g. an error state returned from the server). |
 | [maxDate](#maxDate)     | `maxDate`     | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
 | [minDate](#minDate)     | `minDate`     | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
 | [required](#required)    | `required`    | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
-| [validity](#validity)    | `validity`    | `String`  | "undefined" | Specifies the `validityState` this element is in. |
 | [value](#value)       | `value`       | `String`  | "undefined" | Value selected for the date picker.              |
 
 ## Methods
@@ -245,6 +245,7 @@ export function valueExample(elem) {
   // valid date
   document.querySelector('#validValueExampleBtn').addEventListener('click', () => {
     const validDate = new Date().setDate(new Date().getDate() + 60);
+    console.warn('set valid date', validDate);
     elem.value = formatDateString(new Date(validDate));
   })
 }

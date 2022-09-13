@@ -6,10 +6,10 @@
 |---------------|---------------|-----------|-------------|--------------------------------------------------|
 | `centralDate` | `centralDate` | `Object`  |             | The date that determines the currently visible month. |
 | `disabled`    | `disabled`    | `Boolean` |             | If set, disables the datepicker.                 |
+| `error`       | `error`       | `Boolean` | false       | Sets a persistent error state (e.g. an error state returned from the server). |
 | `maxDate`     | `maxDate`     | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
 | `minDate`     | `minDate`     | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
 | `required`    | `required`    | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
-| `validity`    | `validity`    | `String`  | "undefined" | Specifies the `validityState` this element is in. |
 | `value`       | `value`       | `String`  | "undefined" | Value selected for the date picker.              |
 
 ## Methods
