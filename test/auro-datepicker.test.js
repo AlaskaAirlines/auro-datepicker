@@ -1,4 +1,4 @@
-import { fixture, html, expect } from '@open-wc/testing';
+import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
 import '../src/auro-datepicker.js';
 import '@aurodesignsystem/auro-calendar';
 import '@aurodesignsystem/auro-dropdown';
@@ -52,15 +52,15 @@ describe('auro-datepicker', () => {
     el.focus();
     el.blur();
 
-    let hasError = el.hasAttribute('error');
+    await elementUpdated(el);
 
-    await expect(hasError).to.be.true;
+    await expect(el.getAttribute('validity')).to.be.equal('valueMissing');
 
     setInputValue(el, '01/01/2022');
 
-    hasError = el.hasAttribute('error');
+    await elementUpdated(el);
 
-    await expect(hasError).to.be.false;
+    await expect(el.getAttribute('validity')).to.be.equal('valid');
   });
 
   it('can preset a value', async () => {
@@ -68,14 +68,13 @@ describe('auro-datepicker', () => {
       <auro-datepicker value="01/01/2022"></auro-datepicker>
     `);
 
-    const calendar = el.shadowRoot.querySelector('auro-calendar');
+    await elementUpdated(el);
+
     const input = el.shadowRoot.querySelector('auro-input');
 
     const setDate = new Date('01/01/2022').toDateString();
-    const calDate = new Date(calendar.selectedDate).toDateString();
     const inputDate = new Date(input.value).toDateString();
 
-    await expect(calDate).to.be.equal(setDate);
     await expect(inputDate).to.be.equal(setDate);
   });
 
@@ -85,14 +84,16 @@ describe('auro-datepicker', () => {
     `);
 
     setInputValue(el, "01/01/2022");
-    let hasError = el.hasAttribute('error');
 
-    await expect(hasError).to.be.false;
+    await elementUpdated(el);
+
+    await expect(el.getAttribute('validity')).to.be.equal('valid');
 
     setInputValue(el, "01/02/2022");
-    hasError = el.hasAttribute('error');
 
-    await expect(hasError).to.be.true;
+    await elementUpdated(el);
+
+    await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
   });
 
   it('respects minDate setting', async () => {
@@ -101,33 +102,16 @@ describe('auro-datepicker', () => {
     `);
 
     setInputValue(el, "01/02/2022");
-    let hasError = el.hasAttribute('error');
 
-    await expect(hasError).to.be.false;
+    await elementUpdated(el);
+
+    await expect(el.getAttribute('validity')).to.be.equal('valid');
 
     setInputValue(el, "01/01/2021");
-    hasError = el.hasAttribute('error');
 
-    await expect(hasError).to.be.true;
-  });
+    await elementUpdated(el);
 
-  it('handles setting date by clicking on date in calendar', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
-
-    const input = el.shadowRoot.querySelector('auro-input');
-    input.click();
-
-    const calendar = el.shadowRoot.querySelector('auro-calendar');
-    const dates = calendar.shadowRoot.querySelectorAll('.calendar__day-button');
-
-    dates[7].click();
-
-    const calDate = formatDate(calendar.selectedDate);
-    const thisDate = formatDate(el.value);
-
-    await expect(thisDate).to.be.equal(calDate)
+    await expect(el.getAttribute('validity')).to.be.equal('rangeUnderflow');
   });
 });
 

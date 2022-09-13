@@ -19,7 +19,6 @@ export function valueExample(elem) {
   // valid date
   document.querySelector('#validValueExampleBtn').addEventListener('click', () => {
     const validDate = new Date().setDate(new Date().getDate() + 60);
-    console.warn('set valid date', validDate);
     elem.value = formatDateString(new Date(validDate));
   })
 }
