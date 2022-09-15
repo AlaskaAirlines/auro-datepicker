@@ -100,10 +100,10 @@ If set, disables the datepicker.
 
 #### error
 
-Sets a persistent error state (e.g. an error state returned from the server).
+Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
 <div class="exampleWrapper">
-  <auro-datepicker error>
+  <auro-datepicker error="There is a problem.">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
@@ -111,7 +111,7 @@ Sets a persistent error state (e.g. an error state returned from the server).
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker error>
+<auro-datepicker error="There is a problem.">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```

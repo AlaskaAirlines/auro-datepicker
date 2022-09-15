@@ -55,7 +55,7 @@ If set, disables the datepicker.
 
 #### error
 
-Sets a persistent error state (e.g. an error state returned from the server).
+Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/error.html) -->

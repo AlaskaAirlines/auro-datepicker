@@ -19,6 +19,7 @@ import styleCss from "./style-css.js";
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {String} value - Value selected for the date picker.
+ * @attr {String} error - When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value.
  * @attr {String} validity - Specifies the `validityState` this element is in.
  * @attr {String} customValidityValueMissing - Help text message to display when validity = `valueMissing`;
  * @attr {Boolean} disabled - If set, disables the datepicker.
@@ -87,6 +88,10 @@ class AuroDatePicker extends LitElement {
   static get properties() {
     return {
       // ...super.properties,
+      error:                   {
+        type: String,
+        reflect: true
+      },
       validity: {
         type: String,
         reflect: true
@@ -183,32 +188,34 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    if (this.validity !== this.input.validity) {
-      this.validity = this.input.validity;
-    }
-
-    /**
-     * Only validate once we interact with the datepicker
-     * this.value === undefined is the initial state pre-interaction.
-     *
-     * The validityState definitions are located at https://developer.mozilla.org/en-US/docs/Web/API/ValidityState.
-     */
-    if (this.value !== undefined && this.input.value.length > 0) {
-      const date = new Date(this.input.value);
-
-      if (this.maxDate) {
-        if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
-          this.validity = 'rangeOverflow';
-          this.input.validity = 'rangeOverflow';
-          this.input.setCustomValidity = 'This date is after the maximum allowable date.';
-        }
+    if (!this.hasAttribute('error')) {
+      if (this.validity !== this.input.validity) {
+        this.validity = this.input.validity;
       }
 
-      if (this.minDate) {
-        if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
-          this.validity = 'rangeUnderflow';
-          this.input.validity = 'rangeUnderflow';
-          this.input.setCustomValidity = 'This date is before the minimum allowable date.';
+      /**
+       * Only validate once we interact with the datepicker
+       * this.value === undefined is the initial state pre-interaction.
+       *
+       * The validityState definitions are located at https://developer.mozilla.org/en-US/docs/Web/API/ValidityState.
+       */
+      if (this.value !== undefined && this.input.value.length > 0) {
+        const date = new Date(this.input.value);
+
+        if (this.maxDate) {
+          if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
+            this.validity = 'rangeOverflow';
+            this.input.validity = 'rangeOverflow';
+            this.input.setCustomValidity = 'This date is after the maximum allowable date.';
+          }
+        }
+
+        if (this.minDate) {
+          if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
+            this.validity = 'rangeUnderflow';
+            this.input.validity = 'rangeUnderflow';
+            this.input.setCustomValidity = 'This date is before the minimum allowable date.';
+          }
         }
       }
     }
@@ -428,6 +435,14 @@ class AuroDatePicker extends LitElement {
     if (changedProperties.has('centralDate')) {
       this.calendar.centralDate = new Date(this.centralDate);
     }
+
+    if (changedProperties.has('error')) {
+      if (this.error) {
+        this.validity = 'customError';
+      } else {
+        this.validate();
+      }
+    }
   }
 
   firstUpdated() {
@@ -507,8 +522,8 @@ class AuroDatePicker extends LitElement {
             bordered
             ?activeLabel="${this.activeLabel}"
             ?required="${this.required}"
-            ?error="${this.validity !== undefined && this.validity !== 'valid'}"
             ?noValidate="${this.noValidate}"
+            .error="${this.error}"
             ?disabled="${this.disabled}"
             .type="${this.type}"
             customValidityValueMissing=${this.customValidityValueMissing}>
