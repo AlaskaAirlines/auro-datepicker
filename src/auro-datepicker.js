@@ -20,6 +20,7 @@ import styleCss from "./style-css.js";
 /**
  * @prop {String} value - Value selected for the date picker.
  * @attr {String} validity - Specifies the `validityState` this element is in.
+ * @attr {String} customValidityValueMissing - Help text message to display when validity = `valueMissing`;
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
  * @prop {Object} centralDate - The date that determines the currently visible month.
@@ -37,6 +38,7 @@ class AuroDatePicker extends LitElement {
     super();
 
     this.validity = undefined;
+    this.customValidityValueMissing = 'Please choose a date.';
     this.value = undefined;
 
     /**
@@ -181,8 +183,9 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    this.validity = 'valid';
-    this.input.setCustomValidity = '';
+    if (this.validity !== this.input.validity) {
+      this.validity = this.input.validity;
+    }
 
     /**
      * Only validate once we interact with the datepicker
@@ -190,37 +193,22 @@ class AuroDatePicker extends LitElement {
      *
      * The validityState definitions are located at https://developer.mozilla.org/en-US/docs/Web/API/ValidityState.
      */
-    const validDateStrLength = 10;
-    if (this.value !== undefined) {
-      if ((!this.input.value || this.input.value.length === 0) && this.required) {
-        this.validity = 'valueMissing';
-        this.input.setCustomValidity = 'Please enter a date.';
-      } else {
-        const date = new Date(this.input.value);
+    if (this.value !== undefined && this.input.value.length > 0) {
+      const date = new Date(this.input.value);
 
-        if (this.input.value.length > 0 && !this.validDate(date)) {
-          this.validity = 'badInput';
-          this.input.setCustomValidity = 'Please enter a valid date';
-        } else if (this.input.value.length < validDateStrLength) {
-          this.validity = 'tooShort';
-          this.input.setCustomValidity = 'Please enter a complete date';
-        } else if (this.input.value.length > validDateStrLength) {
-          this.validity = 'tooLong';
-          this.input.setCustomValidity = 'Please enter a valid date';
+      if (this.maxDate) {
+        if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
+          this.validity = 'rangeOverflow';
+          this.input.validity = 'rangeOverflow';
+          this.input.setCustomValidity = 'This date is after the maximum allowable date.';
         }
+      }
 
-        if (this.maxDate) {
-          if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
-            this.validity = 'rangeOverflow';
-            this.input.setCustomValidity = 'This date is after the maximum allowable date';
-          }
-        }
-
-        if (this.minDate) {
-          if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
-            this.validity = 'rangeUnderflow';
-            this.input.setCustomValidity = 'This date is before the minimum allowable date';
-          }
+      if (this.minDate) {
+        if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
+          this.validity = 'rangeUnderflow';
+          this.input.validity = 'rangeUnderflow';
+          this.input.setCustomValidity = 'This date is before the minimum allowable date.';
         }
       }
     }
@@ -348,6 +336,10 @@ class AuroDatePicker extends LitElement {
 
     this.input.addEventListener('auroInput-ready', () => {
       this.auroInputReady = true;
+    });
+
+    this.input.addEventListener('auroInput-validityChange', () => {
+      this.valdity = this.input.validity;
     });
 
     this.addEventListener('focusin', () => {
@@ -518,7 +510,8 @@ class AuroDatePicker extends LitElement {
             ?error="${this.validity !== undefined && this.validity !== 'valid'}"
             ?noValidate="${this.noValidate}"
             ?disabled="${this.disabled}"
-            .type="${this.type}">
+            .type="${this.type}"
+            customValidityValueMissing=${this.customValidityValueMissing}>
             <slot name="label" slot="label"></slot>
           </auro-input>
           <div class="calendarWrapper">
