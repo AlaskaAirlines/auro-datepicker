@@ -21,7 +21,8 @@ import styleCss from "./style-css.js";
  * @prop {String} value - Value selected for the date picker.
  * @attr {String} error - When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value.
  * @attr {String} validity - Specifies the `validityState` this element is in.
- * @attr {String} customValidityValueMissing - Help text message to display when validity = `valueMissing`;
+ * @attr {String} setCustomValidity - Sets a custom help text message to display for all validityStates.
+ * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`;
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
  * @prop {Object} centralDate - The date that determines the currently visible month.
@@ -39,7 +40,6 @@ class AuroDatePicker extends LitElement {
     super();
 
     this.validity = undefined;
-    this.customValidityValueMissing = 'Please choose a date.';
     this.value = undefined;
 
     /**
@@ -88,7 +88,15 @@ class AuroDatePicker extends LitElement {
   static get properties() {
     return {
       // ...super.properties,
-      error:                   {
+      error: {
+        type: String,
+        reflect: true
+      },
+      setCustomValidity: {
+        type: String,
+        reflect: true
+      },
+      setCustomValidityValueMissing: {
         type: String,
         reflect: true
       },
@@ -206,7 +214,6 @@ class AuroDatePicker extends LitElement {
           if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
             this.validity = 'rangeOverflow';
             this.input.validity = 'rangeOverflow';
-            this.input.setCustomValidity = 'This date is after the maximum allowable date.';
           }
         }
 
@@ -214,7 +221,6 @@ class AuroDatePicker extends LitElement {
           if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
             this.validity = 'rangeUnderflow';
             this.input.validity = 'rangeUnderflow';
-            this.input.setCustomValidity = 'This date is before the minimum allowable date.';
           }
         }
       }
@@ -443,6 +449,14 @@ class AuroDatePicker extends LitElement {
         this.validate();
       }
     }
+
+    if (changedProperties.has('setCustomValidity')) {
+      this.input.setAttribute('setCustomValidity', this.setCustomValidity);
+    }
+
+    if (changedProperties.has('setCustomValidityValueMissing')) {
+      this.input.setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
+    }
   }
 
   firstUpdated() {
@@ -525,8 +539,7 @@ class AuroDatePicker extends LitElement {
             ?noValidate="${this.noValidate}"
             .error="${this.error}"
             ?disabled="${this.disabled}"
-            .type="${this.type}"
-            customValidityValueMissing=${this.customValidityValueMissing}>
+            .type="${this.type}">
             <slot name="label" slot="label"></slot>
           </auro-input>
           <div class="calendarWrapper">
