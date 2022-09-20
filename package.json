@@ -28,7 +28,7 @@
     "@alaskaairux/design-tokens": "^3.9.1",
     "@aurodesignsystem/auro-calendar": "^1.0.3",
     "@aurodesignsystem/auro-dropdown": "^2.9.0",
-    "@aurodesignsystem/auro-input": "^2.8.2",
+    "@aurodesignsystem/auro-input": "^2.9.0",
     "@aurodesignsystem/webcorestylesheets": "^4.0.0"
   },
   "devDependencies": {
