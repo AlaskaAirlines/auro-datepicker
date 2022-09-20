@@ -181,31 +181,6 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 </auro-accordion>
 
-#### selectedDate
-
-The `selectedDate` is the date which is currently marked as selected.
-You usually select a date by clicking on it with the mouse or hitting Enter on the keyboard.
-
-The `selectedDate` might not be within the dates in the current month view.
-
-Can be used to pre-set the value of the datepicker.
-
-<div class="exampleWrapper">
-  <auro-datepicker selectedDate="06/16/2022">
-    <span slot="label">Choose a date</span>
-  </auro-datepicker>
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-```html
-<auro-datepicker selectedDate="06/16/2022">
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
-```
-
-</auro-accordion>
-
 #### value
 
 Value selected for the datepicker. Can be used to pre-set the value of the datepicker.
