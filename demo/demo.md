@@ -12,7 +12,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ## Example(s)
 
 <div class="exampleWrapper">
-  <auro-datepicker required>
+  <auro-datepicker>
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>

@@ -4,15 +4,18 @@
 
 ## Properties
 
-| Property      | Attribute     | Type      | Default     | Description                                      |
-|---------------|---------------|-----------|-------------|--------------------------------------------------|
-| [centralDate](#centralDate) | `centralDate` | `Object`  |             | The date that determines the currently visible month. |
-| [disabled](#disabled)    | `disabled`    | `Boolean` |             | If set, disables the datepicker.                 |
-| [maxDate](#maxDate)     | `maxDate`     | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
-| [minDate](#minDate)     | `minDate`     | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
-| [required](#required)    | `required`    | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
-| [validity](#validity)    | `validity`    | `String`  | "undefined" | Specifies the `validityState` this element is in. |
-| [value](#value)       | `value`       | `String`  | "undefined" | Value selected for the date picker.              |
+| Property                        | Attribute                       | Type      | Default     | Description                                      |
+|---------------------------------|---------------------------------|-----------|-------------|--------------------------------------------------|
+| [centralDate](#centralDate)                   | `centralDate`                   | `Object`  |             | The date that determines the currently visible month. |
+| [disabled](#disabled)                      | `disabled`                      | `Boolean` |             | If set, disables the datepicker.                 |
+| [error](#error)                         | `error`                         | `String`  |             | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
+| [maxDate](#maxDate)                       | `maxDate`                       | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
+| [minDate](#minDate)                       | `minDate`                       | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
+| [required](#required)                      | `required`                      | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
+| [setCustomValidity](#setCustomValidity)             | `setCustomValidity`             | `String`  |             | Sets a custom help text message to display for all validityStates. |
+| [setCustomValidityValueMissing](#setCustomValidityValueMissing) | `setCustomValidityValueMissing` | `String`  |             | Help text message to display when validity = `valueMissing`; |
+| [validity](#validity)                      | `validity`                      | `String`  | "undefined" | Specifies the `validityState` this element is in. |
+| [value](#value)                         | `value`                         | `String`  | "undefined" | Value selected for the date picker.              |
 
 ## Methods
 
