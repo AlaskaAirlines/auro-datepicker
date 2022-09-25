@@ -32,16 +32,3 @@ auro-input {
     /* stylelint-enable declaration-no-important */
   }
 }
-
-/* This is used in the JS to detect focus has left the datepicker so we can return it to the input */
-:host([aria-expanded='true']) {
-  auro-dropdown {
-    opacity: 1;
-
-    &:not(:focus-within) {
-      opacity: .9999999; // stylelint-disable-line number-max-precision
-
-      transition: opacity .01s;
-    }
-  }
-}
