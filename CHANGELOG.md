@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.0...v1.2.1) (2022-09-26)
+
+
+### Bug Fixes
+
+* **hide:** improved hide logic [#63](https://github.com/AlaskaAirlines/auro-datepicker/issues/63) 65 ([4535901](https://github.com/AlaskaAirlines/auro-datepicker/commit/4535901931e5446fe84ce8ffb81497a352543a85))
+
 # [1.2.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.1.5...v1.2.0) (2022-09-20)
 
 
