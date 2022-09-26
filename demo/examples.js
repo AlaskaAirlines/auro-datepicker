@@ -33,10 +33,21 @@ import { focusExample } from './../apiExamples/focus.js';
 /**
  * Programmatically set value
  */
- import { valueExample } from './../apiExamples/value.js';
+import { valueExample } from './../apiExamples/value.js';
 
- (function(){
-   initializeExample('#valueExample', function(elem) {
-    valueExample(elem);
-   });
- }());
+(function(){
+  initializeExample('#valueExample', function(elem) {
+  valueExample(elem);
+  });
+}());
+
+/**
+ * Programmatically set value
+ */
+import { valueAlert } from './../apiExamples/alertValue.js';
+
+(function(){
+  initializeExample('#datePickerValueAlert', function(elem) {
+    valueAlert(elem);
+  });
+}());

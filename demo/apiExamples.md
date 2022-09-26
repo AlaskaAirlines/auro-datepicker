@@ -324,3 +324,34 @@ Sets the label used in the trigger. All datepickers should include a definition 
 ```
 
 </auro-accordion>
+
+## Functional Examples
+
+### Watch for value changes
+
+The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value.
+
+<div class="exampleWrapper">
+  <auro-datepicker id="datePickerValueAlert">
+    <span slot="label">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```js
+export function valueAlert(elem) {
+  elem.addEventListener('auroDatePicker-valueSet', () => {
+    console.warn('Select value changed to:', elem.value);
+    console.warn('Select optionSelected changed to:', elem.optionSelected);
+  })
+}
+```
+
+```html
+<auro-datepicker id="datePickerValueAlert">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
