@@ -201,3 +201,26 @@ Sets the label used in the trigger. All datepickers should include a definition 
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
+
+## Functional Examples
+
+### Watch for value changes
+
+The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/alertValue.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.js) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
