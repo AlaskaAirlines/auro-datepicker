@@ -343,7 +343,6 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
 export function valueAlert(elem) {
   elem.addEventListener('auroDatePicker-valueSet', () => {
     console.warn('Select value changed to:', elem.value);
-    console.warn('Select optionSelected changed to:', elem.optionSelected);
   })
 }
 ```
