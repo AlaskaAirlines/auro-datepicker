@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.2...v1.2.3) (2022-10-11)
+
+
+### Bug Fixes
+
+* **input:** update to latest input package to fix focus type event bug [#68](https://github.com/AlaskaAirlines/auro-datepicker/issues/68) ([8788ad5](https://github.com/AlaskaAirlines/auro-datepicker/commit/8788ad55a2413b60d3dad57a0f2bb377f5f976e5))
+
 ## [1.2.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.1...v1.2.2) (2022-09-26)
 
 
