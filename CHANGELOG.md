@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.3...v1.2.4) (2022-10-13)
+
+
+### Bug Fixes
+
+* **dependency:** update auro-input dependency version [#70](https://github.com/AlaskaAirlines/auro-datepicker/issues/70) ([77e21c9](https://github.com/AlaskaAirlines/auro-datepicker/commit/77e21c9597648000b885f0c0a7097b0d6faf5924))
+
 ## [1.2.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.2...v1.2.3) (2022-10-11)
 
 
