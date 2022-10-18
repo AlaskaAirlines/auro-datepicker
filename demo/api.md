@@ -329,7 +329,7 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 ### Watch for value changes
 
-The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value.
+The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value **and** in successful scenarios, an alert will appear. Open the JavaScript console in the browser's developer tools to see the `console.warn` message that appears after the `auroDatePicker-valueSet` event has been triggered.
 
 <div class="exampleWrapper">
   <auro-datepicker id="datePickerValueAlert">
@@ -343,6 +343,7 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
 export function valueAlert(elem) {
   elem.addEventListener('auroDatePicker-valueSet', () => {
     console.warn('Select value changed to:', elem.value);
+    alert(`Select value changed to: ${elem.value}`);
   })
 }
 ```
