@@ -198,29 +198,7 @@ function processApiExamples() {
  * */
 
 function copyReadmeLocally() {
-
-  if (!fs.existsSync(dirDocTemplates)){
-    fs.mkdirSync(dirDocTemplates);
-  }
-
-  if (!fs.existsSync(readmeFilePath)) {
-    fs.writeFile(readmeFilePath, '', function(err) {
-      if(err) {
-        console.log(chalk.red('ERROR: Unable to create README.md file.', err));
-      }
-    });
-  }
-
-  https.get(readmeTemplateUrl, function(response) {
-    let writeTemplate = response.pipe(fs.createWriteStream(readmeFilePath));
-
-    writeTemplate.on('finish', () => {
-      processReadme();
-    });
-
-  }).on('error', (err) => {
-    console.log(chalk.red('ERROR: Unable to fetch README.md file from server.', err));
-  });
+  processReadme();
 }
 
 /**
