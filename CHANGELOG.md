@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.4...v1.2.5) (2022-10-20)
+
+
+### Bug Fixes
+
+* **style:** fixed height of the bib [#62](https://github.com/AlaskaAirlines/auro-datepicker/issues/62) ([54a8dca](https://github.com/AlaskaAirlines/auro-datepicker/commit/54a8dcacd2ecf2f0dc088b5f5a36a0338e77c468))
+
 ## [1.2.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.3...v1.2.4) (2022-10-13)
 
 
