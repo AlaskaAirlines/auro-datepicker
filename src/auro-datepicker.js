@@ -426,6 +426,9 @@ class AuroDatePicker extends LitElement {
     this.calendar.addEventListener('auroCalendar-dateSelected', () => {
       this.input.value = this.formatDateString(this.calendar.selectedDate);
       this.centralDate = this.calendar.selectedDate;
+
+      // console message for error occuring when date is selected via calendar
+      console.warn('reference https://github.com/AlaskaAirlines/auro-datepicker/issues/79 for error below'); // eslint-disable-line no-console
     });
 
     this.calendar.addEventListener('keydown', (evt) => {
