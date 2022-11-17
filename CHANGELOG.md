@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.6](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.5...v1.2.6) (2022-11-17)
+
+
+### Bug Fixes
+
+* **height:** make calendar height consistent for every month [#88](https://github.com/AlaskaAirlines/auro-datepicker/issues/88) ([421b563](https://github.com/AlaskaAirlines/auro-datepicker/commit/421b563cd6e534adaf59c2d29816199509927b6e))
+
 ## [1.2.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.4...v1.2.5) (2022-10-20)
 
 
