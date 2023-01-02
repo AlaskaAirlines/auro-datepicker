@@ -3,7 +3,7 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines */
+/* eslint-disable max-lines, max-depth */
 
 // If using litElement base class
 import { LitElement, html } from "lit-element";
@@ -24,6 +24,7 @@ import styleCss from "./style-css.js";
  * @attr {String} setCustomValidity - Sets a custom help text message to display for all validityStates.
  * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`;
  * @attr {Boolean} disabled - If set, disables the datepicker.
+ * @attr {Boolean} noValidate - If set, disables auto-validation on blur.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
  * @prop {Object} centralDate - The date that determines the currently visible month.
  * @prop {Date} maxDate - Maximum date. All dates after will be disabled.
@@ -39,6 +40,9 @@ class AuroDatePicker extends LitElement {
   constructor() {
     super();
 
+    this.disabled = false;
+    this.required = false;
+    this.noValidate = false;
     this.validity = undefined;
     this.value = undefined;
 
@@ -89,6 +93,10 @@ class AuroDatePicker extends LitElement {
     return {
       // ...super.properties,
       error: {
+        type: String,
+        reflect: true
+      },
+      noValidate: {
         type: String,
         reflect: true
       },
@@ -196,34 +204,49 @@ class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    if (!this.hasAttribute('error')) {
-      if (this.validity !== this.input.validity) {
-        this.validity = this.input.validity;
-      }
+    this.validity = undefined;
+    this.removeAttribute('validity');
+    this.setCustomValidity = '';
 
-      /**
-       * Only validate once we interact with the datepicker
-       * this.value === undefined is the initial state pre-interaction.
-       *
-       * The validityState definitions are located at https://developer.mozilla.org/en-US/docs/Web/API/ValidityState.
-       */
-      if (this.value !== undefined && this.input.value.length > 0) {
-        const date = new Date(this.input.value);
+    // Handle error attribute change regardless of focus
+    if (this.hasAttribute('error')) {
+      this.validity = 'customError';
+      this.setCustomValidity = this.error;
+    } else if (!this.contains(document.activeElement)) {
+      if (this.value !== undefined) {
+        this.validity = 'valid';
 
-        if (this.maxDate) {
-          if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
-            this.validity = 'rangeOverflow';
-            this.input.validity = 'rangeOverflow';
+        if (this.value.length === 0) {
+          this.validity = 'valueMissing';
+          this.input.validity = 'valueMissing';
+        } else {
+          const date = new Date(this.input.value);
+
+          if (this.maxDate) {
+            if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
+              this.validity = 'rangeOverflow';
+              this.input.validity = 'rangeOverflow';
+            }
+          }
+
+          if (this.minDate) {
+            if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
+              this.validity = 'rangeUnderflow';
+              this.input.validity = 'rangeUnderflow';
+            }
           }
         }
-
-        if (this.minDate) {
-          if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
-            this.validity = 'rangeUnderflow';
-            this.input.validity = 'rangeUnderflow';
-          }
-        }
       }
+    }
+
+    if (this.validity) {
+      if (this.validity !== 'valid') {
+        this.dropdown.setAttribute('error', '');
+      } else {
+        this.dropdown.removeAttribute('error');
+      }
+    } else {
+      this.dropdown.removeAttribute('error');
     }
   }
 
@@ -431,6 +454,8 @@ class AuroDatePicker extends LitElement {
       if (this.value !== this.input.value) {
         this.input.value = this.formatDateString(new Date(this.value));
       }
+
+      this.validate();
     }
 
     if (changedProperties.has('centralDate')) {
@@ -438,11 +463,7 @@ class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('error')) {
-      if (this.error) {
-        this.validity = 'customError';
-      } else {
-        this.validate();
-      }
+      this.validate();
     }
 
     if (changedProperties.has('setCustomValidity')) {
@@ -532,14 +553,12 @@ class AuroDatePicker extends LitElement {
           bordered
           rounded
           ?disabled="${this.disabled}"
-          ?error="${this.validity !== undefined && this.validity !== 'valid'}"
           disableEventShow
           noHideOnThisFocusLoss>
           <auro-input
             slot="trigger"
             bordered
             ?activeLabel="${this.activeLabel}"
-            ?required="${this.required}"
             ?noValidate="${this.noValidate}"
             .error="${this.error}"
             ?disabled="${this.disabled}"

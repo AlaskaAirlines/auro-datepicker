@@ -7,11 +7,12 @@
 | Property                        | Attribute                       | Type      | Default     | Description                                      |
 |---------------------------------|---------------------------------|-----------|-------------|--------------------------------------------------|
 | [centralDate](#centralDate)                   | `centralDate`                   | `Object`  |             | The date that determines the currently visible month. |
-| [disabled](#disabled)                      | `disabled`                      | `Boolean` |             | If set, disables the datepicker.                 |
+| [disabled](#disabled)                      | `disabled`                      | `Boolean` | false       | If set, disables the datepicker.                 |
 | [error](#error)                         | `error`                         | `String`  |             | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
 | [maxDate](#maxDate)                       | `maxDate`                       | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
 | [minDate](#minDate)                       | `minDate`                       | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
-| [required](#required)                      | `required`                      | `Boolean` |             | Populates the `required` attribute on the input. Used for client-side validation. |
+| [noValidate](#noValidate)                    | `noValidate`                    | `Boolean` | false       | If set, disables auto-validation on blur.        |
+| [required](#required)                      | `required`                      | `Boolean` | false       | Populates the `required` attribute on the input. Used for client-side validation. |
 | [setCustomValidity](#setCustomValidity)             | `setCustomValidity`             | `String`  |             | Sets a custom help text message to display for all validityStates. |
 | [setCustomValidityValueMissing](#setCustomValidityValueMissing) | `setCustomValidityValueMissing` | `String`  |             | Help text message to display when validity = `valueMissing`; |
 | [validity](#validity)                      | `validity`                      | `String`  | "undefined" | Specifies the `validityState` this element is in. |
@@ -106,7 +107,10 @@ If set, disables the datepicker.
 Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
 <div class="exampleWrapper">
-  <auro-datepicker error="There is a problem.">
+  <auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
+  <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
+  <br/><br/>
+  <auro-datepicker error="Custom error message" id="errorExample">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
@@ -114,7 +118,10 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker error="There is a problem.">
+<auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
+<auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
+<br/><br/>
+<auro-datepicker error="Custom error message" id="errorExample">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
