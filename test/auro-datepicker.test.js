@@ -1,4 +1,4 @@
-import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
+import { fixture, html, expect, elementUpdated, waitUntil } from '@open-wc/testing';
 import '../src/auro-datepicker.js';
 import '@aurodesignsystem/auro-calendar';
 import '@aurodesignsystem/auro-dropdown';
@@ -108,6 +108,23 @@ describe('auro-datepicker', () => {
     await elementUpdated(el);
 
     await expect(el.getAttribute('validity')).to.be.equal('rangeUnderflow');
+  });
+
+
+  it('removing error attribute reruns validity even when value is undefined', async () => {
+    const el = await fixture(html`
+      <auro-datepicker error="custom error message"></auro-datepicker>
+    `);
+
+    await waitUntil(() => el.ready);
+
+    await expect(el.getAttribute('validity')).to.be.equal('customError');
+
+    el.removeAttribute('error');
+
+    await elementUpdated(el);
+
+    await expect(el.hasAttribute('validity')).to.be.false;
   });
 });
 

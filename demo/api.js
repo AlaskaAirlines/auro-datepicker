@@ -51,3 +51,14 @@ import { valueAlert } from './../apiExamples/alertValue.js';
     valueAlert(elem);
   });
 }());
+
+/**
+ * Programmatically set error attribute
+ */
+import { setError } from './../apiExamples/error';
+
+(function(){
+  initializeExample('#errorExample', function(elem) {
+  setError(elem);
+  });
+}());
