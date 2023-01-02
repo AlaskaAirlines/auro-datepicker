@@ -182,32 +182,6 @@ class AuroDatePicker extends LitElement {
   }
 
   /**
-   * @private
-   * @returns {void}  Hides bib when the dropdown or it's contents lose focus.
-   */
-  assessFocusWithin() {
-    setTimeout(() => {
-      if (this.contains(document.activeElement)) {
-        this.trackFocus();
-      } else if (this.contains(this.focusElem) && document.activeElement === document.querySelector('body')) {
-        this.input.focus();
-      }
-    }, 100); /* eslint-disable-line no-magic-numbers */
-  }
-
-  /**
-   * @private
-   * @returns {void} Determines if dropdown bib should be closed on focus change.
-   */
-  trackFocus() {
-    this.focusElem = document.activeElement;
-
-    this.focusElem.addEventListener('blur', () => {
-      this.assessFocusWithin();
-    });
-  }
-
-  /**
    * Focuses the combobox trigger input.
    * @returns {void}
    */
@@ -484,13 +458,6 @@ class AuroDatePicker extends LitElement {
     this.configureDropdown();
     this.configureInput();
     this.configureCalendar();
-
-    // start focus tracking the first time we interact with the datepicker
-    this.addEventListener('focusin', () => {
-      if (!this.focusElem) {
-        this.trackFocus();
-      }
-    });
 
     // Close the datepicker when clicking outside it
     document.addEventListener('click', (evt) => {
