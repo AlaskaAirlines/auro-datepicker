@@ -216,7 +216,7 @@ class AuroDatePicker extends LitElement {
       if (this.value !== undefined) {
         this.validity = 'valid';
 
-        if (this.value.length === 0) {
+        if (this.value !== undefined && this.value.length === 0) {
           this.validity = 'valueMissing';
           this.input.validity = 'valueMissing';
         } else {
