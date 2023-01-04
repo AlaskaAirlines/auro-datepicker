@@ -1,5 +1,16 @@
 # Semantic Release Automated Changelog
 
+## [1.2.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.6...v1.2.7) (2023-01-04)
+
+
+### Bug Fixes
+
+* **error:** fix error attribute handling [#92](https://github.com/AlaskaAirlines/auro-datepicker/issues/92) ([60772d3](https://github.com/AlaskaAirlines/auro-datepicker/commit/60772d36eda5f6e357d84d5668d090d60db2439b))
+* **focus:** remove problematic focus tracking [#93](https://github.com/AlaskaAirlines/auro-datepicker/issues/93) ([a7b1c5a](https://github.com/AlaskaAirlines/auro-datepicker/commit/a7b1c5af70aaec07e8d00f0b60e8a80fc5864c96))
+* **required:** add required check ([32637f2](https://github.com/AlaskaAirlines/auro-datepicker/commit/32637f23a39ec294b7b47544f1ec3e4898550d3b))
+* **tabbing:** fix closing when tabbing away from datepicker ([3133d1f](https://github.com/AlaskaAirlines/auro-datepicker/commit/3133d1f21a8969876caa0a48d7ca497a73434f7f))
+* **validity:** fix required validation check ([fdfae5b](https://github.com/AlaskaAirlines/auro-datepicker/commit/fdfae5b016e4f658725f8be8a19a49cb67f2ef94))
+
 ## [1.2.6](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.5...v1.2.6) (2022-11-17)
 
 
