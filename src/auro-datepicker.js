@@ -579,6 +579,7 @@ class AuroDatePicker extends LitElement {
           <auro-input
             slot="trigger"
             bordered
+            ?required="${this.required}"
             ?activeLabel="${this.activeLabel}"
             ?noValidate="${this.noValidate}"
             .error="${this.error}"
