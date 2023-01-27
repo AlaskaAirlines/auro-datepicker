@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [1.2.8](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.7...v1.2.8) (2023-01-27)
+
+
+### Bug Fixes
+
+* **input:** pass required attribute to input [#97](https://github.com/AlaskaAirlines/auro-datepicker/issues/97) ([a7db9d2](https://github.com/AlaskaAirlines/auro-datepicker/commit/a7db9d2c0f3c0fabacecd62e13e8c2928081f5fb))
+* **input:** pass required attribute to input element [#97](https://github.com/AlaskaAirlines/auro-datepicker/issues/97) ([1b8cbfb](https://github.com/AlaskaAirlines/auro-datepicker/commit/1b8cbfb93a30092ff191a3c05ed151310fbb9026))
+
 ## [1.2.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.6...v1.2.7) (2023-01-04)
 
 
