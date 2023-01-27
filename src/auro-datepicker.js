@@ -449,21 +449,6 @@ class AuroDatePicker extends LitElement {
     return true;
   }
 
-  //   /**
-  //  * @private
-  //  * @returns {void} Determines if dropdown bib should be closed on focus change.
-  //  */
-  //   handleFocusLoss() {
-  //     if (!this.noHideOnThisFocusLoss && !this.hasAttribute('noHideOnThisFocusLoss')) {
-  //       document.activeElement.addEventListener('focusout', () => {
-  //         if (document.activeElement !== document.querySelector('body') && !this.contains(document.activeElement)) {
-  //           this.hide();
-  //         }
-  //       });
-  //     }
-  //   }
-
-
   updated(changedProperties) {
     if (changedProperties.has('value') && this.value) {
       if (this.value !== this.input.value) {
