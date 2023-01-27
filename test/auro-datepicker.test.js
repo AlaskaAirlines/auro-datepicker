@@ -59,6 +59,17 @@ describe('auro-datepicker', () => {
     await expect(el.getAttribute('validity')).to.be.equal('valueMissing');
   });
 
+  it('auro-input receives the required attribute from auro-datepicker', async () => {
+    const el = await fixture(html`
+      <auro-datepicker required></auro-datepicker>
+    `);
+
+    const input = el.shadowRoot.querySelector('auro-input');
+
+    await expect(el.hasAttribute('required')).to.be.true;
+    await expect(input.hasAttribute('required')).to.be.true;
+  });
+
   it('can preset a value', async () => {
     const el = await fixture(html`
       <auro-datepicker value="01/01/2022"></auro-datepicker>
