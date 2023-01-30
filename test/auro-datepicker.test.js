@@ -103,6 +103,22 @@ describe('auro-datepicker', () => {
     await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
   });
 
+  it('resets datepicker when maxDate is at an earlier date than current value', async () => {
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    el.value = '03/02/2023';
+
+    await elementUpdated(el);
+
+    el.maxDate = '02/26/2023';
+
+    await elementUpdated(el);
+
+    await expect(el.value).to.be.equal(undefined);
+  });
+
   it('respects minDate setting', async () => {
     const el = await fixture(html`
       <auro-datepicker minDate="01/02/2022"></auro-datepicker>
@@ -121,6 +137,21 @@ describe('auro-datepicker', () => {
     await expect(el.getAttribute('validity')).to.be.equal('rangeUnderflow');
   });
 
+  it('resets datepicker when minDate is at a later date than current value', async () => {
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    el.value = '03/02/2023';
+
+    await elementUpdated(el);
+
+    el.minDate = '03/09/2023';
+
+    await elementUpdated(el);
+
+    await expect(el.value).to.be.equal(undefined);
+  });
 
   it('removing error attribute reruns validity even when value is undefined', async () => {
     const el = await fixture(html`
