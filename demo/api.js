@@ -59,6 +59,28 @@ import { setError } from './../apiExamples/error';
 
 (function(){
   initializeExample('#errorExample', function(elem) {
-  setError(elem);
+    setError(elem);
+  });
+}());
+
+/**
+ * Programmatically set minDate to a future date
+ */
+import { futureMinDate } from '../apiExamples/minDate';
+
+(function(){
+  initializeExample('#minDateExample', function(elem) {
+    futureMinDate(elem);
+  });
+}());
+
+/**
+ * Programmatically set maxDate to today's date
+ */
+import { pastMaxDate } from '../apiExamples/maxDate';
+
+(function(){
+  initializeExample('#maxDateExample', function(elem) {
+    pastMaxDate(elem);
   });
 }());
