@@ -458,6 +458,28 @@ class AuroDatePicker extends LitElement {
       this.validate();
     }
 
+    if (changedProperties.has('minDate')) {
+      if (this.minDate && this.value) {
+        if (new Date(this.minDate).getTime() > new Date(this.value).getTime()) {
+          this.value = undefined;
+          this.input.value = undefined;
+          this.centralDate = this.value;
+          this.calendar.selectedDate = undefined;
+        }
+      }
+    }
+
+    if (changedProperties.has('maxDate')) {
+      if (this.maxDate && this.value) {
+        if (new Date(this.maxDate).getTime() < new Date(this.value).getTime()) {
+          this.value = undefined;
+          this.input.value = undefined;
+          this.centralDate = this.value;
+          this.calendar.selectedDate = undefined;
+        }
+      }
+    }
+
     if (changedProperties.has('centralDate')) {
       this.calendar.centralDate = new Date(this.centralDate);
     }
