@@ -271,51 +271,48 @@ class AuroDatePicker extends LitElement {
    * @private
    * @returns {void}
    */
-  handleInputValueChange() {
-    const lengthOfValidDateStr = 10;
-
+  handleDatepickerValueChange() {
     if (this.value !== this.input.value) {
-      this.value = this.input.value;
+      this.input.value = this.formatDateString(new Date(this.value));
+    }
 
-      const date = new Date(this.input.value);
+    const lengthOfValidDateStr = 10;
+    const date = new Date(this.value);
 
-      /**
-       * We can't rely on Date.parse() to check if a full date has been entered.
-       * Entering even a single digit will return a valid date.
-       * Check if the full date has been typed in by looking at the length of the value.
-       */
-      if (this.input.value.length === lengthOfValidDateStr && this.validDate(date)) {
-        if (!this.validDate(this.calendar.selectedDate)) {
-          this.calendar.selectedDate = new Date(this.input.value);
-        }
-
-        /**
-         * Additional work if the calendar is not in sync with the input.
-         */
-
-        if (this.calendar.selectedDate.toDateString() !== new Date(this.input.value).toDateString()) {
-          this.calendar.selectedDate = new Date(this.input.value);
-        }
-
-        if (this.calendar.centralDate.toDateString() !== new Date(this.input.value).toDateString()) {
-          this.calendar.centralDate = new Date(this.input.value);
-        }
-
-        this.dispatchEvent(new CustomEvent('auroDatePicker-valueSet', {
-          bubbles: true,
-          cancelable: false,
-          composed: true,
-        }));
-      } else if (this.calendar.selectedDate !== undefined) {
-        this.calendar.selectedDate = undefined;
+    /**
+     * We can't rely on Date.parse() to check if a full date has been entered.
+     * Entering even a single digit will return a valid date.
+     * Check if the full date has been typed in by looking at the length of the value.
+     */
+    if (this.value.length === lengthOfValidDateStr && this.validDate(date)) {
+      if (!this.validDate(this.calendar.selectedDate)) {
+        this.calendar.selectedDate = new Date(this.value);
       }
 
+      /**
+       * Additional work if the calendar is not in sync with the input.
+       */
+
+      if (this.calendar.selectedDate.toDateString() !== new Date(this.value).toDateString()) {
+        this.calendar.selectedDate = new Date(this.value);
+      }
+
+      if (this.calendar.centralDate.toDateString() !== new Date(this.value).toDateString()) {
+        this.calendar.centralDate = new Date(this.value);
+        this.centralDate = this.value;
+      }
+
+      this.dispatchEvent(new CustomEvent('auroDatePicker-valueSet', {
+        bubbles: true,
+        cancelable: false,
+        composed: true,
+      }));
+    } else if (this.calendar.selectedDate !== undefined) {
+      this.calendar.selectedDate = undefined;
     }
 
     // This check prevents the component showing an error when a required datepicker is first rendered
-    if (this.input.value) {
-      this.validate();
-    }
+    this.validate();
   }
 
   /**
@@ -393,7 +390,9 @@ class AuroDatePicker extends LitElement {
     });
 
     this.input.addEventListener('input', () => {
-      this.handleInputValueChange();
+      if (this.input.value !== this.value) {
+        this.value = this.input.value;
+      }
     });
 
     // auto-show bib when manually editing the input value
@@ -450,32 +449,32 @@ class AuroDatePicker extends LitElement {
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('value') && this.value) {
-      if (this.value !== this.input.value) {
-        this.input.value = this.formatDateString(new Date(this.value));
-      }
-
-      this.validate();
+    if (changedProperties.has('value')) {
+      this.handleDatepickerValueChange();
     }
 
     if (changedProperties.has('minDate')) {
-      if (this.minDate && this.value) {
-        if (new Date(this.minDate).getTime() > new Date(this.value).getTime()) {
-          this.value = undefined;
-          this.input.value = undefined;
-          this.centralDate = this.value;
-          this.calendar.selectedDate = undefined;
+      if (this.minDate) {
+        if (this.value) {
+          if (new Date(this.minDate).getTime() > new Date(this.value).getTime()) {
+            this.value = undefined;
+            this.calendar.selectedDate = undefined;
+            this.calendar.centralDate = new Date(this.minDate);
+            this.centralDate = this.minDate;
+          }
         }
       }
     }
 
     if (changedProperties.has('maxDate')) {
-      if (this.maxDate && this.value) {
-        if (new Date(this.maxDate).getTime() < new Date(this.value).getTime()) {
-          this.value = undefined;
-          this.input.value = undefined;
-          this.centralDate = this.value;
-          this.calendar.selectedDate = undefined;
+      if (this.maxDate) {
+        if (this.value) {
+          if (new Date(this.maxDate).getTime() < new Date(this.value).getTime()) {
+            this.value = undefined;
+            this.calendar.selectedDate = undefined;
+            this.calendar.centralDate = new Date(this.maxDate);
+            this.centralDate = this.maxDate;
+          }
         }
       }
     }
