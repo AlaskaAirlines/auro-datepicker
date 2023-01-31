@@ -73,10 +73,27 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
 
 To give a higher limit you can bind a date to the `maxDate` property.
 
-This example demonstrates that the state of the `auro-datepicker` should reset if the date of `maxDate` is earlier than the `auro-datepicker`'s currently selected value.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/maxDate.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/maxDate.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+Setting the `maxDate` attribute to a date earlier than the auro-datepicker `value` will result in the following changes to the component state:
+
+* `value` will to reset to `undefined`.
+* If the currently viewed calendar month is later than the new `maxDate`, the calendar view will move to the new `maxDate` month.
+
+This example demonstrates that behavior.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/updateMaxDate.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -85,7 +102,7 @@ This example demonstrates that the state of the `auro-datepicker` should reset i
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/maxDate.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/maxDate.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -94,10 +111,27 @@ This example demonstrates that the state of the `auro-datepicker` should reset i
 
 To give a lower limit you can bind a date to the `minDate` property.
 
-This example demonstrates that the state of the `auro-datepicker` should reset if the date of `minDate` is later than the `auro-datepicker`'s currently selected value.
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/minDate.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/minDate.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+Setting the `minDate` attribute to a date later than the auro-datepicker `value` will result in the following changes to the component state:
+
+* `value` will to reset to `undefined`.
+* If the currently viewed calendar month is earlier than the new `minDate`, the calendar view will move to the new `minDate` month.
+
+This example demonstrates that behavior.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/updateMinDate.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -106,7 +140,7 @@ This example demonstrates that the state of the `auro-datepicker` should reset i
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/minDate.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/minDate.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>

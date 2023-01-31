@@ -1,5 +1,6 @@
 export function futureMinDate(elem) {
-  const button = document.getElementById('minDateChange');
+  const changeMinDateButton = document.getElementById('minDateChange');
+  const resetButton = document.getElementById('resetMinDate');
 
   const today = elem.formatDateString(new Date());
 
@@ -12,7 +13,12 @@ export function futureMinDate(elem) {
   elem.setAttribute('value', today);
   elem.setAttribute('minDate', today);
 
-  button.addEventListener('click', () => {
+  changeMinDateButton.addEventListener('click', () => {
     elem.setAttribute('minDate', nextWeek);
+  });
+
+  resetButton.addEventListener('click', () => {
+    elem.setAttribute('value', today);
+    elem.setAttribute('minDate', today);
   });
 }
