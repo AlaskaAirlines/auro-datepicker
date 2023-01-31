@@ -1,5 +1,6 @@
 export function pastMaxDate(elem) {
-  const button = document.getElementById('maxDateChange');
+  const changeMaxDateButton = document.getElementById('maxDateChange');
+  const resetButton = document.getElementById('resetMaxDate');
 
   const today = elem.formatDateString(new Date());
 
@@ -12,7 +13,12 @@ export function pastMaxDate(elem) {
   elem.setAttribute('value', nextWeek);
   elem.setAttribute('maxDate', nextWeek);
 
-  button.addEventListener('click', () => {
+  changeMaxDateButton.addEventListener('click', () => {
     elem.setAttribute('maxDate', today);
+  });
+
+  resetButton.addEventListener('click', () => {
+    elem.setAttribute('value', nextWeek);
+    elem.setAttribute('maxDate', nextWeek);
   });
 }

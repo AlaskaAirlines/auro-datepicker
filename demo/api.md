@@ -132,20 +132,42 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
 
 To give a higher limit you can bind a date to the `maxDate` property.
 
-This example demonstrates that the state of the `auro-datepicker` should reset if the date of `maxDate` is earlier than the `auro-datepicker`'s currently selected value.
+<div class="exampleWrapper">
+  <auro-datepicker maxDate="06/16/1980">
+    <span slot="label">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker maxDate="06/16/1980">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
+Setting the `maxDate` attribute to a date earlier than the auro-datepicker `value` will result in the following changes to the component state:
+
+* `value` will to reset to `undefined`.
+* If the currently viewed calendar month is later than the new `maxDate`, the calendar view will move to the new `maxDate` month.
+
+This example demonstrates that behavior.
 
 <div class="exampleWrapper">
   <auro-datepicker id="maxDateExample">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
   <auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
+  <auro-button id="resetMaxDate">Reset Datepicker to Initial Example</auro-button>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```js
 export function pastMaxDate(elem) {
-  const button = document.getElementById('maxDateChange');
+  const changeMaxDateButton = document.getElementById('maxDateChange');
+  const resetButton = document.getElementById('resetMaxDate');
 
   const today = elem.formatDateString(new Date());
 
@@ -158,8 +180,13 @@ export function pastMaxDate(elem) {
   elem.setAttribute('value', nextWeek);
   elem.setAttribute('maxDate', nextWeek);
 
-  button.addEventListener('click', () => {
+  changeMaxDateButton.addEventListener('click', () => {
     elem.setAttribute('maxDate', today);
+  });
+
+  resetButton.addEventListener('click', () => {
+    elem.setAttribute('value', nextWeek);
+    elem.setAttribute('maxDate', nextWeek);
   });
 }
 ```
@@ -169,6 +196,7 @@ export function pastMaxDate(elem) {
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 <auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
+<auro-button id="resetMaxDate">Reset Datepicker to Initial Example</auro-button>
 ```
 
 </auro-accordion>
@@ -177,20 +205,42 @@ export function pastMaxDate(elem) {
 
 To give a lower limit you can bind a date to the `minDate` property.
 
-This example demonstrates that the state of the `auro-datepicker` should reset if the date of `minDate` is later than the `auro-datepicker`'s currently selected value.
+<div class="exampleWrapper">
+  <auro-datepicker minDate="06/16/2030">
+    <span slot="label">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker minDate="06/16/2030">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
+Setting the `minDate` attribute to a date later than the auro-datepicker `value` will result in the following changes to the component state:
+
+* `value` will to reset to `undefined`.
+* If the currently viewed calendar month is earlier than the new `minDate`, the calendar view will move to the new `minDate` month.
+
+This example demonstrates that behavior.
 
 <div class="exampleWrapper">
   <auro-datepicker id="minDateExample">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
   <auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
+  <auro-button id="resetMinDate">Reset Datepicker to Initial Example</auro-button>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```js
 export function futureMinDate(elem) {
-  const button = document.getElementById('minDateChange');
+  const changeMinDateButton = document.getElementById('minDateChange');
+  const resetButton = document.getElementById('resetMinDate');
 
   const today = elem.formatDateString(new Date());
 
@@ -203,8 +253,13 @@ export function futureMinDate(elem) {
   elem.setAttribute('value', today);
   elem.setAttribute('minDate', today);
 
-  button.addEventListener('click', () => {
+  changeMinDateButton.addEventListener('click', () => {
     elem.setAttribute('minDate', nextWeek);
+  });
+
+  resetButton.addEventListener('click', () => {
+    elem.setAttribute('value', today);
+    elem.setAttribute('minDate', today);
   });
 }
 ```
@@ -214,6 +269,7 @@ export function futureMinDate(elem) {
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 <auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
+<auro-button id="resetMinDate">Reset Datepicker to Initial Example</auro-button>
 ```
 
 </auro-accordion>
