@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [1.2.9](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.8...v1.2.9) (2023-02-01)
+
+
+### Bug Fixes
+
+* improve handling of datepicker when in invalid state [#99](https://github.com/AlaskaAirlines/auro-datepicker/issues/99) ([2f4a9db](https://github.com/AlaskaAirlines/auro-datepicker/commit/2f4a9db575b36cb90dec18c327693c78d520d6af))
+
+
+### Performance Improvements
+
+* **value:** improve value change handling ([c892fa5](https://github.com/AlaskaAirlines/auro-datepicker/commit/c892fa5229e72c986f0432584d834d8e77edd6b9))
+
 ## [1.2.8](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.7...v1.2.8) (2023-01-27)
 
 
