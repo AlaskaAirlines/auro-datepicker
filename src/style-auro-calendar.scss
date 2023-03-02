@@ -1,0 +1,192 @@
+// // Copyright (c) 2022 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// // See LICENSE in the project root for license information.
+
+// // ---------------------------------------------------------------------
+
+// // Import Auro tokens
+// @import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+// @import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
+
+// @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
+// @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
+
+// // Support for auroElement styles
+// // @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
+
+// // container styles - defines the look of the outer custom component
+// // :host {
+// //   ...
+// // }
+
+// /* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length */
+
+// :host {
+//   position: relative;
+
+//   width: 408px;
+
+//   background-color: var(--auro-color-background-lightest);
+
+//   #monthYearLabel {
+//     position: absolute;
+//     top: var(--auro-size-md);
+//     left: 50%;
+
+//     margin: .4em 0;
+
+//     font-size: var(--auro-text-heading-400-size);
+//     font-weight: var(--auro-text-heading-400-weight);
+//     line-height: var(--auro-text-heading-400-height);
+
+//     transform: translateX(-50%);
+//   }
+// }
+
+// .calendar {
+//   padding-top: var(--auro-size-md);
+// }
+
+// .calendar__navigation-heading {
+//   flex: 1;
+
+//   opacity: 0;
+// }
+
+// .calendar__navigation__year {
+//   display: none;
+// }
+
+// .calendar__navigation__month {
+//   display: flex;
+//   width: 100%;
+
+//   flex-direction: row;
+// }
+
+// .calendar__previous-button,
+// .calendar__next-button {
+//   position: relative;
+
+//   width: 40px;
+//   height: 40px;
+
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: transparent;
+//   border-radius: 50%;
+
+//   color: transparent;
+
+//   cursor: pointer;
+
+//   &:focus {
+//     border-color: var(--auro-color-border-active-on-light);
+//   }
+
+//   &:active {
+//     border-color: var(--auro-color-border-active-on-light);
+
+//     box-shadow: inset 0 0 0 1px var(--auro-color-border-active-on-light);
+//   }
+
+//   &:after {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+
+//     width: 50%;
+//     height: 50%;
+
+//     background-color: var(--auro-color-alert-notification-on-light);
+
+//     content: '';
+//     transform: translate(-50%, -50%);
+//   }
+// }
+
+// .calendar__previous-button {
+//   &:after {
+//     -webkit-mask-box-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-left.svg');
+//     mask-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-left.svg');
+//   }
+// }
+
+// .calendar__next-button {
+//   &:after {
+//     -webkit-mask-box-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-right.svg');
+//     mask-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-right.svg');
+//   }
+// }
+
+// .calendar__day-button {
+//   width: var(--auro-size-xxl);
+//   height: var(--auro-size-xxxl);
+
+//   border-width: 1px;
+//   border-style: solid;
+//   border-color: transparent;
+//   border-radius: var(--auro-size-lg);
+
+//   background-color: var(--auro-color-background-lightest);
+//   color: var(--auro-color-text-primary-on-light);
+
+//   cursor: pointer;
+
+//   font-family: var(--auro-font-family-default);
+//   font-size: var(--auro-text-body-size-lg);
+
+//   &[today] {
+//     text-decoration: none;
+//   }
+
+//   &[previous-month],
+//   &[next-month] {
+//     opacity: 0;
+
+//     pointer-events: none;
+//   }
+
+//   &:hover {
+//     border-color: transparent;
+
+//     background-color: var(--auro-color-ui-bkg-hover-on-light);
+//     color: var(--auro-color-text-primary-on-light);
+//   }
+
+//   &[selected] {
+//     border-color: var(--auro-color-background-darker);
+
+//     background-color: var(--auro-color-background-darker);
+//     box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+//     color: var(--auro-color-background-lightest);
+//   }
+
+//   &:focus {
+//     box-shadow: inset 0 0 0 2px var(--auro-color-background-lightest);
+
+//     &:not([selected]) {
+//       border-color: var(--auro-color-border-active-on-light);
+//     }
+//   }
+
+//   &[disabled] {
+//     color: var(--auro-color-text-secondary-on-dark);
+
+//     pointer-events: none;
+//   }
+// }
+
+// // Range-Datepicker js file styles
+// :host {
+//   display: block;
+//   position: relative;
+// }
+
+// #container {
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// :not(#firstDatePicker) {
+//   margin-left: 16px;
+// }

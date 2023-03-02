@@ -1,21 +1,31 @@
-function initializeExample(element, callback, retryCount) {
-  const elem = document.querySelector(element);
+function initializeExample(elements, callback, elementsPendingReady, retryCount) {
+  if (!elementsPendingReady) {
+    elementsPendingReady = elementsPendingReady || [];
 
-  if (!elem || !elem.ready) {
-    // If the component is not ready, retry until it is
-    if (!retryCount && retryCount != 0) {
-      retryCount = 0;
+    if (typeof elements === 'string') {
+      elementsPendingReady.push(elements);
     } else {
-      retryCount += 1;
+      elementsPendingReady = elements;
     }
 
-    if (retryCount < 10) {
-      setTimeout(initializeExample, 500, element, callback, retryCount);
-    } else {
-      console.error('Unable to initialize functional example code for:', element);
-    }
+    initializeExample(elements, callback, elementsPendingReady);
   } else {
-    callback(elem);
+    let readyCount = 0;
+
+    elementsPendingReady.forEach(element => {
+      if (document.querySelector(element) && document.querySelector(element)['ready']) {
+        readyCount++;
+      }
+    });
+
+    retryCount = retryCount || 0;
+
+    if (elementsPendingReady.length != readyCount && retryCount < 10) {
+      retryCount = retryCount + 1;
+      setTimeout(initializeExample, 500, elements, callback, elementsPendingReady, retryCount);
+    } else {
+      callback(elements);
+    }
   }
 }
 
@@ -25,8 +35,8 @@ function initializeExample(element, callback, retryCount) {
 import { focusExample } from './../apiExamples/focus.js';
 
 (function(){
-  initializeExample('#focusExample', function(elem) {
-    focusExample(elem);
+  initializeExample('#focusExample', function(selector) {
+    focusExample(document.querySelector(selector));
   });
 }());
 
@@ -36,8 +46,8 @@ import { focusExample } from './../apiExamples/focus.js';
 import { valueExample } from './../apiExamples/value.js';
 
 (function(){
-  initializeExample('#valueExample', function(elem) {
-  valueExample(elem);
+  initializeExample('#valueExample', function(selector) {
+  valueExample(document.querySelector(selector));
   });
 }());
 
@@ -47,8 +57,8 @@ import { valueExample } from './../apiExamples/value.js';
 import { valueAlert } from './../apiExamples/alertValue.js';
 
 (function(){
-  initializeExample('#datePickerValueAlert', function(elem) {
-    valueAlert(elem);
+  initializeExample('#datePickerValueAlert', function(selector) {
+    valueAlert(document.querySelector(selector));
   });
 }());
 
@@ -58,8 +68,8 @@ import { valueAlert } from './../apiExamples/alertValue.js';
 import { setError } from './../apiExamples/error';
 
 (function(){
-  initializeExample('#errorExample', function(elem) {
-    setError(elem);
+  initializeExample('#errorExample', function(selector) {
+    setError(document.querySelector(selector));
   });
 }());
 
@@ -69,8 +79,8 @@ import { setError } from './../apiExamples/error';
 import { futureMinDate } from '../apiExamples/minDate';
 
 (function(){
-  initializeExample('#minDateExample', function(elem) {
-    futureMinDate(elem);
+  initializeExample('#minDateExample', function(selector) {
+    futureMinDate(document.querySelector(selector));
   });
 }());
 
@@ -80,7 +90,7 @@ import { futureMinDate } from '../apiExamples/minDate';
 import { pastMaxDate } from '../apiExamples/maxDate';
 
 (function(){
-  initializeExample('#maxDateExample', function(elem) {
-    pastMaxDate(elem);
+  initializeExample('#maxDateExample', function(selector) {
+    pastMaxDate(document.querySelector(selector));
   });
 }());
