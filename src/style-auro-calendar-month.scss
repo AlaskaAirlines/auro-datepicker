@@ -1,0 +1,286 @@
+// Copyright (c) 2022 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// See LICENSE in the project root for license information.
+
+// ---------------------------------------------------------------------
+
+// Import Auro tokens
+@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
+
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
+
+// Support for auroElement styles
+// @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
+
+// container styles - defines the look of the outer custom component
+// :host {
+//   ...
+// }
+
+/* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length */
+
+:host {
+  position: relative;
+
+  width: 408px;
+
+  outline: red 1px;
+
+  #monthYearLabel {
+    position: absolute;
+    top: var(--auro-size-md);
+    left: 50%;
+
+    margin: .4em 0;
+
+    font-size: var(--auro-text-heading-400-size);
+    font-weight: var(--auro-text-heading-400-weight);
+    line-height: var(--auro-text-heading-400-height);
+
+    transform: translateX(-50%);
+  }
+}
+
+.calendar {
+  padding-top: var(--auro-size-md);
+}
+
+.calendar__navigation-heading {
+  flex: 1;
+
+  opacity: 0;
+}
+
+.calendar__navigation__year {
+  display: none;
+}
+
+.calendar__navigation__month {
+  display: flex;
+  width: 100%;
+
+  flex-direction: row;
+}
+
+.calendar__previous-button,
+.calendar__next-button {
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 50%;
+
+  color: transparent;
+
+  cursor: pointer;
+
+  &:focus {
+    border-color: var(--auro-color-border-active-on-light);
+  }
+
+  &:active {
+    border-color: var(--auro-color-border-active-on-light);
+
+    box-shadow: inset 0 0 0 1px var(--auro-color-border-active-on-light);
+  }
+
+  &:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 50%;
+    height: 50%;
+
+    background-color: var(--auro-color-alert-notification-on-light);
+
+    content: '';
+    transform: translate(-50%, -50%);
+  }
+}
+
+.calendar__previous-button {
+  &:after {
+    -webkit-mask-box-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-left.svg');
+    mask-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-left.svg');
+  }
+}
+
+.calendar__next-button {
+  &:after {
+    -webkit-mask-box-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-right.svg');
+    mask-image: url('https://unpkg.com/@alaskaairux/icons@latest/dist/icons/interface/chevron-right.svg');
+  }
+}
+
+.calendar__day-button {
+  width: var(--auro-size-xxl);
+  height: var(--auro-size-xxxl);
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: var(--auro-size-lg);
+
+  background-color: var(--auro-color-background-lightest);
+  color: var(--auro-color-text-primary-on-light);
+
+  cursor: pointer;
+
+  font-family: var(--auro-font-family-default);
+  font-size: var(--auro-text-body-size-lg);
+
+  &[today] {
+    text-decoration: none;
+  }
+
+  &[previous-month],
+  &[next-month] {
+    opacity: 0;
+
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: transparent;
+
+    background-color: var(--auro-color-ui-bkg-hover-on-light);
+    color: var(--auro-color-text-primary-on-light);
+  }
+
+  &[selected] {
+    border-color: var(--auro-color-background-darker);
+
+    background-color: var(--auro-color-background-darker);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    color: var(--auro-color-background-lightest);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 2px var(--auro-color-background-lightest);
+
+    &:not([selected]) {
+      border-color: var(--auro-color-border-active-on-light);
+    }
+  }
+
+  &[disabled] {
+    color: var(--auro-color-text-secondary-on-dark);
+
+    pointer-events: none;
+  }
+}
+
+// Range-Datepicker-Calendar js file styles
+:host {
+  display: block;
+  width: 266px;
+}
+
+:host > div {
+  overflow: hidden;
+}
+
+div.table {
+  display: table;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+div.th {
+  display: table-cell;
+  color: var(--range-datepicker-day-names-text, rgb(117, 117, 117));
+  font-size: 11px;
+  width: 38px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+div.tr {
+  display: table-row;
+  height: 38px;
+}
+
+div.td {
+  display: table-cell;
+  padding: 0;
+  width: 38px;
+  margin: 0;
+  height: 38px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 266px;
+  margin: 10px 0;
+  text-align: center;
+  color: var(--range-datepicker-month-text);
+}
+
+.headerTitle {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.header mwc-icon-button {
+  padding: 0;
+  --mdc-icon-size: 30px;
+}
+
+.header::first-letter {
+  text-transform: uppercase;
+}
+
+.header > div > div {
+  margin-right: 8px;
+}
+
+mwc-list {
+  max-height: 200px;
+}
+
+div.tbody {
+  transition: all 0ms;
+  transform: translateX(0);
+  height: 235px;
+}
+
+.withTransition {
+  transition: all 100ms;
+}
+
+.moveToLeft {
+  transform: translateX(-274px);
+}
+
+.moveToRight {
+  transform: translateX(274px);
+}
+
+.withTransition td,
+.moveToLeft td,
+.moveToRight td {
+  border: none;
+}
+
+.year-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.year-change {
+  max-height: 200px;
+}
