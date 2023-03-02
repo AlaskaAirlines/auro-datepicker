@@ -20,5 +20,5 @@ export function valueExample(elem) {
   document.querySelector('#validValueExampleBtn').addEventListener('click', () => {
     const validDate = new Date().setDate(new Date().getDate() + 60);
     elem.value = formatDateString(new Date(validDate));
-  })
+  });
 }

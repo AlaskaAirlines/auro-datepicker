@@ -133,7 +133,7 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
 To give a higher limit you can bind a date to the `maxDate` property.
 
 <div class="exampleWrapper">
-  <auro-datepicker maxDate="06/16/1980">
+  <auro-datepicker maxDate="03/05/2023">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
@@ -141,7 +141,7 @@ To give a higher limit you can bind a date to the `maxDate` property.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker maxDate="06/16/1980">
+<auro-datepicker maxDate="03/05/2023">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
@@ -206,7 +206,7 @@ export function pastMaxDate(elem) {
 To give a lower limit you can bind a date to the `minDate` property.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="06/16/2030">
+  <auro-datepicker minDate="03/05/2023">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
@@ -214,7 +214,7 @@ To give a lower limit you can bind a date to the `minDate` property.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="06/16/2030">
+<auro-datepicker minDate="03/05/2023">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
@@ -337,7 +337,7 @@ export function valueExample(elem) {
   document.querySelector('#validValueExampleBtn').addEventListener('click', () => {
     const validDate = new Date().setDate(new Date().getDate() + 60);
     elem.value = formatDateString(new Date(validDate));
-  })
+  });
 }
 ```
 

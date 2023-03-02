@@ -81,93 +81,45 @@ export class AuroCalendar extends RangeDatepicker {
 
   handlePrevMonth() {
     var _a;
-    if (!this.enableYearChange) {
-        const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[next]');
-        calendar === null || calendar === void 0 ? void 0 : calendar.handlePrevMonth();
-    }
+      const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[next]');
+      calendar === null || calendar === void 0 ? void 0 : calendar.handlePrevMonth();
   }
   handleNextMonth() {
     var _a;
-    if (!this.enableYearChange) {
-        const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[prev]');
-        calendar === null || calendar === void 0 ? void 0 : calendar.handleNextMonth();
-    }
-  }
-  
-  render() {
-    return this.isNarrow(this.forceNarrow, this.narrow)
-      ? this.renderNarrow()
-      : this.renderNormal();
+      const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[prev]');
+      calendar === null || calendar === void 0 ? void 0 : calendar.handleNextMonth();
   }
 
-  renderNormal() {
-    return html `
-      <div id="container">
-        <auro-calendar-month
-          id="firstDatePicker"
-          .disabledDays="${this.disabledDays}"
-          min="${this.min}"
-          max="${this.max}"
-          ?enableYearChange="${this.enableYearChange}"
-          ?prev="${true}"
-          ?noRange="${this.noRange}"
-          .hoveredDate="${this.hoveredDate}"
-          .dateTo="${this.dateTo}"
-          .dateFrom="${this.dateFrom}"
-          .locale="${this.locale}"
-          month="${this.month}"
-          year="${this.year}"
-          @prev-month="${this.handlePrevMonth}"
-          @hovered-date-changed="${this.hoveredDateChanged}"
-          @date-from-changed="${this.dateFromChanged}"
-          @date-to-changed="${this.dateToChanged}"
-        >
-        </auro-calendar-month>
-        <auro-calendar-month
-          .disabledDays="${this.disabledDays}"
-          min="${this.min}"
-          max="${this.max}"
-          ?enableYearChange="${this.enableYearChange}"
-          ?next="${true}"
-          ?noRange="${this.noRange}"
-          .hoveredDate="${this.hoveredDate}"
-          .dateTo="${this.dateTo}"
-          .dateFrom="${this.dateFrom}"
-          .locale="${this.locale}"
-          month="${this.monthPlus}"
-          year="${this.yearPlus}"
-          @next-month="${this.handleNextMonth}"
-          @hovered-date-changed="${this.hoveredDateChanged}"
-          @date-from-changed="${this.dateFromChanged}"
-          @date-to-changed="${this.dateToChanged}"
-        >
-        </auro-calendar-month>
-      </div>
-    `;
-  }
-
-  renderNarrow() {
+   /**
+   * @private
+   * @returns {Object} Returns single calendar month HTML.
+   */
+  renderCalendar(month, year, prev, next) {
     return html `
       <auro-calendar-month
+        id="firstDatePicker"
         .disabledDays="${this.disabledDays}"
         min="${this.min}"
         max="${this.max}"
-        ?enableYearChange="${this.enableYearChange}"
+        ?prev="${prev}"
+        ?next="${next}"
         ?noRange="${this.noRange}"
         ?narrow="${this.isNarrow(this.forceNarrow, this.narrow)}"
         .hoveredDate="${this.hoveredDate}"
         .dateTo="${this.dateTo}"
         .dateFrom="${this.dateFrom}"
         .locale="${this.locale}"
-        ?prev="${true}"
-        ?next="${true}"
-        month="${this.monthPlus}"
-        year="${this.yearPlus}"
+        month="${month}"
+        year="${year}"
         @hovered-date-changed="${this.hoveredDateChanged}"
         @date-from-changed="${this.dateFromChanged}"
         @date-to-changed="${this.dateToChanged}"
       >
       </auro-calendar-month>
     `;
+  }
+
+  render() {
+    return html`${this.renderCalendar(this.month, this.year, true, true)}`;
   }
 }

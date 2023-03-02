@@ -21,8 +21,6 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
   }
 
   async firstUpdated() {
-    this.month = this.month - 1;
-
     this.monthsList = [
         '01',
         '02',
@@ -41,7 +39,33 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
         this.setYears(1930, 2100);
     });
     await this.updateComplete;
-}
+  }
+
+  renderDay(day) {
+    return html `
+      <div class="td ${this.tdIsEnabled(day)}">
+        ${day
+            ? html `
+              <auro-calendar-cell
+                .disabledDays="${this.disabledDays}"
+                .min="${this.min}"
+                .max="${this.max}"
+                .month="${this.month}"
+                .hoveredDate="${this.hoveredDate}"
+                .dateTo="${this.dateTo}"
+                .dateFrom="${this.dateFrom}"
+                .locale="${this.locale}"
+                .day="${day}"
+                ?isCurrentDate="${this.isCurrentDate(day)}"
+                @date-is-selected="${this.handleDateSelected}"
+                @date-is-hovered="${this.handleDateHovered}"
+              >
+              </auro-calendar-cell>
+            `
+            : null}
+      </div>
+    `;
+  }
 
   renderPrevButton() {
     if (this.prev || this.narrow || this.enableYearChange) {
