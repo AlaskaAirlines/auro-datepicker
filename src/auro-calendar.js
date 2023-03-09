@@ -94,10 +94,11 @@ export class AuroCalendar extends RangeDatepicker {
    * @private
    * @returns {Object} Returns single calendar month HTML.
    */
+
+   // min and max date seem off here?
   renderCalendar(month, year, prev, next) {
     return html `
       <auro-calendar-month
-        id="firstDatePicker"
         .disabledDays="${this.disabledDays}"
         min="${this.min}"
         max="${this.max}"

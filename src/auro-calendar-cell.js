@@ -106,7 +106,7 @@ export class AuroCalendarCell extends LitElement {
   }
 
   isHovered(hovered) {
-    return hovered ? 'hovered' : '';
+    return hovered ? 'inRange' : '';
   }
 
   isEnabled(day, min, max, disabledDays) {
@@ -149,7 +149,8 @@ export class AuroCalendarCell extends LitElement {
       @focus="${this.handleHover}"
       class="day ${this.isCurrentDate ? 'currentDate' : ''} ${this.isSelected(this.selected)} ${this.isHovered(this.hovered)} ${this.isEnabled(this.day, this.min, this.max, this.disabledDays)}"
       ?disabled="${this.disabled}"
-      title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}">
+      title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
+      tabindex="-1">
       <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
     </button>
   `;
