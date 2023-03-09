@@ -1,5 +1,6 @@
 import { AuroCalendar } from "./src/auro-calendar";
 import { AuroCalendarMonth } from "./src/auro-calendar-month";
+import { AuroCalendarCell } from "./src/auro-calendar-cell";
 import { AuroDatePicker } from "./src/auro-datepicker";
 
 /**
@@ -16,5 +17,6 @@ export function registerComponent(name, className) {
 }
 
 registerComponent('auro-calendar', AuroCalendar);
+registerComponent('auro-calendar-cell', AuroCalendarCell);
 registerComponent('auro-calendar-month', AuroCalendarMonth);
 registerComponent('auro-datepicker', AuroDatePicker);
