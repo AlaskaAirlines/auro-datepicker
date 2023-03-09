@@ -1,4 +1,3 @@
-// import { LionCalendar } from '@lion/calendar';
 import { html } from 'lit';
 import styleCss from "./style-auro-calendar-css";
 
@@ -29,6 +28,8 @@ import { RangeDatepicker } from '../node_modules/wc-range-datepicker/dist/src/ra
 export class AuroCalendar extends RangeDatepicker {
   constructor() {
     super();
+
+    this.numCalendars = 1;
   }
 
   static get styles() {
@@ -36,6 +37,15 @@ export class AuroCalendar extends RangeDatepicker {
       // ...super.styles,
       styleCss
     ];
+  }
+
+  static get properties() {
+    return {
+      // ...super.properties,
+      numCalendars: {
+        type: Number
+      }
+    }
   }
 
   /**
@@ -61,7 +71,19 @@ export class AuroCalendar extends RangeDatepicker {
       }));
     });
 
+    this.addEventListener('date-to-changed', () => {
+      this.dispatchEvent(new CustomEvent('auroCalendar-dateSelected', {
+        bubbles: true,
+        cancelable: false,
+        composed: true,
+      }));
+    });
+
     this.notifyReady();
+
+    this.determineNumCalendars();
+
+    window.addEventListener('resize', this.determineNumCalendars);
   }
 
   updated(changedProperties) {
@@ -77,6 +99,10 @@ export class AuroCalendar extends RangeDatepicker {
     if (changedProperties.has('locale')) {
         this.localeChanged();
     }
+    // if (changedProperties.has('numCalendars')) {
+    //   console.log("num calendars changed", this.numCalendars);
+      // this.requestUpdate();
+    // }
   }
 
   handlePrevMonth() {
@@ -88,6 +114,30 @@ export class AuroCalendar extends RangeDatepicker {
     var _a;
       const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[prev]');
       calendar === null || calendar === void 0 ? void 0 : calendar.handleNextMonth();
+  }
+
+  determineNumCalendars() {
+    // console.log("determineNumCalendars", this.numCalendars);
+    const vw = window.innerWidth;
+
+    let calendarCount = 1;
+
+    if (!this.noRange) {
+      calendarCount = 2;
+    }
+
+    // Need to find correct auro breakpoint for width of screen
+    if (vw < 1000) {
+      calendarCount = 12;
+    }
+
+    if (this.numCalendars !== calendarCount) {
+      this.numCalendars = calendarCount;
+    }
+
+    // console.log("determine num calendars called", calendarCount, this.numCalendars);
+
+    // Add calculation to restrict number of calendars based off of min/max date
   }
 
    /**
@@ -121,6 +171,22 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   render() {
-    return html`${this.renderCalendar(this.month, this.year, true, true)}`;
+    console.log("render");
+    return html`
+      ${this.renderCalendar(this.month, this.year, true, true)}
+      ${this.numCalendars > 1 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 2 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 3 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 4 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 5 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 6 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 7 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 8 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 9 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 10 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.numCalendars > 11 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+    `;
   }
 }
+
+
