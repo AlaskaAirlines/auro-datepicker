@@ -1,65 +1,69 @@
-:host {
-  display: block;
-}
-
 .day {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 38px;
-  width: 38px;
-  margin: 0;
-  padding: 0;
-  color: var(--wc-datepicker-cell-text);
+  position: relative;
+  width: var(--auro-size-xxl);
+  height: var(--auro-size-xxxl);
 
-  border: none;
-  outline: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: var(--auro-size-lg);
+
+  // background-color: var(--auro-color-background-lightest);
   background-color: transparent;
-}
+  color: var(--auro-color-text-primary-on-light);
 
-.day:focus {
-  outline: 1px solid
-    var(--wc-datepicker-cell-hovered, rgba(0, 150, 136, 0.5));
-}
-
-.day:not(.disabled):hover {
-  background: var(--wc-datepicker-cell-hover, #e4e7e7);
   cursor: pointer;
-}
 
-.day.hovered {
-  background: var(
-    --wc-datepicker-cell-hovered,
-    rgba(0, 150, 136, 0.5)
-  ) !important;
-  color: var(--wc-datepicker-cell-hovered-text, white);
-}
+  font-family: var(--auro-font-family-default);
+  font-size: var(--auro-text-body-size-lg);
 
-.day.selected {
-  background: var(
-    --wc-datepicker-cell-selected,
-    rgb(0, 150, 136)
-  ) !important;
-  color: var(--wc-datepicker-cell-selected-text, white);
-}
+  &.disabled {
+    color: var(--auro-color-text-secondary-on-dark);
 
-.day.currentDate .currentDayMarker {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+    pointer-events: none;
+  }
 
-  width: 80%;
-  height: 80%;
-  font-weight: var(--wc-current-day-font-weight, bold);
-  border-radius: 50%;
-  background-color: var(--wc-current-day-color);
-  color: var(--wc-current-day-color-text);
-}
+  &.selected {
+    border-color: var(--auro-color-background-darker);
 
-.day.disabled {
-  opacity: 0.4;
+    background-color: var(--auro-color-background-darker);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    color: var(--auro-color-background-lightest);
+  }
+
+  &.inRange {
+    &:before {
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: var(--auro-color-background-lighter);
+      height: 48px;
+      width: 48px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light);
+    color: var(--auro-color-text-primary-on-light);
+
+    // &.inRange {
+    //   &:before {
+    //     position: absolute;
+    //     content: '';
+    //     display: block;
+    //     background-color: var(--auro-color-background-lighter);
+    //     height: 48px;
+    //     width: 29px;
+    //     top: 50%;
+    //     left: -5px;
+    //     transform: translate(0%, -50%);
+    //     z-index: -1;
+    //   }
+    // }
+  }
 }

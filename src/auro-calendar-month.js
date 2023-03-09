@@ -41,6 +41,22 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     await this.updateComplete;
   }
 
+  localeChanged() {
+    const dayNamesOfTheWeek = [];
+    for (let i = 0; i < 7; i += 1) {
+        dayNamesOfTheWeek.push(this.locale.localize.day(i, { width: 'narrow' }));
+    }
+    const firstDayOfWeek = this.locale.options.weekStartsOn
+        ? this.locale.options.weekStartsOn
+        : 0;
+    const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
+    const newDayNamesOfTheWeek = dayNamesOfTheWeek
+        .slice()
+        .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
+        .concat(tmp);
+    this.dayNamesOfTheWeek = newDayNamesOfTheWeek;
+  }
+
   renderDay(day) {
     return html `
       <div class="td ${this.tdIsEnabled(day)}">
@@ -69,17 +85,25 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
 
   renderPrevButton() {
     if (this.prev || this.narrow || this.enableYearChange) {
-      return html`<auro-icon category="interface" name="chevron-left" @click="${this.handlePrevMonth}"></auro-icon>`
+      return html`
+        <div class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
+          <auro-icon category="interface" name="chevron-left"></auro-icon>
+        </div>
+      `
     }
     return null;
   }
 
   renderNextButton() {
     if (this.next || this.narrow || this.enableYearChange) {
-      return html`<auro-icon category="interface" name="chevron-right" @click="${this.handleNextMonth}"></auro-icon>`
+      return html`
+        <div class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
+          <auro-icon category="interface" name="chevron-right"></auro-icon>
+        </div>
+      `
     }
     return null;
-  } 
+  }
 
   updated(changedProperties) {
     if (changedProperties.has('year') || changedProperties.has('month')) {
