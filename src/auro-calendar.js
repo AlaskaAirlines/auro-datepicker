@@ -146,16 +146,13 @@ export class AuroCalendar extends RangeDatepicker {
    */
 
    // min and max date seem off here?
-  renderCalendar(month, year, prev, next) {
+  renderCalendar(month, year) {
     return html `
       <auro-calendar-month
         .disabledDays="${this.disabledDays}"
         min="${this.min}"
         max="${this.max}"
-        ?prev="${prev}"
-        ?next="${next}"
         ?noRange="${this.noRange}"
-        ?narrow="${this.isNarrow(this.forceNarrow, this.narrow)}"
         .hoveredDate="${this.hoveredDate}"
         .dateTo="${this.dateTo}"
         .dateFrom="${this.dateFrom}"
@@ -170,21 +167,29 @@ export class AuroCalendar extends RangeDatepicker {
     `;
   }
 
+  // showNextMonthButton(calendarIndex) {
+  //   if (calendarIndex === this.numCalendars) {
+  //     return true;
+  //   }
+
+  //   return false;
+  // }
+
   render() {
     console.log("render");
     return html`
-      ${this.renderCalendar(this.month, this.year, true, true)}
-      ${this.numCalendars > 1 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 2 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 3 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 4 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 5 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 6 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 7 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 8 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 9 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 10 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
-      ${this.numCalendars > 11 ? this.renderCalendar(this.month, this.year, true, true) : undefined}
+      ${this.renderCalendar(this.month, this.year)}
+      ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
+      ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
+      ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
+      ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
+      ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
+      ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
+      ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
+      ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
+      ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
+      ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
+      ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
     `;
   }
 }
