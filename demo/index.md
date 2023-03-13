@@ -15,7 +15,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   <auro-calendar></auro-calendar>
 </div> -->
 <div class="exampleWrapper">
-  <auro-datepicker range>
+  <auro-datepicker range required>
     <span slot="label">Choose a date</span>
   </auro-datepicker>
 </div>
