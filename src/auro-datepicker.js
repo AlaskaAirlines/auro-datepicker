@@ -336,20 +336,27 @@ export class AuroDatePicker extends LitElement {
     for (let index = 0; index < this.inputList.length; index++) {
       let input = this.inputList[index];
 
+      // update so that DP is waiting for both inputs to be ready
       input.addEventListener('auroInput-ready', () => {
         this.auroInputReady = true;
       });
-  
+
       input.addEventListener('auroInput-validityChange', () => {
-        this.valdity = input.validity;
+        this.validity = input.validity;
       });
-  
+
+      // input2.addEventListener('auroInput-validityChange', () => {
+        // if (this.range && input1.validity === "valid" || undefined) {
+        //   this.validity = input2.validity;
+        // }
+      // });
+
       input.addEventListener('input', () => {
         if (input.value !== this.value) {
           this.value = input.value;
         }
       });
-  
+
       // auto-show bib when manually editing the input value
       input.addEventListener('keyup', (evt) => {
         if (evt.key.length === 1 || evt.key === 'Delete' || evt.key === 'Backspace') {
@@ -478,7 +485,7 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('centralDate')) {
-     this.handleCentralDateChange(); 
+     this.handleCentralDateChange();
     }
 
     if (changedProperties.has('error')) {
@@ -585,31 +592,32 @@ export class AuroDatePicker extends LitElement {
           ?error="${this.validity !== undefined && this.validity !== 'valid'}"
           disableEventShow
           noHideOnThisFocusLoss>
-          <auro-input
-            slot="trigger"
-            bordered
-            ?required="${this.required}"
-            ?activeLabel="${this.activeLabel}"
-            ?noValidate="${this.noValidate}"
-            .error="${this.error}"
-            ?disabled="${this.disabled}"
-            .type="${this.type}">
-            <slot name="label" slot="label">Choose a departure date</slot>
-          </auro-input>
-          <auro-input
-            slot="trigger"
-            bordered
-            ?required="${this.required}"
-            ?activeLabel="${this.activeLabel}"
-            ?noValidate="${this.noValidate}"
-            .error="${this.error}"
-            ?disabled="${this.disabled}"
-            .type="${this.type}">
-            <slot name="label" slot="label">Choose an arrival date</slot>
-          </auro-input>
+          <div slot="trigger" class="dpTriggerContent">
+            <auro-input
+              bordered
+              .class="dateFrom"
+              ?required="${this.required}"
+              ?activeLabel="${this.activeLabel}"
+              ?noValidate="${this.noValidate}"
+              .error="${this.error}"
+              ?disabled="${this.disabled}"
+              .type="${this.type}">
+              <slot name="label" slot="label">Choose a departure date</slot>
+            </auro-input>
+            <auro-input
+              bordered
+              .class="dateTo"
+              ?required="${this.required}"
+              ?activeLabel="${this.activeLabel}"
+              ?noValidate="${this.noValidate}"
+              .error="${this.error}"
+              ?disabled="${this.disabled}"
+              .type="${this.type}">
+              <slot name="label" slot="label">Choose an arrival date</slot>
+            </auro-input>
+          </div>
           <div class="calendarWrapper">
             <auro-calendar
-              ?forceNarrow="${!this.range}" 
               ?noRange="${!this.range}"
               min="${this.convertToWcValidTime(new Date(this.minDate))}"
               max="${this.convertToWcValidTime(new Date(this.maxDate))}"

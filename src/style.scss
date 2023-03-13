@@ -34,6 +34,53 @@ auro-input {
   }
 }
 
+.dpTriggerContent {
+  display: flex;
+  flex-direction: row;
+
+  auro-input {
+    flex: 1;
+
+    &:first-of-type {
+      margin-right: var(--auro-size-sm);
+    }
+
+    &:nth-child(2) {
+      margin-left: var(--auro-size-sm);
+
+      &::part(accentIcon) {
+        display: none;
+      }
+
+      &::part(label) {
+        left: 0;
+        width: 100%;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        height: 2rem;
+        width: 1px;
+        background: var(--auro-color-border-primary-on-light);
+        left: calc(var(--auro-size-sm) * -1);
+        top: 13px;
+      }
+    }
+  }
+}
+
+// auro-dropdown {
+//   ::part(popover) {
+//     margin-top: var(--auro-size-l);
+//     background-color: red;
+//   }
+// }
+
+
+
+
 // .calendarWrapper {
 //   min-height: 518px;
 // }
