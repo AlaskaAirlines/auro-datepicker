@@ -83,28 +83,6 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     `;
   }
 
-  renderPrevButton() {
-    if (this.prev || this.narrow || this.enableYearChange) {
-      return html`
-        <div class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
-          <auro-icon category="interface" name="chevron-left"></auro-icon>
-        </div>
-      `
-    }
-    return null;
-  }
-
-  renderNextButton() {
-    if (this.next || this.narrow || this.enableYearChange) {
-      return html`
-        <div class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
-          <auro-icon category="interface" name="chevron-right"></auro-icon>
-        </div>
-      `
-    }
-    return null;
-  }
-
   updated(changedProperties) {
     if (changedProperties.has('year') || changedProperties.has('month')) {
       this.yearAndMonthChanged(this.year, this.month);
