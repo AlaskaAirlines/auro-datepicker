@@ -106,18 +106,23 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   handlePrevMonth() {
-    var _a;
-      const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[next]');
-      calendar === null || calendar === void 0 ? void 0 : calendar.handlePrevMonth();
+    // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
+    let calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
+
+    for (let index = 0; index < calendarMonthList.length; index++) {
+      calendarMonthList[index].handlePrevMonth();
+    }
   }
   handleNextMonth() {
-    var _a;
-      const calendar = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('auro-calendar-month[prev]');
-      calendar === null || calendar === void 0 ? void 0 : calendar.handleNextMonth();
+    // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
+    let calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
+
+    for (let index = 0; index < calendarMonthList.length; index++) {
+      calendarMonthList[index].handleNextMonth();
+    }
   }
 
   determineNumCalendars() {
-    // console.log("determineNumCalendars", this.numCalendars);
     const vw = window.innerWidth;
 
     let calendarCount = 1;
@@ -147,6 +152,16 @@ export class AuroCalendar extends RangeDatepicker {
 
    // min and max date seem off here?
   renderCalendar(month, year) {
+    // resets the month value back to corresponding calendar month
+    if (month > 12) {
+      month = month - 12;
+    }
+
+    // adds a year to year value when month value resets back at 1
+    if (this.month !== 1 && month < this.month) {
+      year = year + 1;
+    }
+
     return html `
       <auro-calendar-month
         .disabledDays="${this.disabledDays}"
@@ -176,7 +191,6 @@ export class AuroCalendar extends RangeDatepicker {
   // }
 
   render() {
-    console.log("render");
     return html`
       ${this.renderCalendar(this.month, this.year)}
       ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
@@ -190,6 +204,12 @@ export class AuroCalendar extends RangeDatepicker {
       ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
       ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
       ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
+      <div class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
+        <auro-icon category="interface" name="chevron-left"></auro-icon>
+      </div>
+      <div class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
+        <auro-icon category="interface" name="chevron-right"></auro-icon>
+      </div>
     `;
   }
 }
