@@ -3,7 +3,7 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines, max-depth */
+/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init */
 
 // If using litElement base class
 import { LitElement, html } from "lit-element";
@@ -16,6 +16,8 @@ import { LitElement, html } from "lit-element";
 // Import touch detection lib
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
+
+import '@aurodesignsystem/auro-input';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -146,45 +148,65 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    // this.validity = undefined;
-    // this.removeAttribute('validity');
-    // this.setCustomValidity = '';
+    this.validity = undefined;
+    this.removeAttribute('validity');
+    this.setCustomValidity = '';
 
-    // // Handle error attribute change regardless of focus
-    // if (this.hasAttribute('error')) {
-    //   this.validity = 'customError';
-    //   this.setCustomValidity = this.error;
-    // } else if (!this.contains(document.activeElement)) {
-    //   if (this.value !== undefined) {
-    //     this.validity = this.input.validity;
+    // Handle error attribute change regardless of focus
+    if (this.hasAttribute('error')) {
+      this.validity = 'customError';
+      this.setCustomValidity = this.error;
+    } else if (!this.contains(document.activeElement)) {
+      if (this.inputList[0].value !== undefined && this.inputList[0].value !== undefined) {
+        this.validity = this.inputList[0].validity;
 
-    //     const date = new Date(this.input.value);
+        // If the first input is valid, set validity to equal the second input.
+        if (this.validity === 'valid' && this.inputList[1].validity !== undefined && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
+          this.validity = this.inputList[1].validity;
+        }
 
-    //     if (this.maxDate) {
-    //       if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
-    //         this.validity = 'rangeOverflow';
-    //         this.input.validity = 'rangeOverflow';
-    //       }
-    //     }
+        const dateFrom = new Date(this.inputList[0].value);
+        const dateTo = new Date(this.inputList[1].value);
 
-    //     if (this.minDate) {
-    //       if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
-    //         this.validity = 'rangeUnderflow';
-    //         this.input.validity = 'rangeUnderflow';
-    //       }
-    //     }
-    //   }
-    // }
+        if (this.maxDate) {
+          // check dateFrom
+          if (new Date(new Date(this.maxDate).toDateString()) < new Date(dateFrom.toDateString())) {
+            this.validity = 'rangeOverflow';
+            this.inputList[0].validity = 'rangeOverflow';
+          }
 
-    // if (this.validity) {
-    //   if (this.validity !== 'valid') {
-    //     this.dropdown.setAttribute('error', '');
-    //   } else {
-    //     this.dropdown.removeAttribute('error');
-    //   }
-    // } else {
-    //   this.dropdown.removeAttribute('error');
-    // }
+          // check dateTo
+          if (new Date(new Date(this.maxDate).toDateString()) < new Date(dateTo.toDateString())) {
+            this.validity = 'rangeOverflow';
+            this.inputList[1].validity = 'rangeOverflow';
+          }
+        }
+
+        if (this.minDate) {
+          // check dateFrom
+          if (new Date(new Date(this.minDate).toDateString()) > new Date(dateFrom.toDateString())) {
+            this.validity = 'rangeUnderflow';
+            this.inputList[0].validity = 'rangeUnderflow';
+          }
+
+          // check dateTo
+          if (new Date(new Date(this.minDate).toDateString()) > new Date(dateTo.toDateString())) {
+            this.validity = 'rangeUnderflow';
+            this.inputList[1].validity = 'rangeUnderflow';
+          }
+        }
+      }
+    }
+
+    if (this.validity) {
+      if (this.validity !== 'valid') {
+        this.dropdown.setAttribute('error', '');
+      } else {
+        this.dropdown.removeAttribute('error');
+      }
+    } else {
+      this.dropdown.removeAttribute('error');
+    }
   }
 
   /**
@@ -208,7 +230,7 @@ export class AuroDatePicker extends LitElement {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
-    })
+    });
   }
 
   /**
@@ -256,8 +278,8 @@ export class AuroDatePicker extends LitElement {
 
     this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
 
-    for (let index = 0; index < this.inputList.length; index++) {
-      let input = this.inputList[index];
+    for (let index = 0; index < this.inputList.length; index += 1) {
+      const input = this.inputList[index];
 
       input.addEventListener('auroInput-ready', () => {
         this.auroInputFromReady = true;
@@ -275,13 +297,42 @@ export class AuroDatePicker extends LitElement {
       if (this.value !== this.inputList[0].value) {
         this.value = this.inputList[0].value;
       }
-    });
 
-    this.inputList[1].addEventListener('input', () => {
-      if (this.valueEnd !== this.inputList[1].value) {
-        this.valueEnd = this.inputList[1].value;
+      if (!this.contains(document.activeElement)) {
+        this.inputList[1].validate();
       }
     });
+
+    this.inputList[0].addEventListener('auroInput-validated', () => {
+      this.validate();
+    });
+
+    // RECONSIDER THIS FOR TWO INPUTS
+    this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
+      this.auroInputHelpText = evt.detail.message;
+    });
+
+    if (this.inputList.length > 1) {
+      this.inputList[1].addEventListener('input', () => {
+        if (this.valueEnd !== this.inputList[1].value) {
+          this.valueEnd = this.inputList[1].value;
+        }
+
+        if (!this.contains(document.activeElement)) {
+          this.inputList[0].validate();
+        }
+      });
+
+      this.inputList[1].addEventListener('auroInput-validated', () => {
+        this.validate();
+      });
+
+      this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
+        if (!this.auroInputHelpText || this.auroInputHelpText.length === 0) {
+          this.auroInputHelpText = evt.detail.message;
+        }
+      });
+    }
 
     this.addEventListener('focusin', () => {
 
@@ -305,14 +356,10 @@ export class AuroDatePicker extends LitElement {
      */
     this.addEventListener('focusout', () => {
       if (document.activeElement !== this) {
-        this.validate();
+        this.inputList[0].validate();
+        this.inputList[1].validate();
       }
     });
-
-    // RECONSIDER THIS FOR TWO INPUTS
-    // this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
-    //   this.auroInputHelpText = evt.detail.message;
-    // });
   }
 
   /**
@@ -332,11 +379,7 @@ export class AuroDatePicker extends LitElement {
         this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
       }
 
-      if (this.calendar.dateTo === undefined || this.calendar.dateTo === null) {
-        if (this.inputList[1].value !== '') {
-          this.inputList[1].value = '';
-        }
-      } else if (this.inputList[1].value !== this.calendar.dateTo) {
+      if (this.inputList[1].value !== this.calendar.dateTo) {
         this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
       }
     });
@@ -349,7 +392,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {Boolean}
    */
   validDateStr(date) {
-    if (date.length === 10 && Date.parse(date)){
+    if (date.length === 10 && Date.parse(date)) {
       return true;
     }
 
@@ -357,13 +400,13 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-  * Changes the calendar's visibility to reflect an updated centralDate.
-  * @private
-  * @returns {void}
-  */
+   * Changes the calendar's visibility to reflect an updated centralDate.
+   * @private
+   * @returns {void}
+   */
   handleCentralDateChange() {
-    this.calendar.month = Number (this.centralDate.charAt(1));
-    this.calendar.year = Number (this.centralDate.substring(6));
+    this.calendar.month = Number(this.centralDate.charAt(1));
+    this.calendar.year = Number(this.centralDate.substring(6));
   }
 
   updated(changedProperties) {
@@ -434,7 +477,7 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('centralDate')) {
-     this.handleCentralDateChange();
+      this.handleCentralDateChange();
     }
 
     if (changedProperties.has('error')) {
@@ -442,11 +485,11 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('setCustomValidity')) {
-      this.input.setAttribute('setCustomValidity', this.setCustomValidity);
+      this.inputList[0].setAttribute('setCustomValidity', this.setCustomValidity);
     }
 
     if (changedProperties.has('setCustomValidityValueMissing')) {
-      this.input.setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
+      this.inputList[0].setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
     }
   }
 
@@ -530,8 +573,9 @@ export class AuroDatePicker extends LitElement {
   }
 
   setValue(evt) {
-    let target = evt.target.getAttribute('target');
+    const target = evt.target.getAttribute('target');
     let value = undefined;
+
     if (evt.target.hasAttribute('value')) {
       value = evt.target.getAttribute('value');
     }
@@ -616,32 +660,36 @@ export class AuroDatePicker extends LitElement {
           <div slot="trigger" class="dpTriggerContent">
             <auro-input
               bordered
-              .class="dateFrom"
+              class="dateFrom"
               ?required="${this.required}"
               ?activeLabel="${this.activeLabel}"
               ?noValidate="${this.noValidate}"
               .error="${this.error}"
               ?disabled="${this.disabled}"
               .type="${this.type}">
-              <slot name="label" slot="label">Choose a departure date</slot>
+              <span slot="label"><slot name="fromLabel"></slot></span>
             </auro-input>
-            <auro-input
-              bordered
-              .class="dateTo"
-              ?required="${this.required}"
-              ?activeLabel="${this.activeLabel}"
-              ?noValidate="${this.noValidate}"
-              .error="${this.error}"
-              ?disabled="${this.disabled}"
-              .type="${this.type}">
-              <slot name="label" slot="label">Choose an arrival date</slot>
-            </auro-input>
+            ${this.range ? html`
+              <auro-input
+                bordered
+                class="dateTo"
+                ?required="${this.required}"
+                ?activeLabel="${this.activeLabel}"
+                ?noValidate="${this.noValidate}"
+                .error="${this.error}"
+                ?disabled="${this.disabled}"
+                .type="${this.type}">
+                <span slot="label"><slot name="toLabel"></slot></span>
+              </auro-input>
+            ` : undefined}
           </div>
           <div class="calendarWrapper">
             <auro-calendar
               ?noRange="${!this.range}"
-              min="${this.convertToWcValidTime(new Date(this.minDate))}"
-              max="${this.convertToWcValidTime(new Date(this.maxDate))}"
+              .min="${this.convertToWcValidTime(new Date(this.minDate))}"
+              .max="${this.convertToWcValidTime(new Date(this.maxDate))}"
+              .maxDate="${new Date(this.maxDate)}"
+              .minDate="${new Date(this.minDate)}"
             >
             </auro-calendar>
           </div>

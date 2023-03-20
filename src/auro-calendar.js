@@ -22,7 +22,7 @@ import { RangeDatepicker } from '../node_modules/wc-range-datepicker/dist/src/ra
  * @fires auroCalendar-ready - Notifies that the component has finished initializing.
  */
 
-/* eslint-disable no-self-assign */
+/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendar extends RangeDatepicker {
@@ -50,8 +50,16 @@ export class AuroCalendar extends RangeDatepicker {
       },
       dateTo: {
         type: String
+      },
+      maxDate: {
+        type: String,
+        reflect: true
+      },
+      minDate: {
+        type: String,
+        reflect: true
       }
-    }
+    };
   }
 
   /**
@@ -94,36 +102,33 @@ export class AuroCalendar extends RangeDatepicker {
 
   updated(changedProperties) {
     if (changedProperties.has('month') || changedProperties.has('year')) {
-        this.monthChanged(this.month, this.year);
+      this.monthChanged(this.month, this.year);
     }
     if (changedProperties.has('noRange')) {
-        this.noRangeChanged(this.noRange, changedProperties.get('noRange'));
+      this.noRangeChanged(this.noRange, changedProperties.get('noRange'));
     }
     if (changedProperties.has('narrow')) {
-        this.dispatchEvent(new CustomEvent('narrow-changedProperties', { detail: { value: this.narrow } }));
+      this.dispatchEvent(new CustomEvent('narrow-changedProperties', { detail: { value: this.narrow } }));
     }
     if (changedProperties.has('locale')) {
-        this.localeChanged();
+      this.localeChanged();
     }
-    // if (changedProperties.has('numCalendars')) {
-    //   console.log("num calendars changed", this.numCalendars);
-      // this.requestUpdate();
-    // }
   }
 
   handlePrevMonth() {
     // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
-    let calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
+    const calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
 
-    for (let index = 0; index < calendarMonthList.length; index++) {
+    for (let index = 0; index < calendarMonthList.length; index += 1) {
       calendarMonthList[index].handlePrevMonth();
     }
   }
+
   handleNextMonth() {
     // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
-    let calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
+    const calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
 
-    for (let index = 0; index < calendarMonthList.length; index++) {
+    for (let index = 0; index < calendarMonthList.length; index += 1) {
       calendarMonthList[index].handleNextMonth();
     }
   }
@@ -142,33 +147,46 @@ export class AuroCalendar extends RangeDatepicker {
       calendarCount = 12;
     }
 
+    // Add calculation to restrict number of calendars based off of min/max date
+    if (this.minDate && this.maxDate) {
+      const maxAsDate = new Date(this.maxDate);
+      const minAsDate = new Date(this.minDate);
+
+      let monthsInRange = undefined;
+      monthsInRange = (maxAsDate.getFullYear() - minAsDate.getFullYear()) * 12;
+      monthsInRange -= minAsDate.getMonth();
+      monthsInRange += maxAsDate.getMonth();
+
+      if (monthsInRange < 1) {
+        monthsInRange = 0;
+      }
+
+      calendarCount = monthsInRange;
+    }
+
     if (this.numCalendars !== calendarCount) {
       this.numCalendars = calendarCount;
     }
-
-    // console.log("determine num calendars called", calendarCount, this.numCalendars);
-
-    // Add calculation to restrict number of calendars based off of min/max date
   }
 
-   /**
+  /**
    * @private
+   * @param {Number} month - Month the calendar displays.
+   * @param {Number} year - Year the calendar displays.
    * @returns {Object} Returns single calendar month HTML.
    */
-
-   // min and max date seem off here?
   renderCalendar(month, year) {
     // resets the month value back to corresponding calendar month
     if (month > 12) {
-      month = month - 12;
+      month -= 12;
     }
 
     // adds a year to year value when month value resets back at 1
     if (this.month !== 1 && month < this.month) {
-      year = year + 1;
+      year += 1;
     }
 
-    return html `
+    return html`
       <auro-calendar-month
         .disabledDays="${this.disabledDays}"
         min="${this.min}"
@@ -188,14 +206,6 @@ export class AuroCalendar extends RangeDatepicker {
     `;
   }
 
-  // showNextMonthButton(calendarIndex) {
-  //   if (calendarIndex === this.numCalendars) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
-
   render() {
     return html`
       ${this.renderCalendar(this.month, this.year)}
@@ -210,12 +220,12 @@ export class AuroCalendar extends RangeDatepicker {
       ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
       ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
       ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
-      <div class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
-        <auro-icon category="interface" name="chevron-left"></auro-icon>
-      </div>
-      <div class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
-        <auro-icon category="interface" name="chevron-right"></auro-icon>
-      </div>
+      <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
+        <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
+      </button>
+      <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
+        <auro-icon category="interface" name="chevron-right" customColor></auro-icon>
+      </button>
     `;
   }
 }
