@@ -5,13 +5,13 @@ import { RangeDatepickerCalendar } from '../node_modules/wc-range-datepicker/dis
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 
-/* eslint-disable no-self-assign */
+/* eslint-disable no-self-assign, no-magic-numbers, dot-location */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
-  constructor() {
-    super();
-  }
+  // constructor() {
+  //   super();
+  // }
 
   static get styles() {
     return [
@@ -22,63 +22,63 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
 
   async firstUpdated() {
     this.monthsList = [
-        '01',
-        '02',
-        '03',
-        '04',
-        '05',
-        '06',
-        '07',
-        '08',
-        '09',
-        '10',
-        '11',
-        '12',
+      '01',
+      '02',
+      '03',
+      '04',
+      '05',
+      '06',
+      '07',
+      '08',
+      '09',
+      '10',
+      '11',
+      '12',
     ];
     setTimeout(() => {
-        this.setYears(1930, 2100);
+      this.setYears(1930, 2100);
     });
     await this.updateComplete;
   }
 
   localeChanged() {
     const dayNamesOfTheWeek = [];
-    for (let i = 0; i < 7; i += 1) {
-        dayNamesOfTheWeek.push(this.locale.localize.day(i, { width: 'narrow' }));
+    for (let int = 0; int < 7; int += 1) {
+      dayNamesOfTheWeek.push(this.locale.localize.day(int, { width: 'narrow' }));
     }
     const firstDayOfWeek = this.locale.options.weekStartsOn
-        ? this.locale.options.weekStartsOn
-        : 0;
+      ? this.locale.options.weekStartsOn
+      : 0;
     const tmp = dayNamesOfTheWeek.slice().splice(0, firstDayOfWeek);
     const newDayNamesOfTheWeek = dayNamesOfTheWeek
-        .slice()
-        .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
-        .concat(tmp);
+      .slice()
+      .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
+      .concat(tmp);
     this.dayNamesOfTheWeek = newDayNamesOfTheWeek;
   }
 
   renderDay(day) {
-    return html `
+    return html`
       <div class="td ${this.tdIsEnabled(day)}">
         ${day
-            ? html `
-              <auro-calendar-cell
-                .disabledDays="${this.disabledDays}"
-                .min="${this.min}"
-                .max="${this.max}"
-                .month="${this.month}"
-                .hoveredDate="${this.hoveredDate}"
-                .dateTo="${this.dateTo}"
-                .dateFrom="${this.dateFrom}"
-                .locale="${this.locale}"
-                .day="${day}"
-                ?isCurrentDate="${this.isCurrentDate(day)}"
-                @date-is-selected="${this.handleDateSelected}"
-                @date-is-hovered="${this.handleDateHovered}"
-              >
-              </auro-calendar-cell>
-            `
-            : null}
+          ? html`
+            <auro-calendar-cell
+              .disabledDays="${this.disabledDays}"
+              .min="${this.min}"
+              .max="${this.max}"
+              .month="${this.month}"
+              .hoveredDate="${this.hoveredDate}"
+              .dateTo="${this.dateTo}"
+              .dateFrom="${this.dateFrom}"
+              .locale="${this.locale}"
+              .day="${day}"
+              ?isCurrentDate="${this.isCurrentDate(day)}"
+              @date-is-selected="${this.handleDateSelected}"
+              @date-is-hovered="${this.handleDateHovered}"
+            >
+            </auro-calendar-cell>
+          `
+          : null}
       </div>
     `;
   }
