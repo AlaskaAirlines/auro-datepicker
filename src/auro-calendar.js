@@ -44,6 +44,12 @@ export class AuroCalendar extends RangeDatepicker {
       // ...super.properties,
       numCalendars: {
         type: Number
+      },
+      dateFrom: {
+        type: String
+      },
+      dateTo: {
+        type: String
       }
     }
   }

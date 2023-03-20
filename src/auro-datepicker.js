@@ -108,6 +108,10 @@ export class AuroDatePicker extends LitElement {
         type: String,
         reflect: true
       },
+      valueEnd: {
+        type: String,
+        reflect: true
+      },
       centralDate: {
         type: String,
         reflect: true
@@ -142,61 +146,45 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    this.validity = undefined;
-    this.removeAttribute('validity');
-    this.setCustomValidity = '';
+    // this.validity = undefined;
+    // this.removeAttribute('validity');
+    // this.setCustomValidity = '';
 
-    // Handle error attribute change regardless of focus
-    if (this.hasAttribute('error')) {
-      this.validity = 'customError';
-      this.setCustomValidity = this.error;
-    } else if (!this.contains(document.activeElement)) {
-      if (this.value !== undefined) {
-        this.validity = this.input.validity;
+    // // Handle error attribute change regardless of focus
+    // if (this.hasAttribute('error')) {
+    //   this.validity = 'customError';
+    //   this.setCustomValidity = this.error;
+    // } else if (!this.contains(document.activeElement)) {
+    //   if (this.value !== undefined) {
+    //     this.validity = this.input.validity;
 
-        const date = new Date(this.input.value);
+    //     const date = new Date(this.input.value);
 
-        if (this.maxDate) {
-          if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
-            this.validity = 'rangeOverflow';
-            this.input.validity = 'rangeOverflow';
-          }
-        }
+    //     if (this.maxDate) {
+    //       if (new Date(new Date(this.maxDate).toDateString()) < new Date(date.toDateString())) {
+    //         this.validity = 'rangeOverflow';
+    //         this.input.validity = 'rangeOverflow';
+    //       }
+    //     }
 
-        if (this.minDate) {
-          if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
-            this.validity = 'rangeUnderflow';
-            this.input.validity = 'rangeUnderflow';
-          }
-        }
-      }
-    }
+    //     if (this.minDate) {
+    //       if (new Date(new Date(this.minDate).toDateString()) > new Date(date.toDateString())) {
+    //         this.validity = 'rangeUnderflow';
+    //         this.input.validity = 'rangeUnderflow';
+    //       }
+    //     }
+    //   }
+    // }
 
-    if (this.validity) {
-      if (this.validity !== 'valid') {
-        this.dropdown.setAttribute('error', '');
-      } else {
-        this.dropdown.removeAttribute('error');
-      }
-    } else {
-      this.dropdown.removeAttribute('error');
-    }
-  }
-
-  /**
-   * Converts date object into a string.
-   * @private
-   * @param {Object} date - Date to convert.
-   * @returns {string} Date formatted as a string.
-   */
-  formatDateString(date) {
-    /* eslint-disable prefer-template, no-magic-numbers */
-    const dd = String("0" + date.getDate()).slice(-2);
-    const mm = String("0" + (date.getMonth() + 1)).slice(-2);
-    /* eslint-enable prefer-template, no-magic-numbers */
-    const yyyy = date.getFullYear();
-
-    return `${mm}/${dd}/${yyyy}`;
+    // if (this.validity) {
+    //   if (this.validity !== 'valid') {
+    //     this.dropdown.setAttribute('error', '');
+    //   } else {
+    //     this.dropdown.removeAttribute('error');
+    //   }
+    // } else {
+    //   this.dropdown.removeAttribute('error');
+    // }
   }
 
   /**
@@ -206,7 +194,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {Number} Simplified number.
    */
   convertToWcValidTime(date) {
-    return date.getTime() / 1000;
+    return new Date(date).getTime() / 1000;
   }
 
   /**
@@ -216,75 +204,11 @@ export class AuroDatePicker extends LitElement {
    * @returns {Date} Date formatted as a string.
    */
   convertWcTimeToDate(time) {
-    return new Date(time * 1000);
-  }
-
-  /**
-   * Handle changes to the input value and trigger changes that should result.
-   * @private
-   * @returns {void}
-   */
-  handleDatepickerValueChange() {
-    if (this.value !== this.inputList[0].value) {
-      this.inputList[0].value = this.formatDateString(new Date(this.value));
-    }
-
-    if (this.range && this.valueEnd !== this.inputList[1].value) {
-      this.inputList[1].value = this.formatDateString(new Date(this.valueEnd));
-    }
-
-    const lengthOfValidDateStr = 10;
-    const date = new Date(this.value);
-
-    /**
-     * We can't rely on Date.parse() to check if a full date has been entered.
-     * Entering even a single digit will return a valid date.
-     * Check if the full date has been typed in by looking at the length of the value.
-     */
-    if (this.value.length === lengthOfValidDateStr && this.validDate(date)) {
-      if (!this.validDate(this.convertWcTimeToDate(this.calendar.dateFrom))) {
-        this.calendar.dateFrom = this.convertToWcValidTime(new Date(this.value));
-      }
-
-      /**
-       * Additional work if the calendar is not in sync with the input.
-       */
-      if (this.centralDate !== this.value) {
-        this.centralDate = this.value;
-      }
-
-      if (this.convertWcTimeToDate(this.calendar.dateFrom).toDateString() !== new Date(this.value).toDateString()) {
-        this.calendar.dateFrom = this.convertToWcValidTime(new Date(this.value));
-      }
-
-      const dateEnd = new Date(this.valueEnd);
-
-      if (this.value.length === lengthOfValidDateStr && this.validDate(dateEnd)) {
-        if (this.range) {
-          const dateEnd = new Date(this.valueEnd);
-
-          if (!this.validDate(this.convertWcTimeToDate(this.calendar.dateTo))) {
-            this.calendar.dateTo = this.convertToWcValidTime(new Date(this.valueEnd));
-          }
-
-          if (this.convertWcTimeToDate(this.calendar.dateTo).toDateString() !== new Date(this.valueEnd).toDateString()) {
-            this.calendar.dateTo = this.convertToWcValidTime(new Date(this.valueEnd));
-          }
-        }
-      }
-
-      this.dispatchEvent(new CustomEvent('auroDatePicker-valueSet', {
-        bubbles: true,
-        cancelable: false,
-        composed: true,
-      }));
-    } else if (this.calendar.dateFrom !== undefined) {
-      this.calendar.dateFrom = undefined;
-      this.calendar.dateTo = undefined;
-    }
-
-    // This check prevents the component showing an error when a required datepicker is first rendered
-    this.validate();
+    return new Date(time * 1000).toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    })
   }
 
   /**
@@ -309,12 +233,12 @@ export class AuroDatePicker extends LitElement {
 
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-      this.activeLabel = this.dropdown.isPopoverVisible;
-      if (this.activeLabel) {
-        this.input.setAttribute('activeLabel', '');
-      } else if (!this.input.value || this.input.value === undefined || this.input.value.length === 0) {
-        this.input.removeAttribute('activeLabel');
-      }
+      // this.activeLabel = this.dropdown.isPopoverVisible;
+      // if (this.activeLabel) {
+      //   this.input.setAttribute('activeLabel', '');// THIS NEEDS TO BE RECONSIDERED
+      // } else if (!this.input.value || this.input.value === undefined || this.input.value.length === 0) {// THIS NEEDS TO BE RECONSIDERED
+      //   this.input.removeAttribute('activeLabel');// THIS NEEDS TO BE RECONSIDERED
+      // }
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
@@ -329,32 +253,14 @@ export class AuroDatePicker extends LitElement {
    */
   configureInput() {
     this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
-    this.input = this.dropdown.querySelector('auro-input');
 
     this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
 
     for (let index = 0; index < this.inputList.length; index++) {
       let input = this.inputList[index];
 
-      // update so that DP is waiting for both inputs to be ready
       input.addEventListener('auroInput-ready', () => {
-        this.auroInputReady = true;
-      });
-
-      input.addEventListener('auroInput-validityChange', () => {
-        this.validity = input.validity;
-      });
-
-      // input2.addEventListener('auroInput-validityChange', () => {
-        // if (this.range && input1.validity === "valid" || undefined) {
-        //   this.validity = input2.validity;
-        // }
-      // });
-
-      input.addEventListener('input', () => {
-        if (input.value !== this.value) {
-          this.value = input.value;
-        }
+        this.auroInputFromReady = true;
       });
 
       // auto-show bib when manually editing the input value
@@ -364,6 +270,18 @@ export class AuroDatePicker extends LitElement {
         }
       });
     }
+
+    this.inputList[0].addEventListener('input', () => {
+      if (this.value !== this.inputList[0].value) {
+        this.value = this.inputList[0].value;
+      }
+    });
+
+    this.inputList[1].addEventListener('input', () => {
+      if (this.valueEnd !== this.inputList[1].value) {
+        this.valueEnd = this.inputList[1].value;
+      }
+    });
 
     this.addEventListener('focusin', () => {
 
@@ -376,6 +294,10 @@ export class AuroDatePicker extends LitElement {
       if (this.value === undefined) {
         this.value = '';
       }
+
+      if (this.valueEnd === undefined) {
+        this.valueEnd = '';
+      }
     });
 
     /**
@@ -387,9 +309,10 @@ export class AuroDatePicker extends LitElement {
       }
     });
 
-    this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
-      this.auroInputHelpText = evt.detail.message;
-    });
+    // RECONSIDER THIS FOR TWO INPUTS
+    // this.triggerInput.addEventListener('auroInput-helpText', (evt) => {
+    //   this.auroInputHelpText = evt.detail.message;
+    // });
   }
 
   /**
@@ -405,21 +328,16 @@ export class AuroDatePicker extends LitElement {
     });
 
     this.calendar.addEventListener('auroCalendar-dateSelected', () => {
-      this.inputList[0].value = this.formatDateString(this.convertWcTimeToDate(this.calendar.dateFrom));
-      // this.inputList[1].value = this.formatDateString(this.convertWcTimeToDate(this.calendar.To));
+      if (this.inputList[0].value !== this.calendar.dateFrom && this.calendar.dateFrom !== undefined) {
+        this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
+      }
 
-      console.log("input 1 value", this.inputList[0].value);
-      console.log("input 2 value", this.inputList[1].value);
-
-      this.centralDate = this.formatDateString(this.convertWcTimeToDate(this.calendar.dateFrom));
-
-      // console message for error occuring when date is selected via calendar
-      console.warn('reference https://github.com/AlaskaAirlines/auro-datepicker/issues/79 for error below'); // eslint-disable-line no-console
-    });
-
-    this.calendar.addEventListener('keydown', (evt) => {
-      if (evt.key === 'Escape') {
-        this.input.focus();
+      if (this.calendar.dateTo === undefined || this.calendar.dateTo === null) {
+        if (this.inputList[1].value !== '') {
+          this.inputList[1].value = '';
+        }
+      } else if (this.inputList[1].value !== this.calendar.dateTo) {
+        this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
       }
     });
   }
@@ -427,16 +345,17 @@ export class AuroDatePicker extends LitElement {
   /**
    * Returns true if value passed in is a valid date.
    * @private
-   * @param {Object} date - Date to validate.
+   * @param {String} date - Date to validate.
    * @returns {Boolean}
    */
-  validDate(date) {
-    if (isNaN(date) || date === 'Invalid Date') {
-      return false;
+  validDateStr(date) {
+    if (date.length === 10 && Date.parse(date)){
+      return true;
     }
 
-    return true;
+    return false;
   }
+
   /**
   * Changes the calendar's visibility to reflect an updated centralDate.
   * @private
@@ -449,13 +368,43 @@ export class AuroDatePicker extends LitElement {
 
   updated(changedProperties) {
     if (changedProperties.has('value')) {
-      console.log("value", this.value);
-      this.handleDatepickerValueChange();
+      if (this.value && this.validDateStr(this.value)) {
+        if (this.calendar.dateFrom !== this.value) {
+          this.calendar.dateFrom = this.convertToWcValidTime(this.value);
+        }
+      } else {
+        if (this.inputList[0].value !== this.value) {
+          this.inputList[0].value = this.value;
+        }
+
+        if (this.calendar.dateFrom !== undefined) {
+          this.calendar.dateFrom = undefined;
+        }
+      }
+      // update the inputs
+      if (this.inputList[0].value !== this.value) {
+        this.inputList[0].value = this.value;
+      }
     }
 
     if (changedProperties.has('valueEnd')) {
-      console.log("valueEnd", this.valueEnd);
-      this.handleDatepickerValueChange();
+      // update the calendar
+      if (this.valueEnd && this.validDateStr(this.valueEnd)) {
+        this.calendar.dateTo = this.convertToWcValidTime(this.valueEnd);
+      } else {
+        if (this.inputList[1].value !== this.valueEnd) {
+          this.inputList[1].value = this.valueEnd;
+        }
+
+        if (this.calendar.dateTo !== undefined) {
+          this.calendar.dateTo = undefined;
+        }
+      }
+
+      // update the inputs
+      if (this.inputList[1].value !== this.valueEnd) {
+        this.inputList[1].value = this.valueEnd;
+      }
     }
 
     // This resets the datepicker when the minDate is set to a new value that is
@@ -542,7 +491,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   checkReadiness() {
-    if (this.auroDropdownReady && this.auroInputReady && this.auroCalendarReady) {
+    if (this.auroDropdownReady && this.auroInputFromReady && this.auroInputToReady && this.auroCalendarReady) {
       this.readyActions();
       this.notifyReady();
     } else {
@@ -580,10 +529,82 @@ export class AuroDatePicker extends LitElement {
     }
   }
 
+  setValue(evt) {
+    let target = evt.target.getAttribute('target');
+    let value = undefined;
+    if (evt.target.hasAttribute('value')) {
+      value = evt.target.getAttribute('value');
+    }
+
+    if (target === 'dpValue') {
+      this.value = value;
+    } else if (target === 'dpValueEnd') {
+      this.valueEnd = value;
+    } else if (target === 'inputFrom') {
+      this.inputList[0].value = value;
+    } else if (target === 'inputTo') {
+      this.inputList[1].value = value;
+    } else if (target === 'calendarFrom') {
+      this.calendar.dateFrom = value;
+    } else if (target === 'calendarTo') {
+      this.calendar.dateTo = value;
+    }
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
       <div>
+        <table class="valueTester">
+          <tr class="groups">
+            <td colspan="2">
+              Datepicker
+            </td>
+            <td colspan="2">
+              input
+            </td>
+          </tr>
+          <tr>
+            <td>
+              value
+            </td>
+            <td>
+              valueEnd
+            </td>
+            <td>
+              departure
+            </td>
+            <td>
+              return
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <auro-button target="dpValue" value="03/20/2023" @click=${this.setValue}>03/20/2023</auro-button>
+              <auro-button target="dpValue" value="03/" @click=${this.setValue}>03/</auro-button>
+              <auro-button target="dpValue" value="" @click=${this.setValue}>' '</auro-button>
+              <auro-button target="dpValue" @click=${this.setValue}>undefined</auro-button>
+            </td>
+            <td>
+              <auro-button target="dpValueEnd" value="03/30/2023" @click=${this.setValue}>03/30/2023</auro-button>
+              <auro-button target="dpValueEnd" value="03/" @click=${this.setValue}>03/</auro-button>
+              <auro-button target="dpValueEnd" value="" @click=${this.setValue}>' '</auro-button>
+              <auro-button target="dpValueEnd" @click=${this.setValue}>undefined</auro-button>
+            </td>
+            <td>
+              <auro-button target="inputFrom" value="03/20/2023" @click=${this.setValue}>03/20/2023</auro-button>
+              <auro-button target="inputFrom" value="03/" @click=${this.setValue}>03/</auro-button>
+              <auro-button target="inputFrom" value="" @click=${this.setValue}>' '</auro-button>
+              <auro-button target="inputFrom" @click=${this.setValue}>undefined</auro-button>
+            </td>
+            <td>
+              <auro-button target="inputTo" value="03/30/2023" @click=${this.setValue}>03/30/2023</auro-button>
+              <auro-button target="inputTo" value="03/" @click=${this.setValue}>03/</auro-button>
+              <auro-button target="inputTo" value="" @click=${this.setValue}>' '</auro-button>
+              <auro-button target="inputTo" @click=${this.setValue}>undefined</auro-button>
+            </td>
+          </tr>
+        </table>
         <auro-dropdown
           for="dropdownMenu"
           bordered
