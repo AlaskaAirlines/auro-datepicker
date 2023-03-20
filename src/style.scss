@@ -84,3 +84,52 @@ auro-input {
 // .calendarWrapper {
 //   min-height: 518px;
 // }
+
+
+.valueTester {
+  text-align: center;
+
+  .groups {
+    td {
+      border-bottom: solid 1px;
+
+      &:nth-child(1) {
+        background-color: aquamarine;
+      }
+
+      &:nth-child(2) {
+        background-color: cadetblue;
+      }
+
+      &:nth-child(3) {
+        background-color: darkkhaki;
+      }
+    }
+  }
+
+  tr:not(.groups) {
+    td {
+      border-bottom: solid 1px;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        background-color: aquamarine;
+      }
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        background-color: cadetblue;
+      }
+
+      &:nth-child(5),
+      &:nth-child(6) {
+        background-color: darkkhaki;
+      }
+    }
+  }
+
+  auro-button {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
