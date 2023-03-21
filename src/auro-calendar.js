@@ -161,7 +161,7 @@ export class AuroCalendar extends RangeDatepicker {
       monthsInRange += maxAsDate.getMonth();
 
       if (monthsInRange < 1) {
-        monthsInRange = 0;
+        monthsInRange = 1;
       }
 
       calendarCount = monthsInRange;
