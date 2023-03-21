@@ -86,6 +86,9 @@ export class AuroCalendar extends RangeDatepicker {
     });
 
     this.addEventListener('date-to-changed', () => {
+      if (this.dateTo === null) {
+        this.dateTo = undefined;
+      }
       this.dispatchEvent(new CustomEvent('auroCalendar-dateSelected', {
         bubbles: true,
         cancelable: false,
