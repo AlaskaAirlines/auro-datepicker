@@ -12,8 +12,12 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ## Example(s)
 
 <div class="exampleWrapper">
-  <auro-datepicker range required>
-    <span slot="label">Choose a date</span>
+  <!-- <auro-datepicker required>
+    <span slot="fromLabel">Departure</span>
+  </auro-datepicker> -->
+  <auro-datepicker range required minDate="03/20/2023" maxDate="03/25/2023">
+    <span slot="fromLabel">Departure</span>
+    <span slot="toLabel">Return</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
