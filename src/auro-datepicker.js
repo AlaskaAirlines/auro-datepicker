@@ -307,9 +307,10 @@ export class AuroDatePicker extends LitElement {
       this.validate();
     });
 
-    // RECONSIDER THIS FOR TWO INPUTS
     this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
-      this.auroInputHelpText = evt.detail.message;
+      if (this.inputList[0].value !== undefined) {
+        this.auroInputHelpText = evt.detail.message;
+      }
     });
 
     if (this.inputList.length > 1) {
@@ -328,7 +329,7 @@ export class AuroDatePicker extends LitElement {
       });
 
       this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
-        if (!this.auroInputHelpText || this.auroInputHelpText.length === 0) {
+        if ((!this.auroInputHelpText || this.auroInputHelpText.length === 0) && this.inputList[1].value !== undefined) {
           this.auroInputHelpText = evt.detail.message;
         }
       });
