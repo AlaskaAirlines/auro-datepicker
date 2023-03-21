@@ -62,6 +62,14 @@ export class AuroCalendar extends RangeDatepicker {
     };
   }
 
+  requestDismiss() {
+    this.dispatchEvent(new CustomEvent('auroCalendar-dismissRequest', {
+      bubbles: true,
+      cancelable: false,
+      composed: true,
+    }));
+  }
+
   /**
    * @private
    * @returns {void} Marks the component as ready and sends event.
@@ -211,24 +219,42 @@ export class AuroCalendar extends RangeDatepicker {
 
   render() {
     return html`
-      ${this.renderCalendar(this.month, this.year)}
-      ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
-      ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
-      ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
-      ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
-      ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
-      ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
-      ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
-      ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
-      ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
-      ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
-      ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
+      <div class="calendars">
+        ${this.renderCalendar(this.month, this.year)}
+        ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
+        ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
+        ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
+        ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
+        ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
+        ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
+        ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
+        ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
+        ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
+        ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
+        ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
+      </div>
       <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
         <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
       </button>
       <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
         <auro-icon category="interface" name="chevron-right" customColor></auro-icon>
       </button>
+      <div class="mobileHeader">
+        <div class="headerActions">
+          <button class="calendarNavBtn" @click="${this.requestDismiss}">
+            <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
+          </button>
+        </div>
+        <div class="headerDateFrom">
+          <span class="mobileDateLabel"><slot name="mobileDateLabel"></slot></span>
+          <slot name="mobileDateFromStr"></slot>
+        </div>
+        <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
+      </div>
+      <div class="mobileFooter"></div>
+      <div class="mobileFooterActions">
+        <auro-button @click="${this.requestDismiss}">Close</auro-button>
+      </div>
     `;
   }
 }
