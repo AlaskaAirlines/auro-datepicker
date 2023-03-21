@@ -384,6 +384,50 @@ export class AuroDatePicker extends LitElement {
         this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
       }
     });
+
+    this.calendar.addEventListener('auroCalendar-dismissRequest', () => {
+      this.dropdown.hide();
+    });
+  }
+
+  /**
+   * Generates a date string used in the mobile calendar layout.
+   * @private
+   * @param {string} date - Date to parse into longer mobile version.
+   * @returns {string}
+   */
+  getMobileDateStr(date) {
+    let dateStr = '';
+    const dateObj = new Date(date);
+
+    if (date && this.validDateStr(date)) {
+      const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ];
+
+      dateStr += monthNames[dateObj.getMonth()].substring(0, 3);
+      dateStr += ' ';
+      dateStr += dateObj.getDate();
+      dateStr += ', ';
+      dateStr += dateObj.getFullYear();
+      dateStr += ' (';
+      // Need TODO: need to  make locale not be hardcoded - https://phrase.com/blog/posts/detecting-a-users-locale/
+      dateStr += dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+      dateStr += ')';
+    }
+
+    return dateStr;
   }
 
   /**
@@ -689,9 +733,12 @@ export class AuroDatePicker extends LitElement {
               ?noRange="${!this.range}"
               .min="${this.convertToWcValidTime(new Date(this.minDate))}"
               .max="${this.convertToWcValidTime(new Date(this.maxDate))}"
-              .maxDate="${new Date(this.maxDate)}"
-              .minDate="${new Date(this.minDate)}"
+              .maxDate="${this.maxDate}"
+              .minDate="${this.minDate}"
             >
+              <slot slot="mobileDateLabel" name="mobileDateLabel"></slot>
+              <span slot="mobileDateFromStr">${this.value ? this.getMobileDateStr(this.value) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>
+              <span slot="mobileDateToStr">${this.valueEnd ? this.getMobileDateStr(this.valueEnd) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>
             </auro-calendar>
           </div>
           <span slot="helpText">
