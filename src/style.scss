@@ -3,6 +3,8 @@
 
 /* stylelint-disable max-nesting-depth, declaration-no-important */
 
+@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
+@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityClasses/displayProperties';
 
 auro-input {
@@ -77,7 +79,7 @@ auro-input {
   color: var(--auro-color-text-secondary-on-light);
 }
 
-@media (max-width: 768px) {
+@include auro_breakpoint($max: $auro-breakpoint-sm) {
   ::part(popover) {
     position: fixed !important;
     top: 0 !important;
