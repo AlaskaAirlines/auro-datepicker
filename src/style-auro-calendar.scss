@@ -96,7 +96,8 @@ $mobile-header-height: 86px;
 }
 
 .headerDateTo {
-  padding: calc(var(--auro-size-300)) 0 0 var(--auro-size-100);
+  height: $mobile-header-height;
+  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 .mobileFooter {
