@@ -18,8 +18,8 @@ $mobile-header-height: 86px;
 
 .calendarNavBtn {
   display: flex;
-  width: 40px;
-  height: 40px;
+  width: var(--auro-size-500);
+  height: var(--auro-size-500);
   align-items: center;
   justify-content: center;
   border-width: 1px;
@@ -48,19 +48,19 @@ $mobile-header-height: 86px;
 .prevMonth,
 .nextMonth {
   position: absolute;
-  top: var(--auro-size-md);
+  top: var(--auro-size-200);
 }
 
 .prevMonth {
-  left: var(--auro-size-xxs);
+  left: var(--auro-size-50);
 }
 
 .nextMonth {
-  right: var(--auro-size-xxs);
+  right: var(--auro-size-50);
 }
 
 .headerActions {
-  padding: 0 var(--auro-size-md);
+  padding: 0 var(--auro-size-200);
 }
 
 .mobileHeader {
@@ -92,11 +92,11 @@ $mobile-header-height: 86px;
 
 .headerDateFrom {
   height: $mobile-header-height;
-  padding: 0 var(--auro-size-xs) 0 var(--auro-size-md);
+  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 .headerDateTo {
-  padding: calc(24px) 0 0 var(--auro-size-xs);
+  padding: calc(var(--auro-size-300)) 0 0 var(--auro-size-100);
 }
 
 .mobileFooter {
@@ -109,7 +109,7 @@ $mobile-header-height: 86px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-bottom: var(--auro-size-md);
+  padding-bottom: var(--auro-size-200);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--auro-color-background-lightest) 51.56%);
   pointer-events: none;
   transform: translateX(-50%);
@@ -125,7 +125,7 @@ $mobile-header-height: 86px;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
-  padding-bottom: var(--auro-size-md);
+  padding-bottom: var(--auro-size-200);
   transform: translateX(-50%);
 }
 
