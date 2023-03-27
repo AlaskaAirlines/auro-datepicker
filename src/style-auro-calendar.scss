@@ -6,7 +6,7 @@
 @import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
 @import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable color-function-notation */
+/* stylelint-disable color-function-notation, at-rule-empty-line-before */
 
 $mobile-header-height: 86px;
 
@@ -14,9 +14,6 @@ $mobile-header-height: 86px;
   @include auro_breakpoint($max: $auro-breakpoint-sm) {
     flex-direction: column;
   }
-
-  display: flex;
-  flex-direction: row;
 }
 
 .calendarNavBtn {
@@ -150,5 +147,12 @@ $mobile-header-height: 86px;
     width: 100%;
     height: calc(100vh - $mobile-header-height);
     overflow-y: scroll;
+  }
+}
+
+@media (min-width: 768px) {
+  .calendars {
+    display: flex;
+    flex-direction: row;
   }
 }
