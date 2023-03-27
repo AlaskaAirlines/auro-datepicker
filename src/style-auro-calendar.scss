@@ -129,7 +129,7 @@ $mobile-header-height: 86px;
   transform: translateX(-50%);
 }
 
-@media (max-width: 768px) {
+@include auro_breakpoint($max: $auro-breakpoint-sm) {
   .prevMonth,
   .nextMonth {
     display: none;
@@ -150,7 +150,7 @@ $mobile-header-height: 86px;
   }
 }
 
-@media (min-width: 768px) {
+@include auro_breakpoint($min: $auro-breakpoint-sm) {
   .calendars {
     display: flex;
     flex-direction: row;

@@ -15,7 +15,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   <!-- <auro-datepicker required>
     <span slot="fromLabel">Departure</span>
   </auro-datepicker> -->
-  <auro-datepicker range required minDate="03/20/2023" maxDate="03/25/2023">
+  <auro-datepicker range required>
     <span slot="fromLabel">Departure</span>
     <span slot="toLabel">Return</span>
   </auro-datepicker>
