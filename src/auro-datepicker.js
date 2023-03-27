@@ -29,9 +29,10 @@ import './auro-calendar.js';
  * @attr {Boolean} noValidate - If set, disables auto-validation on blur.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
  * @attr {Boolean} range - If set, turns on date range functionality in auro-calendar.
- * @prop {String} centralDate - The date that determines the currently visible month.
- * @prop {String} maxDate - Maximum date. All dates after will be disabled.
- * @prop {String} minDate - Minimum date. All dates before will be disabled.
+ * @attr {String} centralDate - The date that determines the currently visible month.
+ * @attr {String} maxDate - Maximum date. All dates after will be disabled.
+ * @attr {String} minDate - Minimum date. All dates before will be disabled.
+ * @attr {Array} monthNames = Names of all 12 months to render in the calendar, used for localiztion of date string in mobile layout.
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
@@ -50,6 +51,20 @@ export class AuroDatePicker extends LitElement {
     this.validity = undefined;
     this.value = undefined;
     this.valueEnd = undefined;
+    this.monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
 
     /**
      * @private
@@ -123,6 +138,9 @@ export class AuroDatePicker extends LitElement {
       minDate: {
         type: String,
         reflect: true
+      },
+      monthNames: {
+        type: Array
       }
     };
   }
@@ -399,22 +417,7 @@ export class AuroDatePicker extends LitElement {
     const dateObj = new Date(date);
 
     if (date && this.validDateStr(date)) {
-      const monthNames = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'
-      ];
-
-      dateStr += monthNames[dateObj.getMonth()].substring(0, 3);
+      dateStr += this.monthNames[dateObj.getMonth()].substring(0, 3);
       dateStr += ' ';
       dateStr += dateObj.getDate();
       dateStr += ', ';
