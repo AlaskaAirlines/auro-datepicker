@@ -108,7 +108,9 @@ export class AuroCalendar extends RangeDatepicker {
 
     this.determineNumCalendars();
 
-    window.addEventListener('resize', this.determineNumCalendars);
+    window.addEventListener('resize', () => {
+      this.determineNumCalendars();
+    });
   }
 
   updated(changedProperties) {
@@ -146,15 +148,13 @@ export class AuroCalendar extends RangeDatepicker {
 
   determineNumCalendars() {
     const vw = window.innerWidth;
-
     let calendarCount = 1;
 
     if (!this.noRange) {
       calendarCount = 2;
     }
 
-    // Need to find correct auro breakpoint for width of screen
-    if (vw < 1000) {
+    if (vw < 768) {
       calendarCount = 12;
     }
 
@@ -177,6 +177,7 @@ export class AuroCalendar extends RangeDatepicker {
 
     if (this.numCalendars !== calendarCount) {
       this.numCalendars = calendarCount;
+      this.requestUpdate();
     }
   }
 
