@@ -42,11 +42,11 @@ auro-input {
     flex: 1;
 
     &:first-of-type {
-      margin-right: var(--auro-size-sm);
+      margin-right: var(--auro-size-150);
     }
 
     &:nth-child(2) {
-      margin-left: var(--auro-size-sm);
+      margin-left: var(--auro-size-150);
 
       &::part(accentIcon) {
         display: none;
@@ -64,7 +64,7 @@ auro-input {
       &:before {
         position: absolute;
         top: 13px;
-        left: calc(var(--auro-size-sm) * -1);
+        left: calc(var(--auro-size-150) * -1);
         display: block;
         width: 1px;
         height: 2rem;
@@ -86,7 +86,7 @@ auro-input {
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    margin-bottom: var(--auro-size-m);
+    margin-bottom: var(--auro-size-200);
     transform: unset !important;
   }
 
