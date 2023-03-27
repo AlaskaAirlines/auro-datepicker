@@ -2,14 +2,14 @@
 
 .day {
   position: relative;
-  width: var(--auro-size-xxl);
-  height: var(--auro-size-xxxl);
+  width: var(--auro-size-600);
+  height: var(--auro-size-800);
   border-width: 1px;
 
   border-style: solid;
   border-color: transparent;
   background-color: transparent;
-  border-radius: var(--auro-size-lg);
+  border-radius: var(--auro-size-300);
 
   color: var(--auro-color-text-primary-on-light);
 

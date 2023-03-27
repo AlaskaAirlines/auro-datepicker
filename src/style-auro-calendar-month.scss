@@ -26,7 +26,7 @@
 
   width: 336px; // is this right?
 
-  padding: var(--auro-size-md);
+  padding: var(--auro-size-200);
 
   background-color: var(--auro-color-background-lightest);
 }
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 0 var(--auro-size-xxs);
+  margin: 0 0 var(--auro-size-50);
   text-align: center;
   color: var(--range-datepicker-month-text);
   height: 44px;
@@ -54,7 +54,7 @@
 
   div {
     &:first-child {
-      margin-right: var(--auro-size-xs);
+      margin-right: var(--auro-size-100);
     }
   }
 }
@@ -62,8 +62,8 @@
 .calendarNavBtn {
   position: relative;
 
-  width: 40px;
-  height: 40px;
+  width: var(--auro-size-500);
+  height: var(--auro-size-500);
 
   border-width: 1px;
   border-style: solid;
@@ -79,7 +79,7 @@
   cursor: pointer;
 
   auro-icon {
-    height: 24px;
+    height: var(--auro-size-300);
   }
 
   &:focus {
@@ -100,11 +100,11 @@
 }
 
 .thead {
-  margin-bottom: var(--auro-size-xs);
+  margin-bottom: var(--auro-size-100);
 }
 
 .th {
-  width: 48px;
+  width: var(--auro-size-600);
   text-align: center;
   display: table-cell;
   vertical-align: inherit;
