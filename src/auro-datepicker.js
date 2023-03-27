@@ -470,6 +470,7 @@ export class AuroDatePicker extends LitElement {
           this.calendar.dateFrom = undefined;
         }
       }
+
       // update the inputs
       if (this.inputList[0].value !== this.value) {
         this.inputList[0].value = this.value;
@@ -493,6 +494,12 @@ export class AuroDatePicker extends LitElement {
       // update the inputs
       if (this.inputList[1].value !== this.valueEnd) {
         this.inputList[1].value = this.valueEnd;
+      }
+    }
+
+    if (this.value && this.valueEnd && this.validDateStr(this.value) && this.validDateStr(this.valueEnd)) {
+      if (new Date(this.value) > new Date(this.valueEnd)) {
+        this.valueEnd = undefined;
       }
     }
 
