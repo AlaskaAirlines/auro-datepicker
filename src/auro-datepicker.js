@@ -507,6 +507,14 @@ export class AuroDatePicker extends LitElement {
     // a later date than the current value date
     if (changedProperties.has('minDate')) {
       if (this.minDate) {
+        const minDateMonth = Number(this.minDate.charAt(1));
+
+        // This sets the visibile month of the calendar to the minDate when the minDate is later
+        // than the current visible date
+        if (minDateMonth > this.calendar.month) {
+          this.centralDate = this.minDate;
+        }
+
         if (this.value) {
           if (new Date(this.minDate).getTime() > new Date(this.value).getTime()) {
             this.value = undefined;
