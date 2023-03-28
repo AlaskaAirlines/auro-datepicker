@@ -177,12 +177,16 @@ export class AuroDatePicker extends LitElement {
         this.validity = this.inputList[0].validity;
 
         // If the first input is valid, set validity to equal the second input.
-        if (this.validity === 'valid' && this.inputList[1].validity !== undefined && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
+        if (this.validity === 'valid' && this.inputList[1] && this.inputList[1].validity !== undefined && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
           this.validity = this.inputList[1].validity;
         }
 
         const dateFrom = new Date(this.inputList[0].value);
-        const dateTo = new Date(this.inputList[1].value);
+        let dateTo = undefined;
+
+        if (this.inputList[1]) {
+          dateTo = new Date(this.inputList[1].value);
+        }
 
         if (this.maxDate) {
           // check dateFrom
@@ -192,7 +196,7 @@ export class AuroDatePicker extends LitElement {
           }
 
           // check dateTo
-          if (new Date(new Date(this.maxDate).toDateString()) < new Date(dateTo.toDateString())) {
+          if (this.inputList[1] && new Date(new Date(this.maxDate).toDateString()) < new Date(dateTo.toDateString())) {
             this.validity = 'rangeOverflow';
             this.inputList[1].validity = 'rangeOverflow';
           }
@@ -206,7 +210,7 @@ export class AuroDatePicker extends LitElement {
           }
 
           // check dateTo
-          if (new Date(new Date(this.minDate).toDateString()) > new Date(dateTo.toDateString())) {
+          if (this.inputList[1] && new Date(new Date(this.minDate).toDateString()) > new Date(dateTo.toDateString())) {
             this.validity = 'rangeUnderflow';
             this.inputList[1].validity = 'rangeUnderflow';
           }
@@ -374,7 +378,10 @@ export class AuroDatePicker extends LitElement {
     this.addEventListener('focusout', () => {
       if (document.activeElement !== this) {
         this.inputList[0].validate();
-        this.inputList[1].validate();
+
+        if (this.inputList[1]) {
+          this.inputList[1].validate();
+        }
       }
     });
   }
@@ -396,7 +403,7 @@ export class AuroDatePicker extends LitElement {
         this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
       }
 
-      if (this.inputList[1].value !== this.calendar.dateTo) {
+      if (this.inputList[1] && this.inputList[1].value !== this.calendar.dateTo) {
         this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
       }
     });
@@ -477,7 +484,7 @@ export class AuroDatePicker extends LitElement {
       }
     }
 
-    if (changedProperties.has('valueEnd')) {
+    if (changedProperties.has('valueEnd') && this.inputList[1]) {
       // update the calendar
       if (this.valueEnd && this.validDateStr(this.valueEnd)) {
         this.calendar.dateTo = this.convertToWcValidTime(this.valueEnd);
