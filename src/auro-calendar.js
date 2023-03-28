@@ -149,13 +149,14 @@ export class AuroCalendar extends RangeDatepicker {
   determineNumCalendars() {
     const vw = window.innerWidth;
     let calendarCount = 1;
+    let maxCalenders = 1;
 
     if (!this.noRange) {
-      calendarCount = 2;
+      maxCalenders = 2;
     }
 
     if (vw < 768) {
-      calendarCount = 12;
+      maxCalenders = 12;
     }
 
     // Add calculation to restrict number of calendars based off of min/max date
@@ -173,6 +174,10 @@ export class AuroCalendar extends RangeDatepicker {
       }
 
       calendarCount = monthsInRange;
+    }
+
+    if (calendarCount > maxCalenders) {
+      calendarCount = maxCalenders;
     }
 
     if (this.numCalendars !== calendarCount) {
