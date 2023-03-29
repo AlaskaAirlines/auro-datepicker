@@ -83,16 +83,14 @@ $mobile-footer-height: 200px;
   flex-direction: column;
   justify-content: center;
   border-left: solid 1px var(--auro-color-border-divider-on-light);
+
+  height: $mobile-header-height;
+  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 .mobileDateLabel {
   color: var(--auro-color-text-secondary-on-light);
   font-size: var(--auro-text-body-size-xs);
-}
-
-.headerDateFrom {
-  height: $mobile-header-height;
-  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 .headerDateTo {
