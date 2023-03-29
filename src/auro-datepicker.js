@@ -17,6 +17,8 @@ import { LitElement, html } from "lit-element";
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
 
+import '@aurodesignsystem/auro-input';
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {String} value - Value selected for the date picker.
@@ -172,7 +174,7 @@ export class AuroDatePicker extends LitElement {
     if (this.hasAttribute('error')) {
       this.validity = 'customError';
       this.setCustomValidity = this.error;
-    } else if (!this.contains(document.activeElement)) {
+    } else if (!this.contains(document.activeElement) && !this.noValidate) {
       if (this.inputList[0].value !== undefined && this.inputList[0].value !== undefined) {
         this.validity = this.inputList[0].validity;
 
@@ -273,14 +275,18 @@ export class AuroDatePicker extends LitElement {
       }
     });
 
-    this.dropdown.addEventListener('auroDropdown-toggled', () => {
+    this.dropdown.addEventListener('auroDropdown-toggled', (evt) => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-      // this.activeLabel = this.dropdown.isPopoverVisible;
-      // if (this.activeLabel) {
-      //   this.input.setAttribute('activeLabel', '');// THIS NEEDS TO BE RECONSIDERED
-      // } else if (!this.input.value || this.input.value === undefined || this.input.value.length === 0) {// THIS NEEDS TO BE RECONSIDERED
-      //   this.input.removeAttribute('activeLabel');// THIS NEEDS TO BE RECONSIDERED
-      // }
+
+      if (!evt.detail.expanded) {
+        if (!this.contains(document.activeElement)) {
+          this.inputList[0].validate(true);
+
+          if (this.inputList[1]) {
+            this.inputList[1].validate(true);
+          }
+        }
+      }
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
@@ -317,10 +323,6 @@ export class AuroDatePicker extends LitElement {
       if (this.value !== this.inputList[0].value) {
         this.value = this.inputList[0].value;
       }
-
-      if (!this.contains(document.activeElement)) {
-        this.inputList[1].validate();
-      }
     });
 
     this.inputList[0].addEventListener('auroInput-validated', () => {
@@ -337,10 +339,6 @@ export class AuroDatePicker extends LitElement {
       this.inputList[1].addEventListener('input', () => {
         if (this.valueEnd !== this.inputList[1].value) {
           this.valueEnd = this.inputList[1].value;
-        }
-
-        if (!this.contains(document.activeElement)) {
-          this.inputList[0].validate();
         }
       });
 
@@ -377,10 +375,12 @@ export class AuroDatePicker extends LitElement {
      */
     this.addEventListener('focusout', () => {
       if (document.activeElement !== this) {
-        this.inputList[0].validate();
+        if (!this.dropdown.isPopoverVisible) {
+          this.inputList[0].validate(true);
 
-        if (this.inputList[1]) {
-          this.inputList[1].validate();
+          if (this.inputList[1]) {
+            this.inputList[1].validate(true);
+          }
         }
       }
     });
@@ -731,7 +731,7 @@ export class AuroDatePicker extends LitElement {
               class="dateFrom"
               ?required="${this.required}"
               ?activeLabel="${this.activeLabel}"
-              ?noValidate="${this.noValidate}"
+              noValidate
               .error="${this.error}"
               ?disabled="${this.disabled}"
               .type="${this.type}">
@@ -743,7 +743,7 @@ export class AuroDatePicker extends LitElement {
                 class="dateTo"
                 ?required="${this.required}"
                 ?activeLabel="${this.activeLabel}"
-                ?noValidate="${this.noValidate}"
+                noValidate
                 .error="${this.error}"
                 ?disabled="${this.disabled}"
                 .type="${this.type}">
