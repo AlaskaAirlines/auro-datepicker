@@ -22,7 +22,7 @@ import { RangeDatepicker } from '../node_modules/wc-range-datepicker/dist/src/ra
  * @fires auroCalendar-ready - Notifies that the component has finished initializing.
  */
 
-/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign */
+/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendar extends RangeDatepicker {
@@ -30,6 +30,8 @@ export class AuroCalendar extends RangeDatepicker {
     super();
 
     this.numCalendars = 1;
+    this.showPrevMonthBtn = true;
+    this.showNextMonthBtn = true;
   }
 
   static get styles() {
@@ -84,7 +86,62 @@ export class AuroCalendar extends RangeDatepicker {
     }));
   }
 
+  assessNavigationButtonVisibility() {
+    // handle earliest month
+    if (this.minDate) {
+      const firstMonthYear = new Date(`${this.month}/01/${this.year}`);
+
+      if (firstMonthYear <= new Date(this.minDate)) {
+        this.showPrevMonthBtn = false;
+      } else {
+        this.showPrevMonthBtn = true;
+      }
+    }
+
+    // handle latest month
+    if (this.maxDate) {
+      const maxMonth = new Date(this.maxDate).getMonth() + 1;
+      let lastViewedMonth = this.month + this.numCalendars - 1;
+
+      if (lastViewedMonth > 12) {
+        lastViewedMonth -= 12;
+      }
+
+      if (lastViewedMonth === maxMonth) {
+        this.showNextMonthBtn = false;
+      } else {
+        this.showNextMonthBtn = true;
+      }
+    }
+  }
+
   firstUpdated() {
+    // if minDate is defined and it's later than the current month make the calendar view start on the minDate
+    if (this.minDate) {
+      const minAsDateObj = new Date(this.minDate);
+      const minDateMonth = minAsDateObj.getMonth() + 1;
+      const minDateYear = minAsDateObj.getFullYear();
+      const firstOfMonthForMinDate = new Date(`${minDateMonth}/01/${minDateYear}`);
+
+      if (firstOfMonthForMinDate > new Date(`${this.month}/01/${this.year}`)) {
+        this.month = minDateMonth;
+        this.year = minDateYear;
+      }
+    }
+
+    // if maxDate is defined and its earlier than the current month move the view back to the minDate month
+    if (this.maxDate) {
+      const maxAsDateObj = new Date(this.maxDate);
+      const maxDateMonth = maxAsDateObj.getMonth() + 1;
+      const maxDateYear = maxAsDateObj.getFullYear();
+      const firstOfMonthForMaxDate = new Date(`${maxDateMonth}/01/${maxDateYear}`);
+
+      if (firstOfMonthForMaxDate < new Date(`${this.month}/01/${this.year}`)) {
+        this.month = maxDateMonth;
+        this.year = maxDateYear;
+      }
+    }
+
     this.addEventListener('date-from-changed', () => {
       this.dispatchEvent(new CustomEvent('auroCalendar-dateSelected', {
         bubbles: true,
@@ -116,6 +173,7 @@ export class AuroCalendar extends RangeDatepicker {
   updated(changedProperties) {
     if (changedProperties.has('month') || changedProperties.has('year')) {
       this.monthChanged(this.month, this.year);
+      this.assessNavigationButtonVisibility();
     }
     if (changedProperties.has('noRange')) {
       this.noRangeChanged(this.noRange, changedProperties.get('noRange'));
@@ -129,21 +187,25 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   handlePrevMonth() {
-    // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
-    const calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
-
-    for (let index = 0; index < calendarMonthList.length; index += 1) {
-      calendarMonthList[index].handlePrevMonth();
+    if (this.month === 1) {
+      this.year -= 1;
+      this.month = 12;
+    } else {
+      this.month -= 1;
     }
+
+    this.requestUpdate();
   }
 
   handleNextMonth() {
-    // Keeping this variable local allows for all calendar months displayed in range functionality to be manipulated
-    const calendarMonthList = [...this.shadowRoot.querySelectorAll('auro-calendar-month')];
-
-    for (let index = 0; index < calendarMonthList.length; index += 1) {
-      calendarMonthList[index].handleNextMonth();
+    if (this.month === 12) {
+      this.year += 1;
+      this.month = 1;
+    } else {
+      this.month += 1;
     }
+
+    this.requestUpdate();
   }
 
   determineNumCalendars() {
@@ -169,6 +231,7 @@ export class AuroCalendar extends RangeDatepicker {
       monthsInRange = (maxAsDate.getFullYear() - minAsDate.getFullYear()) * 12;
       monthsInRange -= minAsDate.getMonth();
       monthsInRange += maxAsDate.getMonth();
+      monthsInRange += 1;
 
       if (monthsInRange < 1) {
         monthsInRange = 1;
@@ -196,16 +259,6 @@ export class AuroCalendar extends RangeDatepicker {
    * @returns {Object} Returns single calendar month HTML.
    */
   renderCalendar(month, year) {
-    // resets the month value back to corresponding calendar month
-    if (month > 12) {
-      month -= 12;
-    }
-
-    // adds a year to year value when month value resets back at 1
-    if (this.month !== 1 && month < this.month) {
-      year += 1;
-    }
-
     return html`
       <auro-calendar-month
         .disabledDays="${this.disabledDays}"
@@ -242,12 +295,16 @@ export class AuroCalendar extends RangeDatepicker {
         ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
         ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
       </div>
-      <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
-        <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
-      </button>
-      <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
-        <auro-icon category="interface" name="chevron-right" customColor></auro-icon>
-      </button>
+      ${this.showPrevMonthBtn ? html`
+        <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
+          <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
+        </button>
+      ` : undefined}
+      ${this.showNextMonthBtn ? html`
+        <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
+          <auro-icon category="interface" name="chevron-right" customColor></auro-icon>
+        </button>
+      ` : undefined}
       <div class="mobileHeader">
         <div class="headerActions">
           <button class="calendarNavBtn" @click="${this.requestDismiss}">
