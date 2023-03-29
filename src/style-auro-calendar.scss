@@ -77,8 +77,7 @@ $mobile-footer-height: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
-.headerDateFrom,
-.headerDateTo {
+.headerDateFrom {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -99,6 +98,16 @@ $mobile-footer-height: 200px;
 .headerDateTo {
   height: $mobile-header-height;
   padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
+}
+
+:host(:not([noRange])) {
+  .headerDateTo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    border-left: solid 1px var(--auro-color-border-divider-on-light);
+  }
 }
 
 .mobileFooter {
