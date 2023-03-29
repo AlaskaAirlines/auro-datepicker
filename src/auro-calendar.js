@@ -259,6 +259,14 @@ export class AuroCalendar extends RangeDatepicker {
    * @returns {Object} Returns single calendar month HTML.
    */
   renderCalendar(month, year) {
+    if (month > 12) {
+      month -= 12;
+    }
+
+    if (this.month !== 1 && month < this.month) {
+      year += 1;
+    }
+
     return html`
       <auro-calendar-month
         .disabledDays="${this.disabledDays}"
