@@ -150,11 +150,11 @@ $mobile-footer-height: 200px;
     height: calc(100vh - $mobile-header-height);
     overflow-y: scroll;
 
-    &::after {
-      content: '';
+    &:after {
       display: block;
-      height: $mobile-footer-height;
       width: 100%;
+      height: $mobile-footer-height;
+      content: '';
     }
   }
 }
