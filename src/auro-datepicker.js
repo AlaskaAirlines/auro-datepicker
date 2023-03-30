@@ -598,7 +598,7 @@ export class AuroDatePicker extends LitElement {
 
     // Close the datepicker when clicking outside it
     document.addEventListener('click', (evt) => {
-      if (!evt.composedPath().includes(this)) {
+      if (!evt.composedPath().includes(this) && this.dropdown.isPopoverVisible) {
         this.dropdown.hide();
       }
     });
