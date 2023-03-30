@@ -455,14 +455,15 @@ export class AuroDatePicker extends LitElement {
     const dateObj = new Date(date);
 
     if (date && this.validDateStr(date)) {
-      // Need TODO: need to  make locale not be hardcoded - https://phrase.com/blog/posts/detecting-a-users-locale/
-      dateStr += dateObj.toLocaleDateString('en-US', { weekday: 'short' });
-      dateStr += ' - ';
       dateStr += this.monthNames[dateObj.getMonth()].substring(0, 3);
       dateStr += ' ';
       dateStr += dateObj.getDate();
       dateStr += ', ';
       dateStr += dateObj.getFullYear();
+      dateStr += ' (';
+      // Need TODO: need to  make locale not be hardcoded - https://phrase.com/blog/posts/detecting-a-users-locale/
+      dateStr += dateObj.toLocaleDateString('en-US', { weekday: 'short' });
+      dateStr += ')';
     }
 
     return dateStr;
