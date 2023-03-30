@@ -268,6 +268,23 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * Sends event notifying that the input has changed it's value.
+   * @private
+   * @returns {void}
+   */
+  notifyValueChanged() {
+    let inputEvent = null;
+
+    inputEvent = new Event('input', {
+      bubbles: true,
+      composed: true,
+    });
+
+    // Dispatched event to alert outside shadow DOM context of event firing.
+    this.dispatchEvent(inputEvent);
+  }
+
+  /**
    * Binds all behavior needed to the dropdown after rendering.
    * @private
    * @returns {void}
@@ -334,6 +351,7 @@ export class AuroDatePicker extends LitElement {
     this.inputList[0].addEventListener('input', () => {
       if (this.value !== this.inputList[0].value) {
         this.value = this.inputList[0].value;
+        this.notifyValueChanged();
       }
     });
 
@@ -351,6 +369,7 @@ export class AuroDatePicker extends LitElement {
       this.inputList[1].addEventListener('input', () => {
         if (this.valueEnd !== this.inputList[1].value) {
           this.valueEnd = this.inputList[1].value;
+          this.notifyValueChanged();
         }
       });
 
