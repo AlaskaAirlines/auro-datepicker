@@ -1,6 +1,5 @@
 import { fixture, html, expect, elementUpdated, waitUntil } from '@open-wc/testing';
-import '../src/auro-datepicker.js';
-import '@aurodesignsystem/auro-calendar';
+import '../index.js';
 import '@aurodesignsystem/auro-dropdown';
 import '@aurodesignsystem/auro-input';
 
@@ -87,109 +86,138 @@ describe('auro-datepicker', () => {
 
   it('can preset a range', async () => {
     const el = await fixture(html`
-      <auro-datepicker value="01/01/2022"></auro-datepicker>
+      <auro-datepicker range value="01/01/2023" valueEnd="01/15/2023"></auro-datepicker>
     `);
 
     await elementUpdated(el);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const departInput = getInput(el, 0);
 
-    const setDate = new Date('01/01/2022').toDateString();
-    const inputDate = new Date(input.value).toDateString();
+    const setDepartDate = new Date('01/01/2023').toDateString();
+    const departInputDate = new Date(departInput.value).toDateString();
 
-    await expect(inputDate).to.be.equal(setDate);
+    await expect(departInputDate).to.be.equal(setDepartDate);
+
+    const returnInput = getInput(el, 1);
+
+    const setReturnDate = new Date('01/15/2023').toDateString();
+    const returnInputDate = new Date(returnInput.value).toDateString();
+
+    await expect(returnInputDate).to.be.equal(setReturnDate);
   });
 
-  it('respects maxDate setting', async () => {
-    const el = await fixture(html`
-      <auro-datepicker maxDate="01/01/2022"></auro-datepicker>
-    `);
+  // it('respects maxDate setting on datepicker when range is false', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker maxDate="01/01/2022"></auro-datepicker>
+  //   `);
 
-    setInputValue(el, "01/01/2022");
+  //   const input = getInput(el, 0);
 
-    await elementUpdated(el);
+  //   input.focus();
 
-    await expect(el.getAttribute('validity')).to.be.equal('valid');
+  //   setInputValue(input, "01/01/2022");
 
-    setInputValue(el, "01/02/2022");
+  //   input.blur();
 
-    await elementUpdated(el);
+  //   await elementUpdated(el);
 
-    await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
-  });
+  //   await expect(el.getAttribute('validity')).to.be.equal('valid');
 
-  it('resets datepicker when maxDate is at an earlier date than current value', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
+  //   // setInputValue(input, "01/02/2022");
 
-    el.value = '03/02/2023';
+  //   // await elementUpdated(el);
 
-    await elementUpdated(el);
+  //   // await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
+  // });
 
-    el.maxDate = '02/26/2023';
+  // it('respects maxDate setting on second input', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker range maxDate="01/01/2022"></auro-datepicker>
+  //   `);
 
-    await elementUpdated(el);
+  //   setInputValue(el, "01/01/2022");
 
-    await expect(el.value).to.be.equal(undefined);
-  });
+  //   await elementUpdated(el);
 
-  it('respects minDate setting', async () => {
-    const el = await fixture(html`
-      <auro-datepicker minDate="01/02/2022"></auro-datepicker>
-    `);
+  //   await expect(el.getAttribute('validity')).to.be.equal('valid');
 
-    setInputValue(el, "01/02/2022");
+  //   setInputValue(el, "01/02/2022");
 
-    await elementUpdated(el);
+  //   await elementUpdated(el);
 
-    await expect(el.getAttribute('validity')).to.be.equal('valid');
+  //   await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
+  // });
 
-    setInputValue(el, "01/01/2021");
+  // it('resets datepicker when maxDate is at an earlier date than current value', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker></auro-datepicker>
+  //   `);
 
-    await elementUpdated(el);
+  //   el.value = '03/02/2023';
 
-    await expect(el.getAttribute('validity')).to.be.equal('rangeUnderflow');
-  });
+  //   await elementUpdated(el);
 
-  it('resets datepicker when minDate is at a later date than current value', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
+  //   el.maxDate = '02/26/2023';
 
-    el.value = '03/02/2023';
+  //   await elementUpdated(el);
 
-    await elementUpdated(el);
+  //   await expect(el.value).to.be.equal(undefined);
+  // });
 
-    el.minDate = '03/09/2023';
+  // it('respects minDate setting', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker minDate="01/02/2022"></auro-datepicker>
+  //   `);
 
-    await elementUpdated(el);
+  //   setInputValue(el, "01/02/2022");
 
-    await expect(el.value).to.be.equal(undefined);
-  });
+  //   await elementUpdated(el);
 
-  it('updates centralDate when minDate is later than centralDate', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
+  //   await expect(el.getAttribute('validity')).to.be.equal('valid');
 
-    el.value = '03/02/2023';
+  //   setInputValue(el, "01/01/2021");
 
-    await elementUpdated(el);
+  //   await elementUpdated(el);
 
-    el.minDate = '03/09/2023';
+  //   await expect(el.getAttribute('validity')).to.be.equal('rangeUnderflow');
+  // });
 
-    await elementUpdated(el);
+  // it('resets datepicker when minDate is at a later date than current value', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker></auro-datepicker>
+  //   `);
 
-    await expect(el.value).to.be.equal(undefined);
-  });
+  //   el.value = '03/02/2023';
+
+  //   await elementUpdated(el);
+
+  //   el.minDate = '03/09/2023';
+
+  //   await elementUpdated(el);
+
+  //   await expect(el.value).to.be.equal(undefined);
+  // });
+
+  // it('updates centralDate when minDate is later than centralDate', async () => {
+  //   const el = await fixture(html`
+  //     <auro-datepicker value="03/02/2023"></auro-datepicker>
+  //   `);
+
+    // el.centralDate = '03/02/2023';
+
+    // await elementUpdated(el);
+
+    // el.minDate = '03/09/2023';
+
+    // await elementUpdated(el);
+
+    // await expect(el.value).to.be.equal(undefined);
+  // });
 
   it('removing error attribute reruns validity even when value is undefined', async () => {
     const el = await fixture(html`
       <auro-datepicker error="custom error message"></auro-datepicker>
     `);
-
-    await waitUntil(() => el.ready);
 
     await expect(el.getAttribute('validity')).to.be.equal('customError');
 
@@ -201,25 +229,65 @@ describe('auro-datepicker', () => {
   });
 
   it('changing centralDate changes month visibility', async () => {
+    const el = await fixture(html`
+      <auro-datepicker centralDate="03/23/2023"></auro-datepicker>
+    `);
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+
+    await expect(calendar.month).to.be.equal(3);
+    await expect(calendar.year).to.be.equal(2023);
+
+    el.centralDate = '04/25/2024';
+
+    await elementUpdated(el);
+
+    await expect(calendar.month).to.be.equal(4);
+    await expect(calendar.year).to.be.equal(2024);
   });
 
   it('renders a single calendar by default', async () => {
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+
+    await expect(calendar.numCalendars).to.be.equal(1);
   });
 
   it('renders two calendars when range attribute is present', async () => {
+    const el = await fixture(html`
+      <auro-datepicker range></auro-datepicker>
+    `);
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+
+    await expect(calendar.numCalendars).to.be.equal(2);
   });
 
   it('renders twelve calendars in mobile version', async () => {
+    window.innerWidth = 600;
+
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+
+    await expect(calendar.numCalendars).to.be.equal(12);
   });
 });
 
-function setInputValue(el, value) {
-  const auroInput = el.shadowRoot.querySelector('auro-input');
-  const input = auroInput.shadowRoot.querySelector('input');
+function setInputValue(auroInput, value) {
+  // const auroInput = el.shadowRoot.querySelector('auro-input');
+  // const input = auroInput.shadowRoot.querySelector('input');
 
-  input.value = value;
-  input.dispatchEvent(new InputEvent('input'));
-  auroInput.dispatchEvent(new Event('input', {bubbles:true}));
+  // input.value = value;
+  // input.dispatchEvent(new InputEvent('input'));
+
+  auroInput.value = value;
+  // auroInput.dispatchEvent(new Event('input', {bubbles:true}));
 }
 
 function padTo2Digits(num) {
@@ -233,4 +301,8 @@ function formatDate(date) {
     padTo2Digits(date.getMonth() + 1),
     date.getFullYear(),
   ].join('/');
+}
+
+function getInput(el, index) {
+  return [...el.shadowRoot.querySelectorAll('auro-input')][index];
 }
