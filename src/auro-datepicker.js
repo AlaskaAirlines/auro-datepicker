@@ -760,7 +760,7 @@ export class AuroDatePicker extends LitElement {
             >
               <slot slot="mobileDateLabel" name="mobileDateLabel"></slot>
               <span slot="mobileDateFromStr">${this.value ? this.getMobileDateStr(this.value) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>
-              ${this.range ? html `<span slot="mobileDateToStr">${this.valueEnd ? this.getMobileDateStr(this.valueEnd) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>` : undefined}
+              ${this.range ? html`<span slot="mobileDateToStr">${this.valueEnd ? this.getMobileDateStr(this.valueEnd) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>` : undefined}
             </auro-calendar>
           </div>
           <span slot="helpText">
