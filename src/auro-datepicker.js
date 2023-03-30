@@ -17,8 +17,6 @@ import { LitElement, html } from "lit-element";
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
 
-import '@aurodesignsystem/auro-input';
-
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {String} value - Value selected for the date picker.

@@ -18,6 +18,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   <auro-datepicker range required>
     <span slot="fromLabel">Departure</span>
     <span slot="toLabel">Return</span>
+    <span slot="mobileDateLabel">Roundtrip</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
