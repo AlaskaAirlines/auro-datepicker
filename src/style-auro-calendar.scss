@@ -79,13 +79,12 @@ $mobile-footer-height: 200px;
 
 .headerDateFrom {
   display: flex;
+  height: $mobile-header-height;
   flex: 1;
   flex-direction: column;
   justify-content: center;
-  border-left: solid 1px var(--auro-color-border-divider-on-light);
-
-  height: $mobile-header-height;
   padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
+  border-left: solid 1px var(--auro-color-border-divider-on-light);
 }
 
 .mobileDateLabel {
@@ -94,17 +93,29 @@ $mobile-footer-height: 200px;
 }
 
 .headerDateTo {
-  height: $mobile-header-height;
-  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
+  height: calc($mobile-header-height - var(--auro-size-300));
+  padding: var(--auro-size-300) var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 :host(:not([noRange])) {
   .headerDateTo {
+    position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    border-left: solid 1px var(--auro-color-border-divider-on-light);
+
+    &:after {
+      position: absolute;
+      top: calc(50% + 10px);
+      left: 0;
+      display: block;
+      width: 1px;
+      height: 24px;
+      background-color: var(--auro-color-border-divider-on-light);
+      content: '';
+      transform: translateY(-50%);
+    }
   }
 }
 
