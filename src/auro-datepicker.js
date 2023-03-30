@@ -170,11 +170,13 @@ export class AuroDatePicker extends LitElement {
     this.removeAttribute('validity');
     this.setCustomValidity = '';
 
+    const shouldValidate = !this.contains(document.activeElement) && !this.noValidate;
+
     // Handle error attribute change regardless of focus
     if (this.hasAttribute('error')) {
       this.validity = 'customError';
       this.setCustomValidity = this.error;
-    } else if (!this.contains(document.activeElement) && !this.noValidate) {
+    } else if (shouldValidate) {
       if (this.inputList[0].value !== undefined && this.inputList[0].value !== undefined) {
         this.validity = this.inputList[0].validity;
 
@@ -228,6 +230,16 @@ export class AuroDatePicker extends LitElement {
       }
     } else {
       this.dropdown.removeAttribute('error');
+    }
+
+    if (shouldValidate) {
+      this.dispatchEvent(new CustomEvent('auroDatepicker-validated', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          validity: this.validity
+        }
+      }));
     }
   }
 
