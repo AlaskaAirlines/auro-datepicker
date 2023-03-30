@@ -25,7 +25,7 @@ $mobile-footer-height: 200px;
   justify-content: center;
   border-width: 1px;
   border-style: solid;
-  border-color: transparent;
+  border-color: var(--auro-color-border-active-on-light);
   background-color: transparent;
   border-radius: 50%;
   color: var(--auro-color-border-active-on-light);
@@ -33,16 +33,7 @@ $mobile-footer-height: 200px;
 
   auro-icon {
     height: var(--auro-size-300);
-    color: var(--auro-color-icon-primary-on-light);
-  }
-
-  &:hover,
-  &:focus {
-    border-color: var(--auro-color-border-active-on-light);
-
-    auro-icon {
-      color: var(--auro-color-ui-default-on-light);
-    }
+    color: var(--auro-color-ui-default-on-light);
   }
 }
 
