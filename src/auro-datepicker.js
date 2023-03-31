@@ -24,6 +24,8 @@ import './auro-calendar.js';
  * @attr {String} error - When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value.
  * @attr {String} validity - Specifies the `validityState` this element is in.
  * @attr {String} setCustomValidity - Sets a custom help text message to display for all validityStates.
+ * @attr {String} setCustomValidityRangeUnderflow - Custom help text message to display when validity = `rangeUnderflow`.
+ * @attr {String} setCustomValidityRangeOverflow - Custom help text message to display when validity = `rangeOverflow`.
  * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`;
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} noValidate - If set, disables auto-validation on blur.
@@ -88,10 +90,17 @@ export class AuroDatePicker extends LitElement {
         reflect: true
       },
       noValidate: {
+        type: String
+      },
+      setCustomValidity: {
         type: String,
         reflect: true
       },
-      setCustomValidity: {
+      setCustomValidityRangeUnderflow: {
+        type: String,
+        reflect: true
+      },
+      setCustomValidityRangeOverflow: {
         type: String,
         reflect: true
       },
@@ -195,12 +204,14 @@ export class AuroDatePicker extends LitElement {
           if (new Date(new Date(this.maxDate).toDateString()) < new Date(dateFrom.toDateString())) {
             this.validity = 'rangeOverflow';
             this.inputList[0].validity = 'rangeOverflow';
+            this.inputList[0].setCustomValidity = this.setCustomValidityRangeOverflow;
           }
 
           // check dateTo
           if (this.inputList[1] && new Date(new Date(this.maxDate).toDateString()) < new Date(dateTo.toDateString())) {
             this.validity = 'rangeOverflow';
             this.inputList[1].validity = 'rangeOverflow';
+            this.inputList[1].setCustomValidity = this.setCustomValidityRangeOverflow;
           }
         }
 
@@ -209,12 +220,14 @@ export class AuroDatePicker extends LitElement {
           if (new Date(new Date(this.minDate).toDateString()) > new Date(dateFrom.toDateString())) {
             this.validity = 'rangeUnderflow';
             this.inputList[0].validity = 'rangeUnderflow';
+            this.inputList[0].setCustomValidity = this.setCustomValidityRangeUnderflow;
           }
 
           // check dateTo
           if (this.inputList[1] && new Date(new Date(this.minDate).toDateString()) > new Date(dateTo.toDateString())) {
             this.validity = 'rangeUnderflow';
             this.inputList[1].validity = 'rangeUnderflow';
+            this.inputList[1].setCustomValidity = this.setCustomValidityRangeUnderflow;
           }
         }
       }
@@ -360,6 +373,7 @@ export class AuroDatePicker extends LitElement {
     this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
       if (this.inputList[0].value !== undefined) {
         this.auroInputHelpText = evt.detail.message;
+        this.requestUpdate();
       }
     });
 
@@ -378,6 +392,7 @@ export class AuroDatePicker extends LitElement {
       this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
         if ((!this.auroInputHelpText || this.auroInputHelpText.length === 0) && this.inputList[1].value !== undefined) {
           this.auroInputHelpText = evt.detail.message;
+          this.requestUpdate();
         }
       });
     }

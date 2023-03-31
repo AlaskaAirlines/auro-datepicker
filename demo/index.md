@@ -12,10 +12,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ## Example(s)
 
 <div class="exampleWrapper">
-  <!-- <auro-datepicker required>
-    <span slot="fromLabel">Departure</span>
-  </auro-datepicker> -->
-  <auro-datepicker range required>
+  <auro-datepicker range required setCustomValidityRangeUnderflow="Range Underflow Custom Message" setCustomValidityRangeOverflow="Range Overflow Custom Message" minDate="03/10/2023" maxDate="03/25/2023">
     <span slot="fromLabel">Departure</span>
     <span slot="toLabel">Return</span>
     <span slot="mobileDateLabel">Roundtrip</span>
