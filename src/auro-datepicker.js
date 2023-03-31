@@ -38,6 +38,7 @@ import './auro-calendar.js';
  * @slot label - Defines the content of the label.
  * @slot helpText - Defines the content of the helpText.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
+ * @fires auroDatepicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
  */
 
@@ -169,15 +170,15 @@ export class AuroDatePicker extends LitElement {
 
   /**
    * Determines the validity state of the element.
-   * @private
+   * @param {Boolean} force - If true, will execute validation when noValidate attribute is also used.
    * @returns {void}
    */
-  validate() {
+  validate(force) {
     this.validity = undefined;
     this.removeAttribute('validity');
     this.setCustomValidity = '';
 
-    const shouldValidate = !this.contains(document.activeElement) && !this.noValidate;
+    const shouldValidate = !this.contains(document.activeElement) && (!this.noValidate || force);
 
     // Handle error attribute change regardless of focus
     if (this.hasAttribute('error')) {
@@ -286,7 +287,7 @@ export class AuroDatePicker extends LitElement {
   notifyValueChanged() {
     let inputEvent = null;
 
-    inputEvent = new Event('input', {
+    inputEvent = new Event('auroDatePicker-valueSet', {
       bubbles: true,
       composed: true,
     });
