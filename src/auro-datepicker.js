@@ -711,56 +711,6 @@ export class AuroDatePicker extends LitElement {
   render() {
     return html`
       <div>
-        <table class="valueTester">
-          <tr class="groups">
-            <td colspan="2">
-              Datepicker
-            </td>
-            <td colspan="2">
-              input
-            </td>
-          </tr>
-          <tr>
-            <td>
-              value
-            </td>
-            <td>
-              valueEnd
-            </td>
-            <td>
-              departure
-            </td>
-            <td>
-              return
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <auro-button target="dpValue" value="03/20/2023" @click=${this.setValue}>03/20/2023</auro-button>
-              <auro-button target="dpValue" value="03/" @click=${this.setValue}>03/</auro-button>
-              <auro-button target="dpValue" value="" @click=${this.setValue}>' '</auro-button>
-              <auro-button target="dpValue" @click=${this.setValue}>undefined</auro-button>
-            </td>
-            <td>
-              <auro-button target="dpValueEnd" value="03/30/2023" @click=${this.setValue}>03/30/2023</auro-button>
-              <auro-button target="dpValueEnd" value="03/" @click=${this.setValue}>03/</auro-button>
-              <auro-button target="dpValueEnd" value="" @click=${this.setValue}>' '</auro-button>
-              <auro-button target="dpValueEnd" @click=${this.setValue}>undefined</auro-button>
-            </td>
-            <td>
-              <auro-button target="inputFrom" value="03/20/2023" @click=${this.setValue}>03/20/2023</auro-button>
-              <auro-button target="inputFrom" value="03/" @click=${this.setValue}>03/</auro-button>
-              <auro-button target="inputFrom" value="" @click=${this.setValue}>' '</auro-button>
-              <auro-button target="inputFrom" @click=${this.setValue}>undefined</auro-button>
-            </td>
-            <td>
-              <auro-button target="inputTo" value="03/30/2023" @click=${this.setValue}>03/30/2023</auro-button>
-              <auro-button target="inputTo" value="03/" @click=${this.setValue}>03/</auro-button>
-              <auro-button target="inputTo" value="" @click=${this.setValue}>' '</auro-button>
-              <auro-button target="inputTo" @click=${this.setValue}>undefined</auro-button>
-            </td>
-          </tr>
-        </table>
         <auro-dropdown
           for="dropdownMenu"
           bordered
