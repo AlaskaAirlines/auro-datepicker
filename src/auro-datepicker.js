@@ -6,7 +6,7 @@
 /* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init */
 
 // If using litElement base class
-import { LitElement, html } from "lit-element";
+import { LitElement, html } from "lit";
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
