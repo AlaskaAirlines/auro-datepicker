@@ -15,8 +15,3 @@ export function registerComponent(name, className) {
     customElements.define(name, class extends className {});
   }
 }
-
-registerComponent('auro-calendar', AuroCalendar);
-registerComponent('auro-calendar-cell', AuroCalendarCell);
-registerComponent('auro-calendar-month', AuroCalendarMonth);
-registerComponent('auro-datepicker', AuroDatePicker);

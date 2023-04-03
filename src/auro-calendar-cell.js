@@ -145,3 +145,7 @@ export class AuroCalendarCell extends LitElement {
     `;
   }
 }
+
+if (!customElements.get('auro-calendar-cell')) {
+  customElements.define('auro-calendar-cell', AuroCalendarCell);
+}
