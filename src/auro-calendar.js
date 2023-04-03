@@ -2,7 +2,8 @@ import { html } from 'lit';
 import styleCss from "./style-auro-calendar-css";
 
 import './auro-calendar-month.js';
-import { RangeDatepicker } from '../node_modules/wc-range-datepicker/dist/src/range-datepicker';
+// import { RangeDatepicker } from '../node_modules/wc-range-datepicker/dist/src/range-datepicker';
+import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -333,4 +334,6 @@ export class AuroCalendar extends RangeDatepicker {
   }
 }
 
-
+if (!customElements.get('auro-calendar')) {
+  customElements.define('auro-calendar', AuroCalendar);
+}

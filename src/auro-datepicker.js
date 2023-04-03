@@ -774,3 +774,9 @@ export class AuroDatePicker extends LitElement {
     `;
   }
 }
+
+// define the name of the custom component
+
+if (!customElements.get('auro-datepicker')) {
+  customElements.define('auro-datepicker', AuroDatePicker);
+}
