@@ -23,11 +23,10 @@
 
 ## Methods
 
-| Method     | Type               | Description                                   |
-|------------|--------------------|-----------------------------------------------|
-| `focus`    | `(): void`         | Focuses the combobox trigger input.           |
-| `setValue` | `(evt: any): void` |                                               |
-| `validate` | `(): void`         | Determines the validity state of the element. |
+| Method     | Type       | Description                                   |
+|------------|------------|-----------------------------------------------|
+| `focus`    | `(): void` | Focuses the combobox trigger input.           |
+| `validate` | `(): void` | Determines the validity state of the element. |
 
 ## Events
 
