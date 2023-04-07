@@ -4,39 +4,49 @@
 
 ## Properties
 
-| Property                        | Attribute                       | Type      | Default     | Description                                      |
-|---------------------------------|---------------------------------|-----------|-------------|--------------------------------------------------|
-| [centralDate](#centralDate)                   | `centralDate`                   | `Object`  |             | The date that determines the currently visible month. |
-| [disabled](#disabled)                      | `disabled`                      | `Boolean` | false       | If set, disables the datepicker.                 |
-| [error](#error)                         | `error`                         | `String`  |             | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
-| [maxDate](#maxDate)                       | `maxDate`                       | `Date`    | "undefined" | Maximum date. All dates after will be disabled.  |
-| [minDate](#minDate)                       | `minDate`                       | `Date`    | "undefined" | Minimum date. All dates before will be disabled. |
-| [noValidate](#noValidate)                    | `noValidate`                    | `Boolean` | false       | If set, disables auto-validation on blur.        |
-| [required](#required)                      | `required`                      | `Boolean` | false       | Populates the `required` attribute on the input. Used for client-side validation. |
-| [setCustomValidity](#setCustomValidity)             | `setCustomValidity`             | `String`  |             | Sets a custom help text message to display for all validityStates. |
-| [setCustomValidityValueMissing](#setCustomValidityValueMissing) | `setCustomValidityValueMissing` | `String`  |             | Help text message to display when validity = `valueMissing`; |
-| [validity](#validity)                      | `validity`                      | `String`  | "undefined" | Specifies the `validityState` this element is in. |
-| [value](#value)                         | `value`                         | `String`  | "undefined" | Value selected for the date picker.              |
+| Property                          | Attribute                         | Type      | Default                                          | Description                                      |
+|-----------------------------------|-----------------------------------|-----------|--------------------------------------------------|--------------------------------------------------|
+| [centralDate](#centralDate)                     | `centralDate`                     | `String`  |                                                  | The date that determines the currently visible month. |
+| [disabled](#disabled)                        | `disabled`                        | `Boolean` | false                                            | If set, disables the datepicker.                 |
+| [error](#error)                           | `error`                           | `String`  |                                                  | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
+| [maxDate](#maxDate)                         | `maxDate`                         | `String`  |                                                  | Maximum date. All dates after will be disabled.  |
+| [minDate](#minDate)                         | `minDate`                         | `String`  |                                                  | Minimum date. All dates before will be disabled. |
+| [monthNames](#monthNames)                      | `monthNames`                      | `array`   | ["January","February","March","April","May","June","July","August","September","October","November","December"] |                                                  |
+| [noValidate](#noValidate)                      | `noValidate`                      | `Boolean` | false                                            | If set, disables auto-validation on blur.        |
+| [range](#range)                           | `range`                           | `Boolean` | false                                            | If set, turns on date range functionality in auro-calendar. |
+| [required](#required)                        | `required`                        | `Boolean` | false                                            | Populates the `required` attribute on the input. Used for client-side validation. |
+| [setCustomValidity](#setCustomValidity)               | `setCustomValidity`               | `String`  |                                                  | Sets a custom help text message to display for all validityStates. |
+| [setCustomValidityRangeOverflow](#setCustomValidityRangeOverflow)  | `setCustomValidityRangeOverflow`  | `String`  |                                                  | Custom help text message to display when validity = `rangeOverflow`. |
+| [setCustomValidityRangeUnderflow](#setCustomValidityRangeUnderflow) | `setCustomValidityRangeUnderflow` | `String`  |                                                  | Custom help text message to display when validity = `rangeUnderflow`. |
+| [setCustomValidityValueMissing](#setCustomValidityValueMissing)   | `setCustomValidityValueMissing`   | `String`  |                                                  | Help text message to display when validity = `valueMissing`; |
+| [validity](#validity)                        | `validity`                        | `String`  | "undefined"                                      | Specifies the `validityState` this element is in. |
+| [value](#value)                           | `value`                           | `String`  | "undefined"                                      | Value selected for the date picker.              |
+| [valueEnd](#valueEnd)                        | `valueEnd`                        | `String`  | "undefined"                                      | Value selected for the second date picker when using date range. |
 
 ## Methods
 
-| Method  | Type       | Description                         |
-|---------|------------|-------------------------------------|
-| [focus](#focus) | `(): void` | Focuses the combobox trigger input. |
+| Method     | Type               | Description                                   |
+|------------|--------------------|-----------------------------------------------|
+| [focus](#focus)    | `(): void`         | Focuses the combobox trigger input.           |
+| [setValue](#setValue) | `(evt: any): void` |                                               |
+| [validate](#validate) | `(): void`         | Determines the validity state of the element. |
 
 ## Events
 
-| Event                     | Type               | Description                                      |
-|---------------------------|--------------------|--------------------------------------------------|
-| `auroDatePicker-ready`    | `CustomEvent<any>` | Notifies that the component has finished initializing. |
-| `auroDatePicker-valueSet` | `CustomEvent<any>` | Notifies that the component has a new value set. |
+| Event                      | Type                              | Description                                      |
+|----------------------------|-----------------------------------|--------------------------------------------------|
+| `auroDatePicker-ready`     | `CustomEvent<any>`                | Notifies that the component has finished initializing. |
+| `auroDatePicker-valueSet`  |                                   | Notifies that the component has a new value set. |
+| `auroDatepicker-validated` | `CustomEvent<{ validity: any; }>` | Notifies that the component value(s) have been validated. |
 
 ## Slots
 
-| Name       | Description                          |
-|------------|--------------------------------------|
-| [helpText](#helpText) | Defines the content of the helpText. |
-| [label](#label)    | Defines the content of the label.    |
+| Name              | Description                                      |
+|-------------------|--------------------------------------------------|
+| [fromLabel](#fromLabel)       | Defines the label content for the first input.   |
+| [helpText](#helpText)        | Defines the content of the helpText.             |
+| [mobileDateLabel](#mobileDateLabel) | Defines the content to display above selected dates in the mobile layout. |
+| [toLabel](#toLabel)         | Defines the label content for the second input when the `range` attribute is used. |
 
 ## API Examples
 
@@ -46,7 +56,8 @@
   <div>
     <div class="exampleWrapper">
       <auro-datepicker>
-        <span slot="label">Choose a date</span>
+        <span slot="fromLabel">Choose a date</span>
+        <span slot="mobileDateLabel">Choose a date</span>
       </auro-datepicker>
     </div>
 <auro-accordion lowProfile justifyRight>
@@ -54,7 +65,8 @@
 
 ```html
 <auro-datepicker>
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -133,16 +145,20 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
 To give a higher limit you can bind a date to the `maxDate` property.
 
 <div class="exampleWrapper">
-  <auro-datepicker maxDate="03/05/2023">
-    <span slot="label">Choose a date</span>
+  <auro-datepicker range required maxDate="03/05/2023" setCustomValidityRangeOverflow="Selected date is after maxDate">
+    <span slot="fromLabel">Departure</span>
+    <span slot="toLabel">Return</span>
+    <span slot="mobileDateLabel">Roundtrip</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker maxDate="03/05/2023">
-  <span slot="label">Choose a date</span>
+<auro-datepicker range required maxDate="03/05/2023" setCustomValidityRangeOverflow="Selected date is after maxDate">
+  <span slot="fromLabel">Departure</span>
+  <span slot="toLabel">Return</span>
+  <span slot="mobileDateLabel">Roundtrip</span>
 </auro-datepicker>
 ```
 
@@ -206,16 +222,18 @@ export function pastMaxDate(elem) {
 To give a lower limit you can bind a date to the `minDate` property.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="03/05/2023">
-    <span slot="label">Choose a date</span>
+  <auro-datepicker minDate="03/05/2023" setCustomValidityRangeUnderflow="Selected date is before minDate">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="03/05/2023">
-  <span slot="label">Choose a date</span>
+<auro-datepicker minDate="03/05/2023" setCustomValidityRangeUnderflow="Selected date is before minDate">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -424,7 +442,8 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="label">Choose a date</span>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -432,7 +451,8 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 ```html
 <auro-datepicker>
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
