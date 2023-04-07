@@ -188,9 +188,6 @@ export class AuroDatePicker extends LitElement {
       }
     }
 
-
-    console.warn('+++++ validate()', this.validity);
-
     // pass correct error state to dropdown based on validity state
     if (this.validity) {
       if (this.validity !== 'valid') {
@@ -666,29 +663,6 @@ export class AuroDatePicker extends LitElement {
 
     if (this.hasAttribute('valueEnd') && this.getAttribute('valueEnd').length > 0) {
       this.calendar.dateTo = new Date(this.valueEnd).getTime();
-    }
-  }
-
-  setValue(evt) {
-    const target = evt.target.getAttribute('target');
-    let value = undefined;
-
-    if (evt.target.hasAttribute('value')) {
-      value = evt.target.getAttribute('value');
-    }
-
-    if (target === 'dpValue') {
-      this.value = value;
-    } else if (target === 'dpValueEnd') {
-      this.valueEnd = value;
-    } else if (target === 'inputFrom') {
-      this.inputList[0].value = value;
-    } else if (target === 'inputTo') {
-      this.inputList[1].value = value;
-    } else if (target === 'calendarFrom') {
-      this.calendar.dateFrom = value;
-    } else if (target === 'calendarTo') {
-      this.calendar.dateTo = value;
     }
   }
 
