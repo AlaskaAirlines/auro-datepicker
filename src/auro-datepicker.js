@@ -17,6 +17,8 @@ import { LitElement, html } from "lit";
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
 
+import '@aurodesignsystem/auro-input';
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {String} value - Value selected for the date picker.
@@ -186,6 +188,9 @@ export class AuroDatePicker extends LitElement {
       }
     }
 
+
+    console.warn('+++++ validate()', this.validity);
+
     // pass correct error state to dropdown based on validity state
     if (this.validity) {
       if (this.validity !== 'valid') {
@@ -270,18 +275,8 @@ export class AuroDatePicker extends LitElement {
       }
     });
 
-    this.dropdown.addEventListener('auroDropdown-toggled', (evt) => {
+    this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-
-      if (!evt.detail.expanded && this.inputList[0].value !== undefined) {
-        if (!this.contains(document.activeElement)) {
-          this.inputList[0].validate(true);
-
-          if (this.inputList[1] && this.inputList[1].value !== undefined) {
-            this.inputList[1].validate(true);
-          }
-        }
-      }
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
@@ -596,6 +591,20 @@ export class AuroDatePicker extends LitElement {
     document.activeElement.addEventListener('focusin', () => {
       if (document.activeElement !== document.querySelector('body') && !this.contains(document.activeElement)) {
         this.dropdown.hide();
+      }
+    });
+
+    this.addEventListener('focusout', (evt) => {
+      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+
+      if (!evt.detail.expanded && this.inputList[0].value !== undefined) {
+        if (!this.contains(document.activeElement)) {
+          this.inputList[0].validate(true);
+
+          if (this.inputList[1] && this.inputList[1].value !== undefined) {
+            this.inputList[1].validate(true);
+          }
+        }
       }
     });
 
