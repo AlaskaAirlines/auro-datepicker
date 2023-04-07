@@ -19,7 +19,7 @@ The following sections are editable by making changes to the following files:
 
 # Datepicker
 
-The `<auro-datepicker>` element allows users to select a date, either with text input or by displaying a calendar. The `<auro-datepicker>` element is the combination of [auro-dropdown](http://auro.alaskaair.com/components/auro/dropdown), [auro-input](http://auro.alaskaair.com/components/auro/input), and Auro's extension of [Lion calendar](https://lion-web.netlify.app/components/calendar/overview/).
+The `<auro-datepicker>` element allows users to select a date, or a pair of dates identifying a range, either with text input or by making a section in a calendar. The `<auro-datepicker>` element is the combination of [auro-dropdown](http://auro.alaskaair.com/components/auro/dropdown), [auro-input](http://auro.alaskaair.com/components/auro/input), and Auro's extension of [wc-range-datepicker](https://www.npmjs.com/package/wc-range-datepicker).
 
 ## UI development browser support
 
@@ -72,7 +72,8 @@ import "@aurodesignsystem/auro-datepicker";
 
 ```html
 <auro-datepicker>
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -104,7 +105,7 @@ The following Auro peer dependencies must be included.
 The `<auro-datepicker>` element should be used in situations where users may:
 
 * select a single date
-* select a starting date and an ending date (with two separate datepickers)
+* select a pair of dates which identify a calendar range
 
 ## API Code Examples
 
@@ -112,7 +113,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 
 ```html
 <auro-datepicker>
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 

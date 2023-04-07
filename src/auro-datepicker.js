@@ -175,7 +175,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   validate() {
-    const shouldValidate = !this.contains(document.activeElement) && (!this.noValidate);
+    const shouldValidate = !this.contains(document.activeElement) && !this.noValidate;
 
     if (shouldValidate) {
       this.validity = this.inputList[0].validity;
@@ -337,7 +337,7 @@ export class AuroDatePicker extends LitElement {
         }
       });
 
-      this.inputList[1].addEventListener('auroInput-validated', (evt) => {
+      this.inputList[1].addEventListener('auroInput-validated', () => {
         this.validate();
       });
 
@@ -432,6 +432,7 @@ export class AuroDatePicker extends LitElement {
 
   /**
    * Return appropriate error message.
+   * @param {Object} evt - Event passed in from auro-input when the event triggered this function.
    * @private
    */
   getErrorMessage(evt) {
@@ -446,7 +447,7 @@ export class AuroDatePicker extends LitElement {
       }
 
       if (inputClass === 'dateTo') {
-        if (!this.errorMessage && this.inputList[1].validity && this.inputList[1].validity !== 'valid'){
+        if (!this.errorMessage && this.inputList[1].validity && this.inputList[1].validity !== 'valid') {
           this.errorMessage = evt.target.errorMessage;
         }
       }
@@ -745,7 +746,7 @@ export class AuroDatePicker extends LitElement {
             ${!this.validity || this.validity === undefined || this.validity === 'valid'
               ? html`
                 <slot name="helpText"></slot>
-              `: html`
+              ` : html`
                 <p class="datepickerElement-helpText" id="${this.uniqueId}" role="alert" aria-live="assertive" part="helpText">
                   ${this.errorMessage}
                 </p>`

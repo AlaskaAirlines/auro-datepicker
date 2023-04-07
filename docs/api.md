@@ -23,11 +23,11 @@
 
 ## Methods
 
-| Method     | Type                     | Description                                      |
-|------------|--------------------------|--------------------------------------------------|
-| `focus`    | `(): void`               | Focuses the combobox trigger input.              |
-| `setValue` | `(evt: any): void`       |                                                  |
-| `validate` | `(force: boolean): void` | Determines the validity state of the element.<br /><br />**force**: If true, will execute validation when noValidate attribute is also used. |
+| Method     | Type               | Description                                   |
+|------------|--------------------|-----------------------------------------------|
+| `focus`    | `(): void`         | Focuses the combobox trigger input.           |
+| `setValue` | `(evt: any): void` |                                               |
+| `validate` | `(): void`         | Determines the validity state of the element. |
 
 ## Events
 
@@ -39,7 +39,9 @@
 
 ## Slots
 
-| Name       | Description                          |
-|------------|--------------------------------------|
-| `helpText` | Defines the content of the helpText. |
-| `label`    | Defines the content of the label.    |
+| Name              | Description                                      |
+|-------------------|--------------------------------------------------|
+| `fromLabel`       | Defines the label content for the first input.   |
+| `helpText`        | Defines the content of the helpText.             |
+| `mobileDateLabel` | Defines the content to display above selected dates in the mobile layout. |
+| `toLabel`         | Defines the label content for the second input when the `range` attribute is used. |
