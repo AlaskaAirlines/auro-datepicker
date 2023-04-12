@@ -463,6 +463,8 @@ export class AuroDatePicker extends LitElement {
       if (this.value && this.validDateStr(this.value)) {
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
+          this.calendar.month = new Date(this.value).getMonth() + 1;
+          this.calendar.year = new Date(this.value).getFullYear();
         }
       } else {
         if (this.inputList[0].value !== this.value) {
