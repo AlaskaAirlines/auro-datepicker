@@ -18,6 +18,8 @@ import styleCss from "./style-css.js";
 import './auro-calendar.js';
 
 import '@aurodesignsystem/auro-input';
+import '@aurodesignsystem/auro-dropdown';
+import '@aurodesignsystem/auro-input';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
