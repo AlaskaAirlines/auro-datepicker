@@ -97,7 +97,7 @@ export class AuroDatePicker extends LitElement {
         reflect: true
       },
       noValidate: {
-        type: String
+        type: Boolean
       },
       setCustomValidity: {
         type: String,
@@ -598,7 +598,7 @@ export class AuroDatePicker extends LitElement {
     this.addEventListener('focusout', (evt) => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
 
-      if (!evt.detail.expanded && this.inputList[0].value !== undefined) {
+      if (!this.noValidate && !evt.detail.expanded && this.inputList[0].value !== undefined) {
         if (!this.contains(document.activeElement)) {
           this.inputList[0].validate(true);
 
