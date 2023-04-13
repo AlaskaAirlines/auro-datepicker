@@ -117,7 +117,6 @@ If set, disables the datepicker.
 
 Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
   <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>

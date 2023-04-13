@@ -518,6 +518,19 @@ export class AuroDatePicker extends LitElement {
       }
     }
 
+    if (changedProperties.has('error')) {
+      if (this.error) {
+        this.inputList[0].error = this.error;
+      } else {
+        this.dropdown.removeAttribute('error');
+        this.inputList[0].removeAttribute('error');
+        this.errorMessage = undefined;
+        this.inputList[0].validate(true);
+      }
+
+      this.requestUpdate();
+    }
+
     if (this.value && this.valueEnd && this.validDateStr(this.value) && this.validDateStr(this.valueEnd)) {
       if (new Date(this.value) > new Date(this.valueEnd)) {
         this.valueEnd = undefined;
