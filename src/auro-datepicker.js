@@ -176,6 +176,7 @@ export class AuroDatePicker extends LitElement {
 
   /**
    * Determines the validity state of the element.
+   * @private
    * @returns {void}
    */
   validate() {
