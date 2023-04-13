@@ -25,10 +25,9 @@
 
 ## Methods
 
-| Method     | Type       | Description                                   |
-|------------|------------|-----------------------------------------------|
-| [focus](#focus)    | `(): void` | Focuses the combobox trigger input.           |
-| [validate](#validate) | `(): void` | Determines the validity state of the element. |
+| Method  | Type       | Description                         |
+|---------|------------|-------------------------------------|
+| [focus](#focus) | `(): void` | Focuses the combobox trigger input. |
 
 ## Events
 
@@ -118,23 +117,23 @@ If set, disables the datepicker.
 Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
 <div class="exampleWrapper">
-  <auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
-  <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
-  <br/><br/>
   <auro-datepicker error="Custom error message" id="errorExample">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
+  <br/><br/>
+  <auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
+  <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
-<auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
-<br/><br/>
 <auro-datepicker error="Custom error message" id="errorExample">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
+<br/><br/>
+<auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
+<auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
 ```
 
 </auro-accordion>
@@ -414,9 +413,23 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
 
 #### valueEnd
 
-Only applies to a datepicker with the `range` attribute. Value of the secod inpot, end date, selected for the datepicker. Can be used to pre-set the value of the datepicker.
+Value of the second input (end date), selected for the datepicker. Can be used to pre-set the value of the datepicker. Only applicable for a datepicker with the `range` attribute.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <auro-datepicker id="valueEndExample" range valueEnd="03/03/2023">
+    <span slot="label">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker id="valueEndExample" range valueEnd="03/03/2023">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
 
 ### Method Examples
 
@@ -424,9 +437,8 @@ Only applies to a datepicker with the `range` attribute. Value of the secod inpo
 
 The focus method will apply focus state to the datepicker's input field.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
-  <auro-button id="focusExampleBtn">Apply focus to combobox</auro-button>
+  <auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
   <br /><br />
   <auro-datepicker id="focusExample">
     <span slot="label">Choose a date</span>
@@ -436,15 +448,16 @@ The focus method will apply focus state to the datepicker's input field.
   <span slot="trigger">See code</span>
 
 ```js
-export function focusExample(elem) {
-  document.querySelector('#focusExampleBtn').addEventListener('click', () => {
-    elem.focus();
-  })
-}
+const focusExample = document.querySelector('#focusExample');
+const focusExampleBtn = document.querySelector('#focusExampleBtn');
+
+focusExampleBtn.addEventListener('click', () => {
+  focusExample.focus();
+});
 ```
 
 ```html
-<auro-button id="focusExampleBtn">Apply focus to combobox</auro-button>
+<auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
 <br /><br />
 <auro-datepicker id="focusExample">
   <span slot="label">Choose a date</span>
@@ -453,19 +466,29 @@ export function focusExample(elem) {
 
 </auro-accordion>
 
-#### validate
-
-The validate method will cause the component to re-validate the current value(s) of the datepicker.
-
-<h1 style="color:red;">INSERT EXAMPLE</h1>
-
 ### Slot Examples
 
 #### fromLabel
 
 Sets the label used for the input. When the `range` attribute is used this is the first of two inputs.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <auro-datepicker>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
 
 #### helpText
 
@@ -493,13 +516,47 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 
 Sets the label used for the selected date display at the top of the bib when viewed in the mobile layout. To view this demo, set your window to a mobile screen size.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <auro-datepicker>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
 
 #### toLabel
 
 Only for use with the `range` attribute. Sets the label for the second input.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <auro-datepicker range>
+    <span slot="fromLabel">Departure</span>
+    <span slot="toLabel">Return</span>
+    <span slot="mobileDateLabel">Roundtrip</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker range>
+  <span slot="fromLabel">Departure</span>
+  <span slot="toLabel">Return</span>
+  <span slot="mobileDateLabel">Roundtrip</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
 
 ## Functional Examples
 
@@ -507,7 +564,6 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value **and** in successful scenarios, an alert will appear. Open the JavaScript console in the browser's developer tools to see the `console.warn` message that appears after the `auroDatePicker-valueSet` event has been triggered.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="datePickerValueAlert">
     <span slot="label">Choose a date</span>
@@ -517,12 +573,12 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
   <span slot="trigger">See code</span>
 
 ```js
-export function valueAlert(elem) {
-  elem.addEventListener('auroDatePicker-valueSet', () => {
-    console.warn('Select value changed to:', elem.value);
-    alert(`Select value changed to: ${elem.value}`);
-  })
-}
+const valueAlertExample = document.querySelector('#datePickerValueAlert');
+
+valueAlertExample.addEventListener('auroDatePicker-valueSet', () => {
+  console.warn('Select value changed to:', valueAlertExample.value);
+  alert(`Select value changed to: ${valueAlertExample.value}`);
+})
 ```
 
 ```html

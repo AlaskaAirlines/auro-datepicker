@@ -1,6 +1,6 @@
-export function valueAlert(elem) {
-  elem.addEventListener('auroDatePicker-valueSet', () => {
-    console.warn('Select value changed to:', elem.value);
-    alert(`Select value changed to: ${elem.value}`);
-  })
-}
+const valueAlertExample = document.querySelector('#datePickerValueAlert');
+
+valueAlertExample.addEventListener('auroDatePicker-valueSet', () => {
+  console.warn('Select value changed to:', valueAlertExample.value);
+  alert(`Select value changed to: ${valueAlertExample.value}`);
+})

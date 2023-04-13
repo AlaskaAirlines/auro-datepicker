@@ -241,17 +241,25 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
 
 #### valueEnd
 
-Only applies to a datepicker with the `range` attribute. Value of the secod inpot, end date, selected for the datepicker. Can be used to pre-set the value of the datepicker.
+Value of the second input (end date), selected for the datepicker. Can be used to pre-set the value of the datepicker. Only applicable for a datepicker with the `range` attribute.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/valueEnd.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/valueEnd.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 ### Method Examples
 
 #### focus
 
 The focus method will apply focus state to the datepicker's input field.
-
-<h1 style="color:red;">FIX EXAMPLE</h1>
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/focus.html) -->
@@ -267,19 +275,23 @@ The focus method will apply focus state to the datepicker's input field.
 
 </auro-accordion>
 
-#### validate
-
-The validate method will cause the component to re-validate the current value(s) of the datepicker.
-
-<h1 style="color:red;">INSERT EXAMPLE</h1>
-
 ### Slot Examples
 
 #### fromLabel
 
 Sets the label used for the input. When the `range` attribute is used this is the first of two inputs.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 #### helpText
 
@@ -301,21 +313,40 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 
 Sets the label used for the selected date display at the top of the bib when viewed in the mobile layout. To view this demo, set your window to a mobile screen size.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 #### toLabel
 
 Only for use with the `range` attribute. Sets the label for the second input.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basicRange.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 ## Functional Examples
 
 ### Watch for value changes
 
 The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value **and** in successful scenarios, an alert will appear. Open the JavaScript console in the browser's developer tools to see the `console.warn` message that appears after the `auroDatePicker-valueSet` event has been triggered.
-
-<h1 style="color:red;">FIX EXAMPLE</h1>
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/alertValue.html) -->
