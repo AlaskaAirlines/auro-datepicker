@@ -92,8 +92,6 @@ Setting the `maxDate` attribute to a date earlier than the auro-datepicker `valu
 
 This example demonstrates that behavior.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/updateMaxDate.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -101,7 +99,7 @@ This example demonstrates that behavior.
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/maxDate.js) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.html) -->
@@ -132,8 +130,6 @@ Setting the `minDate` attribute to a date later than the auro-datepicker `value`
 
 This example demonstrates that behavior.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
-
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/updateMinDate.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -141,7 +137,7 @@ This example demonstrates that behavior.
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/minDate.js) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.js) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.html) -->
@@ -220,7 +216,20 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 Specifies the `validityState` the element is in. Upon first interaction, or presetting the `error` attribute, the component will validate on `focusout`. After validation, `validityState` can be queried from the component by using the following JavaScript.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/validity.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.js) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 
 #### value
