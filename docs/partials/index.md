@@ -14,41 +14,27 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ### Basic
 
 <div class="exampleWrapper">
-  <auro-datepicker>
-    <span slot="fromLabel">Departure</span>
-    <span slot="mobileDateLabel">Departure</span>
-  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-```html
-<auro-datepicker>
-  <span slot="fromLabel">Departure</span>
-  <span slot="mobileDateLabel">Departure</span>
-</auro-datepicker>
-```
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
 ### Range
 
 <div class="exampleWrapper">
-  <auro-datepicker range>
-    <span slot="fromLabel">Departure</span>
-    <span slot="toLabel">Return</span>
-    <span slot="mobileDateLabel">Roundtrip</span>
-  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basicRange.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-```html
-<auro-datepicker range>
-  <span slot="fromLabel">Departure</span>
-  <span slot="toLabel">Return</span>
-  <span slot="mobileDateLabel">Roundtrip</span>
-</auro-datepicker>
-```
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>

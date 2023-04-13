@@ -166,7 +166,6 @@ Setting the `maxDate` attribute to a date earlier than the auro-datepicker `valu
 
 This example demonstrates that behavior.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="maxDateExample">
     <span slot="label">Choose a date</span>
@@ -178,30 +177,39 @@ This example demonstrates that behavior.
   <span slot="trigger">See code</span>
 
 ```js
-export function pastMaxDate(elem) {
-  const changeMaxDateButton = document.getElementById('maxDateChange');
-  const resetButton = document.getElementById('resetMaxDate');
+function formatDateString(date) {
+  /* eslint-disable prefer-template, no-magic-numbers */
+  const dd = String("0" + date.getDate()).slice(-2);
+  const mm = String("0" + (date.getMonth() + 1)).slice(-2);
+  /* eslint-enable prefer-template, no-magic-numbers */
+  const yyyy = date.getFullYear();
 
-  const today = elem.formatDateString(new Date());
-
-  let nextWeek = new Date();
-  let addOneWeek = nextWeek.getDate() + 7;
-
-  nextWeek.setDate(addOneWeek);
-  nextWeek = elem.formatDateString(nextWeek);
-
-  elem.setAttribute('value', nextWeek);
-  elem.setAttribute('maxDate', nextWeek);
-
-  changeMaxDateButton.addEventListener('click', () => {
-    elem.setAttribute('maxDate', today);
-  });
-
-  resetButton.addEventListener('click', () => {
-    elem.setAttribute('value', nextWeek);
-    elem.setAttribute('maxDate', nextWeek);
-  });
+  return `${mm}/${dd}/${yyyy}`;
 }
+
+const maxDateExample = document.getElementById('maxDateExample');
+const changeMaxDateButton = document.getElementById('maxDateChange');
+const resetButton = document.getElementById('resetMaxDate');
+
+const today = formatDateString(new Date());
+
+let nextWeek = new Date();
+let addOneWeek = nextWeek.getDate() + 7;
+
+nextWeek.setDate(addOneWeek);
+nextWeek = formatDateString(nextWeek);
+
+maxDateExample.setAttribute('value', nextWeek);
+maxDateExample.setAttribute('maxDate', nextWeek);
+
+changeMaxDateButton.addEventListener('click', () => {
+  maxDateExample.setAttribute('maxDate', today);
+});
+
+resetButton.addEventListener('click', () => {
+  maxDateExample.setAttribute('value', nextWeek);
+  maxDateExample.setAttribute('maxDate', nextWeek);
+});
 ```
 
 ```html
@@ -242,7 +250,6 @@ Setting the `minDate` attribute to a date later than the auro-datepicker `value`
 
 This example demonstrates that behavior.
 
-<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="minDateExample">
     <span slot="label">Choose a date</span>
@@ -254,30 +261,39 @@ This example demonstrates that behavior.
   <span slot="trigger">See code</span>
 
 ```js
-export function futureMinDate(elem) {
-  const changeMinDateButton = document.getElementById('minDateChange');
-  const resetButton = document.getElementById('resetMinDate');
+function formatDateString(date) {
+  /* eslint-disable prefer-template, no-magic-numbers */
+  const dd = String("0" + date.getDate()).slice(-2);
+  const mm = String("0" + (date.getMonth() + 1)).slice(-2);
+  /* eslint-enable prefer-template, no-magic-numbers */
+  const yyyy = date.getFullYear();
 
-  const today = elem.formatDateString(new Date());
-
-  let nextWeek = new Date();
-  let addOneWeek = nextWeek.getDate() + 7;
-
-  nextWeek.setDate(addOneWeek);
-  nextWeek = elem.formatDateString(nextWeek);
-
-  elem.setAttribute('value', today);
-  elem.setAttribute('minDate', today);
-
-  changeMinDateButton.addEventListener('click', () => {
-    elem.setAttribute('minDate', nextWeek);
-  });
-
-  resetButton.addEventListener('click', () => {
-    elem.setAttribute('value', today);
-    elem.setAttribute('minDate', today);
-  });
+  return `${mm}/${dd}/${yyyy}`;
 }
+
+const minDateExample = document.getElementById('minDateExample');
+const changeMinDateButton = document.getElementById('minDateChange');
+const resetButton = document.getElementById('resetMinDate');
+
+const today = formatDateString(new Date());
+
+let nextWeek = new Date();
+let addOneWeek = nextWeek.getDate() + 7;
+
+nextWeek.setDate(addOneWeek);
+nextWeek = formatDateString(nextWeek);
+
+minDateExample.setAttribute('value', today);
+minDateExample.setAttribute('minDate', today);
+
+changeMinDateButton.addEventListener('click', () => {
+  minDateExample.setAttribute('minDate', nextWeek);
+});
+
+resetButton.addEventListener('click', () => {
+  minDateExample.setAttribute('value', today);
+  minDateExample.setAttribute('minDate', today);
+});
 ```
 
 ```html
@@ -389,7 +405,33 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 Specifies the `validityState` the element is in. Upon first interaction, or presetting the `error` attribute, the component will validate on `focusout`. After validation, `validityState` can be queried from the component by using the following JavaScript.
 
-<h1 style="color:red;">INSERT EXAMPLE</h1>
+<div class="exampleWrapper">
+  <auro-datepicker required id="validityExample">
+    <span slot="fromLabel">Choose a date</span>
+  </auro-datepicker>
+  <auro-button id="validityExampleBtn">Get validity</auro-button>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```js
+const validityExampleExample = document.querySelector('#validityExample');
+const validityExampleExampleBtn = document.querySelector('#validityExampleBtn');
+
+validityExampleExampleBtn.addEventListener('click', () => {
+  console.warn('Validity set to:', validityExampleExample.validity);
+  alert(`Validity set to: ${validityExampleExample.validity}`);
+})
+```
+
+```html
+<auro-datepicker required id="validityExample">
+  <span slot="fromLabel">Choose a date</span>
+</auro-datepicker>
+<auro-button id="validityExampleBtn">Get validity</auro-button>
+```
+
+</auro-accordion>
 
 #### value
 
