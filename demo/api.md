@@ -25,11 +25,10 @@
 
 ## Methods
 
-| Method     | Type               | Description                                   |
-|------------|--------------------|-----------------------------------------------|
-| [focus](#focus)    | `(): void`         | Focuses the combobox trigger input.           |
-| [setValue](#setValue) | `(evt: any): void` |                                               |
-| [validate](#validate) | `(): void`         | Determines the validity state of the element. |
+| Method     | Type       | Description                                   |
+|------------|------------|-----------------------------------------------|
+| [focus](#focus)    | `(): void` | Focuses the combobox trigger input.           |
+| [validate](#validate) | `(): void` | Determines the validity state of the element. |
 
 ## Events
 
@@ -118,6 +117,7 @@ If set, disables the datepicker.
 
 Sets a persistent error state (e.g. an error state returned from the server). This error state will override all default validation until the error attribute is removed from the datepicker.
 
+<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-button id="undefinedValueExampleBtnAddError">Set Error</auro-button>
   <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
@@ -142,23 +142,21 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
 
 #### maxDate
 
-To give a higher limit you can bind a date to the `maxDate` property.
+To give a higher limit you can bind a date to the `maxDate` property. It is recommended to use the `setCustomValidityRangeOverflow` attribute to define an error message to display when validation fails the maximum date restriction.
 
 <div class="exampleWrapper">
-  <auro-datepicker range required maxDate="03/05/2023" setCustomValidityRangeOverflow="Selected date is after maxDate">
-    <span slot="fromLabel">Departure</span>
-    <span slot="toLabel">Return</span>
-    <span slot="mobileDateLabel">Roundtrip</span>
+  <auro-datepicker maxDate="03/25/2023" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker range required maxDate="03/05/2023" setCustomValidityRangeOverflow="Selected date is after maxDate">
-  <span slot="fromLabel">Departure</span>
-  <span slot="toLabel">Return</span>
-  <span slot="mobileDateLabel">Roundtrip</span>
+<auro-datepicker maxDate="03/25/2023" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
@@ -170,6 +168,7 @@ Setting the `maxDate` attribute to a date earlier than the auro-datepicker `valu
 
 This example demonstrates that behavior.
 
+<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="maxDateExample">
     <span slot="label">Choose a date</span>
@@ -219,10 +218,10 @@ export function pastMaxDate(elem) {
 
 #### minDate
 
-To give a lower limit you can bind a date to the `minDate` property.
+To give a lower limit you can bind a date to the `minDate` property. It is recommended to use the `setCustomValidityRangeUnderflow` attribute to define an error message to display when validation fails the minimum date restriction.
 
 <div class="exampleWrapper">
-  <auro-datepicker minDate="03/05/2023" setCustomValidityRangeUnderflow="Selected date is before minDate">
+  <auro-datepicker minDate="03/25/2028" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -231,7 +230,7 @@ To give a lower limit you can bind a date to the `minDate` property.
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker minDate="03/05/2023" setCustomValidityRangeUnderflow="Selected date is before minDate">
+<auro-datepicker minDate="03/25/2028" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
@@ -245,6 +244,7 @@ Setting the `minDate` attribute to a date later than the auro-datepicker `value`
 
 This example demonstrates that behavior.
 
+<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="minDateExample">
     <span slot="label">Choose a date</span>
@@ -292,13 +292,87 @@ export function futureMinDate(elem) {
 
 </auro-accordion>
 
+#### monthNames
+
+May be used to provide localized month names. These names will only be shown in the calendar when viewed on a mobile device.
+
+<div class="exampleWrapper">
+  <auro-datepicker id="monthNamesExample">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```js
+const monthNamesExample = document.querySelector('#monthNamesExample');
+const spanishMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+monthNamesExample.monthNames = spanishMonths;
+```
+
+```html
+<auro-datepicker id="monthNamesExample">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
+
+#### noValidate
+
+When set, the datepicker will not validate when navigating away from the component.
+
+<div class="exampleWrapper">
+  <auro-datepicker required noValidate>
+    <span slot="fromLabel">Choose a date</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker required noValidate>
+  <span slot="fromLabel">Choose a date</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
+
+#### range
+
+When used, the datepicker will display two inputs and the component will support selection of dates for a start and end date.
+
+<div class="exampleWrapper">
+  <auro-datepicker range>
+    <span slot="fromLabel">Departure</span>
+    <span slot="toLabel">Return</span>
+    <span slot="mobileDateLabel">Roundtrip</span>
+  </auro-datepicker>
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+```html
+<auro-datepicker range>
+  <span slot="fromLabel">Departure</span>
+  <span slot="toLabel">Return</span>
+  <span slot="mobileDateLabel">Roundtrip</span>
+</auro-datepicker>
+```
+
+</auro-accordion>
+
 #### required
 
 Populates the `required` attribute on the input. Used for client-side validation.
 
 <div class="exampleWrapper">
   <auro-datepicker required>
-    <span slot="label">Choose a date</span>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -306,67 +380,52 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 ```html
 <auro-datepicker required>
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
 </auro-accordion>
 
+#### validity
+
+Specifies the `validityState` the element is in. Upon first interaction, or presetting the `error` attribute, the component will validate on `focusout`. After validation, `validityState` can be queried from the component by using the following JavaScript.
+
+<h1 style="color:red;">INSERT EXAMPLE</h1>
+
 #### value
 
-Value selected for the datepicker. Can be used to pre-set the value of the datepicker.
+Value selected for the datepicker. Can be used to pre-set the value of the datepicker. When the `range` attribute is used, `value` is for the first input.
 
 <div class="exampleWrapper">
-  <auro-datepicker id="valueExample">
+  <auro-datepicker id="valueExample" value="02/02/2022">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
-  <auro-button id="validValueExampleBtn">Set To Valid Date</auro-button>
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker id="valueExample">
+<auro-datepicker id="valueExample" value="02/02/2022">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
-<auro-button id="validValueExampleBtn">Set To Valid Date</auro-button>
-```
-
-```js
-export function valueExample(elem) {
-  function formatDateString(date) {
-    /* eslint-disable prefer-template, no-magic-numbers */
-    const dd = String("0" + date.getDate()).slice(-2);
-    const mm = String("0" + (date.getMonth() + 1)).slice(-2);
-    /* eslint-enable prefer-template, no-magic-numbers */
-    const yyyy = date.getFullYear();
-
-    return `${mm}/${dd}/${yyyy}`;
-  }
-
-  elem.minDate = new Date();
-  elem.maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
-
-  // Preset the value
-  const presetDate = new Date().setDate(new Date().getDate() + 4);
-  elem.value = formatDateString(new Date(presetDate));
-
-  // valid date
-  document.querySelector('#validValueExampleBtn').addEventListener('click', () => {
-    const validDate = new Date().setDate(new Date().getDate() + 60);
-    elem.value = formatDateString(new Date(validDate));
-  });
-}
 ```
 
 </auro-accordion>
+
+#### valueEnd
+
+Only applies to a datepicker with the `range` attribute. Value of the secod inpot, end date, selected for the datepicker. Can be used to pre-set the value of the datepicker.
+
+<h1 style="color:red;">INSERT EXAMPLE</h1>
 
 ### Method Examples
 
 #### focus
 
-The focus method will apply focus state to the datepicker input field.
+The focus method will apply focus state to the datepicker's input field.
 
+<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-button id="focusExampleBtn">Apply focus to combobox</auro-button>
   <br /><br />
@@ -395,7 +454,19 @@ export function focusExample(elem) {
 
 </auro-accordion>
 
+#### validate
+
+The validate method will cause the component to re-validate the current value(s) of the datepicker.
+
+<h1 style="color:red;">INSERT EXAMPLE</h1>
+
 ### Slot Examples
+
+#### fromLabel
+
+Sets the label used for the input. When the `range` attribute is used this is the first of two inputs.
+
+<h1 style="color:red;">INSERT EXAMPLE</h1>
 
 #### helpText
 
@@ -418,45 +489,18 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
 ```
 
 </auro-accordion>
-<div class="exampleWrapper">
-  <auro-datepicker error value="01/01/2030">
-    <span slot="label">Choose a date</span>
-    <span slot="helpText">Choose a date must be today or earlier.</span>
-  </auro-datepicker>
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
 
-```html
-<auro-datepicker error value="01/01/2030">
-  <span slot="label">Choose a date</span>
-  <span slot="helpText">Choose a date must be today or earlier.</span>
-</auro-datepicker>
-```
+#### mobileDateLabel
 
-</auro-accordion>
+Sets the label used for the selected date display at the top of the bib when viewed in the mobile layout. To view this demo, set your window to a mobile screen size.
 
-#### label
+<h1 style="color:red;">INSERT EXAMPLE</h1>
 
-Sets the label used in the trigger. All datepickers should include a definition for the label slot.
+#### toLabel
 
-<div class="exampleWrapper">
-  <auro-datepicker>
-    <span slot="fromLabel">Choose a date</span>
-    <span slot="mobileDateLabel">Choose a date</span>
-  </auro-datepicker>
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
+Only for use with the `range` attribute. Sets the label for the second input.
 
-```html
-<auro-datepicker>
-  <span slot="fromLabel">Choose a date</span>
-  <span slot="mobileDateLabel">Choose a date</span>
-</auro-datepicker>
-```
-
-</auro-accordion>
+<h1 style="color:red;">INSERT EXAMPLE</h1>
 
 ## Functional Examples
 
@@ -464,6 +508,7 @@ Sets the label used in the trigger. All datepickers should include a definition 
 
 The following example listens for the `auroDatePicker-valueSet` event. Once triggered, `element.value` may be queried for the new value **and** in successful scenarios, an alert will appear. Open the JavaScript console in the browser's developer tools to see the `console.warn` message that appears after the `auroDatePicker-valueSet` event has been triggered.
 
+<h1 style="color:red;">FIX EXAMPLE</h1>
 <div class="exampleWrapper">
   <auro-datepicker id="datePickerValueAlert">
     <span slot="label">Choose a date</span>

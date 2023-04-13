@@ -22,16 +22,16 @@
       type="text/css"
       href="https://unpkg.com/prismjs@1.24.1/themes/prism.css"
     />
-    <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@3.13.0/dist/tokens/CSSCustomProperties.css">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@4.3.0/dist/demoWrapper.css" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@4.3.0/dist/elementDemoStyles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@latest/dist/demoWrapper.css" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@aurodesignsystem/webcorestylesheets@latest/dist/elementDemoStyles.css" />
   </head>
   <body class="auro-markdown">
     <main></main>
 
     <script type="module">
       import 'https://unpkg.com/marked@4.3.0/marked.min.js';
-      import 'https://unpkg.com/prismjs@1.29.0/prism.js';
+      import 'https://unpkg.com/prismjs@1.24.1/prism.js';
       fetch('/demo/api.md')
         .then((response) => response.text())
         .then((text) => {
@@ -42,10 +42,10 @@
     </script>
 
     <!-- If additional elements are needed for the demo, add them here. -->
-    <script src="https://unpkg.com/@alaskaairux/auro-accordion@1.6.5/dist/auro-accordion__bundled.js" type="module"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-icon@3.4.0/dist/auro-icon__bundled.js" type="module"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-button@6.5.0/dist/auro-button__bundled.js" type="module"></script>
+    <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
+    <script src="https://unpkg.com/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
+    <script src="https://unpkg.com/@alaskaairux/auro-button@latest/dist/auro-button__bundled.js" type="module"></script>
     <script type="module" src="../index.js"></script>
-    <!-- <script type="module" src="./api.js"></script> -->
+    <script type="module" src="./api.js"></script>
   </body>
 </html>
