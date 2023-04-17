@@ -201,7 +201,7 @@ export class AuroDatePicker extends LitElement {
       this.dropdown.removeAttribute('error');
     }
 
-    // notifiy listener that validation logic was executed
+    // notify listener that validation logic was executed
     if (shouldValidate) {
       this.dispatchEvent(new CustomEvent('auroDatepicker-validated', {
         bubbles: true,
