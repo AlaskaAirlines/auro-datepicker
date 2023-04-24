@@ -330,8 +330,6 @@ export class AuroDatePicker extends LitElement {
   configureDropdown() {
     this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
 
-    this.dropdown.setAttribute('role', 'dialog');
-
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
       if (!this.isPopoverVisible) {
         this.dropdown.show();

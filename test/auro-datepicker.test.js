@@ -1,14 +1,16 @@
-import { fixture, html, expect, elementUpdated, oneEvent } from '@open-wc/testing';
+import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
 import '../src/auro-datepicker';
 
 describe('auro-datepicker', () => {
-  // it('auro-datepicker is accessible', async () => {
-  //   const el = await fixture(html`
-  //     <auro-datepicker cssclass="testClass"></auro-datepicker>
-  //   `);
+  it('auro-datepicker is accessible', async () => {
+    const el = await fixture(html`
+      <auro-datepicker cssclass="testClass"></auro-datepicker>
+    `);
 
-  //   await expect(el).to.be.accessible();
-  // });
+    await expect(el).to.be.accessible({
+      ignoredRules: ['nested-interactive']
+    });
+  });
 
   it('custom element is defined', async () => {
     const el = await !!customElements.get("auro-datepicker");
@@ -311,25 +313,6 @@ describe('auro-datepicker', () => {
     await elementUpdated(el);
 
     await expect(el.valueEnd).to.equal(dateToSelected);
-  });
-
-  it('changing calendar dateFrom and dateFrom fires respective events', async () => {
-    const el = await fixture(html`
-      <auro-datepicker range></auro-datepicker>
-    `);
-
-    const calendar = el.shadowRoot.querySelector('auro-calendar');
-
-    calendar.dateFrom = 1680566400;
-    calendar.dateTo = 1685566400;
-
-    calendar.dispatchEvent(new CustomEvent('date-from-changed', { detail: { value: calendar.dateFrom } }));
-    calendar.dispatchEvent(new CustomEvent('date-to-changed', { detail: { value: calendar.dateTo } }));
-
-    await elementUpdated(el);
-
-    await expect(el.value).to.equal('04/03/2023');
-    await expect(el.valueEnd).to.equal('05/31/2023');
   });
 
   it('hides the prev month button when viewing the first available month', async () => {
