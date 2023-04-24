@@ -167,7 +167,7 @@ Setting the `maxDate` attribute to a date earlier than the auro-datepicker `valu
 This example demonstrates that behavior.
 
 <div class="exampleWrapper">
-  <auro-datepicker id="maxDateExample">
+  <auro-datepicker id="maxDateExample" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
   <auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
@@ -213,7 +213,7 @@ resetButton.addEventListener('click', () => {
 ```
 
 ```html
-<auro-datepicker id="maxDateExample">
+<auro-datepicker id="maxDateExample" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 <auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
@@ -251,7 +251,7 @@ Setting the `minDate` attribute to a date later than the auro-datepicker `value`
 This example demonstrates that behavior.
 
 <div class="exampleWrapper">
-  <auro-datepicker id="minDateExample">
+  <auro-datepicker id="minDateExample" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
     <span slot="label">Choose a date</span>
   </auro-datepicker>
   <auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
@@ -297,7 +297,7 @@ resetButton.addEventListener('click', () => {
 ```
 
 ```html
-<auro-datepicker id="minDateExample">
+<auro-datepicker id="minDateExample" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 <auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
@@ -384,7 +384,7 @@ When used, the datepicker will display two inputs and the component will support
 Populates the `required` attribute on the input. Used for client-side validation.
 
 <div class="exampleWrapper">
-  <auro-datepicker required>
+  <auro-datepicker required setCustomValidityValueMissing="Custom value missing message.">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -393,7 +393,7 @@ Populates the `required` attribute on the input. Used for client-side validation
   <span slot="trigger">See code</span>
 
 ```html
-<auro-datepicker required>
+<auro-datepicker required setCustomValidityValueMissing="Custom value missing message.">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
