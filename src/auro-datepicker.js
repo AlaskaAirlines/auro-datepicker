@@ -78,11 +78,6 @@ export class AuroDatePicker extends LitElement {
      * @private
      */
     this.type = "month-day-year";
-
-    /**
-     * @private
-     */
-    this.activeLabel = false;
   }
 
   // This function is to define props used within the scope of this component
@@ -255,137 +250,6 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-   * Binds all behavior needed to the dropdown after rendering.
-   * @private
-   * @returns {void}
-   */
-  configureDropdown() {
-    this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
-
-    this.dropdown.addEventListener('auroDropdown-ready', () => {
-      this.auroDropdownReady = true;
-    });
-
-    this.dropdown.setAttribute('role', 'dialog');
-
-    this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
-      if (!this.isPopoverVisible) {
-        this.dropdown.show();
-      }
-    });
-
-    this.dropdown.addEventListener('auroDropdown-toggled', () => {
-      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-    });
-
-    if (!this.dropdown.hasAttribute('aria-expanded')) {
-      this.dropdown.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-    }
-  }
-
-  /**
-   * Binds all behavior needed to the input after rendering.
-   * @private
-   * @returns {void}
-   */
-  configureInput() {
-    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
-
-    this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
-
-    for (let index = 0; index < this.inputList.length; index += 1) {
-      const input = this.inputList[index];
-
-      input.addEventListener('auroInput-ready', () => {
-        this.auroInputFromReady = true;
-      });
-
-      // auto-show bib when manually editing the input value
-      input.addEventListener('keyup', (evt) => {
-        if (evt.key.length === 1 || evt.key === 'Delete' || evt.key === 'Backspace') {
-          this.dropdown.show();
-        }
-      });
-    }
-
-    this.inputList[0].addEventListener('input', () => {
-      if (this.value !== this.inputList[0].value) {
-        this.value = this.inputList[0].value;
-        this.notifyValueChanged();
-      }
-    });
-
-    this.inputList[0].addEventListener('auroInput-validated', () => {
-      this.validate();
-    });
-
-    this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
-      this.getErrorMessage(evt);
-    });
-
-    if (this.inputList.length > 1) {
-      this.inputList[1].addEventListener('input', () => {
-        if (this.valueEnd !== this.inputList[1].value) {
-          this.valueEnd = this.inputList[1].value;
-          this.notifyValueChanged();
-        }
-      });
-
-      this.inputList[1].addEventListener('auroInput-validated', () => {
-        this.validate();
-      });
-
-      this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
-        this.getErrorMessage(evt);
-      });
-    }
-
-    this.addEventListener('focusin', () => {
-
-      /**
-       * The datepicker is considered to be in it's initial state based on
-       * if this.value === undefined. The first time we interact with the
-       * datepicker manually, by applying focusin, we need to flag the
-       * datepicker as no longer in the initial state.
-       */
-      if (this.value === undefined) {
-        this.value = '';
-      }
-
-      if (this.valueEnd === undefined) {
-        this.valueEnd = '';
-      }
-    });
-  }
-
-  /**
-   * Binds all behavior needed to the dropdown after rendering.
-   * @private
-   * @returns {void}
-   */
-  configureCalendar() {
-    this.calendar = this.shadowRoot.querySelector('auro-calendar');
-
-    this.calendar.addEventListener('auroCalendar-ready', () => {
-      this.auroCalendarReady = true;
-    });
-
-    this.calendar.addEventListener('auroCalendar-dateSelected', () => {
-      if (this.inputList[0].value !== this.calendar.dateFrom && this.calendar.dateFrom !== undefined) {
-        this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
-      }
-
-      if (this.inputList[1] && this.inputList[1].value !== this.calendar.dateTo) {
-        this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
-      }
-    });
-
-    this.calendar.addEventListener('auroCalendar-dismissRequest', () => {
-      this.dropdown.hide();
-    });
-  }
-
-  /**
    * Generates a date string used in the mobile calendar layout.
    * @private
    * @param {string} date - Date to parse into longer mobile version.
@@ -458,13 +322,189 @@ export class AuroDatePicker extends LitElement {
     this.calendar.year = Number(this.centralDate.substring(6));
   }
 
+  /**
+   * Binds all behavior needed to the dropdown after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureDropdown() {
+    this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
+
+    this.dropdown.setAttribute('role', 'dialog');
+
+    this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
+      if (!this.isPopoverVisible) {
+        this.dropdown.show();
+      }
+    });
+
+    this.dropdown.addEventListener('auroDropdown-toggled', () => {
+      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+    });
+
+    if (!this.dropdown.hasAttribute('aria-expanded')) {
+      this.dropdown.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+    }
+  }
+
+  /**
+   * Binds all behavior needed to the input after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureInput() {
+    this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
+
+    this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
+
+
+    // auto-show bib when manually editing the input value
+    for (let index = 0; index < this.inputList.length; index += 1) {
+      const input = this.inputList[index];
+
+      input.addEventListener('keyup', (evt) => {
+        if (evt.key.length === 1 || evt.key === 'Delete' || evt.key === 'Backspace') {
+          this.dropdown.show();
+        }
+      });
+    }
+
+    this.inputList[0].addEventListener('input', () => {
+      if (this.value !== this.inputList[0].value) {
+        this.value = this.inputList[0].value;
+        this.notifyValueChanged();
+      }
+    });
+
+    this.inputList[0].addEventListener('auroInput-validated', () => {
+      this.validate();
+    });
+
+    this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
+      this.getErrorMessage(evt);
+    });
+
+    if (this.inputList.length > 1) {
+      this.inputList[1].addEventListener('input', () => {
+        if (this.valueEnd !== this.inputList[1].value) {
+          this.valueEnd = this.inputList[1].value;
+          this.notifyValueChanged();
+        }
+      });
+
+      this.inputList[1].addEventListener('auroInput-validated', () => {
+        this.validate();
+      });
+
+      this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
+        this.getErrorMessage(evt);
+      });
+    }
+  }
+
+  /**
+   * Binds all behavior needed to the dropdown after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureCalendar() {
+    this.calendar = this.shadowRoot.querySelector('auro-calendar');
+
+    this.calendar.addEventListener('auroCalendar-dateSelected', () => {
+      if (this.inputList[0].value !== this.calendar.dateFrom && this.calendar.dateFrom !== undefined) {
+        this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
+      }
+
+      if (this.inputList[1] && this.inputList[1].value !== this.calendar.dateTo) {
+        this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
+      }
+    });
+
+    this.calendar.addEventListener('auroCalendar-dismissRequest', () => {
+      this.dropdown.hide();
+    });
+  }
+
+  /**
+   * Binds all behavior needed to the datepicker after rendering.
+   * @private
+   * @returns {void}
+   */
+  configureDatepicker() {
+    this.addEventListener('focusin', () => {
+
+      /**
+       * The datepicker is considered to be in it's initial state based on
+       * if this.value === undefined. The first time we interact with the
+       * datepicker manually, by applying focusin, we need to flag the
+       * datepicker as no longer in the initial state.
+       */
+      if (this.value === undefined) {
+        this.value = '';
+      }
+
+      if (this.valueEnd === undefined) {
+        this.valueEnd = '';
+      }
+    });
+
+    this.addEventListener('focusout', (evt) => {
+      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+
+      if (!this.noValidate && !evt.detail.expanded && this.inputList[0].value !== undefined) {
+        if (!this.contains(document.activeElement)) {
+          this.inputList[0].validate();
+
+          if (this.inputList[1] && this.inputList[1].value !== undefined) {
+            this.inputList[1].validate();
+          }
+        }
+      }
+    });
+
+    // Close the datepicker when clicking outside it
+    document.addEventListener('click', (evt) => {
+      if (!evt.composedPath().includes(this) && this.dropdown.isPopoverVisible) {
+        this.dropdown.hide();
+      }
+    });
+
+    document.activeElement.addEventListener('focusin', () => {
+      if (document.activeElement !== document.querySelector('body') && !this.contains(document.activeElement)) {
+        this.dropdown.hide();
+      }
+    });
+
+    if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
+      this.calendar.dateFrom = new Date(this.value).getTime();
+      this.calendar.month = new Date(this.value).getMonth() + 1;
+      this.calendar.year = new Date(this.value).getFullYear();
+    }
+
+    if (this.hasAttribute('valueEnd') && this.getAttribute('valueEnd').length > 0) {
+      this.calendar.dateTo = new Date(this.valueEnd).getTime();
+    }
+  }
+
+  /**
+   * @private
+   * @returns {void} Marks the component as ready and sends event.
+   */
+  notifyReady() {
+    this.ready = true;
+
+    this.dispatchEvent(new CustomEvent('auroDatePicker-ready', {
+      bubbles: true,
+      cancelable: false,
+      composed: true,
+    }));
+  }
+
   updated(changedProperties) {
     if (changedProperties.has('value')) {
       if (this.value && this.validDateStr(this.value)) {
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
-          this.calendar.month = new Date(this.value).getMonth() + 1;
-          this.calendar.year = new Date(this.value).getFullYear();
         }
       } else {
         if (this.inputList[0].value !== this.value) {
@@ -585,102 +625,17 @@ export class AuroDatePicker extends LitElement {
       this.handleCentralDateChange();
     }
 
-    if (changedProperties.has('setCustomValidityValueMissing')) {
-      this.inputList[0].setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
-    }
+    // if (changedProperties.has('setCustomValidityValueMissing')) {
+    //   this.inputList[0].setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
+    // }
   }
 
   firstUpdated() {
     this.configureDropdown();
     this.configureInput();
     this.configureCalendar();
-
-    // Close the datepicker when clicking outside it
-    document.addEventListener('click', (evt) => {
-      if (!evt.composedPath().includes(this) && this.dropdown.isPopoverVisible) {
-        this.dropdown.hide();
-      }
-    });
-
-    document.activeElement.addEventListener('focusin', () => {
-      if (document.activeElement !== document.querySelector('body') && !this.contains(document.activeElement)) {
-        this.dropdown.hide();
-      }
-    });
-
-    this.addEventListener('focusout', (evt) => {
-      this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-
-      if (!this.noValidate && !evt.detail.expanded && this.inputList[0].value !== undefined) {
-        if (!this.contains(document.activeElement)) {
-          this.inputList[0].validate();
-
-          if (this.inputList[1] && this.inputList[1].value !== undefined) {
-            this.inputList[1].validate();
-          }
-        }
-      }
-    });
-
-    this.checkReadiness();
-  }
-
-  /**
-   * @private
-   * @returns {void} Marks the component as ready and sends event.
-   */
-  notifyReady() {
-    this.ready = true;
-
-    this.dispatchEvent(new CustomEvent('auroDatePicker-ready', {
-      bubbles: true,
-      cancelable: false,
-      composed: true,
-    }));
-  }
-
-  /**
-   * Monitors readiness of peer dependencies and begins work that should only start when ready.
-   * @private
-   * @returns {void}
-   */
-  checkReadiness() {
-    if (this.auroDropdownReady && this.auroInputFromReady && this.auroInputToReady && this.auroCalendarReady) {
-      this.readyActions();
-      this.notifyReady();
-    } else {
-      // Start a retry counter to limit the retry count
-      if (!this.readyRetryCount && this.readyRetryCount !== 0) {
-        this.readyRetryCount = 0;
-      } else {
-        this.readyRetryCount += 1;
-      }
-
-      const readyTimer = 0;
-      const readyRetryLimit = 200;
-
-      if (this.readyRetryCount <= readyRetryLimit) {
-        setTimeout(() => {
-          this.checkReadiness();
-        }, readyTimer);
-      }
-    }
-  }
-
-  /**
-   * Functionality that should not be performed until the datepicker is in a ready state.
-   * @private
-   * @returns {void}
-   */
-  readyActions() {
-    // Set the initial value in auro-calendar if defined
-    if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
-      this.calendar.dateFrom = new Date(this.value).getTime();
-    }
-
-    if (this.hasAttribute('valueEnd') && this.getAttribute('valueEnd').length > 0) {
-      this.calendar.dateTo = new Date(this.valueEnd).getTime();
-    }
+    this.configureDatepicker();
+    this.notifyReady();
   }
 
   // function that renders the HTML and CSS into  the scope of the component
@@ -700,11 +655,11 @@ export class AuroDatePicker extends LitElement {
               bordered
               class="dateFrom"
               ?required="${this.required}"
-              ?activeLabel="${this.activeLabel}"
               noValidate
               .error="${this.error}"
               .max="${this.maxDate}"
               .min="${this.minDate}"
+              setCustomValidityValueMissing="${this.setCustomValidityValueMissing}"
               setCustomValidityRangeOverflow="${this.setCustomValidityRangeOverflow}"
               setCustomValidityRangeUnderflow="${this.setCustomValidityRangeUnderflow}"
               ?disabled="${this.disabled}"
@@ -716,10 +671,10 @@ export class AuroDatePicker extends LitElement {
                 bordered
                 class="dateTo"
                 ?required="${this.required}"
-                ?activeLabel="${this.activeLabel}"
                 noValidate
                 .max="${this.maxDate}"
                 .min="${this.minDate}"
+                setCustomValidityValueMissing="${this.setCustomValidityValueMissing}"
                 setCustomValidityRangeOverflow="${this.setCustomValidityRangeOverflow}"
                 setCustomValidityRangeUnderflow="${this.setCustomValidityRangeUnderflow}"
                 ?disabled="${this.disabled}"
