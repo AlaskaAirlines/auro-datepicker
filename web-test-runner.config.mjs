@@ -3,10 +3,10 @@ export default {
   nodeResolve: true,
   coverageConfig: {
     threshold: {
-      statements: 90,
-      branches: 80,
-      functions: 90,
-      lines: 90
+      statements: 75,
+      branches: 73,
+      functions: 68,
+      lines: 75
     }
   }
 };

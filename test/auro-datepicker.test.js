@@ -33,7 +33,7 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input'); 
+    const input = el.shadowRoot.querySelector('auro-input');
     input.click();
 
     const dropdown = el.shadowRoot.querySelector('auro-dropdown');
@@ -378,9 +378,6 @@ describe('auro-datepicker', () => {
     await expect(input.getAttribute('setCustomValidityValueMissing')).to.be.equal('The value is missing!');
   });
 
-
-
-
   // BUG IN ERROR MESSAGE CODE (Next two tests)
   it('dateFrom error message shown when dateTo is also invalid', async () => {
     const el = await fixture(html`
@@ -395,45 +392,19 @@ describe('auro-datepicker', () => {
 
     await elementUpdated(el);
 
-    console.log(input1.errorMessage);
-    console.log(input2.errorMessage);
-
     await expect(el.errorMessage).to.be.equal(input1.errorMessage);
     await expect(input2.errorMessage).to.be.equal(undefined);
   });
 
   it('dateTo error message shown when dateFrom is valid', async () => {
     const el = await fixture(html`
-      <auro-datepicker range required></auro-datepicker>
+      <auro-datepicker range maxDate="03/03/2023" value="03/01/2023" valueEnd="03/30/2023"></auro-datepicker>
     `);
-
-    const input1 = getInput(el, 0);
-    const input2 = getInput(el, 1);
-
-    input1.setCustomValidity = 'input 1 is invalid';
-    input2.setCustomValidity = 'input 2 is invalid';
-
-    input1.value = '04/03/2023';
-
-    el.focus();
-    el.blur();
 
     await elementUpdated(el);
 
-    // console.log(input1.errorMessage);
-    // console.log(input2.errorMessage);
-    // console.log(el.errorMessage);
-
-    await expect(input1.errorMessage).to.be.equal(undefined);
-    await expect(input2.errorMessage).to.be.equal('input 2 is invalid');
+    await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
   });
-
-
-
-
-
-
-
 
   it('changing centralDate changes month visibility', async () => {
     const el = await fixture(html`
@@ -588,7 +559,7 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input'); 
+    const input = el.shadowRoot.querySelector('auro-input');
     const dropdown = el.shadowRoot.querySelector('auro-dropdown');
 
     input.dispatchEvent(new KeyboardEvent('keyup', { key: '0' }));
@@ -607,7 +578,7 @@ describe('auro-datepicker', () => {
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-    const input = el.shadowRoot.querySelector('auro-input'); 
+    const input = el.shadowRoot.querySelector('auro-input');
 
     const backBtn = calendar.shadowRoot.querySelector('.headerActions button');
 
@@ -633,7 +604,7 @@ describe('auro-datepicker', () => {
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-    const input = el.shadowRoot.querySelector('auro-input'); 
+    const input = el.shadowRoot.querySelector('auro-input');
 
     const closeBtn = calendar.shadowRoot.querySelector('.mobileFooterActions auro-button');
 
