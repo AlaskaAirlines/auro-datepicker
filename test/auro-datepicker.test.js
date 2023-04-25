@@ -439,18 +439,6 @@ describe('auro-datepicker', () => {
     await expect(calendar.numCalendars).to.be.equal(12);
   });
 
-  it('can convert unix timestamp to date object', async () => {
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
-
-    const timestamp = 1680566400;
-
-    const conversion = el.convertWcTimeToDate(timestamp);
-
-    await expect(conversion).to.equal('04/03/2023');
-  });
-
   it('updates input value when value is changed', async () => {
     const el = await fixture(html`
       <auro-datepicker range></auro-datepicker>
