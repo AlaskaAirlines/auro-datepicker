@@ -84,9 +84,9 @@ In cases where the project is not able to process JS assets, there are pre-proce
 ### Bundle example code
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
-<script src="https://unpkg.com/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
+<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
 ```
 
 ### Peer dependencies
@@ -94,7 +94,7 @@ In cases where the project is not able to process JS assets, there are pre-proce
 The following Auro peer dependencies must be included.
 
 ```html
-<script src="https://unpkg.com/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
 ```
 
 ## auro-datepicker use cases
