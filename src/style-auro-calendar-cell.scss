@@ -39,8 +39,8 @@
       top: 50%;
       left: 50%;
       display: block;
-      width: 48px;
-      height: 48px;
+      width: var(--auro-size-600);
+      height: var(--auro-size-600);
       background-color: var(--auro-color-background-lighter);
       content: '';
       transform: translate(-50%, -50%);
@@ -48,7 +48,7 @@
   }
 
   &:hover {
-    background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light);
+    background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
     color: var(--auro-color-text-primary-on-light);
     cursor: pointer;
   }
