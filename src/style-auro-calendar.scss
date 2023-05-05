@@ -106,7 +106,7 @@ $mobile-footer-height: 200px;
       left: 0;
       display: block;
       width: 1px;
-      height: 24px;
+      height: var(--auro-size-300);
       background-color: var(--auro-color-border-divider-on-light);
       content: '';
       transform: translateY(-50%);
@@ -125,7 +125,7 @@ $mobile-footer-height: 200px;
   align-items: flex-end;
   justify-content: flex-end;
   padding-bottom: var(--auro-size-200);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--auro-color-background-lightest) 51.56%);
+  background: linear-gradient(180deg, var(--auro-color-base-white) 0%, var(--auro-color-background-lightest) 51.56%);
   pointer-events: none;
   transform: translateX(-50%);
 }
