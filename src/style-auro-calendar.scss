@@ -10,6 +10,7 @@
 
 $mobile-header-height: 86px;
 $mobile-footer-height: 200px;
+$calendar-width: 336px;
 
 :host {
   @include auro_breakpoint($max: $auro-breakpoint-sm) {
@@ -135,7 +136,7 @@ $mobile-footer-height: 200px;
   bottom: 0;
   left: 50%;
   display: none;
-  width: 336px; // match the calendar month width; This needs to be deal with when doing the tiny mobile device layout.
+  width: $calendar-width; // match the calendar month width; This needs to be deal with when doing the tiny mobile device layout.
   height: $mobile-footer-height;
   flex-direction: column;
   align-items: flex-end;

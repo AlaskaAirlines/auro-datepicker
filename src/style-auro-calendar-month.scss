@@ -20,11 +20,13 @@
 
 /* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length */
 
+$calendar-width: 336px;
+
 :host {
   display: block;
   position: relative;
 
-  width: 336px; // is this right?
+  width: $calendar-width; // is this right?
 
   padding: var(--auro-size-200);
 
