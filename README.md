@@ -43,7 +43,7 @@ Installing as a direct, dev or peer dependency is up to the user installing the 
 The following Auro peer dependencies must be included.
 
 ```shell
-$ npm i @alaskaairux/auro-icon
+$ npm i @aurodesignsystem/auro-icon
 $ npm i @aurodesignsystem/auro-calendar
 $ npm i @aurodesignsystem/auro-dropdown
 $ npm i @aurodesignsystem/auro-input
@@ -84,9 +84,9 @@ In cases where the project is not able to process JS assets, there are pre-proce
 ### Bundle example code
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
-<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
+<script src="https://cdn.jsdelivr.net/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
 ```
 
 ### Peer dependencies
