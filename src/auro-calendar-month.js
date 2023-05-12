@@ -1,7 +1,6 @@
 import styleCss from "./style-auro-calendar-month-css";
 import { html } from 'lit';
 
-// import { RangeDatepickerCalendar } from '../node_modules/wc-range-datepicker/dist/src/range-datepicker-calendar.js';
 import { RangeDatepickerCalendar } from './../vendor/wc-range-datepicker/range-datepicker-calendar';
 import './auro-calendar-cell';
 
