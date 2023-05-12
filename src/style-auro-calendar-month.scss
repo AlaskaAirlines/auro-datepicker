@@ -4,19 +4,11 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
-
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
 
 // Support for auroElement styles
-// @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
+// @import './node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
 
 /* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length */
 
@@ -26,7 +18,7 @@ $calendar-width: 336px;
   display: block;
   position: relative;
 
-  width: $calendar-width; // is this right?
+  width: $calendar-width;
 
   padding: var(--auro-size-200);
 
@@ -40,7 +32,7 @@ $calendar-width: 336px;
   margin: 0 0 var(--auro-size-50);
   text-align: center;
   color: var(--range-datepicker-month-text);
-  height: 44px;
+  height: calc(var(--auro-size-500) + 4px);
 }
 
 .headerTitle {
