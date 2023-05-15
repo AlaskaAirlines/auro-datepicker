@@ -1,11 +1,19 @@
+import chalk from 'chalk';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const autoprefixer = require('autoprefixer');
-const chalk = require('chalk');
 const postcss = require('postcss');
 const removeNonRem = require('./removeNonRemPlugin.js');
 const postcssCustomProperties = require('postcss-custom-properties');
 const removeRules = require('postcss-remove-rules');
 const comments = require('postcss-discard-comments');
-const path = require('path');
 const fs = require('fs');
 const directoryPath = path.join(__dirname, '../src');
 let cssFiles = [];
