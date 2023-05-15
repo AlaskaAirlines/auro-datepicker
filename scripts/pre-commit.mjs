@@ -1,6 +1,6 @@
 'use strict';
 
-const chalk = require('chalk');
+import chalk from 'chalk';
 console.log(chalk.hex('#ffd200')(`
 
 ╭ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ──────────────────────────────╮`) + chalk.hex('#f26135')(`
