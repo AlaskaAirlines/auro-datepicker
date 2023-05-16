@@ -1,5 +1,110 @@
 # Semantic Release Automated Changelog
 
+# [2.0.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.9...v2.0.0) (2023-05-16)
+
+
+### Bug Fixes
+
+* add and implement functional arrows on calendar ([3101703](https://github.com/AlaskaAirlines/auro-datepicker/commit/3101703be23505bf19cfd24014d6e9dc37fc946c))
+* **bundler:** define elements directly so bundler will work ([b622918](https://github.com/AlaskaAirlines/auro-datepicker/commit/b622918c6bddc04c7920eec4a1ba7adc6b956c33))
+* **calendar:** add number of calendar functionality ([330328a](https://github.com/AlaskaAirlines/auro-datepicker/commit/330328aac715d7ddc0387e45e354a3c551063c38))
+* **calendar:** correct number of calendars show for min/max dates ([1f81872](https://github.com/AlaskaAirlines/auro-datepicker/commit/1f81872394f974c01a5a4bbf2bd7820a5ad223ed))
+* **calendar:** import packages needed by wc-range-datepicker ([8a6bbe7](https://github.com/AlaskaAirlines/auro-datepicker/commit/8a6bbe7537679950f23ced0c7e9bb5f0e3bd779b))
+* **calendar:** render correct calendar month and year ([cee087c](https://github.com/AlaskaAirlines/auro-datepicker/commit/cee087c254f7205e6c524e5ef71c22f51f97f3bc))
+* **cell:** cell element now works correctly ([2a61b1b](https://github.com/AlaskaAirlines/auro-datepicker/commit/2a61b1bf7c2eeb75331884ee3c575e28b359356b))
+* **dateTo:** prevent dateTo getting set to null causing old date to show in input ([de862e4](https://github.com/AlaskaAirlines/auro-datepicker/commit/de862e4c54b60df6cba203f718bc707e7c19884e))
+* **error:** setting or removing error attribute after firstUpdate works correcly. ([1c7ba1c](https://github.com/AlaskaAirlines/auro-datepicker/commit/1c7ba1c80194aad7ee01e805c1473c2522addb4f))
+* **examples:** correct code that broke two examples ([920bef3](https://github.com/AlaskaAirlines/auro-datepicker/commit/920bef3e59f54446f426b9f9d1d94924056db8f4))
+* **help:** doesnt show help text when value is undefined ([ce87503](https://github.com/AlaskaAirlines/auro-datepicker/commit/ce875033a76c9f8807330b1afdc04d135cb0e64a))
+* **layout:** correct flex direction for mobile ([8f4850a](https://github.com/AlaskaAirlines/auro-datepicker/commit/8f4850a38cfa34da51a8406127b7da7198943d9a))
+* **layout:** in mobile last calender no longer partially behind gradient ([e39a466](https://github.com/AlaskaAirlines/auro-datepicker/commit/e39a46637cbdc5d40496b801f25f5d1ba2088ebe))
+* manage month visibility when dealing with min date ([4697703](https://github.com/AlaskaAirlines/auro-datepicker/commit/469770304688b70f20239beac16284c260b7f86a))
+* **mobile:** back button is always blue now ([9305ded](https://github.com/AlaskaAirlines/auro-datepicker/commit/9305ded83003a9174e4f11109aa2f1a47a02f7df))
+* **mobile:** fix date selected text on mobile ([8bf37ce](https://github.com/AlaskaAirlines/auro-datepicker/commit/8bf37cefb5625c7cbdc202de8110ab457791eda1))
+* **numCalendars:** force render when numCalendars change ([84580a9](https://github.com/AlaskaAirlines/auro-datepicker/commit/84580a9699dbb25eb099c61a1d15d0ebf85e040b))
+* **numCalenders:** fix min and max dates causes too many calendars to display ([22aeea9](https://github.com/AlaskaAirlines/auro-datepicker/commit/22aeea9a2d0592c90f2d29682c98a97fb97ea5cf))
+* **render:** render correct calendars based on window width ([d148730](https://github.com/AlaskaAirlines/auro-datepicker/commit/d1487309dfb6a53c22ca01a2b50c5979fe21fc98))
+* **support:** support default and range scenarios ([2431cbb](https://github.com/AlaskaAirlines/auro-datepicker/commit/2431cbbcd3617a4ad5312b2ad2c056c92cd9e601))
+* **text:** revert date string text sequence ([116e651](https://github.com/AlaskaAirlines/auro-datepicker/commit/116e65186ec52914145b14b4af2bc7ba1602cb9f))
+* **UI:** correct divider in dates on mobile bib header ([cfd6442](https://github.com/AlaskaAirlines/auro-datepicker/commit/cfd6442fad849e2ed35765f183636899576ccb66))
+* **validate:** cleanup validate method and event ([f0a63ba](https://github.com/AlaskaAirlines/auro-datepicker/commit/f0a63bab53316a257b7b30b3ad0c9e6843633f0e))
+* **validate:** not run validate on dropdown hide if bib was not visibile ([d1ac01f](https://github.com/AlaskaAirlines/auro-datepicker/commit/d1ac01fd3f2d27bc2ea2835366ce9f5e97cfbb52))
+* **validation:** correctly triggers validation ([09038d9](https://github.com/AlaskaAirlines/auro-datepicker/commit/09038d9a66dd7ae0feb535c33926864b10eb283b))
+* **validation:** use the correct new validation API for input ([eda8daa](https://github.com/AlaskaAirlines/auro-datepicker/commit/eda8daaa6fbe35f0d71a4b1a0757c2bc782d11a0))
+* **value:** reset return value when date range is invalid ([3b3c04b](https://github.com/AlaskaAirlines/auro-datepicker/commit/3b3c04be6010e393a14f8a671c2615dc5e3f3e3f))
+* **value:** setting value will move calendar month viewed ([eac8969](https://github.com/AlaskaAirlines/auro-datepicker/commit/eac8969bfc0ba38cbc4dd61f1bbf9059367f8043))
+
+
+### Code Refactoring
+
+* **calendar:** BREAKING CHANGE add auro-calendar code within repo [#105](https://github.com/AlaskaAirlines/auro-datepicker/issues/105) ([c0f91a6](https://github.com/AlaskaAirlines/auro-datepicker/commit/c0f91a649c27c76d1111adcd13dc58f36f368b67))
+
+
+### Features
+
+* **API:** correct value setting behavior ([512c936](https://github.com/AlaskaAirlines/auro-datepicker/commit/512c936c67f02e44d8f753a7c0a823e91383ec31))
+* **api:** expose monthNames attribute for localization ([a6e3d24](https://github.com/AlaskaAirlines/auro-datepicker/commit/a6e3d249ec6700c4c656dc720871e8ac147b7a93))
+* **api:** refactor functional value setting code, validation and some styles ([f4eeb2f](https://github.com/AlaskaAirlines/auro-datepicker/commit/f4eeb2faec710edb994dd1f0513806de7f1ae090))
+* **event:** fire event when value or valueend changes ([31b97cf](https://github.com/AlaskaAirlines/auro-datepicker/commit/31b97cf274ae8bea3a8d634ae7f49c8f9ae06ebc))
+* **helpText:** support custom message for rangeUnderflow and Overflow ([022116f](https://github.com/AlaskaAirlines/auro-datepicker/commit/022116f5531251e8fd1a93239f39507fc3011fac))
+* **mobile:** add mobile layout and styles [#107](https://github.com/AlaskaAirlines/auro-datepicker/issues/107) ([c0ccd32](https://github.com/AlaskaAirlines/auro-datepicker/commit/c0ccd329f80af9304200b16457828903130d0e7f))
+* **styles:** make new calendar match figma ([681b746](https://github.com/AlaskaAirlines/auro-datepicker/commit/681b746a6511dd09b0a671d14749e3246cfb0792))
+* **validate:** fire event when validation occurs ([1f3e6fa](https://github.com/AlaskaAirlines/auro-datepicker/commit/1f3e6faa5c1d7c5418331a90801df4439e35fc69))
+* **validate:** make validate method private ([99db634](https://github.com/AlaskaAirlines/auro-datepicker/commit/99db634d810388bdb39e75e77c2532306550aa8c))
+
+
+### Performance Improvements
+
+* **API:** cleanup JS code ([874518d](https://github.com/AlaskaAirlines/auro-datepicker/commit/874518dd4e4e3509cd56ed0ce1f473aa8d231e1c))
+* **cdn:** change all cdn references to jsdeliver ([cf2f6d5](https://github.com/AlaskaAirlines/auro-datepicker/commit/cf2f6d5e44e3f1a3d8aaa2e68798b17d7dcaba35))
+* **deps:** move auro deps to direct deps ([f62ccb6](https://github.com/AlaskaAirlines/auro-datepicker/commit/f62ccb60990b2e0e8066c221b93f626b378ff1e9))
+* **deps:** update dependency versions ([736db5c](https://github.com/AlaskaAirlines/auro-datepicker/commit/736db5c59c94de3fb50fa8c42ac54140e06c9ebe))
+* **deps:** update to latest auro dependency versions ([928eedb](https://github.com/AlaskaAirlines/auro-datepicker/commit/928eedb3b272c5fcff39ca8a52e0e347ce17f2c6))
+* **deps:** update to latest auro-input release with validity change ([d9dcf5e](https://github.com/AlaskaAirlines/auro-datepicker/commit/d9dcf5eab0c68075ce74182e3ea97667cb2032de))
+* **deps:** update to latest dependencies ([c0b9f51](https://github.com/AlaskaAirlines/auro-datepicker/commit/c0b9f51bac78f20969f4a82fcdfcd968b0598e9d))
+* **deps:** update to latest dependency releases ([f5f5bd1](https://github.com/AlaskaAirlines/auro-datepicker/commit/f5f5bd102c57f6346751b5d38ec20331c626a2e4))
+* **deps:** update to lit 2 ([1c65c1a](https://github.com/AlaskaAirlines/auro-datepicker/commit/1c65c1ae0d18e1739a02321e7f2d631ba099dbbe))
+* **deps:** use latest auro-input release with public validate method ([7eed8e2](https://github.com/AlaskaAirlines/auro-datepicker/commit/7eed8e257009009947c7074d8d4c5bf20c930b16))
+* **nav:** improve navigation through calendar months with min and max dates defined ([2861fff](https://github.com/AlaskaAirlines/auro-datepicker/commit/2861fff3688bf6ef345dc8b533cb240156024dea))
+* **styles:** additional style cleanup ([2672f2e](https://github.com/AlaskaAirlines/auro-datepicker/commit/2672f2e5d628804f1142a9ccad4acb7a5545da2a))
+* **styles:** use variable for single fixed pixel dimension per review ([ed002b4](https://github.com/AlaskaAirlines/auro-datepicker/commit/ed002b4df5e8f14d7d40af1e24e7d82d9b14a066))
+* **syntax:** clean up linting errors ([481390c](https://github.com/AlaskaAirlines/auro-datepicker/commit/481390c5008baec06e7ed9026efbee6721bd333c))
+* **validate:** move validate call to focusout ([ae11cfc](https://github.com/AlaskaAirlines/auro-datepicker/commit/ae11cfc333dd773953a652fe9907f251e15f8a53))
+* **validation:** rework entire validation process ([a7a0617](https://github.com/AlaskaAirlines/auro-datepicker/commit/a7a06172438ff58d3457261bbe24b4a0ccad135c))
+
+
+### BREAKING CHANGES
+
+* **calendar:** incorporate new wc-date-range
+
+This commit will blow away the use of Lion calendar and use a new calendar called wc-date-range, allowing for a date range to be selected within an auro-calendar.
+
+Changes to be committed:
+modified:   apiExamples/maxDate.html
+modified:   apiExamples/maxDate.js
+modified:   apiExamples/minDate.html
+modified:   apiExamples/minDate.js
+modified:   apiExamples/value.js
+modified:   demo/api.html
+modified:   demo/api.js
+modified:   demo/api.md
+modified:   demo/index.html
+
+feat(calendar): BREAKING CHANGE incorporate new wc-date-range
+
+This commit will blow away the use of Lion calendar and use a new calendar called wc-date-range, allowing for a date range to be selected within an auro-calendar.
+
+Changes to be committed:
+modified:   apiExamples/maxDate.html
+modified:   apiExamples/maxDate.js
+modified:   apiExamples/minDate.html
+modified:   apiExamples/minDate.js
+modified:   apiExamples/value.js
+modified:   demo/api.html
+modified:   demo/api.js
+modified:   demo/api.md
+modified:   demo/index.html
+
 ## [1.2.9](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.8...v1.2.9) (2023-02-01)
 
 
