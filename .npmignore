@@ -21,3 +21,11 @@ index.html
 
 # ignore src
 src/**/*
+
+apiExamples/
+build/
+docTemplates/
+index/
+
+LICENSE
+NOTICE
