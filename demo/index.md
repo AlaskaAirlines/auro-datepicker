@@ -15,8 +15,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 
 <div class="exampleWrapper">
   <auro-datepicker>
-    <span slot="fromLabel">Departure</span>
-    <span slot="mobileDateLabel">Departure</span>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -24,8 +24,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 
 ```html
 <auro-datepicker>
-  <span slot="fromLabel">Departure</span>
-  <span slot="mobileDateLabel">Departure</span>
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
 ```
 
