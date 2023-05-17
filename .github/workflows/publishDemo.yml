@@ -1,0 +1,14 @@
+name: Deploy Demo
+
+on:
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+
+  call-publish-demo-workflow:
+    uses: AlaskaAirlines/auro-library/.github/workflows/publishDemo.yml@main
+    secrets:
+      SURGE_TOKEN: ${{secrets.SURGE_TOKEN}}
+
