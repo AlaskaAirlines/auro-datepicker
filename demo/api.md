@@ -187,29 +187,31 @@ function formatDateString(date) {
   return `${mm}/${dd}/${yyyy}`;
 }
 
-const maxDateExample = document.getElementById('maxDateExample');
-const changeMaxDateButton = document.getElementById('maxDateChange');
-const resetButton = document.getElementById('resetMaxDate');
+export function updateMaxDateExample() {
+  const maxDateExample = document.getElementById('maxDateExample');
+  const changeMaxDateButton = document.getElementById('maxDateChange');
+  const resetButton = document.getElementById('resetMaxDate');
 
-const today = formatDateString(new Date());
+  const today = formatDateString(new Date());
 
-let nextWeek = new Date();
-let addOneWeek = nextWeek.getDate() + 7;
+  let nextWeek = new Date();
+  let addOneWeek = nextWeek.getDate() + 7;
 
-nextWeek.setDate(addOneWeek);
-nextWeek = formatDateString(nextWeek);
+  nextWeek.setDate(addOneWeek);
+  nextWeek = formatDateString(nextWeek);
 
-maxDateExample.setAttribute('value', nextWeek);
-maxDateExample.setAttribute('maxDate', nextWeek);
-
-changeMaxDateButton.addEventListener('click', () => {
-  maxDateExample.setAttribute('maxDate', today);
-});
-
-resetButton.addEventListener('click', () => {
   maxDateExample.setAttribute('value', nextWeek);
   maxDateExample.setAttribute('maxDate', nextWeek);
-});
+
+  changeMaxDateButton.addEventListener('click', () => {
+    maxDateExample.setAttribute('maxDate', today);
+  });
+
+  resetButton.addEventListener('click', () => {
+    maxDateExample.setAttribute('value', nextWeek);
+    maxDateExample.setAttribute('maxDate', nextWeek);
+  });
+}
 ```
 
 ```html
@@ -271,29 +273,32 @@ function formatDateString(date) {
   return `${mm}/${dd}/${yyyy}`;
 }
 
-const minDateExample = document.getElementById('minDateExample');
-const changeMinDateButton = document.getElementById('minDateChange');
-const resetButton = document.getElementById('resetMinDate');
+export function updateMinDateExample() {
+  const minDateExample = document.getElementById('minDateExample');
+  const changeMinDateButton = document.getElementById('minDateChange');
+  const resetButton = document.getElementById('resetMinDate');
 
-const today = formatDateString(new Date());
+  const today = formatDateString(new Date());
 
-let nextWeek = new Date();
-let addOneWeek = nextWeek.getDate() + 7;
+  let nextWeek = new Date();
+  let addOneWeek = nextWeek.getDate() + 7;
 
-nextWeek.setDate(addOneWeek);
-nextWeek = formatDateString(nextWeek);
+  nextWeek.setDate(addOneWeek);
+  nextWeek = formatDateString(nextWeek);
 
-minDateExample.setAttribute('value', today);
-minDateExample.setAttribute('minDate', today);
-
-changeMinDateButton.addEventListener('click', () => {
-  minDateExample.setAttribute('minDate', nextWeek);
-});
-
-resetButton.addEventListener('click', () => {
   minDateExample.setAttribute('value', today);
   minDateExample.setAttribute('minDate', today);
-});
+
+  changeMinDateButton.addEventListener('click', () => {
+    minDateExample.setAttribute('minDate', nextWeek);
+  });
+
+  resetButton.addEventListener('click', () => {
+    minDateExample.setAttribute('value', today);
+    minDateExample.setAttribute('minDate', today);
+  });
+
+}
 ```
 
 ```html
@@ -320,10 +325,12 @@ May be used to provide localized month names. These names will only be shown in 
   <span slot="trigger">See code</span>
 
 ```js
-const monthNamesExample = document.querySelector('#monthNamesExample');
-const spanishMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+export function monthNamesExample() {
+  const monthNamesExample = document.querySelector('#monthNamesExample');
+  const spanishMonths = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-monthNamesExample.monthNames = spanishMonths;
+  monthNamesExample.monthNames = spanishMonths;
+}
 ```
 
 ```html
@@ -415,13 +422,15 @@ Specifies the `validityState` the element is in. Upon first interaction, or pres
   <span slot="trigger">See code</span>
 
 ```js
-const validityExampleExample = document.querySelector('#validityExample');
-const validityExampleExampleBtn = document.querySelector('#validityExampleBtn');
+export function validityExample() {
+  const validityExampleExample = document.querySelector('#validityExample');
+  const validityExampleExampleBtn = document.querySelector('#validityExampleBtn');
 
-validityExampleExampleBtn.addEventListener('click', () => {
-  console.warn('Validity set to:', validityExampleExample.validity);
-  alert(`Validity set to: ${validityExampleExample.validity}`);
-})
+  validityExampleExampleBtn.addEventListener('click', () => {
+    console.warn('Validity set to:', validityExampleExample.validity);
+    alert(`Validity set to: ${validityExampleExample.validity}`);
+  })
+}
 ```
 
 ```html
@@ -490,12 +499,14 @@ The focus method will apply focus state to the datepicker's input field.
   <span slot="trigger">See code</span>
 
 ```js
-const focusExample = document.querySelector('#focusExample');
-const focusExampleBtn = document.querySelector('#focusExampleBtn');
+export function focusExample() {
+  const focusExample = document.querySelector('#focusExample');
+  const focusExampleBtn = document.querySelector('#focusExampleBtn');
 
-focusExampleBtn.addEventListener('click', () => {
-  focusExample.focus();
-});
+  focusExampleBtn.addEventListener('click', () => {
+    focusExample.focus();
+  });
+}
 ```
 
 ```html
@@ -615,12 +626,14 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
   <span slot="trigger">See code</span>
 
 ```js
-const valueAlertExample = document.querySelector('#datePickerValueAlert');
+export function alertValueExample() {
+  const valueAlertExample = document.querySelector('#datePickerValueAlert');
 
-valueAlertExample.addEventListener('auroDatePicker-valueSet', () => {
-  console.warn('Select value changed to:', valueAlertExample.value);
-  alert(`Select value changed to: ${valueAlertExample.value}`);
-})
+  valueAlertExample.addEventListener('auroDatePicker-valueSet', () => {
+    console.warn('Select value changed to:', valueAlertExample.value);
+    alert(`Select value changed to: ${valueAlertExample.value}`);
+  })
+}
 ```
 
 ```html
