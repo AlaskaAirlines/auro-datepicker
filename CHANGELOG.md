@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.0...v2.0.1) (2023-05-22)
+
+
+### Performance Improvements
+
+* **examples:** update example js code so it works on the docsite [#121](https://github.com/AlaskaAirlines/auro-datepicker/issues/121) ([86b5225](https://github.com/AlaskaAirlines/auro-datepicker/commit/86b52259237189b5e5c5b0d3d786dfc8da4db1bb))
+
 # [2.0.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v1.2.9...v2.0.0) (2023-05-16)
 
 
