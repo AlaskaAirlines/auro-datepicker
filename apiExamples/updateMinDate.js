@@ -8,26 +8,30 @@ function formatDateString(date) {
   return `${mm}/${dd}/${yyyy}`;
 }
 
-const minDateExample = document.getElementById('minDateExample');
-const changeMinDateButton = document.getElementById('minDateChange');
-const resetButton = document.getElementById('resetMinDate');
+export function updateMinDateExample() {
+  const minDateExample = document.getElementById('minDateExample');
+  const changeMinDateButton = document.getElementById('minDateChange');
+  const resetButton = document.getElementById('resetMinDate');
 
-const today = formatDateString(new Date());
+  const today = formatDateString(new Date());
 
-let nextWeek = new Date();
-let addOneWeek = nextWeek.getDate() + 7;
+  let nextWeek = new Date();
+  let addOneWeek = nextWeek.getDate() + 7;
 
-nextWeek.setDate(addOneWeek);
-nextWeek = formatDateString(nextWeek);
+  nextWeek.setDate(addOneWeek);
+  nextWeek = formatDateString(nextWeek);
 
-minDateExample.setAttribute('value', today);
-minDateExample.setAttribute('minDate', today);
-
-changeMinDateButton.addEventListener('click', () => {
-  minDateExample.setAttribute('minDate', nextWeek);
-});
-
-resetButton.addEventListener('click', () => {
   minDateExample.setAttribute('value', today);
   minDateExample.setAttribute('minDate', today);
-});
+
+  changeMinDateButton.addEventListener('click', () => {
+    minDateExample.setAttribute('minDate', nextWeek);
+  });
+
+  resetButton.addEventListener('click', () => {
+    minDateExample.setAttribute('value', today);
+    minDateExample.setAttribute('minDate', today);
+  });
+
+}
+
