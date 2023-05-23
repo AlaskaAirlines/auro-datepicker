@@ -160,6 +160,16 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * @private
+   * @param {Number} length - Number of characters for the returned random string.
+   * @returns {string}
+   */
+  generateRandomString(length) {
+    const result = Math.random().toString(36).substring(2, length + 2); // eslint-disable-line newline-per-chained-call
+    return result;
+  }
+
+  /**
    * Focuses the combobox trigger input.
    * @returns {void}
    */
@@ -650,6 +660,7 @@ export class AuroDatePicker extends LitElement {
           noHideOnThisFocusLoss>
           <div slot="trigger" class="dpTriggerContent">
             <auro-input
+              id="${this.generateRandomString(12)}"
               bordered
               class="dateFrom"
               ?required="${this.required}"
@@ -666,6 +677,7 @@ export class AuroDatePicker extends LitElement {
             </auro-input>
             ${this.range ? html`
               <auro-input
+                id="${this.generateRandomString(12)}"
                 bordered
                 class="dateTo"
                 ?required="${this.required}"
