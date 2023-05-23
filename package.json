@@ -21,7 +21,7 @@
   "dependencies": {
     "@alaskaairux/icons": "^4.25.0",
     "@aurodesignsystem/auro-dropdown": "^2.9.6",
-    "@aurodesignsystem/auro-input": "^2.13.2",
+    "@aurodesignsystem/auro-input": "^2.14.1",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
     "@material/mwc-menu": "^0.27.0",

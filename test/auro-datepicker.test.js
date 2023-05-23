@@ -4,7 +4,7 @@ import '../src/auro-datepicker';
 describe('auro-datepicker', () => {
   it('auro-datepicker is accessible', async () => {
     const el = await fixture(html`
-      <auro-datepicker cssclass="testClass"></auro-datepicker>
+      <auro-datepicker range cssclass="testClass"></auro-datepicker>
     `);
 
     await expect(el).to.be.accessible({
