@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [2.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.1...v2.0.2) (2023-05-23)
+
+
+### Bug Fixes
+
+* **input:** add random string id attribute value to each input [#122](https://github.com/AlaskaAirlines/auro-datepicker/issues/122) ([abc09c9](https://github.com/AlaskaAirlines/auro-datepicker/commit/abc09c9b0160741bb2d5b18d34a238be573d8e4a))
+
+
+### Performance Improvements
+
+* **deps:** update to latest version of several dependencies ([ec2dcdd](https://github.com/AlaskaAirlines/auro-datepicker/commit/ec2dcdddd78b2b013a3bd60102002597a2d2689c))
+
 ## [2.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.0...v2.0.1) (2023-05-22)
 
 
