@@ -43,10 +43,7 @@ Installing as a direct, dev or peer dependency is up to the user installing the 
 The following Auro peer dependencies must be included.
 
 ```shell
-$ npm i @aurodesignsystem/auro-icon
-$ npm i @aurodesignsystem/auro-calendar
-$ npm i @aurodesignsystem/auro-dropdown
-$ npm i @aurodesignsystem/auro-input
+$ npm i alaskaairux/design-tokens
 $ npm i @aurodesignsystem/webcorestylesheets
 ```
 
