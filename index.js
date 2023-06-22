@@ -9,9 +9,9 @@ import { AuroDatePicker } from "./src/auro-datepicker";
  * @param {Function} className - Class name to use for custom element.
  * @returns {void}
  */
-export function registerComponent(name, className) {
+export function registerComponent(name) {
   // alias definition
   if (!customElements.get(name)) {
-    customElements.define(name, class extends className {});
+    customElements.define(name, class extends AuroDatePicker {});
   }
 }
