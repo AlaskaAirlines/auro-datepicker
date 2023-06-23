@@ -6,7 +6,6 @@ import { AuroDatePicker } from "./src/auro-datepicker";
 /**
  * Register Custom Element.
  * @param {String} name - Name to use for custom element.
- * @param {Function} className - Class name to use for custom element.
  * @returns {void}
  */
 export function registerComponent(name) {
