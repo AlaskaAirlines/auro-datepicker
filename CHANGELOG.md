@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [2.0.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.2...v2.0.3) (2023-06-23)
+
+
+### Bug Fixes
+
+* **define:** registerComponent no longer requires className as param [#133](https://github.com/AlaskaAirlines/auro-datepicker/issues/133) ([717d2d9](https://github.com/AlaskaAirlines/auro-datepicker/commit/717d2d974190d88e5ed8c6a5ea7055a102475512))
+* **dropdown:** use latest version of dropdown ([f583ede](https://github.com/AlaskaAirlines/auro-datepicker/commit/f583edeafe953bf8c1518ed9aab85ddae5308d17))
+
 ## [2.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.1...v2.0.2) (2023-05-23)
 
 
