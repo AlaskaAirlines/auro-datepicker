@@ -83,7 +83,7 @@ In cases where the project is not able to process JS assets, there are pre-proce
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
-<script src="https://cdn.jsdelivr.net/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-datepicker@latest/dist/auro-datepicker__bundled.js" type="module"></script>
 ```
 
 ### Peer dependencies
