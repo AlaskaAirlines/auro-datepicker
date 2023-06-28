@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+## [2.0.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.3...v2.0.4) (2023-06-28)
+
+
+### Bug Fixes
+
+* **cell:** change selected cell color [#125](https://github.com/AlaskaAirlines/auro-datepicker/issues/125) ([d5c67fa](https://github.com/AlaskaAirlines/auro-datepicker/commit/d5c67fafe870a8348691c4e6f072c4f940827f42))
+* **examples:** fix references to api examples ([d000302](https://github.com/AlaskaAirlines/auro-datepicker/commit/d0003027fc17f522db002179ca308cabe1ab2632))
+
+
+### Performance Improvements
+
+* **ts:** add typescript support [#118](https://github.com/AlaskaAirlines/auro-datepicker/issues/118) ([d91be43](https://github.com/AlaskaAirlines/auro-datepicker/commit/d91be43187c39b046d95a32bd716c5c7b00c7760))
+
 ## [2.0.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.2...v2.0.3) (2023-06-23)
 
 
