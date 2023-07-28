@@ -26,7 +26,7 @@
     "@material/mwc-list": "^0.27.0",
     "@material/mwc-menu": "^0.27.0",
     "chalk": "^5.2.0",
-    "lit": "^2.7.4",
+    "lit": "^2.7.6",
     "wc-range-datepicker": "^1.3.0"
   },
   "peerDependencies": {
