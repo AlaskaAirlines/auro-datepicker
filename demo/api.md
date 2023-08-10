@@ -463,6 +463,10 @@ Populates the `required` attribute on the input. Used for client-side validation
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
+  <auro-datepicker required range setCustomValidityValueMissing="Custom value missing message.">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+  </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
@@ -472,6 +476,10 @@ Populates the `required` attribute on the input. Used for client-side validation
 
 ```html
 <auro-datepicker required setCustomValidityValueMissing="Custom value missing message.">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+</auro-datepicker>
+<auro-datepicker required range setCustomValidityValueMissing="Custom value missing message.">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
