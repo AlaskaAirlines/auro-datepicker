@@ -423,7 +423,7 @@ export class AuroDatePicker extends LitElement {
         this.inputList[0].value = this.convertWcTimeToDate(this.calendar.dateFrom);
       }
 
-      if (this.inputList[1] && this.inputList[1].value !== this.calendar.dateTo) {
+      if (this.inputList[1] && this.calendar.dateTo && this.inputList[1].value !== this.calendar.dateTo) {
         this.inputList[1].value = this.convertWcTimeToDate(this.calendar.dateTo);
       }
     });
