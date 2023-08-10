@@ -41,7 +41,6 @@ For the most up to date information on [UI development browser support](https://
 [![Build Status](https://img.shields.io/github/actions/workflow/status/AlaskaAirlines/auro-datepicker/testPublish.yml?style=for-the-badge)](https://github.com/AlaskaAirlines/auro-datepicker/actions/workflows/testPublish.yml)
 [![See it on NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-datepicker?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-datepicker)
 [![License](https://img.shields.io/npm/l/@aurodesignsystem/auro-datepicker?color=blue&style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/@aurodesignsystem/auro-datepicker?style=for-the-badge)](https://snyk.io/test/npm/@aurodesignsystem/auro-datepicker?tab=issues)
 
 ```shell
 $ npm i @aurodesignsystem/auro-datepicker
@@ -187,12 +186,5 @@ Automated tests are required for every Auro component. See `.\test\auro-datepick
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/bundles.md) -->
 Bundled assets are only generated in the remote and not merged back to this repo. To review and/or test a bundled asset locally, run `$ npm run bundler` to generate assets.
-
-<!-- AURO-GENERATED-CONTENT:END -->
-
-### Demo deployment
-
-<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/deploymentDemo.md) -->
-To deploy a demo version of the component for review, run `npm run build:demo` to create a `./build` directory that can be pushed to any static server.
 
 <!-- AURO-GENERATED-CONTENT:END -->
