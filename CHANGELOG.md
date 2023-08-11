@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.0.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.4...v2.0.5) (2023-08-11)
+
+
+### Bug Fixes
+
+* **calendar:** prevent writing dateTo value to input if undefined [#139](https://github.com/AlaskaAirlines/auro-datepicker/issues/139) ([aa9cd9b](https://github.com/AlaskaAirlines/auro-datepicker/commit/aa9cd9b19e1ee3fbdfe55b19bd699534ba7734c9))
+
 ## [2.0.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.3...v2.0.4) (2023-06-28)
 
 
