@@ -90,12 +90,17 @@ export class AuroCalendar extends RangeDatepicker {
     // handle earliest month
     if (this.minDate) {
       const firstMonthYear = new Date(`${this.month}/01/${this.year}`);
+      const minDateMonth = new Date(this.minDate).getMonth() + 1;
+      const minDateYear = new Date(this.minDate).getFullYear();
+      const minDateMonthYear = new Date(`${minDateMonth}/01/${minDateYear}`);
 
-      if (firstMonthYear <= new Date(this.minDate)) {
+      if (firstMonthYear <= minDateMonthYear) {
         this.showPrevMonthBtn = false;
       } else {
         this.showPrevMonthBtn = true;
       }
+
+      this.requestUpdate();
     }
 
     // handle latest month
