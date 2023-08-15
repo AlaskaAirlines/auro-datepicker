@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [2.0.6](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.5...v2.0.6) (2023-08-15)
+
+
+### Bug Fixes
+
+* **calendar:** hide back button when value and mindate are current month [#136](https://github.com/AlaskaAirlines/auro-datepicker/issues/136) ([54de28f](https://github.com/AlaskaAirlines/auro-datepicker/commit/54de28f0d5a92a621abe0d7cefc63184ee13fb4f))
+
+
+### Performance Improvements
+
+* **deps:** update several deps to latest versions ([4db96db](https://github.com/AlaskaAirlines/auro-datepicker/commit/4db96dbf4fdcce947ee9d16e22cec9357d298c47))
+
 ## [2.0.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.4...v2.0.5) (2023-08-11)
 
 
