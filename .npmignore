@@ -1,6 +1,8 @@
 # standard ignore
 *config*
 *conf*
+LICENSE
+NOTICE
 
 .github/
 .gitignore
@@ -11,21 +13,18 @@ coverage/
 docs/
 scripts/
 test/
+apiExamples/
+docTemplates/
 demo/**/*.css
 demo/**/*.scss
 demo/**/*.html
 
-dist/es5.js
+dist/auro-*.js
+!dist/auro-*__bundled.js
+dist/style-css.js
 
 index.html
 
 # ignore src
-src/**/*
-
-apiExamples/
-build/
-docTemplates/
-index/
-
-LICENSE
-NOTICE
+src/**/*.scss
+src/**/*.css
