@@ -3,6 +3,8 @@ import styleCss from "./style-auro-calendar-css";
 
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker';
+import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6.js';
+import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -292,6 +294,18 @@ export class AuroCalendar extends RangeDatepicker {
     `;
   }
 
+  /**
+   * Function to generate checkmark svg.
+   * @private
+   * @returns {void}
+   */
+  generateIconHtml(icon) {
+    this.dom = new DOMParser().parseFromString(icon.svg, 'text/html');
+    this.svg = this.dom.body.firstChild;
+
+    return this.svg;
+  }
+
   render() {
     return html`
       <div class="calendars">
@@ -310,12 +324,12 @@ export class AuroCalendar extends RangeDatepicker {
       </div>
       ${this.showPrevMonthBtn ? html`
         <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
-          <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
+          ${this.generateIconHtml(chevronLeft)}
         </button>
       ` : undefined}
       ${this.showNextMonthBtn ? html`
         <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
-          <auro-icon category="interface" name="chevron-right" customColor></auro-icon>
+          ${this.generateIconHtml(chevronRight)}
         </button>
       ` : undefined}
       <div class="mobileHeader">
