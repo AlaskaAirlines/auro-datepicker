@@ -149,7 +149,7 @@
     "bundler": "rollup -c",
     "bundler:test": "rollup -c -w",
     "scssLint": "stylelint \"./src/**/*.scss\"",
-    "demo:copy:demo": "copyfiles -u 1 -V './demo/demo.md' ./build/demo",
+    "demo:copy:demo": "copyfiles -u 1 -V './demo./index.md' ./build/demo",
     "demo:copy:index": "copyfiles -u 1 -V './demo/index.html' ./build",
     "demo:new:build": "mkdir ./build && mkdir ./build/css && mkdir ./build/demo",
     "demo:rm:build": "rm -rf ./build",
