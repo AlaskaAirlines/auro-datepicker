@@ -2,10 +2,13 @@
 
 .day {
   position: relative;
+
   width: var(--auro-size-600);
   height: var(--auro-size-800);
-  border-width: 1px;
 
+  padding: 0;
+
+  border-width: 1px;
   border-style: solid;
   border-color: transparent;
   border-radius: var(--auro-size-300);
@@ -32,7 +35,7 @@
     color: var(--auro-color-background-lightest);
 
     &:hover {
-      background-color: var(--auro-color-background-lightest); 
+      background-color: var(--auro-color-background-lightest);
     }
   }
 
@@ -42,10 +45,13 @@
       z-index: -1;
       top: 50%;
       left: 50%;
+
       display: block;
       width: var(--auro-size-600);
       height: var(--auro-size-600);
+
       background-color: var(--auro-color-background-lighter);
+
       content: '';
       transform: translate(-50%, -50%);
     }
@@ -54,6 +60,7 @@
   &:hover {
     background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
     color: var(--auro-color-text-primary-on-light);
+
     cursor: pointer;
   }
 }
