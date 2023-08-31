@@ -9,35 +9,36 @@
 /* stylelint-disable color-function-notation, at-rule-empty-line-before */
 
 :host {
-  --mobile-header-height: 86px;
-  --mobile-footer-height: 200px;
-  --calendar-width: 336px;
-
   @include auro_breakpoint($max: $auro-breakpoint-sm) {
     flex-direction: column;
   }
+
+  --calendar-width: 336px;
+  --mobile-footer-height: 200px;
+  --mobile-header-height: 86px;
 }
 
 .calendarNavBtn {
   display: flex;
   width: var(--auro-size-500);
   height: var(--auro-size-500);
+
   align-items: center;
   justify-content: center;
+
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
   border-radius: 50%;
+
   background-color: transparent;
   color: var(--auro-color-border-active-on-light);
-  cursor: pointer;
 
-  &:hover {
-    border-color: var(--auro-color-border-active-on-light);
-  }
+  cursor: pointer;
 
   auro-icon {
     height: var(--auro-size-300);
+
     color: var(--auro-color-ui-default-on-light);
   }
 }
@@ -64,11 +65,14 @@
   position: absolute;
   top: 0;
   left: 0;
+
   display: none;
   width: 100%;
   height: var(--mobile-header-height);
-  flex-direction: row;
+
   align-items: center;
+  flex-direction: row;
+
   background-color: var(--auro-color-background-lightest);
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
@@ -76,27 +80,34 @@
 .headerDateFrom {
   display: flex;
   height: var(--mobile-header-height);
+
   flex: 1;
   flex-direction: column;
   justify-content: center;
+
   padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
+
   border-left: solid 1px var(--auro-color-border-divider-on-light);
 }
 
 .mobileDateLabel {
   color: var(--auro-color-text-secondary-on-light);
+
   font-size: var(--auro-text-body-size-xs);
 }
 
 .headerDateTo {
   height: calc(var(--mobile-header-height) - var(--auro-size-300));
+
   padding: var(--auro-size-300) var(--auro-size-100) 0 var(--auro-size-200);
 }
 
 :host(:not([noRange])) {
   .headerDateTo {
     position: relative;
+
     display: flex;
+
     flex: 1;
     flex-direction: column;
     justify-content: center;
@@ -105,10 +116,13 @@
       position: absolute;
       top: calc(50% + 10px);
       left: 0;
+
       display: block;
       width: 1px;
       height: var(--auro-size-300);
+
       background-color: var(--auro-color-border-divider-on-light);
+
       content: '';
       transform: translateY(-50%);
     }
@@ -119,29 +133,38 @@
   position: absolute;
   bottom: 0;
   left: 50%;
+
   display: none;
   width: 100%;
   height: var(--mobile-footer-height);
-  flex-direction: column;
+
   align-items: flex-end;
+  flex-direction: column;
   justify-content: flex-end;
+
   padding-bottom: var(--auro-size-200);
+
   background: linear-gradient(180deg, var(--auro-color-base-white) 0%, var(--auro-color-background-lightest) 51.56%);
-  pointer-events: none;
+
   transform: translateX(-50%);
+  pointer-events: none;
 }
 
 .mobileFooterActions {
   position: absolute;
   bottom: 0;
   left: 50%;
+
   display: none;
   width: var(--calendar-width); // match the calendar month width; This needs to be deal with when doing the tiny mobile device layout.
   height: var(--mobile-footer-height);
-  flex-direction: column;
+
   align-items: flex-end;
+  flex-direction: column;
   justify-content: flex-end;
+
   padding-bottom: var(--auro-size-200);
+
   transform: translateX(-50%);
 }
 
@@ -160,14 +183,17 @@
   .calendars {
     position: relative;
     top: var(--mobile-header-height);
+
     width: 100%;
     height: calc(100vh - var(--mobile-header-height));
+
     overflow-y: scroll;
 
     &:after {
       display: block;
       width: 100%;
       height: var(--mobile-footer-height);
+
       content: '';
     }
   }
@@ -176,6 +202,7 @@
 @include auro_breakpoint($min: $auro-breakpoint-sm) {
   .calendars {
     display: flex;
+
     flex-direction: row;
   }
 }
@@ -183,5 +210,13 @@
 @include auro_breakpoint($max: $auro-breakpoint-sm) {
   .calendarNavBtn {
     border-color: var(--auro-color-border-active-on-light);
+  }
+}
+
+@media (hover: hover) {
+  .calendarNavBtn {
+    &:hover {
+      border-color: var(--auro-color-border-active-on-light);
+    }
   }
 }

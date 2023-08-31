@@ -12,14 +12,16 @@
   border-style: solid;
   border-color: transparent;
   border-radius: var(--auro-size-300);
-  background-color: transparent;
 
+  background-color: transparent;
   color: var(--auro-color-text-primary-on-light);
 
   cursor: pointer;
 
   font-family: var(--auro-font-family-default);
   font-size: var(--auro-text-body-size-lg);
+
+  user-select: none;
 
   &.disabled {
     color: var(--auro-color-text-secondary-on-dark);
@@ -34,9 +36,9 @@
     box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
     color: var(--auro-color-background-lightest);
 
-    &:hover {
-      background-color: var(--auro-color-background-lightest);
-    }
+    // &:hover {
+    //   background-color: var(--auro-color-background-lightest);
+    // }
   }
 
   &.inRange {
@@ -56,11 +58,21 @@
       transform: translate(-50%, -50%);
     }
   }
+}
 
-  &:hover {
-    background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
-    color: var(--auro-color-text-primary-on-light);
+@media (hover: hover) {
+  .day {
+    &:hover {
+      background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
+      color: var(--auro-color-text-primary-on-light);
 
-    cursor: pointer;
+      cursor: pointer;
+    }
+
+    &.selected {
+      &:hover {
+        background-color: var(--auro-color-background-lightest);
+      }
+    }
   }
 }
