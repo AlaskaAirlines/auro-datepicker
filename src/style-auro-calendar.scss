@@ -6,7 +6,7 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
 @import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable color-function-notation, at-rule-empty-line-before */
+/* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order */
 
 :host {
   @include auro_breakpoint($max: $auro-breakpoint-sm) {
@@ -35,12 +35,6 @@
   color: var(--auro-color-border-active-on-light);
 
   cursor: pointer;
-
-  auro-icon {
-    height: var(--auro-size-300);
-
-    color: var(--auro-color-ui-default-on-light);
-  }
 }
 
 .prevMonth,

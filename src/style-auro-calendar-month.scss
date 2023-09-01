@@ -15,9 +15,9 @@
 $calendar-width: 336px;
 
 :host {
-  display: block;
   position: relative;
 
+  display: block;
   width: $calendar-width;
 
   padding: var(--auro-size-200);
@@ -27,19 +27,24 @@ $calendar-width: 336px;
 
 .header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0 0 var(--auro-size-50);
-  text-align: center;
-  color: var(--range-datepicker-month-text);
   height: calc(var(--auro-size-500) + 4px);
+
+  align-items: center;
+  flex-direction: row;
+
+  margin: 0 0 var(--auro-size-50);
+
+  color: var(--range-datepicker-month-text);
+
+  text-align: center;
 }
 
 .headerTitle {
   display: flex;
+
+  align-items: center;
   flex: 1;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
 
   font-size: var(--auro-text-heading-400-size);
@@ -56,25 +61,21 @@ $calendar-width: 336px;
 .calendarNavBtn {
   position: relative;
 
+  display: flex;
   width: var(--auro-size-500);
   height: var(--auro-size-500);
+
+  align-items: center;
+  justify-content: center;
 
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
   border-radius: 50%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   color: transparent;
 
   cursor: pointer;
-
-  auro-icon {
-    height: var(--auro-size-300);
-  }
 
   &:focus {
     border-color: var(--auro-color-border-active-on-light);
@@ -89,8 +90,10 @@ $calendar-width: 336px;
 
 .table {
   display: table;
-  border-collapse: collapse;
+
   table-layout: fixed;
+
+  border-collapse: collapse;
 }
 
 .thead {
@@ -98,23 +101,27 @@ $calendar-width: 336px;
 }
 
 .th {
-  width: var(--auro-size-600);
-  text-align: center;
   display: table-cell;
-  vertical-align: inherit;
+  width: var(--auro-size-600);
+
   font-weight: 700;
+
+  text-align: center;
+  vertical-align: inherit;
 }
 
 .tbody {
+  height: 384px; // height is fixed to always leave room for months spanning 6 rows
+
   transition: all 0ms;
   transform: translateX(0);
-  height: 384px; // height is fixed to always leave room for months spanning 6 rows
 }
 
 .td {
   display: table-cell;
-  padding: 0;
+
   margin: 0;
+  padding: 0;
 }
 
 .tr {
