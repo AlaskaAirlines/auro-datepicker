@@ -133,8 +133,7 @@ export class AuroCalendarCell extends LitElement {
     let _a, _b;
     return html`
       <button
-        @mousedown="${this.handleTap}"
-        @mtouchend="${this.handleTap}"
+        @click="${this.handleTap}"
         @mouseover="${this.handleHover}"
         @focus="${this.handleHover}"
         class="day ${this.isCurrentDate ? 'currentDate' : ''} ${this.isSelected(this.selected)} ${this.isHovered(this.hovered)} ${this.isEnabled(this.day, this.min, this.max, this.disabledDays)}"
