@@ -317,7 +317,7 @@ describe('auro-datepicker', () => {
 
   it('hides the prev month button when viewing the first available month', async () => {
     const date = new Date();
-    const fullDate = `${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + (date.getDate() + 1)).slice(-2)}/${date.getFullYear()}`;
+    const fullDate = `${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + (date.getDate())).slice(-2)}/${date.getFullYear()}`;
 
     const el = await fixture(html`
       <auro-datepicker minDate="${fullDate}"></auro-datepicker>

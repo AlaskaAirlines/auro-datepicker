@@ -297,7 +297,8 @@ export class AuroCalendar extends RangeDatepicker {
   /**
    * Function to generate checkmark svg.
    * @private
-   * @returns {void}
+   * @param {Object} icon - Icon object containing the SVG.
+   * @returns {Object} Returns the svg portion of the icon object.
    */
   generateIconHtml(icon) {
     this.dom = new DOMParser().parseFromString(icon.svg, 'text/html');
@@ -335,7 +336,7 @@ export class AuroCalendar extends RangeDatepicker {
       <div class="mobileHeader">
         <div class="headerActions">
           <button class="calendarNavBtn" @click="${this.requestDismiss}">
-            <auro-icon category="interface" name="chevron-left" customColor></auro-icon>
+            ${this.generateIconHtml(chevronLeft)}
           </button>
         </div>
         <div class="headerDateFrom">
