@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+## [2.0.8](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.7...v2.0.8) (2023-09-19)
+
+
+### Bug Fixes
+
+* **days:** align day numbers in mobile safari [#141](https://github.com/AlaskaAirlines/auro-datepicker/issues/141) ([e2a0458](https://github.com/AlaskaAirlines/auro-datepicker/commit/e2a0458705cbac5bb7fcc8e65fbbedb5914d3dd6))
+* **hover:** prevent hover styles on mobile devices with tap ([c0855fa](https://github.com/AlaskaAirlines/auro-datepicker/commit/c0855fa7b352487a164efe7586ae62150c120115))
+
+
+### Performance Improvements
+
+* **icon:** use direct icon svg for calendar [#144](https://github.com/AlaskaAirlines/auro-datepicker/issues/144) ([40235f3](https://github.com/AlaskaAirlines/auro-datepicker/commit/40235f391d72ffcfb51b38229829c69027bc6885))
+
 ## [2.0.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.6...v2.0.7) (2023-08-29)
 
 
