@@ -3,7 +3,7 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init */
+/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call */
 
 // If using litElement base class
 import { LitElement, html } from "lit";
@@ -78,6 +78,11 @@ export class AuroDatePicker extends LitElement {
      * @private
      */
     this.type = "month-day-year";
+
+    /**
+     * @private
+     */
+    this.dateSlotContent = [];
   }
 
   // This function is to define props used within the scope of this component
@@ -644,6 +649,25 @@ export class AuroDatePicker extends LitElement {
     this.configureCalendar();
     this.configureDatepicker();
     this.notifyReady();
+
+    this.parseDateContent();
+  }
+
+  /**
+   * Parses slot content by date and appends it to the aure-calendar.
+   * @private
+   * @returns {void}
+   */
+  parseDateContent() {
+    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
+
+    this.dateSlotContent.forEach((item) => {
+      const dateStr = item.getAttribute('slot').substring(item.getAttribute('slot').indexOf('_') + 1).replace(/_/g, '/');
+
+      item.setAttribute('date', dateStr);
+
+      this.calendar.appendChild(item);
+    });
   }
 
   // function that renders the HTML and CSS into  the scope of the component
