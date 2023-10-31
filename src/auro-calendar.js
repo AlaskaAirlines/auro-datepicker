@@ -1,6 +1,9 @@
 import { html } from 'lit';
 import styleCss from "./style-auro-calendar-css";
 
+// lodash is being used to group the slot content by month
+import 'lodash';
+
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker';
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6.js';
@@ -34,6 +37,8 @@ export class AuroCalendar extends RangeDatepicker {
     this.numCalendars = 1;
     this.showPrevMonthBtn = true;
     this.showNextMonthBtn = true;
+
+    this.slotMap = new Map();
   }
 
   static get styles() {
@@ -204,6 +209,8 @@ export class AuroCalendar extends RangeDatepicker {
     if (changedProperties.has('locale')) {
       this.localeChanged();
     }
+
+    this.parseDateContentByMonth();
   }
 
   handlePrevMonth() {
@@ -270,6 +277,45 @@ export class AuroCalendar extends RangeDatepicker {
       this.numCalendars = calendarCount;
       this.requestUpdate();
     }
+  }
+
+  parseDateContentByMonth() {
+    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
+
+    if (this.dateSlotContent && this.dateSlotContent.length > 0) {
+      const items = [];
+
+      this.dateSlotContent.forEach((content) => {
+        this.slotMap.set(content.getAttribute('date'), content);
+
+        const date = new Date(content.getAttribute('date'));
+
+        items.push({
+          date,
+          content
+        });
+      });
+
+      this.slotContentByMonth = _.groupBy(items, ({date}) => date.getMonth()); // eslint-disable-line no-undef
+
+      this.insertSlotContentByMonth();
+    }
+  }
+
+  insertSlotContentByMonth() {
+    const renderedMonths = [...this.shadowRoot.querySelectorAll('[month]')];
+
+    renderedMonths.forEach((month) => {
+      const monthSlotContent = this.slotContentByMonth[month.getAttribute('month') - 1];
+
+      if (monthSlotContent) {
+        monthSlotContent.forEach((monthContent) => {
+          month.slotMap = this.slotMap;
+
+          month.appendChild(monthContent.content);
+        });
+      }
+    });
   }
 
   /**
