@@ -10,9 +10,20 @@ import './auro-calendar-cell';
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
-  // constructor() {
-  //   super();
-  // }
+  constructor() {
+    super();
+
+    this.slotMap = new Map();
+  }
+
+  // This function is to define props used within the scope of this component
+  // Be sure to review  https://lit-element.polymer-project.org/guide/properties#reflected-attributes
+  // to understand how to use reflected attributes with your property settings.
+  static get properties() {
+    return {
+      slotMap: { type: Map }
+    };
+  }
 
   static get styles() {
     return [
@@ -39,6 +50,7 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     setTimeout(() => {
       this.setYears(1930, 2100);
     });
+
     await this.updateComplete;
   }
 
@@ -56,6 +68,69 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
       .concat(tmp);
     this.dayNamesOfTheWeek = newDayNamesOfTheWeek;
+  }
+
+  parseDateContentByDay() {
+    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
+
+    if (this.dateSlotContent && this.dateSlotContent.length > 0) {
+      const items = [];
+
+      this.dateSlotContent.forEach((content) => {
+        const date = new Date(content.getAttribute('date'));
+
+        items.push({
+          date,
+          content
+        });
+      });
+
+      this.slotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
+    }
+
+    this.insertSlotContentByDay();
+  }
+
+  insertSlotContentByDay() {
+    const renderedDays = [...this.shadowRoot.querySelectorAll('auro-calendar-cell')];
+
+    renderedDays.forEach((dateCell) => {
+      const day = new Date(dateCell.day.date * 1000).getDate();
+      const dayName = this.getFormattedDate(dateCell);
+
+      if (this.isSlotContentValid(day, dayName, this.slotContentByDay)) {
+        dateCell.appendChild(this.slotContentByDay[day][0].content);
+      } else if (this.slotMap.has(dayName)) {
+        dateCell.appendChild(this.slotMap.get(dayName));
+      }
+    });
+  }
+
+  isSlotContentValid(day, dayName, slotContentByDay) {
+    return (
+      slotContentByDay &&
+      slotContentByDay[day] &&
+      slotContentByDay[day][0].content.getAttribute('date') === dayName
+    );
+  }
+
+  getFormattedDate(dateCell) {
+    const date = new Date(dateCell.day.date * 1000);
+
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month.toString().length === 1) {
+      month = `0${month}`;
+    }
+
+    if (day.toString().length === 1) {
+      day = `0${day}`;
+    }
+
+    const year = date.getFullYear();
+
+    return `${month}/${day}/${year}`;
   }
 
   renderDay(day) {
@@ -84,9 +159,13 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     `;
   }
 
-  updated(changedProperties) {
+  async updated(changedProperties) {
     if (changedProperties.has('year') || changedProperties.has('month')) {
       this.yearAndMonthChanged(this.year, this.month);
+
+      await this.updateComplete;
+
+      this.parseDateContentByDay();
     }
   }
 }
