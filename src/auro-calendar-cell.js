@@ -23,6 +23,7 @@ export class AuroCalendarCell extends LitElement {
     this.hoveredDate = null;
     this.isCurrentDate = false;
     this._locale = null;
+    this.dateStr = null;
   }
 
   // This function is to define props used within the scope of this component
@@ -43,7 +44,8 @@ export class AuroCalendarCell extends LitElement {
       disabledDays:  { type: Array },
       hoveredDate:   { type: String },
       isCurrentDate: { type: Boolean },
-      locale:        { type: Object }
+      locale:        { type: Object },
+      dateStr:       { type: String }
     };
   }
 
@@ -123,10 +125,31 @@ export class AuroCalendarCell extends LitElement {
     });
   }
 
+  getSlotName() {
+    const date = new Date(this.day.date * 1000);
+
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month.toString().length === 1) {
+      month = `0${month}`;
+    }
+
+    if (day.toString().length === 1) {
+      day = `0${day}`;
+    }
+
+    const year = date.getFullYear();
+
+    this.dateStr = `date_${month}_${day}_${year}`;
+  }
+
   updated(properties) {
     if (properties.has('dateFrom') || properties.has('dateTo') || properties.has('hoveredDate') || properties.has('day')) {
       this.dateChanged(this.dateFrom, this.dateTo, this.hoveredDate, this.day);
     }
+
+    this.getSlotName();
   }
 
   render() {
@@ -141,6 +164,9 @@ export class AuroCalendarCell extends LitElement {
         title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
         tabindex="-1">
         <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
+        <div class="daySlot" part="daySlot">
+          <slot name="${this.dateStr}"></slot>
+        </div>
       </button>
     `;
   }
