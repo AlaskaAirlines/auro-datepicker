@@ -20,6 +20,8 @@ import './auro-calendar.js';
 import '@aurodesignsystem/auro-input';
 import '@aurodesignsystem/auro-dropdown';
 
+import { AuroFormValidation } from "./validation.js";
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {String} value - Value selected for the date picker.
@@ -51,6 +53,11 @@ import '@aurodesignsystem/auro-dropdown';
 export class AuroDatePicker extends LitElement {
   constructor() {
     super();
+
+    /**
+     * @private
+     */
+    this.validation = new AuroFormValidation();
 
     this.disabled = false;
     this.required = false;
@@ -385,7 +392,7 @@ export class AuroDatePicker extends LitElement {
     });
 
     this.inputList[0].addEventListener('auroInput-validated', () => {
-      this.validate();
+      this.validation.validate(this);
     });
 
     this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
@@ -401,7 +408,7 @@ export class AuroDatePicker extends LitElement {
       });
 
       this.inputList[1].addEventListener('auroInput-validated', () => {
-        this.validate();
+        this.validation.validate(this);
       });
 
       this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
@@ -461,10 +468,10 @@ export class AuroDatePicker extends LitElement {
 
       if (!this.noValidate && !evt.detail.expanded && this.inputList[0].value !== undefined) {
         if (!this.contains(document.activeElement)) {
-          this.inputList[0].validate();
+          this.validation.validate(this.inputList[0]);
 
           if (this.inputList[1] && this.inputList[1].value !== undefined) {
-            this.inputList[1].validate();
+            this.validation.validate(this.inputList[1]);
           }
         }
       }
@@ -573,7 +580,7 @@ export class AuroDatePicker extends LitElement {
         this.dropdown.removeAttribute('error');
         this.inputList[0].removeAttribute('error');
         this.errorMessage = undefined;
-        this.inputList[0].validate();
+        this.validation.validate(this.inputList[0]);
       }
 
       this.requestUpdate();
