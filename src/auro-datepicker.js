@@ -10,7 +10,6 @@ import { LitElement, html } from "lit";
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
-// import { html, css } from "lit-element";
 // import AuroElement from '@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
 
 // Import touch detection lib
