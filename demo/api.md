@@ -738,6 +738,189 @@ Only for use with the `range` attribute. Sets the label for the second input.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
+### Day Slot
+
+Each day within the calendar has a slot that allows a user to add custom content. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `date_{month}_{day}_{fullYear}`. 
+
+**Note**: When the month is a single digit, a zero will need to be added to the front of the month. For example, January would be `01` and not `1`.
+
+In order to style your slot content, we recommend using in-line styles on your component, as the day slot content is passed down multiple levels within the component. Another way to style the component is to target the `part="daySlot"` attribute that is added to the container around the slot content.
+
+**Disclaimer**: This element only supports the use of default text or Auro icons to be slotted in the calendar at this time.
+
+In the following example, please see how pricing content is threaded into the element's `<slot>`.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlot.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/daySlot.html -->
+  <auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+    <span slot="date_09_01_2023">$132</span>
+    <span slot="date_09_12_2023">$1000</span>
+    <span slot="date_09_21_2023">$242</span>
+    <span slot="date_10_01_2023">$1322</span>
+    <span slot="date_10_02_2023">$234</span>
+    <span slot="date_10_11_2023">$784</span>
+    <span slot="date_10_15_2023">$567</span>
+    <span slot="date_10_16_2023">$12345</span>
+    <span slot="date_10_17_2023">Sold</span>
+    <span slot="date_10_18_2023">$2000</span>
+    <span slot="date_10_19_2023">$1500</span>
+    <span slot="date_10_20_2023">$870</span>
+    <span slot="date_10_21_2023">$45</span>
+    <span slot="date_11_01_2023">$1000</span>
+    <span slot="date_11_02_2023">$200</span>
+    <span slot="date_11_04_2023">$1540</span>
+    <span slot="date_11_08_2023">$2320</span>
+    <span slot="date_11_18_2023">$100</span>
+    <span slot="date_12_01_2023">$23</span>
+    <span slot="date_12_06_2023">$5600</span>
+    <span slot="date_01_01_2024">$202</span>
+    <span slot="date_01_05_2024">$3022</span>
+  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlot.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/daySlot.html -->
+
+```html
+<auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+  <span slot="date_09_01_2023">$132</span>
+  <span slot="date_09_12_2023">$1000</span>
+  <span slot="date_09_21_2023">$242</span>
+  <span slot="date_10_01_2023">$1322</span>
+  <span slot="date_10_02_2023">$234</span>
+  <span slot="date_10_11_2023">$784</span>
+  <span slot="date_10_15_2023">$567</span>
+  <span slot="date_10_16_2023">$12345</span>
+  <span slot="date_10_17_2023">Sold</span>
+  <span slot="date_10_18_2023">$2000</span>
+  <span slot="date_10_19_2023">$1500</span>
+  <span slot="date_10_20_2023">$870</span>
+  <span slot="date_10_21_2023">$45</span>
+  <span slot="date_11_01_2023">$1000</span>
+  <span slot="date_11_02_2023">$200</span>
+  <span slot="date_11_04_2023">$1540</span>
+  <span slot="date_11_08_2023">$2320</span>
+  <span slot="date_11_18_2023">$100</span>
+  <span slot="date_12_01_2023">$23</span>
+  <span slot="date_12_06_2023">$5600</span>
+  <span slot="date_01_01_2024">$202</span>
+  <span slot="date_01_05_2024">$3022</span>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+#### Day Slot Range w/ Text
+
+The following example illustrates slotted content in combination with the `range` attribute.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotRange.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/daySlotRange.html -->
+  <auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+    <span slot="date_09_01_2023">$132</span>
+    <span slot="date_09_12_2023">$1000</span>
+    <span slot="date_09_21_2023">$242</span>
+    <span slot="date_10_01_2023">$1322</span>
+    <span slot="date_10_02_2023">$234</span>
+    <span slot="date_10_11_2023">$784</span>
+    <span slot="date_10_15_2023">$567</span>
+    <span slot="date_10_16_2023">$1234</span>
+    <span slot="date_10_17_2023">$888</span>
+    <span slot="date_10_18_2023">$2000</span>
+    <span slot="date_10_19_2023">$1500</span>
+    <span slot="date_10_20_2023">$870</span>
+    <span slot="date_10_21_2023">$45</span>
+    <span slot="date_11_01_2023">$1000</span>
+    <span slot="date_11_02_2023">$200</span>
+    <span slot="date_11_04_2023">$1540</span>
+    <span slot="date_11_08_2023">$2320</span>
+    <span slot="date_11_18_2023">$100</span>
+    <span slot="date_12_01_2023">$23</span>
+    <span slot="date_12_06_2023">$5600</span>
+    <span slot="date_01_01_2024">$202</span>
+    <span slot="date_01_05_2024">$3022</span>
+  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotRange.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/daySlotRange.html -->
+
+```html
+<auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+  <span slot="date_09_01_2023">$132</span>
+  <span slot="date_09_12_2023">$1000</span>
+  <span slot="date_09_21_2023">$242</span>
+  <span slot="date_10_01_2023">$1322</span>
+  <span slot="date_10_02_2023">$234</span>
+  <span slot="date_10_11_2023">$784</span>
+  <span slot="date_10_15_2023">$567</span>
+  <span slot="date_10_16_2023">$1234</span>
+  <span slot="date_10_17_2023">$888</span>
+  <span slot="date_10_18_2023">$2000</span>
+  <span slot="date_10_19_2023">$1500</span>
+  <span slot="date_10_20_2023">$870</span>
+  <span slot="date_10_21_2023">$45</span>
+  <span slot="date_11_01_2023">$1000</span>
+  <span slot="date_11_02_2023">$200</span>
+  <span slot="date_11_04_2023">$1540</span>
+  <span slot="date_11_08_2023">$2320</span>
+  <span slot="date_11_18_2023">$100</span>
+  <span slot="date_12_01_2023">$23</span>
+  <span slot="date_12_06_2023">$5600</span>
+  <span slot="date_01_01_2024">$202</span>
+  <span slot="date_01_05_2024">$3022</span>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+#### Day Slot w/ Icon
+
+The following example illustrates how the `<auro-icon>` element can be used as slotted content.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotIcon.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/daySlotIcon.html -->
+  <auro-datepicker centralDate="10/01/2023" minDate="10/01/2023" maxDate="10/31/2023">
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+    <auro-icon slot="date_10_01_2023" customColor customSize category="interface" name="home-stroke"></auro-icon>
+    <auro-icon slot="date_10_10_2023" customColor customSize category="interface" name="arrow-left"></auro-icon>
+    <auro-icon slot="date_10_15_2023" customColor customSize category="interface" name="heart-stroke"></auro-icon>
+  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotIcon.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/daySlotIcon.html -->
+
+```html
+<auro-datepicker centralDate="10/01/2023" minDate="10/01/2023" maxDate="10/31/2023">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+  <auro-icon slot="date_10_01_2023" customColor customSize category="interface" name="home-stroke"></auro-icon>
+  <auro-icon slot="date_10_10_2023" customColor customSize category="interface" name="arrow-left"></auro-icon>
+  <auro-icon slot="date_10_15_2023" customColor customSize category="interface" name="heart-stroke"></auro-icon>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ## Functional Examples
 
 ### Watch for value changes
