@@ -43,8 +43,6 @@ describe('auro-datepicker', () => {
     await expect(dropdown.isPopoverVisible).to.be.true;
   });
 
-
-
   it('handles the required state being set', async () => {
     const el = await fixture(html`
       <auro-datepicker required></auro-datepicker>
@@ -594,7 +592,36 @@ describe('auro-datepicker', () => {
 
     await expect(dropdown.isPopoverVisible).to.be.false;
   });
+
+  it('datepicker correctly parses date slot name and passes slot down to cell correctly', async () => {
+    const el = await daySlotFixture();
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+    const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
+    const calendarCell = [...calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell')];
+
+    for (const cell of calendarCell) {
+      const span = cell.querySelector('span');
+
+      if (span) {
+        const formattedDate = await calendarMonth.getFormattedDate(cell);
+        await expect(span.getAttribute('date')).to.be.equal(formattedDate);
+      }
+    }
+  });
 });
+
+async function daySlotFixture() {
+  return await fixture(html`
+    <auro-datepicker centralDate="10/01/2023">
+      <span slot="date_10_01_2023">$1322</span>
+      <span slot="date_10_02_2023">$234</span>
+      <span slot="date_10_11_2023">$784</span>
+      <span slot="date_10_15_2023">$567</span>
+      <span slot="date_10_16_2023">$12345</span>
+    </auro-datepicker>
+  `);
+}
 
 function setInputValue(auroInput, value) {
   auroInput.value = value;
