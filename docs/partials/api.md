@@ -351,6 +351,63 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 </auro-accordion>
 
+### Day Slot
+
+Each day within the calendar has a slot that allows a user to add custom content. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `date_{month}_{day}_{fullYear}`. 
+
+**Note**: When the month is a single digit, a zero will need to be added to the front of the month. For example, January would be `01` and not `1`.
+
+In order to style your slot content, we recommend using in-line styles on your component, as the day slot content is passed down multiple levels within the component. Another way to style the component is to target the `part="daySlot"` attribute that is added to the container around the slot content.
+
+**Disclaimer**: This element only supports the use of default text or Auro icons to be slotted in the calendar at this time.
+
+In the following example, please see how pricing content is threaded into the element's `<slot>`.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlot.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+#### Day Slot Range w/ Text
+
+The following example illustrates slotted content in combination with the `range` attribute.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotRange.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotRange.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+#### Day Slot w/ Icon
+
+The following example illustrates how the `<auro-icon>` element can be used as slotted content.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotIcon.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotIcon.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+
 ## Functional Examples
 
 ### Watch for value changes
