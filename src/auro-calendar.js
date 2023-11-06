@@ -108,16 +108,22 @@ export class AuroCalendar extends RangeDatepicker {
     // handle latest month
     if (this.maxDate) {
       const maxMonth = new Date(this.maxDate).getMonth() + 1;
-      let lastViewedMonth = this.month + this.numCalendars - 1;
+      const maxYear = new Date(this.maxDate).getFullYear();
 
-      if (lastViewedMonth > 12) {
-        lastViewedMonth -= 12;
-      }
-
-      if (lastViewedMonth === maxMonth) {
-        this.showNextMonthBtn = false;
-      } else {
+      if (maxYear > this.year) {
         this.showNextMonthBtn = true;
+      } else {
+        let lastViewedMonth = this.month + this.numCalendars - 1;
+
+        if (lastViewedMonth > 12) {
+          lastViewedMonth -= 12;
+        }
+
+        if (lastViewedMonth === maxMonth) {
+          this.showNextMonthBtn = false;
+        } else {
+          this.showNextMonthBtn = true;
+        }
       }
     }
   }
