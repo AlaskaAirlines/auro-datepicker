@@ -3,46 +3,46 @@
 
 // // ---------------------------------------------------------------------
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
 /* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before */
 
 .day {
   position: relative;
 
-  width: var(--auro-size-600);
-  height: var(--auro-size-800);
+  width: var(--ds-size-600, $ds-size-600);
+  height: var(--ds-size-800, $ds-size-800);
 
   padding: 0;
 
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
-  border-radius: var(--auro-size-300);
+  border-radius: var(--ds-size-300, $ds-size-300);
 
   background-color: transparent;
-  color: var(--auro-color-text-primary-on-light);
+  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
 
   cursor: pointer;
 
-  font-family: var(--auro-font-family-default);
-  font-size: var(--auro-text-body-size-lg);
+  font-family: var(--ds-font-family-default, $ds-font-family-default);
+  font-size: var(--ds-text-body-size-lg, $ds-text-body-size-lg);
 
   user-select: none;
 
   &.disabled {
-    color: var(--auro-color-text-secondary-on-dark);
+    color: var(--ds-color-text-secondary-inverse, $ds-color-text-secondary-inverse);
 
     pointer-events: none;
   }
 
   &.selected {
-    border-color: var(--auro-color-background-darker);
+    border-color: var(--ds-color-background-darker, $ds-color-background-darker);
 
-    background-color: var(--auro-color-background-darker);
+    background-color: var(--ds-color-background-darker, $ds-color-background-darker);
     box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
-    color: var(--auro-color-background-lightest);
+    color: var(--ds-color-background-lightest, $ds-color-background-lightest);
   }
 
   &.inRange {
@@ -53,10 +53,10 @@
       left: 50%;
 
       display: block;
-      width: var(--auro-size-600);
-      height: var(--auro-size-600);
+      width: var(--ds-size-600, $ds-size-600);
+      height: var(--ds-size-600, $ds-size-600);
 
-      background-color: var(--auro-color-background-lighter);
+      background-color: var(--ds-color-background-lighter, $ds-color-background-lighter);
 
       content: '';
       transform: translate(-50%, -50%);
@@ -73,7 +73,7 @@
   align-items: center;
   justify-content: center;
 
-  font-size: var(--auro-text-body-size-xxs);
+  font-size: var(--ds-text-body-size-xxs, $ds-text-body-size-xxs);
 }
 
 ::slotted(*) {
@@ -95,22 +95,22 @@
 
 @include auro_grid-breakpoint--xs {
   .daySlot {
-    font-size: var(--auro-text-body-size-xs);
+    font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
   }
 }
 
 @media (hover: hover) {
   .day {
     &:hover {
-      background-color: #f0f0f0; // var(--auro-color-ui-bkg-hover-on-light); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
-      color: var(--auro-color-text-primary-on-light);
+      background-color: #f0f0f0; // var(--ds-color-ui-bkg-hover-default); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
+      color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
 
       cursor: pointer;
     }
 
     &.selected {
       &:hover {
-        background-color: var(--auro-color-background-lightest);
+        background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
       }
     }
   }
