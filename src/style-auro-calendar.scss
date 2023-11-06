@@ -3,13 +3,13 @@
 
 // // ---------------------------------------------------------------------
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
 /* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before */
 
 :host {
-  @include auro_breakpoint($max: $auro-breakpoint-sm) {
+  @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
     flex-direction: column;
   }
 
@@ -20,8 +20,8 @@
 
 .calendarNavBtn {
   display: flex;
-  width: var(--auro-size-500);
-  height: var(--auro-size-500);
+  width: var(--ds-size-500, $ds-size-500);
+  height: var(--ds-size-500, $ds-size-500);
 
   align-items: center;
   justify-content: center;
@@ -32,7 +32,7 @@
   border-radius: 50%;
 
   background-color: transparent;
-  color: var(--auro-color-border-active-on-light);
+  color: var(--ds-color-border-active-default, $ds-color-border-active-default);
 
   cursor: pointer;
 }
@@ -40,19 +40,19 @@
 .prevMonth,
 .nextMonth {
   position: absolute;
-  top: var(--auro-size-200);
+  top: var(--ds-size-200, $ds-size-200);
 }
 
 .prevMonth {
-  left: var(--auro-size-50);
+  left: var(--ds-size-50, $ds-size-50);
 }
 
 .nextMonth {
-  right: var(--auro-size-50);
+  right: var(--ds-size-50, $ds-size-50);
 }
 
 .headerActions {
-  padding: 0 var(--auro-size-200);
+  padding: 0 var(--ds-size-200, $ds-size-200);
 }
 
 .mobileHeader {
@@ -67,7 +67,7 @@
   align-items: center;
   flex-direction: row;
 
-  background-color: var(--auro-color-background-lightest);
+  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest, $ds-color-background-lightest);
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
@@ -79,21 +79,21 @@
   flex-direction: column;
   justify-content: center;
 
-  padding: 0 var(--auro-size-100) 0 var(--auro-size-200);
+  padding: 0 var(--ds-size-100, $ds-size-100) 0 var(--ds-size-200, $ds-size-200);
 
-  border-left: solid 1px var(--auro-color-border-divider-on-light);
+  border-left: solid 1px var(--ds-color-border-divider-default, $ds-color-border-divider-default);
 }
 
 .mobileDateLabel {
-  color: var(--auro-color-text-secondary-on-light);
+  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 
-  font-size: var(--auro-text-body-size-xs);
+  font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
 }
 
 .headerDateTo {
-  height: calc(var(--mobile-header-height) - var(--auro-size-300));
+  height: calc(var(--mobile-header-height) - var(--ds-size-300, $ds-size-300));
 
-  padding: var(--auro-size-300) var(--auro-size-100) 0 var(--auro-size-200);
+  padding: var(--ds-size-300, $ds-size-300) var(--ds-size-100, $ds-size-100) 0 var(--ds-size-200, $ds-size-200);
 }
 
 :host(:not([noRange])) {
@@ -113,9 +113,9 @@
 
       display: block;
       width: 1px;
-      height: var(--auro-size-300);
+      height: var(--ds-size-300, $ds-size-300);
 
-      background-color: var(--auro-color-border-divider-on-light);
+      background-color: var(--ds-color-border-divider-default, $ds-color-border-divider-default);
 
       content: '';
       transform: translateY(-50%);
@@ -136,9 +136,9 @@
   flex-direction: column;
   justify-content: flex-end;
 
-  padding-bottom: var(--auro-size-200);
+  padding-bottom: var(--ds-size-200, $ds-size-200);
 
-  background: linear-gradient(180deg, var(--auro-color-base-white) 0%, var(--auro-color-background-lightest) 51.56%);
+  background: linear-gradient(180deg, var(--ds-color-base-white) 0%, var(--ds-color-background-lightest, $ds-color-background-lightest) 51.56%);
 
   transform: translateX(-50%);
   pointer-events: none;
@@ -157,12 +157,12 @@
   flex-direction: column;
   justify-content: flex-end;
 
-  padding-bottom: var(--auro-size-200);
+  padding-bottom: var(--ds-size-200, $ds-size-200);
 
   transform: translateX(-50%);
 }
 
-@include auro_breakpoint($max: $auro-breakpoint-sm) {
+@include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
   .prevMonth,
   .nextMonth {
     display: none;
@@ -193,7 +193,7 @@
   }
 }
 
-@include auro_breakpoint($min: $auro-breakpoint-sm) {
+@include auro_breakpoint($min: $ds-grid-breakpoint-sm) {
   .calendars {
     display: flex;
 
@@ -201,16 +201,16 @@
   }
 }
 
-@include auro_breakpoint($max: $auro-breakpoint-sm) {
+@include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
   .calendarNavBtn {
-    border-color: var(--auro-color-border-active-on-light);
+    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
   }
 }
 
 @media (hover: hover) {
   .calendarNavBtn {
     &:hover {
-      border-color: var(--auro-color-border-active-on-light);
+      border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
     }
   }
 }

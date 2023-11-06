@@ -237,7 +237,7 @@ export class AuroCalendar extends RangeDatepicker {
       maxCalendars = 2;
     }
 
-    // This numerical value comes from the SCSS variable 'auro-breakpoint-sm' and needs to be changed to use the variable name
+    // This numerical value comes from the SCSS variable 'ds-grid-breakpoint-sm' and needs to be changed to use the variable name
     if (vw < 660) {
       maxCalendars = 12;
     }
