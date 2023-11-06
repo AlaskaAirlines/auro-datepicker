@@ -3,9 +3,10 @@
 
 /* stylelint-disable max-nesting-depth, declaration-no-important, selector-class-pattern, declaration-empty-line-before */
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityClasses/displayProperties';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
 
 auro-input {
   &::part(iconContainer) {
@@ -35,8 +36,8 @@ auro-input {
 }
 
 .datepickerElement-helpText {
-  margin: var(--auro-size-50, .25rem) 0;
-  font-size: var(--auro-text-body-size-xs);
+  margin: var(--ds-size-50, $ds-size-50) 0;
+  font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
   line-height: 1rem;
 }
 
@@ -48,11 +49,11 @@ auro-input {
     flex: 1;
 
     &:first-of-type {
-      margin-right: var(--auro-size-150);
+      margin-right: var(--ds-size-150, $ds-size-150);
     }
 
     &:nth-child(2) {
-      margin-left: var(--auro-size-150);
+      margin-left: var(--ds-size-150, $ds-size-150);
 
       &::part(accentIcon) {
         display: none;
@@ -70,11 +71,11 @@ auro-input {
       &:before {
         position: absolute;
         top: 13px;
-        left: calc(var(--auro-size-150) * -1);
+        left: calc(var(--ds-size-150, $ds-size-150) * -1);
         display: block;
         width: 1px;
         height: 2rem;
-        background: var(--auro-color-border-primary-on-light);
+        background: var(--ds-color-border-primary-default, $ds-color-border-primary-default);
         content: '';
       }
     }
@@ -82,17 +83,17 @@ auro-input {
 }
 
 .placeholderDate {
-  color: var(--auro-color-text-secondary-on-light);
+  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 }
 
-@include auro_breakpoint($max: $auro-breakpoint-sm) {
+@include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
   ::part(popover) {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    margin-bottom: var(--auro-size-200);
+    margin-bottom: var(--ds-size-200, $ds-size-200);
     transform: unset !important;
   }
 

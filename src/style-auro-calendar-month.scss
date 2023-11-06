@@ -4,11 +4,10 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-// Support for auroElement styles
-// @import './node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
 
 /* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length, declaration-empty-line-before */
 
@@ -20,19 +19,19 @@ $calendar-width: 336px;
   display: block;
   width: $calendar-width;
 
-  padding: var(--auro-size-200);
+  padding: var(--ds-size-200, $ds-size-200);
 
-  background-color: var(--auro-color-background-lightest);
+  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
 }
 
 .header {
   display: flex;
-  height: calc(var(--auro-size-500) + 4px);
+  height: calc(var(--ds-size-500, $ds-size-500) + 4px);
 
   align-items: center;
   flex-direction: row;
 
-  margin: 0 0 var(--auro-size-50);
+  margin: 0 0 var(--ds-size-50, $ds-size-50);
 
   color: var(--range-datepicker-month-text);
 
@@ -47,13 +46,13 @@ $calendar-width: 336px;
   flex-direction: row;
   justify-content: center;
 
-  font-size: var(--auro-text-heading-400-size);
-  font-weight: var(--auro-text-heading-400-weight);
-  line-height: var(--auro-text-heading-400-height);
+  font-size: var(--ds-text-heading-400-size, $ds-text-heading-400-size);
+  font-weight: var(--ds-text-heading-400-weight, $ds-text-heading-400-weight);
+  line-height: var(--ds-text-heading-400-height, $ds-text-heading-400-height);
 
   div {
     &:first-child {
-      margin-right: var(--auro-size-100);
+      margin-right: var(--ds-size-100, $ds-size-100);
     }
   }
 }
@@ -62,8 +61,8 @@ $calendar-width: 336px;
   position: relative;
 
   display: flex;
-  width: var(--auro-size-500);
-  height: var(--auro-size-500);
+  width: var(--ds-size-500, $ds-size-500);
+  height: var(--ds-size-500, $ds-size-500);
 
   align-items: center;
   justify-content: center;
@@ -78,13 +77,13 @@ $calendar-width: 336px;
   cursor: pointer;
 
   &:focus {
-    border-color: var(--auro-color-border-active-on-light);
+    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
   }
 
   &:active {
-    border-color: var(--auro-color-border-active-on-light);
+    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
 
-    box-shadow: inset 0 0 0 1px var(--auro-color-border-active-on-light);
+    box-shadow: inset 0 0 0 1px var(--ds-color-border-active-default, $ds-color-border-active-default);
   }
 }
 
@@ -97,12 +96,12 @@ $calendar-width: 336px;
 }
 
 .thead {
-  margin-bottom: var(--auro-size-100);
+  margin-bottom: var(--ds-size-100, $ds-size-100);
 }
 
 .th {
   display: table-cell;
-  width: var(--auro-size-600);
+  width: var(--ds-size-600, $ds-size-600);
 
   font-weight: 700;
 
