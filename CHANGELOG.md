@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.0.9](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.8...v2.0.9) (2023-11-06)
+
+
+### Bug Fixes
+
+* **maxDate:** properly consider year when handling maxDate attribute [#157](https://github.com/AlaskaAirlines/auro-datepicker/issues/157) ([688bf4d](https://github.com/AlaskaAirlines/auro-datepicker/commit/688bf4dedb4b818d81896a47d7949652cd6fddcd))
+
 ## [2.0.8](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.7...v2.0.8) (2023-09-19)
 
 
