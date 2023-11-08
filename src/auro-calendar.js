@@ -393,11 +393,6 @@ export class AuroCalendar extends RangeDatepicker {
         </button>
       ` : undefined}
       <div class="mobileHeader">
-        <div class="headerActions">
-          <button class="calendarNavBtn" @click="${this.requestDismiss}">
-            ${this.generateIconHtml(chevronLeft)}
-          </button>
-        </div>
         <div class="headerDateFrom">
           <span class="mobileDateLabel"><slot name="mobileDateLabel"></slot></span>
           <slot name="mobileDateFromStr"></slot>
