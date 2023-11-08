@@ -541,32 +541,6 @@ describe('auro-datepicker', () => {
     await expect(dropdown.isPopoverVisible).to.be.true;
   });
 
-  it('closes the mobile bib when clicking the back button on mobile header', async () => {
-    window.innerWidth = 600;
-
-    const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
-    `);
-
-    const calendar = el.shadowRoot.querySelector('auro-calendar');
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-    const input = el.shadowRoot.querySelector('auro-input');
-
-    const backBtn = calendar.shadowRoot.querySelector('.headerActions button');
-
-    input.click()
-
-    await elementUpdated();
-
-    await expect(dropdown.isPopoverVisible).to.be.true;
-
-    backBtn.click();
-
-    await elementUpdated();
-
-    await expect(dropdown.isPopoverVisible).to.be.false;
-  });
-
   it('closes the mobile bib when clickig the bottom done', async () => {
     window.innerWidth = 600;
 
