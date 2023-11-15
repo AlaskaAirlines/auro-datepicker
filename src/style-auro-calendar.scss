@@ -14,7 +14,7 @@
   }
 
   --calendar-width: 336px;
-  --mobile-footer-height: 200px;
+  --mobile-footer-height: 150px;
   --mobile-header-height: 86px;
 }
 
@@ -136,7 +136,7 @@
 
   padding-bottom: var(--ds-size-200, $ds-size-200);
 
-  background: linear-gradient(180deg, var(--ds-color-base-white) 0%, var(--ds-color-background-lightest, $ds-color-background-lightest) 51.56%);
+  background: var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
 
   transform: translateX(-50%);
   pointer-events: none;
