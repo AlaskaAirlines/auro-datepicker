@@ -6,13 +6,36 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before */
+/* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before, scss/selector-nest-combinators, selector-pseudo-element-colon-notation, max-nesting-depth, at-rule-empty-line-before */
+
+@mixin in-range-pseudo-elem {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  width: calc(100vw / 7);
+  height: var(--ds-size-600, $ds-size-600);
+
+  background-color: var(--ds-color-background-lighter, $ds-color-background-lighter);
+
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
+:host {
+  @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
+    display: flex;
+    justify-content: center;
+  }
+}
 
 .day {
   position: relative;
 
-  width: var(--ds-size-600, $ds-size-600);
-  height: var(--ds-size-800, $ds-size-800);
+  width: var(--ds-size-500, $ds-size-500);
+  height: calc(var(--ds-size-700, $ds-size-700) - 2px);
 
   padding: 0;
 
@@ -27,7 +50,7 @@
   cursor: pointer;
 
   font-family: var(--ds-font-family-default, $ds-font-family-default);
-  font-size: var(--ds-text-body-size-lg, $ds-text-body-size-lg);
+  font-size: var(--ds-text-body-size-default, $ds-text-body-size-default);
 
   user-select: none;
 
@@ -43,23 +66,35 @@
     background-color: var(--ds-color-background-darker, $ds-color-background-darker);
     box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
     color: var(--ds-color-background-lightest, $ds-color-background-lightest);
+
+    &.departDate::before {
+      @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
+        @include in-range-pseudo-elem;
+
+        width: calc(calc(100vw / 7) / 2);
+
+        transform: translate(0%, -50%);
+      }
+    }
+
+    &.returnDate::before {
+      @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
+        @include in-range-pseudo-elem;
+
+        width: calc(calc(100vw / 7) / 2);
+
+        transform: translate(-100%, -50%);
+      }
+    }
   }
 
   &.inRange {
     &:before {
-      position: absolute;
-      z-index: -1;
-      top: 50%;
-      left: 50%;
+      @include in-range-pseudo-elem;
 
-      display: block;
-      width: var(--ds-size-600);
-      height: var(--ds-size-600);
-
-      background-color: var(--ds-color-background-lighter, $ds-color-background-lighter);
-
-      content: '';
-      transform: translate(-50%, -50%);
+      @include auro_grid-breakpoint--sm {
+        width: var(--ds-size-600, $ds-size-600);
+      }
     }
   }
 }
@@ -78,13 +113,14 @@
 
 ::slotted(*) {
   position: absolute;
+  top: 80%;
+  left: 50%;
+
   width: 80%;
 
   overflow: hidden;
   white-space: nowrap;
 
-  left: 50%; 
-  top: 80%;
   transform: translate(-50%, -50%);
 }
 
@@ -93,7 +129,14 @@
   max-width: 24px;
 }
 
-@include auro_grid-breakpoint--xs {
+@include auro_grid-breakpoint--sm {
+  .day {
+    width: var(--ds-size-600, $ds-size-600);
+    height: var(--ds-size-800, $ds-size-800);
+
+    font-size: var(--ds-text-body-size-lg, $ds-text-body-size-lg);
+  }
+
   .daySlot {
     font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
   }

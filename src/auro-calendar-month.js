@@ -168,6 +168,37 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       this.parseDateContentByDay();
     }
   }
+
+  /* Disabling linter for render as this code is directly from range-datepicker-calendar */
+  /* eslint-disable */
+  render() {
+    var _a, _b;
+    
+    return html `
+      <div>
+        <div class="header">
+          ${this.renderPrevButton()}
+          <div class="headerTitle">
+            <div>${this.computeCurrentMonthName(this.month, this.year)}</div>
+            <div>${this.renderYear()}</div>
+          </div>
+          ${this.renderNextButton()}
+        </div>
+
+        <div class="table">
+          <div class="thead">
+            <div class="tr">
+              ${(_a = this.dayNamesOfTheWeek) === null || _a === void 0 ? void 0 : _a.map(dayNameOfWeek => this.renderDayOfWeek(dayNameOfWeek))}
+            </div>
+          </div>
+          <div class="tbody">
+            ${(_b = this.daysOfMonth) === null || _b === void 0 ? void 0 : _b.map(week => this.renderWeek(week))}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  /* eslint-enable */
 }
 
 if (!customElements.get('auro-calendar-month')) {
