@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { format, getTime, startOfDay } from 'date-fns';
+import { format, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
 
 import styleCss from "./style-auro-calendar-cell-css";
@@ -69,12 +69,28 @@ export class AuroCalendarCell extends LitElement {
   dateChanged(dateFrom, dateTo, hoveredDate, day) {
     this.selected = false;
     this.hovered = false;
+
     const parsedDateFrom = parseInt(dateFrom, 10);
     const parsedDateTo = parseInt(dateTo, 10);
+
     if (day) {
-      if (getTime(startOfDay(parsedDateTo * 1000)) / 1000 === day.date || getTime(startOfDay(parsedDateFrom * 1000)) / 1000 === day.date) {
+      const departTimestamp = startOfDay(parsedDateFrom * 1000) / 1000;
+      const returnTimestamp = startOfDay(parsedDateTo * 1000) / 1000;
+
+      if (day.date === departTimestamp || day.date === returnTimestamp) {
         this.selected = true;
+
+        const button = this.shadowRoot.querySelector('button');
+
+        if (day.date === departTimestamp) {
+          button.classList.add('departDate');
+        }
+
+        if (day.date === returnTimestamp) {
+          button.classList.add('returnDate');
+        }
       }
+
       if (((hoveredDate === day.date || day.date < hoveredDate) && day.date > parsedDateFrom && !parsedDateTo && !Number.isNaN(parsedDateFrom) && parsedDateFrom !== undefined && !this.selected) || (day.date > parsedDateFrom && day.date < parsedDateTo)) {
         this.hovered = true;
       }
