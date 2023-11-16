@@ -184,8 +184,15 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   updated(changedProperties) {
-    if (changedProperties.has('month') || changedProperties.has('year')) {
-      this.monthChanged(this.month, this.year);
+    if (
+      changedProperties.has("minDate") ||
+      changedProperties.has("maxDate") ||
+      changedProperties.has("month") ||
+      changedProperties.has("year")
+    ) {
+      if (changedProperties.has("month") || changedProperties.has("year")) {
+        this.monthChanged(this.month, this.year);
+      }
       this.assessNavigationButtonVisibility();
     }
     if (changedProperties.has('noRange')) {
