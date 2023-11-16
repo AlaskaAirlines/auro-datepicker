@@ -17,16 +17,22 @@ $calendar-width: 336px;
   position: relative;
 
   display: block;
-  width: $calendar-width;
+  width: calc(100% - var(--ds-size-300, $ds-size-300));
 
-  padding: var(--ds-size-200, $ds-size-200);
+  padding: var(--ds-size-200, $ds-size-200), var(--ds-size-150, $ds-size-150);
 
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
+
+  @include auro_grid-breakpoint--sm {
+    width: $calendar-width;
+
+    padding: var(--ds-size-200, $ds-size-200);
+  }
 }
 
 .header {
   display: flex;
-  height: calc(var(--ds-size-500, $ds-size-500) + 4px);
+  height: calc(var(--ds-size-500, $ds-size-500) + var(--ds-size-50, $ds-size-50));
 
   align-items: center;
   flex-direction: row;
@@ -88,9 +94,7 @@ $calendar-width: 336px;
 }
 
 .table {
-  display: table;
-
-  table-layout: fixed;
+  width: 100%;
 
   border-collapse: collapse;
 }
@@ -100,29 +104,36 @@ $calendar-width: 336px;
 }
 
 .th {
-  display: table-cell;
-  width: var(--ds-size-600, $ds-size-600);
+  display: flex;
+  flex: 1;
+
+  align-items: center;
+  justify-content: center;
 
   font-weight: 700;
-
-  text-align: center;
-  vertical-align: inherit;
 }
 
 .tbody {
-  height: 384px; // height is fixed to always leave room for months spanning 6 rows
+  @include auro_grid-breakpoint--sm {
+    height: 384px; // height is fixed to always leave room for months spanning 6 rows
+  }
+
+  width: 100%;
 
   transition: all 0ms;
   transform: translateX(0);
 }
 
 .td {
-  display: table-cell;
+  flex: 1;
 
   margin: 0;
   padding: 0;
 }
 
 .tr {
-  display: table-row;
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
 }
