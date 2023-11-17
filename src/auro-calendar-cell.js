@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import { format, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
 
@@ -113,23 +114,15 @@ export class AuroCalendarCell extends LitElement {
     }));
   }
 
-  isSelected(selected) {
-    return selected ? 'selected' : '';
-  }
-
-  isHovered(hovered) {
-    return hovered ? 'inRange' : '';
-  }
-
   isEnabled(day, min, max, disabledDays) {
     this.disabled = false;
     if (disabledDays && day && day.date) {
       if (day.date < min || day.date > max || disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1) {
         this.disabled = true;
-        return 'disabled';
+        return true;
       }
     }
-    return '';
+    return false;
   }
 
   getTitle(date) {
@@ -169,13 +162,21 @@ export class AuroCalendarCell extends LitElement {
   }
 
   render() {
+    const buttonClasses = {
+      'day': true,
+      'currentDate': this.currentDate,
+      'selected': this.selected,
+      'inRange': this.hovered,
+      'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays) 
+    }
+
     let _a, _b;
     return html`
       <button
         @click="${this.handleTap}"
         @mouseover="${this.handleHover}"
         @focus="${this.handleHover}"
-        class="day ${this.isCurrentDate ? 'currentDate' : ''} ${this.isSelected(this.selected)} ${this.isHovered(this.hovered)} ${this.isEnabled(this.day, this.min, this.max, this.disabledDays)}"
+        class="${classMap(buttonClasses)}"
         ?disabled="${this.disabled}"
         title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
         tabindex="-1">
