@@ -81,15 +81,6 @@ export class AuroCalendarCell extends LitElement {
       if (day.date === departTimestamp || day.date === returnTimestamp) {
         this.selected = true;
 
-        const button = this.shadowRoot.querySelector('button');
-
-        if (day.date === departTimestamp) {
-          button.classList.add('departDate');
-        }
-
-        if (day.date === returnTimestamp) {
-          button.classList.add('returnDate');
-        }
       }
 
       if (((hoveredDate === day.date || day.date < hoveredDate) && day.date > parsedDateFrom && !parsedDateTo && !Number.isNaN(parsedDateFrom) && parsedDateFrom !== undefined && !this.selected) || (day.date > parsedDateFrom && day.date < parsedDateTo)) {
@@ -123,6 +114,20 @@ export class AuroCalendarCell extends LitElement {
       }
     }
     return false;
+  }
+
+  isDepartDate(day, dateFrom, dateTo) {
+    const parsedDateFrom = parseInt(dateFrom, 10);
+    const departTimestamp = startOfDay(parsedDateFrom * 1000) / 1000;
+
+    return this.selected && day.date === departTimestamp && dateTo;
+  }
+
+  isReturnDate(day, dateFrom, dateTo) {
+    const parsedDateTo = parseInt(dateTo, 10);
+    const returnTimestamp = startOfDay(parsedDateTo * 1000) / 1000;
+
+    return this.selected && day.date === returnTimestamp && dateFrom;
   }
 
   getTitle(date) {
@@ -167,8 +172,10 @@ export class AuroCalendarCell extends LitElement {
       'currentDate': this.currentDate,
       'selected': this.selected,
       'inRange': this.hovered,
-      'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays) 
-    }
+      'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays),
+      'rangeDepartDate': this.isDepartDate(this.day, this.dateFrom, this.dateTo),
+      'rangeReturnDate': this.isReturnDate(this.day, this.dateFrom, this.dateTo)
+    };
 
     let _a, _b;
     return html`
