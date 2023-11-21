@@ -825,8 +825,9 @@ The following example illustrates slotted content in combination with the `range
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotRange.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/daySlotRange.html -->
   <auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-    <span slot="fromLabel">Choose a date</span>
-    <span slot="mobileDateLabel">Choose a date</span>
+    <span slot="fromLabel">Departure</span>
+    <span slot="toLabel">Return</span>
+    <span slot="mobileDateLabel">Roundtrip</span>
     <span slot="date_09_01_2023">$132</span>
     <span slot="date_09_12_2023">$1000</span>
     <span slot="date_09_21_2023">$242</span>
@@ -859,8 +860,9 @@ The following example illustrates slotted content in combination with the `range
 
 ```html
 <auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-  <span slot="fromLabel">Choose a date</span>
-  <span slot="mobileDateLabel">Choose a date</span>
+  <span slot="fromLabel">Departure</span>
+  <span slot="toLabel">Return</span>
+  <span slot="mobileDateLabel">Roundtrip</span>
   <span slot="date_09_01_2023">$132</span>
   <span slot="date_09_12_2023">$1000</span>
   <span slot="date_09_21_2023">$242</span>
