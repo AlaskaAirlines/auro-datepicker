@@ -101,12 +101,7 @@
 
 .daySlot {
   display: flex;
-  flex: 1;
-
-  width: 100%;
-
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 
   font-size: var(--ds-text-body-size-xxs, $ds-text-body-size-xxs);
 }
@@ -128,6 +123,21 @@
   max-height: 24px;
   max-width: 24px;
 }
+
+// Revisit this solution, too hacky...
+.buttonWrapper {
+  position: relative;
+  width: 100%;
+
+  top: 5px;
+}
+
+.currentDayMarker {
+  position: relative;
+  padding-bottom: 5px;
+  top: -8px;
+}
+// This solution is to position the day marker and slot content
 
 @include auro_grid-breakpoint--sm {
   .day {
