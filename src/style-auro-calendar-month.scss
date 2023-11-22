@@ -30,6 +30,12 @@ $calendar-width: 336px;
   }
 }
 
+:host(:not(:last-of-type)) {
+  @include auro_grid-breakpoint--sm {
+    border-right: 1px solid var(--ds-color-border-divider-default, $ds-color-border-divider-default);
+  }
+}
+
 .header {
   display: flex;
   height: calc(var(--ds-size-500, $ds-size-500) + var(--ds-size-50, $ds-size-50));

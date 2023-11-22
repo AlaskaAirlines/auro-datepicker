@@ -187,9 +187,11 @@ export class AuroCalendarCell extends LitElement {
         ?disabled="${this.disabled}"
         title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
         tabindex="-1">
-        <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
-        <div class="daySlot" part="daySlot">
-          <slot name="${this.dateStr}"></slot>
+        <div class="buttonWrapper">
+          <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
+          <div class="daySlot" part="daySlot">
+            <slot name="${this.dateStr}"></slot>
+          </div>
         </div>
       </button>
     `;
