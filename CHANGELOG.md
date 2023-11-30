@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.0.10](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.9...v2.0.10) (2023-11-30)
+
+
+### Bug Fixes
+
+* **minDate/maxDate:** datepicker calendar month nav bug ([839736f](https://github.com/AlaskaAirlines/auro-datepicker/commit/839736f9767539b0838714f0422190c14a29d95a))
+
 ## [2.0.9](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.8...v2.0.9) (2023-11-06)
 
 
