@@ -5,6 +5,8 @@ import { enUS } from 'date-fns/esm/locale';
 
 import styleCss from "./style-auro-calendar-cell-css";
 
+import '@alaskaairux/auro-popover';
+
 /* eslint-disable no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens */
 
 export class AuroCalendarCell extends LitElement {
@@ -80,7 +82,6 @@ export class AuroCalendarCell extends LitElement {
 
       if (day.date === departTimestamp || day.date === returnTimestamp) {
         this.selected = true;
-
       }
 
       if (((hoveredDate === day.date || day.date < hoveredDate) && day.date > parsedDateFrom && !parsedDateTo && !Number.isNaN(parsedDateFrom) && parsedDateFrom !== undefined && !this.selected) || (day.date > parsedDateFrom && day.date < parsedDateTo)) {
@@ -158,9 +159,48 @@ export class AuroCalendarCell extends LitElement {
     this.dateStr = `date_${month}_${day}_${year}`;
   }
 
+  handlePopoverContent() {
+    const popover = this.shadowRoot.querySelector('auro-popover');
+    const popoverSpan = this.shadowRoot.querySelector('#popoverSpan');
+    const popoverContent = [...this.querySelectorAll('[slot^="popover_"]')];
+
+    const cellDate = new Date(this.day.date * 1000);
+
+    if (popoverContent && popoverContent.length > 0) {
+      popoverContent.forEach((content) => {
+        const popoverDate = new Date(content.getAttribute('date'));
+
+        if (this.popoverAndCellDatesMatch(popoverDate, cellDate)) {
+          const textNode = document.createTextNode(content.textContent);
+
+          if (popoverSpan.firstChild) {
+            popoverSpan.firstChild.textContent = content.textContent;
+          } else {
+            popoverSpan.appendChild(textNode);
+          }
+
+          popover.removeAttribute('disabled');
+        } else {
+          popoverSpan.firstChild.textContent = '';
+          popover.setAttribute('disabled', true);
+        }
+      });
+    } else if (!this.disabled) {
+      popover.setAttribute('disabled', true);
+    }
+  }
+
+  popoverAndCellDatesMatch(popoverDate, cellDate) {
+    return popoverDate.getDate() === cellDate.getDate() && popoverDate.getMonth() === cellDate.getMonth() && popoverDate.getFullYear() === cellDate.getFullYear();
+  }
+
   updated(properties) {
     if (properties.has('dateFrom') || properties.has('dateTo') || properties.has('hoveredDate') || properties.has('day')) {
       this.dateChanged(this.dateFrom, this.dateTo, this.hoveredDate, this.day);
+    }
+
+    if (properties.has('dateStr')) {
+      this.handlePopoverContent();
     }
 
     this.getSlotName();
@@ -179,21 +219,25 @@ export class AuroCalendarCell extends LitElement {
 
     let _a, _b;
     return html`
-      <button
-        @click="${this.handleTap}"
-        @mouseover="${this.handleHover}"
-        @focus="${this.handleHover}"
-        class="${classMap(buttonClasses)}"
-        ?disabled="${this.disabled}"
-        title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
-        tabindex="-1">
-        <div class="buttonWrapper">
-          <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
-          <div class="daySlot" part="daySlot">
-            <slot name="${this.dateStr}"></slot>
+      <auro-popover disabled>
+        <span id="popoverSpan"></span>
+        <button
+          slot="trigger"
+          @click="${this.handleTap}"
+          @mouseover="${this.handleHover}"
+          @focus="${this.handleHover}"
+          class="${classMap(buttonClasses)}"
+          ?disabled="${this.disabled}"
+          title="${this.getTitle((_a = this.day) === null || _a === void 0 ? void 0 : _a.date)}"
+          tabindex="-1">
+          <div class="buttonWrapper">
+            <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
+            <div class="daySlot" part="daySlot">
+              <slot name="${this.dateStr}"></slot>
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
+      </auro-popover>
     `;
   }
 }

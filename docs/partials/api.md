@@ -351,7 +351,7 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 </auro-accordion>
 
-### Day Slot
+#### Day Slot
 
 Each day within the calendar has a slot that allows a user to add custom content. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `date_{month}_{day}_{fullYear}`. 
 
@@ -375,7 +375,7 @@ In the following example, please see how pricing content is threaded into the el
 
 </auro-accordion>
 
-#### Day Slot Range w/ Text
+#### Day Slot w/ Text and Range Selection
 
 The following example illustrates slotted content in combination with the `range` attribute.
 
@@ -403,6 +403,42 @@ The following example illustrates how the `<auro-icon>` element can be used as s
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotIcon.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+#### Popover Slot
+
+Each day within the calendar has a slot that allows a user to add content into an `auro-popover` that will appear when hovering or adding focus to a calendar cell. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `popover_{month}_{day}_{fullYear}`. 
+
+**Note**: When the month is a single digit, a zero will need to be added to the front of the month. For example, January would be `01` and not `1`.
+
+In the following example, please see how popover content is threaded into the element's `<slot>`.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popover.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+#### Popover Slot w/ Range Selection
+
+The following example illustrates popover content in combination with the `range` attribute.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverRange.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverRange.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>

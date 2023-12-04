@@ -660,7 +660,17 @@ export class AuroDatePicker extends LitElement {
   parseDateContent() {
     this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
 
+    this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
+
     this.dateSlotContent.forEach((item) => {
+      const dateStr = item.getAttribute('slot').substring(item.getAttribute('slot').indexOf('_') + 1).replace(/_/g, '/');
+
+      item.setAttribute('date', dateStr);
+
+      this.calendar.appendChild(item);
+    });
+
+    this.popoverSlotContent.forEach((item) => {
       const dateStr = item.getAttribute('slot').substring(item.getAttribute('slot').indexOf('_') + 1).replace(/_/g, '/');
 
       item.setAttribute('date', dateStr);
