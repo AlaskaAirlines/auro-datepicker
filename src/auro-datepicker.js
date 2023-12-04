@@ -332,7 +332,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleCentralDateChange() {
-    this.calendar.month = Number(this.centralDate.charAt(1));
+    this.calendar.month = Number(this.centralDate.charAt(0) === '0' ? this.centralDate.charAt(1) : this.centralDate.substring(0, 2));
     this.calendar.year = Number(this.centralDate.substring(6));
   }
 
