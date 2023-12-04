@@ -13,16 +13,8 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
   constructor() {
     super();
 
-    this.slotMap = new Map();
-  }
-
-  // This function is to define props used within the scope of this component
-  // Be sure to review  https://lit-element.polymer-project.org/guide/properties#reflected-attributes
-  // to understand how to use reflected attributes with your property settings.
-  static get properties() {
-    return {
-      slotMap: { type: Map }
-    };
+    this.dateSlotMap = new Map();
+    this.popoverSlotMap = new Map();
   }
 
   static get styles() {
@@ -72,6 +64,7 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
 
   parseDateContentByDay() {
     this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
+    this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
 
     if (this.dateSlotContent && this.dateSlotContent.length > 0) {
       const items = [];
@@ -85,7 +78,22 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
         });
       });
 
-      this.slotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
+      this.dateSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
+    }
+
+    if (this.popoverSlotContent && this.popoverSlotContent.length > 0) {
+      const items = [];
+
+      this.popoverSlotContent.forEach((content) => {
+        const date = new Date(content.getAttribute('date'));
+
+        items.push({
+          date,
+          content
+        });
+      });
+
+      this.popoverSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
     }
 
     this.insertSlotContentByDay();
@@ -98,11 +106,16 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       const day = new Date(dateCell.day.date * 1000).getDate();
       const dayName = this.getFormattedDate(dateCell);
 
-      if (this.isSlotContentValid(day, dayName, this.slotContentByDay)) {
-        dateCell.appendChild(this.slotContentByDay[day][0].content);
-      } else if (this.slotMap.has(dayName)) {
-        dateCell.appendChild(this.slotMap.get(dayName));
-      }
+      const insertContent = (contentMap, slotMap) => {
+        if (this.isSlotContentValid(day, dayName, contentMap)) {
+          dateCell.appendChild(contentMap[day][0].content);
+        } else if (slotMap.has(dayName)) {
+          dateCell.appendChild(slotMap.get(dayName));
+        }
+      };
+  
+      insertContent(this.dateSlotContentByDay, this.dateSlotMap);
+      insertContent(this.popoverSlotContentByDay, this.popoverSlotMap);
     });
   }
 
@@ -133,26 +146,34 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     return `${month}/${day}/${year}`;
   }
 
+  convertTimestampToDate(timestamp) {
+    const month = timestamp.substring(5, 7);
+    const day = timestamp.substring(8, 10);
+    const year = timestamp.substring(11);
+
+    return `${month}/${day}/${year}`;
+  }
+
   renderDay(day) {
     return html`
       <div class="td ${this.tdIsEnabled(day)}">
         ${day
           ? html`
-            <auro-calendar-cell
-              .disabledDays="${this.disabledDays}"
-              .min="${this.min}"
-              .max="${this.max}"
-              .month="${this.month}"
-              .hoveredDate="${this.hoveredDate}"
-              .dateTo="${this.dateTo}"
-              .dateFrom="${this.dateFrom}"
-              .locale="${this.locale}"
-              .day="${day}"
-              ?isCurrentDate="${this.isCurrentDate(day)}"
-              @date-is-selected="${this.handleDateSelected}"
-              @date-is-hovered="${this.handleDateHovered}"
-            >
-            </auro-calendar-cell>
+              <auro-calendar-cell
+                .disabledDays="${this.disabledDays}"
+                .min="${this.min}"
+                .max="${this.max}"
+                .month="${this.month}"
+                .hoveredDate="${this.hoveredDate}"
+                .dateTo="${this.dateTo}"
+                .dateFrom="${this.dateFrom}"
+                .locale="${this.locale}"
+                .day="${day}"
+                ?isCurrentDate="${this.isCurrentDate(day)}"
+                @date-is-selected="${this.handleDateSelected}"
+                @date-is-hovered="${this.handleDateHovered}"
+              >
+              </auro-calendar-cell>
           `
           : null}
       </div>
