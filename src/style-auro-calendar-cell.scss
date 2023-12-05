@@ -124,20 +124,20 @@
   max-width: 24px;
 }
 
-// Revisit this solution, too hacky...
-.buttonWrapper {
-  position: relative;
-  width: 100%;
-
-  top: 5px;
+:host([hasDateSlotContent]) {
+  .buttonWrapper {
+    position: relative;
+    width: 100%;
+  
+    top: 5px;
+  }
+  
+  .currentDayMarker {
+    position: relative;
+    padding-bottom: 5px;
+    top: -8px;
+  }
 }
-
-.currentDayMarker {
-  position: relative;
-  padding-bottom: 5px;
-  top: -8px;
-}
-// This solution is to position the day marker and slot content
 
 @include auro_grid-breakpoint--sm {
   .day {
