@@ -27,6 +27,7 @@ export class AuroCalendarCell extends LitElement {
     this.isCurrentDate = false;
     this._locale = null;
     this.dateStr = null;
+    this.hasDateSlotContent = false;
   }
 
   // This function is to define props used within the scope of this component
@@ -48,7 +49,8 @@ export class AuroCalendarCell extends LitElement {
       hoveredDate:   { type: String },
       isCurrentDate: { type: Boolean },
       locale:        { type: Object },
-      dateStr:       { type: String }
+      dateStr:       { type: String },
+      hasDateSlotContent: { type: Boolean }
     };
   }
 

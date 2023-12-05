@@ -106,6 +106,10 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       const day = new Date(dateCell.day.date * 1000).getDate();
       const dayName = this.getFormattedDate(dateCell);
 
+      if (this.dateSlotContentByDay) {
+        dateCell.setAttribute('hasDateSlotContent', true);
+      }
+
       const insertContent = (contentMap, slotMap) => {
         if (this.isSlotContentValid(day, dayName, contentMap)) {
           dateCell.appendChild(contentMap[day][0].content);
@@ -113,7 +117,7 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
           dateCell.appendChild(slotMap.get(dayName));
         }
       };
-  
+
       insertContent(this.dateSlotContentByDay, this.dateSlotMap);
       insertContent(this.popoverSlotContentByDay, this.popoverSlotMap);
     });
