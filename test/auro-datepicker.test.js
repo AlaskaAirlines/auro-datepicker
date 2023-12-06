@@ -567,8 +567,25 @@ describe('auro-datepicker', () => {
     await expect(dropdown.isPopoverVisible).to.be.false;
   });
 
-  it('datepicker correctly parses date slot name and passes slot down to cell correctly', async () => {
-    const el = await daySlotFixture();
+  it('datepicker correctly parses date slot name and passes content down to cell correctly', async () => {
+    const el = await dateSlotFixture();
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+    const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
+    const calendarCell = [...calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell')];
+
+    for (const cell of calendarCell) {
+      const span = cell.querySelector('span');
+
+      if (span) {
+        const formattedDate = await calendarMonth.getFormattedDate(cell);
+        await expect(span.getAttribute('date')).to.be.equal(formattedDate);
+      }
+    }
+  });
+
+  it('datepicker correctly parses popover slot name and passes content down to cell correctly', async () => {
+    const el = await popoverSlotFixture();
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
@@ -585,7 +602,7 @@ describe('auro-datepicker', () => {
   });
 });
 
-async function daySlotFixture() {
+async function dateSlotFixture() {
   return await fixture(html`
     <auro-datepicker centralDate="10/01/2023">
       <span slot="date_10_01_2023">$1322</span>
@@ -593,6 +610,18 @@ async function daySlotFixture() {
       <span slot="date_10_11_2023">$784</span>
       <span slot="date_10_15_2023">$567</span>
       <span slot="date_10_16_2023">$12345</span>
+    </auro-datepicker>
+  `);
+}
+
+async function popoverSlotFixture() {
+  return await fixture(html`
+    <auro-datepicker centralDate="10/01/2023">
+      <span slot="popover_10_01_2023">$1322</span>
+      <span slot="popover_10_02_2023">$234</span>
+      <span slot="popover_10_11_2023">$784</span>
+      <span slot="popover_10_15_2023">$567</span>
+      <span slot="popover_10_16_2023">$12345</span>
     </auro-datepicker>
   `);
 }
