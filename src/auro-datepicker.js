@@ -682,7 +682,7 @@ export class AuroDatePicker extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <div>
+      <div part="datepickerContainer">
         <auro-dropdown
           for="dropdownMenu"
           bordered
@@ -690,8 +690,9 @@ export class AuroDatePicker extends LitElement {
           ?disabled="${this.disabled}"
           ?error="${this.validity !== undefined && this.validity !== 'valid'}"
           disableEventShow
-          noHideOnThisFocusLoss>
-          <div slot="trigger" class="dpTriggerContent">
+          noHideOnThisFocusLoss
+          part="datepickerDropdown">
+          <div slot="trigger" class="dpTriggerContent" part="datepickerTrigger">
             <auro-input
               id="${this.generateRandomString(12)}"
               bordered
@@ -705,7 +706,8 @@ export class AuroDatePicker extends LitElement {
               setCustomValidityRangeOverflow="${this.setCustomValidityRangeOverflow}"
               setCustomValidityRangeUnderflow="${this.setCustomValidityRangeUnderflow}"
               ?disabled="${this.disabled}"
-              .type="${this.type}">
+              .type="${this.type}"
+              part="datepickerInput">
               <span slot="label"><slot name="fromLabel"></slot></span>
             </auro-input>
             ${this.range ? html`
@@ -726,20 +728,21 @@ export class AuroDatePicker extends LitElement {
               </auro-input>
             ` : undefined}
           </div>
-          <div class="calendarWrapper">
+          <div class="calendarWrapper" part="calendarWrapper">
             <auro-calendar
               ?noRange="${!this.range}"
               .min="${this.convertToWcValidTime(new Date(this.minDate))}"
               .max="${this.convertToWcValidTime(new Date(this.maxDate))}"
               .maxDate="${this.maxDate}"
               .minDate="${this.minDate}"
+              part="calendar"
             >
               <slot slot="mobileDateLabel" name="mobileDateLabel"></slot>
               <span slot="mobileDateFromStr">${this.value ? this.getMobileDateStr(this.value) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>
               ${this.range ? html`<span slot="mobileDateToStr">${this.valueEnd ? this.getMobileDateStr(this.valueEnd) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>` : undefined}
             </auro-calendar>
           </div>
-          <span slot="helpText">
+          <span slot="helpText" part="datepickerHelpText">
             <!-- Help text and error message template -->
             ${!this.validity || this.validity === undefined || this.validity === 'valid'
               ? html`
