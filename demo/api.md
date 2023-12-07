@@ -52,17 +52,15 @@
 
 ### Basic
 
-<div class="twoColDemoRow">
-  <div>
-    <div class="exampleWrapper">
-      <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-      <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-      <auro-datepicker>
-        <span slot="fromLabel">Choose a date</span>
-        <span slot="mobileDateLabel">Choose a date</span>
-      </auro-datepicker>
-      <!-- AURO-GENERATED-CONTENT:END -->
-    </div>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
+  <auro-datepicker>
+    <span slot="fromLabel">Choose a date</span>
+    <span slot="mobileDateLabel">Choose a date</span>
+  </auro-datepicker>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
@@ -205,6 +203,17 @@ This example demonstrates that behavior.
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/updateMaxDate.html -->
+
+```html
+<auro-datepicker id="maxDateExample" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+<auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
+<auro-button id="resetMaxDate">Reset Datepicker to Initial Example</auro-button>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/updateMaxDate.js -->
 
@@ -244,17 +253,6 @@ export function updateMaxDateExample() {
     maxDateExample.setAttribute('maxDate', nextWeek);
   });
 }
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/updateMaxDate.html -->
-
-```html
-<auro-datepicker id="maxDateExample" setCustomValidityRangeOverflow="Selected date is later than maximum date.">
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
-<auro-button id="maxDateChange">Change maxDate to Today's Date</auro-button>
-<auro-button id="resetMaxDate">Reset Datepicker to Initial Example</auro-button>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -304,6 +302,17 @@ This example demonstrates that behavior.
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/updateMinDate.html -->
+
+```html
+<auro-datepicker id="minDateExample" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+<auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
+<auro-button id="resetMinDate">Reset Datepicker to Initial Example</auro-button>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/updateMinDate.js -->
 
@@ -346,17 +355,6 @@ export function updateMinDateExample() {
 }
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/updateMinDate.html -->
-
-```html
-<auro-datepicker id="minDateExample" setCustomValidityRangeUnderflow="Selected date is earlier than the minimum date.">
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
-<auro-button id="minDateChange">Change minDate to a week from Today</auro-button>
-<auro-button id="resetMinDate">Reset Datepicker to Initial Example</auro-button>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
 #### monthNames
@@ -374,6 +372,16 @@ May be used to provide localized month names. These names will only be shown in 
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/monthNames.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/monthNames.html -->
+
+```html
+<auro-datepicker id="monthNamesExample">
+  <span slot="fromLabel">Choose a date</span>
+  <span slot="mobileDateLabel">Choose a date</span>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/monthNames.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/monthNames.js -->
 
@@ -384,16 +392,6 @@ export function monthNamesExample() {
 
   monthNamesExample.monthNames = spanishMonths;
 }
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/monthNames.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/monthNames.html -->
-
-```html
-<auro-datepicker id="monthNamesExample">
-  <span slot="fromLabel">Choose a date</span>
-  <span slot="mobileDateLabel">Choose a date</span>
-</auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -504,6 +502,16 @@ Specifies the `validityState` the element is in. Upon first interaction, or pres
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/validity.html -->
+
+```html
+<auro-datepicker required id="validityExample">
+  <span slot="fromLabel">Choose a date</span>
+</auro-datepicker>
+<auro-button id="validityExampleBtn">Get validity</auro-button>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/validity.js -->
 
@@ -517,16 +525,6 @@ export function validityExample() {
     alert(`Validity set to: ${validityExampleExample.validity}`);
   })
 }
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/validity.html -->
-
-```html
-<auro-datepicker required id="validityExample">
-  <span slot="fromLabel">Choose a date</span>
-</auro-datepicker>
-<auro-button id="validityExampleBtn">Get validity</auro-button>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -599,6 +597,17 @@ The focus method will apply focus state to the datepicker's input field.
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/focus.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/focus.html -->
+
+```html
+<auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
+<br /><br />
+<auro-datepicker id="focusExample">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/focus.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/focus.js -->
 
@@ -611,17 +620,6 @@ export function focusExample() {
     focusExample.focus();
   });
 }
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/focus.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/focus.html -->
-
-```html
-<auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
-<br /><br />
-<auro-datepicker id="focusExample">
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
@@ -1091,6 +1089,15 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/alertValue.html -->
+
+```html
+<auro-datepicker id="datePickerValueAlert">
+  <span slot="label">Choose a date</span>
+</auro-datepicker>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.js) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/alertValue.js -->
 
@@ -1103,15 +1110,6 @@ export function alertValueExample() {
     alert(`Select value changed to: ${valueAlertExample.value}`);
   })
 }
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/alertValue.html -->
-
-```html
-<auro-datepicker id="datePickerValueAlert">
-  <span slot="label">Choose a date</span>
-</auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
