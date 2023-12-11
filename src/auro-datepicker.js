@@ -327,13 +327,14 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-   * Changes the calendar's visibility to reflect an updated centralDate.
+   * Changes the calendar's visibility to reflect an updated date.
    * @private
+   * @param {String} date - Date to be displayed in the calendar.
    * @returns {void}
    */
-  handleCentralDateChange() {
-    this.calendar.month = Number(this.centralDate.charAt(0) === '0' ? this.centralDate.charAt(1) : this.centralDate.substring(0, 2));
-    this.calendar.year = Number(this.centralDate.substring(6));
+  handleVisibleDate(date) {
+    this.calendar.month = Number(date.charAt(0) === '0' ? date.charAt(1) : date.substring(0, 2));
+    this.calendar.year = Number(date.substring(6));
   }
 
   /**
@@ -515,6 +516,8 @@ export class AuroDatePicker extends LitElement {
   updated(changedProperties) {
     if (changedProperties.has('value')) {
       if (this.value && this.validDateStr(this.value)) {
+        this.handleVisibleDate(this.value);
+
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
         }
@@ -634,12 +637,8 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('centralDate')) {
-      this.handleCentralDateChange();
+      this.handleVisibleDate(this.centralDate);
     }
-
-    // if (changedProperties.has('setCustomValidityValueMissing')) {
-    //   this.inputList[0].setAttribute('setCustomValidityValueMissing', this.setCustomValidityValueMissing);
-    // }
   }
 
   firstUpdated() {
