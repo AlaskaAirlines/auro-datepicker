@@ -46,6 +46,11 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     await this.updateComplete;
   }
 
+  /**
+   * Determines the current month name based on locale.
+   * @private
+   * @returns {void}
+   */
   localeChanged() {
     const dayNamesOfTheWeek = [];
     for (let int = 0; int < 7; int += 1) {
@@ -62,6 +67,11 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     this.dayNamesOfTheWeek = newDayNamesOfTheWeek;
   }
 
+  /**
+   * Parses the date and popover slot content and separates it by day.
+   * @private
+   * @returns {void}
+   */
   parseDateContentByDay() {
     this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
     this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
@@ -99,6 +109,11 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     this.insertSlotContentByDay();
   }
 
+  /**
+   * Inserts the date and popover slot content down to the auro-calendar-cell.
+   * @private
+   * @returns {void}
+   */
   insertSlotContentByDay() {
     const renderedDays = [...this.shadowRoot.querySelectorAll('auro-calendar-cell')];
 
@@ -123,6 +138,14 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     });
   }
 
+  /**
+   * Checks if the slot content exists and matches the current date.
+   * @private
+   * @param {Date} day - Specific day of the month of the auro-calendar-cell.
+   * @param {String} dayName - The formatted date of the auro-calendar-cell.
+   * @param {Object} slotContentByDay - The slot content grouped by day.
+   * @returns {Boolean} True if the slot content exists and matches the current date.
+   */
   isSlotContentValid(day, dayName, slotContentByDay) {
     return (
       slotContentByDay &&
@@ -131,6 +154,12 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     );
   }
 
+  /**
+   * Returns a formatted date of the current auro-calendar-cell date.
+   * @private
+   * @param {HTMLElement} dateCell - The auro-calendar-cell element.
+   * @returns {String} The date in "mm/dd/yyyy" format.
+   */
   getFormattedDate(dateCell) {
     const date = new Date(dateCell.day.date * 1000);
 
@@ -146,14 +175,6 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     }
 
     const year = date.getFullYear();
-
-    return `${month}/${day}/${year}`;
-  }
-
-  convertTimestampToDate(timestamp) {
-    const month = timestamp.substring(5, 7);
-    const day = timestamp.substring(8, 10);
-    const year = timestamp.substring(11);
 
     return `${month}/${day}/${year}`;
   }
