@@ -7,7 +7,7 @@ import styleCss from "./style-auro-calendar-cell-css";
 
 import '@alaskaairux/auro-popover';
 
-/* eslint-disable no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens */
+/* eslint-disable no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines */
 
 export class AuroCalendarCell extends LitElement {
   constructor() {
@@ -71,6 +71,15 @@ export class AuroCalendarCell extends LitElement {
     ];
   }
 
+  /**
+   * Handles selected and hovered states of the calendar cell when the date changes.
+   * @private
+   * @param {Number} dateFrom - Depart date.
+   * @param {Number} dateTo - Return date.
+   * @param {Number} hoveredDate - Hovered date.
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @returns {void}
+   */
   dateChanged(dateFrom, dateTo, hoveredDate, day) {
     this.selected = false;
     this.hovered = false;
@@ -92,6 +101,11 @@ export class AuroCalendarCell extends LitElement {
     }
   }
 
+  /**
+   * Handles user click events and dispatches a custom event.
+   * @private
+   * @returns {void}
+   */
   handleTap() {
     let _a;
     if (!this.disabled) {
@@ -101,6 +115,11 @@ export class AuroCalendarCell extends LitElement {
     }
   }
 
+  /**
+   * Handles user hover events and dispatches a custom event.
+   * @private
+   * @returns {void}
+   */
   handleHover() {
     let _a;
     this.dispatchEvent(new CustomEvent('date-is-hovered', {
@@ -108,6 +127,15 @@ export class AuroCalendarCell extends LitElement {
     }));
   }
 
+  /**
+   * Checks if the current date is a valid date depending on the min and max values.
+   * @private
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @param {Number} min - The minimum date value.
+   * @param {Number} max - The maximum date value.
+   * @param {Array} disabledDays - An array of disabled dates.
+   * @returns {Boolean} - True if the date is disabled.
+   */
   isEnabled(day, min, max, disabledDays) {
     this.disabled = false;
     if (disabledDays && day && day.date) {
@@ -119,6 +147,14 @@ export class AuroCalendarCell extends LitElement {
     return false;
   }
 
+  /**
+   * Checks if the current date is the depart date.
+   * @private
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @param {Number} dateFrom - Depart date.
+   * @param {Number} dateTo - Return date.
+   * @returns {Boolean} True if the date is the depart date.
+   */
   isDepartDate(day, dateFrom, dateTo) {
     const parsedDateFrom = parseInt(dateFrom, 10);
     const departTimestamp = startOfDay(parsedDateFrom * 1000) / 1000;
@@ -126,6 +162,14 @@ export class AuroCalendarCell extends LitElement {
     return this.selected && day.date === departTimestamp && dateTo;
   }
 
+  /**
+   * Checks if the current date is the return date.
+   * @private
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @param {Number} dateFrom - Depart date.
+   * @param {Number} dateTo - Return date.
+   * @returns {Boolean} True if the date is the return date.
+   */
   isReturnDate(day, dateFrom, dateTo) {
     const parsedDateTo = parseInt(dateTo, 10);
     const returnTimestamp = startOfDay(parsedDateTo * 1000) / 1000;
@@ -133,6 +177,12 @@ export class AuroCalendarCell extends LitElement {
     return this.selected && day.date === returnTimestamp && dateFrom;
   }
 
+  /**
+   * Determines the title of the auro-calendar-cell.
+   * @private
+   * @param {Number} date - The date of the auro-calendar-cell.
+   * @returns {String} The title of the auro-calendar-cell in the user's locale.
+   */
   getTitle(date) {
     if (date === undefined) {
       return '';
@@ -142,7 +192,12 @@ export class AuroCalendarCell extends LitElement {
     });
   }
 
-  getSlotName() {
+  /**
+   * Gets the name of the date slot.
+   * @private
+   * @returns {void}
+   */
+  getDateSlotName() {
     const date = new Date(this.day.date * 1000);
 
     let month = date.getMonth() + 1;
@@ -161,6 +216,11 @@ export class AuroCalendarCell extends LitElement {
     this.dateStr = `date_${month}_${day}_${year}`;
   }
 
+  /**
+   * Handles the text content and visibility of the auro-popover.
+   * @private
+   * @returns {void}
+   */
   handlePopoverContent() {
     const popover = this.shadowRoot.querySelector('auro-popover');
     const popoverSpan = this.shadowRoot.querySelector('#popoverSpan');
@@ -192,6 +252,13 @@ export class AuroCalendarCell extends LitElement {
     }
   }
 
+  /**
+   * Helper function to determine if the popover date and cell date match.
+   * @private
+   * @param {Date} popoverDate - The date of the auro-popover.
+   * @param {Date} cellDate - The date of the auro-calendar-cell.
+   * @returns {void}
+   */
   popoverAndCellDatesMatch(popoverDate, cellDate) {
     return popoverDate.getDate() === cellDate.getDate() && popoverDate.getMonth() === cellDate.getMonth() && popoverDate.getFullYear() === cellDate.getFullYear();
   }
@@ -205,7 +272,7 @@ export class AuroCalendarCell extends LitElement {
       this.handlePopoverContent();
     }
 
-    this.getSlotName();
+    this.getDateSlotName();
   }
 
   render() {

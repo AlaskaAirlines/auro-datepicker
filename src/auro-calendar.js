@@ -81,8 +81,9 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   /**
+   * Marks the component as ready and sends event.
    * @private
-   * @returns {void} Marks the component as ready and sends event.
+   * @returns {void}
    */
   notifyReady() {
     this.ready = true;
@@ -94,6 +95,11 @@ export class AuroCalendar extends RangeDatepicker {
     }));
   }
 
+  /**
+   * Handles the visibility of the previous and next month buttons.
+   * @private
+   * @returns {void}
+   */
   assessNavigationButtonVisibility() {
     // handle earliest month
     if (this.minDate) {
@@ -214,6 +220,11 @@ export class AuroCalendar extends RangeDatepicker {
     this.parseDateContentByMonth();
   }
 
+  /**
+   * Updates the month and year when the user navigates to the previous calendar month.
+   * @private
+   * @returns {void}
+   */
   handlePrevMonth() {
     if (this.month === 1) {
       this.year -= 1;
@@ -225,6 +236,11 @@ export class AuroCalendar extends RangeDatepicker {
     this.requestUpdate();
   }
 
+  /**
+   * Updates the month and year when the user navigates to the next calendar month.
+   * @private
+   * @returns {void}
+   */
   handleNextMonth() {
     if (this.month === 12) {
       this.year += 1;
@@ -236,6 +252,11 @@ export class AuroCalendar extends RangeDatepicker {
     this.requestUpdate();
   }
 
+  /**
+   * Determines the number of months rendered inside the calendar.
+   * @private
+   * @returns {void}
+   */
   determineNumCalendars() {
     const vw = window.innerWidth;
     let calendarCount = 1;
@@ -280,6 +301,11 @@ export class AuroCalendar extends RangeDatepicker {
     }
   }
 
+  /**
+   * Parses the date and popover slot content and separates it by month.
+   * @private
+   * @returns {void}
+   */
   parseDateContentByMonth() {
     this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
     this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
@@ -323,6 +349,13 @@ export class AuroCalendar extends RangeDatepicker {
     }
   }
 
+  /**
+   * Passes the date and popover slot content down to the auro-calendar-month.
+   * @private
+   * @param {Object} slotContentByMonth - Slot content grouped by month.
+   * @param {Object} slotMap - Map of containing slot content and it's corresponding date.
+   * @returns {void}
+   */
   insertSlotContentByMonth(slotContentByMonth, slotMap) {
     const renderedMonths = [...this.shadowRoot.querySelectorAll('[month]')];
 
@@ -349,10 +382,11 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   /**
+   * Renders the auro-calendar-month HTML.
    * @private
    * @param {Number} month - Month the calendar displays.
    * @param {Number} year - Year the calendar displays.
-   * @returns {Object} Returns single calendar month HTML.
+   * @returns {Object} Returns the auro-calendar-month HTML.
    */
   renderCalendar(month, year) {
     if (month > 12) {

@@ -26,9 +26,9 @@
 
 ## Methods
 
-| Method  | Type       | Description                         |
-|---------|------------|-------------------------------------|
-| [focus](#focus) | `(): void` | Focuses the combobox trigger input. |
+| Method  | Type       | Description                           |
+|---------|------------|---------------------------------------|
+| [focus](#focus) | `(): void` | Focuses the datepicker trigger input. |
 
 ## Events
 
@@ -40,12 +40,14 @@
 
 ## Slots
 
-| Name              | Description                                      |
-|-------------------|--------------------------------------------------|
-| [fromLabel](#fromLabel)       | Defines the label content for the first input.   |
-| [helpText](#helpText)        | Defines the content of the helpText.             |
-| [mobileDateLabel](#mobileDateLabel) | Defines the content to display above selected dates in the mobile layout. |
-| [toLabel](#toLabel)         | Defines the label content for the second input when the `range` attribute is used. |
+| Name                 | Description                                      |
+|----------------------|--------------------------------------------------|
+| `date_MM/DD/YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. |
+| [fromLabel](#fromLabel)          | Defines the label content for the first input.   |
+| [helpText](#helpText)           | Defines the content of the helpText.             |
+| [mobileDateLabel](#mobileDateLabel)    | Defines the content to display above selected dates in the mobile layout. |
+| `popover_MM/DD/YYYY` | Defines the content to display in the auro-calendar-cell popover for the specified date. |
+| [toLabel](#toLabel)            | Defines the label content for the second input when the `range` attribute is used. |
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Examples
