@@ -23,9 +23,9 @@
 
 ## Methods
 
-| Method  | Type       | Description                         |
-|---------|------------|-------------------------------------|
-| `focus` | `(): void` | Focuses the combobox trigger input. |
+| Method  | Type       | Description                           |
+|---------|------------|---------------------------------------|
+| `focus` | `(): void` | Focuses the datepicker trigger input. |
 
 ## Events
 
@@ -37,9 +37,11 @@
 
 ## Slots
 
-| Name              | Description                                      |
-|-------------------|--------------------------------------------------|
-| `fromLabel`       | Defines the label content for the first input.   |
-| `helpText`        | Defines the content of the helpText.             |
-| `mobileDateLabel` | Defines the content to display above selected dates in the mobile layout. |
-| `toLabel`         | Defines the label content for the second input when the `range` attribute is used. |
+| Name                 | Description                                      |
+|----------------------|--------------------------------------------------|
+| `date_MM/DD/YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. |
+| `fromLabel`          | Defines the label content for the first input.   |
+| `helpText`           | Defines the content of the helpText.             |
+| `mobileDateLabel`    | Defines the content to display above selected dates in the mobile layout. |
+| `popover_MM/DD/YYYY` | Defines the content to display in the auro-calendar-cell popover for the specified date. |
+| `toLabel`            | Defines the label content for the second input when the `range` attribute is used. |

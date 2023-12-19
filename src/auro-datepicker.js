@@ -36,11 +36,13 @@ import '@aurodesignsystem/auro-dropdown';
  * @attr {String} centralDate - The date that determines the currently visible month.
  * @attr {String} maxDate - Maximum date. All dates after will be disabled.
  * @attr {String} minDate - Minimum date. All dates before will be disabled.
- * @attr {Array} monthNames = Names of all 12 months to render in the calendar, used for localiztion of date string in mobile layout.
+ * @attr {Array} monthNames = Names of all 12 months to render in the calendar, used for localization of date string in mobile layout.
  * @slot helpText - Defines the content of the helpText.
  * @slot mobileDateLabel - Defines the content to display above selected dates in the mobile layout.
  * @slot toLabel - Defines the label content for the second input when the `range` attribute is used.
  * @slot fromLabel - Defines the label content for the first input.
+ * @slot date_MM/DD/YYYY - Defines the content to display in the auro-calendar-cell for the specified date.
+ * @slot popover_MM/DD/YYYY - Defines the content to display in the auro-calendar-cell popover for the specified date.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
  * @fires auroDatepicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
@@ -174,7 +176,7 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-   * Focuses the combobox trigger input.
+   * Focuses the datepicker trigger input.
    * @returns {void}
    */
   focus() {
@@ -500,8 +502,9 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * Marks the component as ready and sends event.
    * @private
-   * @returns {void} Marks the component as ready and sends event.
+   * @returns {void}
    */
   notifyReady() {
     this.ready = true;
@@ -598,7 +601,7 @@ export class AuroDatePicker extends LitElement {
       if (this.minDate) {
         const minDateMonth = Number(this.minDate.charAt(1));
 
-        // This sets the visibile month of the calendar to the minDate when the minDate is later
+        // This sets the visible month of the calendar to the minDate when the minDate is later
         // than the current visible date
         if (minDateMonth > this.calendar.month) {
           this.centralDate = this.minDate;
@@ -652,7 +655,7 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-   * Parses slot content by date and appends it to the aure-calendar.
+   * Parses slot content by date and appends it to the auro-calendar.
    * @private
    * @returns {void}
    */
