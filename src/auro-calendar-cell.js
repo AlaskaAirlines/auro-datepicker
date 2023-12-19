@@ -27,7 +27,7 @@ export class AuroCalendarCell extends LitElement {
     this.isCurrentDate = false;
     this._locale = null;
     this.dateStr = null;
-    this.hasDateSlotContent = false;
+    this.renderForDateSlot = false;
   }
 
   // This function is to define props used within the scope of this component
@@ -50,7 +50,7 @@ export class AuroCalendarCell extends LitElement {
       isCurrentDate: { type: Boolean },
       locale:        { type: Object },
       dateStr:       { type: String },
-      hasDateSlotContent: { type: Boolean }
+      renderForDateSlot: { type: Boolean }
     };
   }
 
@@ -213,7 +213,7 @@ export class AuroCalendarCell extends LitElement {
 
     const year = date.getFullYear();
 
-    this.dateStr = `date_${month}_${day}_${year}`;
+    this.dateStr = `${month}_${day}_${year}`;
   }
 
   /**
@@ -233,17 +233,8 @@ export class AuroCalendarCell extends LitElement {
         const popoverDate = new Date(content.getAttribute('date'));
 
         if (this.popoverAndCellDatesMatch(popoverDate, cellDate)) {
-          const textNode = document.createTextNode(content.textContent);
-
-          if (popoverSpan.firstChild) {
-            popoverSpan.firstChild.textContent = content.textContent;
-          } else {
-            popoverSpan.appendChild(textNode);
-          }
-
           popover.removeAttribute('disabled');
         } else {
-          popoverSpan.firstChild.textContent = '';
           popover.setAttribute('disabled', true);
         }
       });
@@ -261,6 +252,31 @@ export class AuroCalendarCell extends LitElement {
    */
   popoverAndCellDatesMatch(popoverDate, cellDate) {
     return popoverDate.getDate() === cellDate.getDate() && popoverDate.getMonth() === cellDate.getMonth() && popoverDate.getFullYear() === cellDate.getFullYear();
+  }
+
+  removeSlotContent(slotContentType) {
+    const popover = this.shadowRoot.querySelector('auro-popover');
+
+    const dateSlots = [...this.querySelectorAll('[slot^="date_"]')];
+    const popoverSlots = [...this.querySelectorAll('[slot^="popover_"]')];
+
+
+    if (slotContentType === 'date') {
+      if (dateSlots.length > 0) {
+        dateSlots.forEach((slot) => {
+          slot.remove();
+        });
+      }
+    }
+
+    if (slotContentType === 'popover') {
+      if (popoverSlots.length > 0) {
+        popoverSlots.forEach((slot) => {
+          popover.setAttribute('disabled', true);
+          slot.remove();
+        });
+      }
+    }
   }
 
   updated(properties) {
@@ -289,7 +305,7 @@ export class AuroCalendarCell extends LitElement {
     let _a, _b;
     return html`
       <auro-popover disabled>
-        <span id="popoverSpan"></span>
+        <slot name="popover_${this.dateStr}"></slot>
         <button
           slot="trigger"
           @click="${this.handleTap}"
@@ -302,7 +318,7 @@ export class AuroCalendarCell extends LitElement {
           <div class="buttonWrapper">
             <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
             <div class="daySlot" part="daySlot">
-              <slot name="${this.dateStr}"></slot>
+              <slot name="date_${this.dateStr}"></slot>
             </div>
           </div>
         </button>

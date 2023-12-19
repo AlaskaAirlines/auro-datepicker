@@ -106,7 +106,7 @@
   font-size: var(--ds-text-body-size-xxs, $ds-text-body-size-xxs);
 }
 
-::slotted(*) {
+::slotted([slot^="date_"]) {
   position: absolute;
   top: 80%;
   left: 50%;
@@ -124,7 +124,7 @@
   max-width: 24px;
 }
 
-:host([hasDateSlotContent]) {
+:host([renderForDateSlot]) {
   .buttonWrapper {
     position: relative;
     width: 100%;

@@ -314,16 +314,19 @@ export class AuroCalendar extends RangeDatepicker {
       const items = [];
 
       this.dateSlotContent.forEach((content) => {
+        // Puts the date slot content into a map for easy access
         this.dateSlotMap.set(content.getAttribute('date'), content);
 
         const date = new Date(content.getAttribute('date'));
 
+        // Puts the date slot content into an array
         items.push({
           date,
           content
         });
       });
 
+      // Groups the date slot content by month
       this.dateSlotContentByMonth = _.groupBy(items, ({date}) => date.getMonth()); // eslint-disable-line no-undef
 
       this.insertSlotContentByMonth(this.dateSlotContentByMonth, this.dateSlotMap);
@@ -333,16 +336,19 @@ export class AuroCalendar extends RangeDatepicker {
       const items = [];
 
       this.popoverSlotContent.forEach((content) => {
+        // Puts the popover slot content into a map for easy access
         this.popoverSlotMap.set(content.getAttribute('date'), content);
 
         const date = new Date(content.getAttribute('date'));
 
+        // Puts the popover slot content into an array
         items.push({
           date,
           content
         });
       });
 
+      // Groups the popover slot content by month
       this.popoverSlotContentByMonth = _.groupBy(items, ({date}) => date.getMonth()); // eslint-disable-line no-undef
 
       this.insertSlotContentByMonth(this.popoverSlotContentByMonth, this.popoverSlotMap);
@@ -361,12 +367,15 @@ export class AuroCalendar extends RangeDatepicker {
 
     renderedMonths.forEach((month) => {
       if (slotContentByMonth) {
+
+        // Grabs the slot content for the month
         const monthSlotContent = slotContentByMonth[month.getAttribute('month') - 1];
 
         if (monthSlotContent) {
           const dateSlotName = 'date';
           const popoverSlotName = 'popover';
 
+          // Passes the slot content maps and the slot content down to the auro-calendar-month
           monthSlotContent.forEach((monthContent) => {
             if (monthContent.content.getAttribute('slot').includes(dateSlotName)) {
               month.dateSlotMap = slotMap;

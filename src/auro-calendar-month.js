@@ -8,7 +8,6 @@ import './auro-calendar-cell';
 
 /* eslint-disable no-self-assign, no-magic-numbers, dot-location */
 
-// class AuroCalendar extends LitElement {
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
   constructor() {
     super();
@@ -82,12 +81,14 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       this.dateSlotContent.forEach((content) => {
         const date = new Date(content.getAttribute('date'));
 
+        // Puts the date slot content into an array
         items.push({
           date,
           content
         });
       });
 
+      // Groups the date slot content by day
       this.dateSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
     }
 
@@ -97,12 +98,14 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       this.popoverSlotContent.forEach((content) => {
         const date = new Date(content.getAttribute('date'));
 
+        // Puts the popover slot content into an array
         items.push({
           date,
           content
         });
       });
 
+      // Groups the popover slot content by day
       this.popoverSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
     }
 
@@ -118,39 +121,76 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     const renderedDays = [...this.shadowRoot.querySelectorAll('auro-calendar-cell')];
 
     renderedDays.forEach((dateCell) => {
-      const day = new Date(dateCell.day.date * 1000).getDate();
-      const dayName = this.getFormattedDate(dateCell);
+      // const day = new Date(dateCell.day.date * 1000).getDate();
+      const formattedDate = this.getFormattedDate(dateCell);
 
       if (this.dateSlotContentByDay) {
-        dateCell.setAttribute('hasDateSlotContent', true);
+
+        // Sets attribute on date cells to render with extra space for the date slot content
+        dateCell.setAttribute('renderForDateSlot', true);
       }
 
-      const insertContent = (contentMap, slotMap) => {
-        if (this.isSlotContentValid(day, dayName, contentMap)) {
-          dateCell.appendChild(contentMap[day][0].content);
-        } else if (slotMap.has(dayName)) {
-          dateCell.appendChild(slotMap.get(dayName));
+      const insertContent = (slotMap) => {
+        if (slotMap.has(formattedDate)) {
+          if (slotMap.get(formattedDate).getAttribute('slot').startsWith('date')) {
+            dateCell.removeSlotContent('date');
+          } else {
+            dateCell.removeSlotContent('popover');
+          }
+
+          dateCell.appendChild(slotMap.get(formattedDate));
+        } else {
+          dateCell.removeSlotContent('date');
+          dateCell.removeSlotContent('popover');
         }
       };
 
-      insertContent(this.dateSlotContentByDay, this.dateSlotMap);
-      insertContent(this.popoverSlotContentByDay, this.popoverSlotMap);
+      insertContent(this.dateSlotMap);
+      insertContent(this.popoverSlotMap);
     });
   }
+
+  // Old solution
+        // if (this.isSlotContentValid(day, formattedDate, contentMap)) {
+        //   // Appends slot content to date cell if it exists
+        //   dateCell.appendChild(contentMap[day][0].content);
+        // } else if (slotMap.has(formattedDate)) {
+        //   // Appends content from slot map if slot content does not exist
+        //   dateCell.appendChild(slotMap.get(formattedDate));
+        // }
+
+
+        // 1. Datepicker
+        //    a. Slot content is inserted
+        //    b. Slot content is moved down to calendar
+        // 2. Calendar
+        //   a. Receives slot content from datepicker
+        //   b. Inserts slot content into a map
+        //   c. Separates the content by month
+        //   d. Slot content and map content is moved down to month
+        // 3. Month
+        //   a. Receives slot content and map from calendar
+        //   b. Separates the content by day
+        //   c. Loop through each day in month
+        //      I. Matches map data to cell
+        //         #. If match, remove all current slot content from cell
+        //            #. Append map content to cell
+        //         #. If no match, remove all current slot content from cell
+        // 4. Cell
 
   /**
    * Checks if the slot content exists and matches the current date.
    * @private
    * @param {Date} day - Specific day of the month of the auro-calendar-cell.
-   * @param {String} dayName - The formatted date of the auro-calendar-cell.
+   * @param {String} formattedDate - The formatted date of the auro-calendar-cell.
    * @param {Object} slotContentByDay - The slot content grouped by day.
    * @returns {Boolean} True if the slot content exists and matches the current date.
    */
-  isSlotContentValid(day, dayName, slotContentByDay) {
+  isSlotContentValid(day, formattedDate, slotContentByDay) {
     return (
       slotContentByDay &&
       slotContentByDay[day] &&
-      slotContentByDay[day][0].content.getAttribute('date') === dayName
+      slotContentByDay[day][0].content.getAttribute('date') === formattedDate
     );
   }
 
