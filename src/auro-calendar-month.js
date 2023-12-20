@@ -47,6 +47,7 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
 
   /**
    * Determines the current month name based on locale.
+   * This is a rewrite of the function used in the class RangeDatepickerCalendar and should not be removed from here.
    * @private
    * @returns {void}
    */
@@ -64,159 +65,6 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       .splice(firstDayOfWeek, dayNamesOfTheWeek.length)
       .concat(tmp);
     this.dayNamesOfTheWeek = newDayNamesOfTheWeek;
-  }
-
-  /**
-   * Parses the date and popover slot content and separates it by day.
-   * @private
-   * @returns {void}
-   */
-  parseDateContentByDay() {
-    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
-    this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
-
-    if (this.dateSlotContent && this.dateSlotContent.length > 0) {
-      const items = [];
-
-      this.dateSlotContent.forEach((content) => {
-        const date = new Date(content.getAttribute('date'));
-
-        // Puts the date slot content into an array
-        items.push({
-          date,
-          content
-        });
-      });
-
-      // Groups the date slot content by day
-      this.dateSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
-    }
-
-    if (this.popoverSlotContent && this.popoverSlotContent.length > 0) {
-      const items = [];
-
-      this.popoverSlotContent.forEach((content) => {
-        const date = new Date(content.getAttribute('date'));
-
-        // Puts the popover slot content into an array
-        items.push({
-          date,
-          content
-        });
-      });
-
-      // Groups the popover slot content by day
-      this.popoverSlotContentByDay = _.groupBy(items, ({date}) => date.getDate()); // eslint-disable-line no-undef
-    }
-
-    this.insertSlotContentByDay();
-  }
-
-  /**
-   * Inserts the date and popover slot content down to the auro-calendar-cell.
-   * @private
-   * @returns {void}
-   */
-  insertSlotContentByDay() {
-    const renderedDays = [...this.shadowRoot.querySelectorAll('auro-calendar-cell')];
-
-    renderedDays.forEach((dateCell) => {
-      // const day = new Date(dateCell.day.date * 1000).getDate();
-      const formattedDate = this.getFormattedDate(dateCell);
-
-      if (this.dateSlotContentByDay) {
-
-        // Sets attribute on date cells to render with extra space for the date slot content
-        dateCell.setAttribute('renderForDateSlot', true);
-      }
-
-      const insertContent = (slotMap) => {
-        if (slotMap.has(formattedDate)) {
-          if (slotMap.get(formattedDate).getAttribute('slot').startsWith('date')) {
-            dateCell.removeSlotContent('date');
-          } else {
-            dateCell.removeSlotContent('popover');
-          }
-
-          dateCell.appendChild(slotMap.get(formattedDate));
-        } else {
-          dateCell.removeSlotContent('date');
-          dateCell.removeSlotContent('popover');
-        }
-      };
-
-      insertContent(this.dateSlotMap);
-      insertContent(this.popoverSlotMap);
-    });
-  }
-
-  // Old solution
-        // if (this.isSlotContentValid(day, formattedDate, contentMap)) {
-        //   // Appends slot content to date cell if it exists
-        //   dateCell.appendChild(contentMap[day][0].content);
-        // } else if (slotMap.has(formattedDate)) {
-        //   // Appends content from slot map if slot content does not exist
-        //   dateCell.appendChild(slotMap.get(formattedDate));
-        // }
-
-
-        // 1. Datepicker
-        //    a. Slot content is inserted
-        //    b. Slot content is moved down to calendar
-        // 2. Calendar
-        //   a. Receives slot content from datepicker
-        //   b. Inserts slot content into a map
-        //   c. Separates the content by month
-        //   d. Slot content and map content is moved down to month
-        // 3. Month
-        //   a. Receives slot content and map from calendar
-        //   b. Separates the content by day
-        //   c. Loop through each day in month
-        //      I. Matches map data to cell
-        //         #. If match, remove all current slot content from cell
-        //            #. Append map content to cell
-        //         #. If no match, remove all current slot content from cell
-        // 4. Cell
-
-  /**
-   * Checks if the slot content exists and matches the current date.
-   * @private
-   * @param {Date} day - Specific day of the month of the auro-calendar-cell.
-   * @param {String} formattedDate - The formatted date of the auro-calendar-cell.
-   * @param {Object} slotContentByDay - The slot content grouped by day.
-   * @returns {Boolean} True if the slot content exists and matches the current date.
-   */
-  isSlotContentValid(day, formattedDate, slotContentByDay) {
-    return (
-      slotContentByDay &&
-      slotContentByDay[day] &&
-      slotContentByDay[day][0].content.getAttribute('date') === formattedDate
-    );
-  }
-
-  /**
-   * Returns a formatted date of the current auro-calendar-cell date.
-   * @private
-   * @param {HTMLElement} dateCell - The auro-calendar-cell element.
-   * @returns {String} The date in "mm/dd/yyyy" format.
-   */
-  getFormattedDate(dateCell) {
-    const date = new Date(dateCell.day.date * 1000);
-
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-
-    if (month.toString().length === 1) {
-      month = `0${month}`;
-    }
-
-    if (day.toString().length === 1) {
-      day = `0${day}`;
-    }
-
-    const year = date.getFullYear();
-
-    return `${month}/${day}/${year}`;
   }
 
   renderDay(day) {
@@ -245,13 +93,9 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     `;
   }
 
-  async updated(changedProperties) {
+  updated(changedProperties) {
     if (changedProperties.has('year') || changedProperties.has('month')) {
       this.yearAndMonthChanged(this.year, this.month);
-
-      await this.updateComplete;
-
-      this.parseDateContentByDay();
     }
   }
 

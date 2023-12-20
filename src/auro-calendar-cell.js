@@ -7,7 +7,7 @@ import styleCss from "./style-auro-calendar-cell-css";
 
 import '@alaskaairux/auro-popover';
 
-/* eslint-disable no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines */
+/* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines */
 
 export class AuroCalendarCell extends LitElement {
   constructor() {
@@ -216,79 +216,68 @@ export class AuroCalendarCell extends LitElement {
     this.dateStr = `${month}_${day}_${year}`;
   }
 
-  /**
-   * Handles the text content and visibility of the auro-popover.
-   * @private
-   * @returns {void}
-   */
-  handlePopoverContent() {
-    const popover = this.shadowRoot.querySelector('auro-popover');
-    const popoverSpan = this.shadowRoot.querySelector('#popoverSpan');
-    const popoverContent = [...this.querySelectorAll('[slot^="popover_"]')];
+  /* eslint-disable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
+  // THIS SHOULD BE MOVED INTO AURO-LIBRARY AS A HELPER FUNCTION
+  // declared as method on a Custom Element:
+  closestElement(
+    selector, // selector like in .closest()
+    base = this, // extra functionality to skip a parent
+    __Closest = (el, found = el && el.closest(selector)) =>
+      !el || el === document || el === window
+        ? null // standard .closest() returns null for non-found selectors also
+        : found
+          ? found // found a selector INside this element
+          : __Closest(el.getRootNode().host) // recursion!! break out to parent DOM
+  ) {
+    return __Closest(base);
+  }
+  /* eslint-enable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
 
-    const cellDate = new Date(this.day.date * 1000);
+  getSlotContent() {
+    try {
+      // Get the slot names for this cell
+      const dateSlotName = `date_${this.dateStr}`;
+      const popoverSlotName = `popover_${this.dateStr}`;
 
-    if (popoverContent && popoverContent.length > 0) {
-      popoverContent.forEach((content) => {
-        const popoverDate = new Date(content.getAttribute('date'));
+      // Remove any existing slot content from this cell
+      const existingSlotContent = this.querySelectorAll(`[slot]`);
 
-        if (this.popoverAndCellDatesMatch(popoverDate, cellDate)) {
-          popover.removeAttribute('disabled');
-        } else {
-          popover.setAttribute('disabled', true);
-        }
+      existingSlotContent.forEach((slot) => {
+        slot.remove();
       });
-    } else if (!this.disabled) {
-      popover.setAttribute('disabled', true);
-    }
-  }
 
-  /**
-   * Helper function to determine if the popover date and cell date match.
-   * @private
-   * @param {Date} popoverDate - The date of the auro-popover.
-   * @param {Date} cellDate - The date of the auro-calendar-cell.
-   * @returns {void}
-   */
-  popoverAndCellDatesMatch(popoverDate, cellDate) {
-    return popoverDate.getDate() === cellDate.getDate() && popoverDate.getMonth() === cellDate.getMonth() && popoverDate.getFullYear() === cellDate.getFullYear();
-  }
+      // Get any slots for this cell from the datepicker
+      const dp = this.closestElement('auro-datepicker');
 
-  removeSlotContent(slotContentType) {
-    const popover = this.shadowRoot.querySelector('auro-popover');
+      const dateSlotContent = dp.querySelector(`[slot="${dateSlotName}"]`);
+      const popoverSlotContent = dp.querySelector(`[slot="${popoverSlotName}"]`);
 
-    const dateSlots = [...this.querySelectorAll('[slot^="date_"]')];
-    const popoverSlots = [...this.querySelectorAll('[slot^="popover_"]')];
-
-
-    if (slotContentType === 'date') {
-      if (dateSlots.length > 0) {
-        dateSlots.forEach((slot) => {
-          slot.remove();
-        });
+      // Insert any fetched slot content into this cell
+      if (dateSlotContent) {
+        this.appendChild(dateSlotContent.cloneNode(true));
       }
-    }
 
-    if (slotContentType === 'popover') {
-      if (popoverSlots.length > 0) {
-        popoverSlots.forEach((slot) => {
-          popover.setAttribute('disabled', true);
-          slot.remove();
-        });
+      const popover = this.shadowRoot.querySelector('auro-popover');
+
+      if (popoverSlotContent) {
+        this.appendChild(popoverSlotContent.cloneNode(true));
+        popover.removeAttribute('disabled');
+      } else {
+        popover.setAttribute('disabled', true);
       }
+    } catch (err) {
+      //
     }
   }
 
   updated(properties) {
+
     if (properties.has('dateFrom') || properties.has('dateTo') || properties.has('hoveredDate') || properties.has('day')) {
       this.dateChanged(this.dateFrom, this.dateTo, this.hoveredDate, this.day);
     }
 
-    if (properties.has('dateStr')) {
-      this.handlePopoverContent();
-    }
-
     this.getDateSlotName();
+    this.getSlotContent();
   }
 
   render() {
@@ -304,7 +293,7 @@ export class AuroCalendarCell extends LitElement {
 
     let _a, _b;
     return html`
-      <auro-popover disabled>
+      <auro-popover>
         <slot name="popover_${this.dateStr}"></slot>
         <button
           slot="trigger"

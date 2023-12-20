@@ -652,45 +652,10 @@ export class AuroDatePicker extends LitElement {
     this.notifyReady();
   }
 
-  /**
-   * Parses slot content by date and appends it to the auro-calendar.
-   * @private
-   * @returns {void}
-   */
-  parseDateContent() {
-    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
-    this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
-
-    // Sets the date attribute on the date slot content and appends it to the calendar
-    this.dateSlotContent.forEach((item) => {
-      const dateStr = item.getAttribute('slot').substring(item.getAttribute('slot').indexOf('_') + 1).replace(/_/g, '/');
-
-      item.setAttribute('date', dateStr);
-
-      this.calendar.appendChild(item);
-    });
-
-    // Sets the date attribute on the popover slot content and appends it to the calendar
-    this.popoverSlotContent.forEach((item) => {
-      const dateStr = item.getAttribute('slot').substring(item.getAttribute('slot').indexOf('_') + 1).replace(/_/g, '/');
-
-      item.setAttribute('date', dateStr);
-
-      this.calendar.appendChild(item);
-    });
-  }
-
-  handleSlotChange() {
-    console.log('slot change');
-
-    this.parseDateContent();
-  }
-
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
       <div part="datepickerContainer">
-        <slot @slotchange="${this.handleSlotChange}"></slot>
         <auro-dropdown
           for="dropdownMenu"
           bordered
