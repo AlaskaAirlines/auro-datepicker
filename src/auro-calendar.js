@@ -138,6 +138,13 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   firstUpdated() {
+    this.calendars = this.shadowRoot.querySelector('.calendars');
+    // console.warn(this.calendars);
+    this.calendars.addEventListener('scroll', () => {
+      console.warn('scrolling');
+    });
+
+
     // if minDate is defined and it's later than the current month make the calendar view start on the minDate
     if (this.minDate) {
       const minAsDateObj = new Date(this.minDate);
@@ -347,20 +354,6 @@ export class AuroCalendar extends RangeDatepicker {
 
   render() {
     return html`
-      <div class="calendars">
-        ${this.renderCalendar(this.month, this.year)}
-        ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
-        ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
-        ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
-        ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
-        ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
-        ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
-        ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
-        ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
-        ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
-        ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
-        ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
-      </div>
       ${this.showPrevMonthBtn ? html`
         <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
           ${this.generateIconHtml(chevronLeft)}
@@ -377,6 +370,20 @@ export class AuroCalendar extends RangeDatepicker {
           <slot name="mobileDateFromStr"></slot>
         </div>
         <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
+      </div>
+      <div class="calendars">
+        ${this.renderCalendar(this.month, this.year)}
+        ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
+        ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
+        ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
+        ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
+        ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
+        ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
+        ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
+        ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
+        ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
+        ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
+        ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
       </div>
       <div class="mobileFooter">
         <div class="mobileFooterActions">

@@ -798,16 +798,51 @@ In the following example, please see how popover content is threaded into the el
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/popover.html -->
-  <auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
+  <auro-datepicker minDate="12/04/2025" maxDate="12/27/2025">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
-    <span slot="popover_12_03_2023">Tickets for this day are sold out</span>
-    <span slot="popover_12_04_2023">Tickets for this day are $89</span>
-    <span slot="popover_12_05_2023">Tickets for this day are $100</span>
-    <span slot="popover_12_06_2023">Tickets for this day are $2345</span>
-    <span slot="popover_12_07_2023">Tickets for this day are $149</span>
-    <span slot="popover_12_08_2023">Tickets for this day are $382</span>
-    <span slot="popover_12_09_2023">Tickets for this day are $560</span>
+    <span slot="date_12_03_2025">Sold</span>
+    <span slot="date_12_04_2025">$89</span>
+    <span slot="date_12_05_2025">$100</span>
+    <span slot="date_12_06_2025">$2345</span>
+    <span slot="date_12_07_2025">$149</span>
+    <span slot="date_12_08_2025">$382</span>
+    <span slot="date_12_09_2025">$560</span>
+    <span slot="popover_12_03_2025">Tickets for this day are sold out</span>
+    <span slot="popover_12_04_2025">Tickets for this day are $89</span>
+    <span slot="popover_12_05_2025">Tickets for this day are $100</span>
+    <span slot="popover_12_06_2025">Tickets for this day are $2345</span>
+    <span slot="popover_12_07_2025">Tickets for this day are $149</span>
+    <span slot="popover_12_08_2025">Tickets for this day are $382</span>
+    <span slot="popover_12_09_2025">Tickets for this day are $560</span>
+    <!-- <span slot="date_01_03_2026">Sold</span>
+    <span slot="date_01_04_2026">$89</span>
+    <span slot="date_01_05_2026">$100</span>
+    <span slot="date_01_06_2026">$2345</span>
+    <span slot="date_01_07_2026">$149</span>
+    <span slot="date_01_08_2026">$382</span>
+    <span slot="date_01_09_2026">$560</span>
+    <span slot="popover_01_03_2026">Tickets for this day are sold out</span>
+    <span slot="popover_01_04_2026">Tickets for this day are $89</span>
+    <span slot="popover_01_05_2026">Tickets for this day are $100</span>
+    <span slot="popover_01_06_2026">Tickets for this day are $2345</span>
+    <span slot="popover_01_07_2026">Tickets for this day are $149</span>
+    <span slot="popover_01_08_2026">Tickets for this day are $382</span>
+    <span slot="popover_01_09_2026">Tickets for this day are $560</span>
+    <span slot="date_02_03_2026">Sold</span>
+    <span slot="date_02_04_2026">$89</span>
+    <span slot="date_02_05_2026">$100</span>
+    <span slot="date_02_06_2026">$2345</span>
+    <span slot="date_02_07_2026">$149</span>
+    <span slot="date_02_08_2026">$382</span>
+    <span slot="date_02_09_2026">$560</span>
+    <span slot="popover_02_03_2026">Tickets for this day are sold out</span>
+    <span slot="popover_02_04_2026">Tickets for this day are $89</span>
+    <span slot="popover_02_05_2026">Tickets for this day are $100</span>
+    <span slot="popover_02_06_2026">Tickets for this day are $2345</span>
+    <span slot="popover_02_07_2026">Tickets for this day are $149</span>
+    <span slot="popover_02_08_2026">Tickets for this day are $382</span>
+    <span slot="popover_02_09_2026">Tickets for this day are $560</span> -->
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -817,16 +852,51 @@ In the following example, please see how popover content is threaded into the el
 <!-- The below code snippet is automatically added from ./../../apiExamples/popover.html -->
 
 ```html
-<auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
+<auro-datepicker minDate="12/04/2025" maxDate="12/27/2025">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
-  <span slot="popover_12_03_2023">Tickets for this day are sold out</span>
-  <span slot="popover_12_04_2023">Tickets for this day are $89</span>
-  <span slot="popover_12_05_2023">Tickets for this day are $100</span>
-  <span slot="popover_12_06_2023">Tickets for this day are $2345</span>
-  <span slot="popover_12_07_2023">Tickets for this day are $149</span>
-  <span slot="popover_12_08_2023">Tickets for this day are $382</span>
-  <span slot="popover_12_09_2023">Tickets for this day are $560</span>
+  <span slot="date_12_03_2025">Sold</span>
+  <span slot="date_12_04_2025">$89</span>
+  <span slot="date_12_05_2025">$100</span>
+  <span slot="date_12_06_2025">$2345</span>
+  <span slot="date_12_07_2025">$149</span>
+  <span slot="date_12_08_2025">$382</span>
+  <span slot="date_12_09_2025">$560</span>
+  <span slot="popover_12_03_2025">Tickets for this day are sold out</span>
+  <span slot="popover_12_04_2025">Tickets for this day are $89</span>
+  <span slot="popover_12_05_2025">Tickets for this day are $100</span>
+  <span slot="popover_12_06_2025">Tickets for this day are $2345</span>
+  <span slot="popover_12_07_2025">Tickets for this day are $149</span>
+  <span slot="popover_12_08_2025">Tickets for this day are $382</span>
+  <span slot="popover_12_09_2025">Tickets for this day are $560</span>
+  <!-- <span slot="date_01_03_2026">Sold</span>
+  <span slot="date_01_04_2026">$89</span>
+  <span slot="date_01_05_2026">$100</span>
+  <span slot="date_01_06_2026">$2345</span>
+  <span slot="date_01_07_2026">$149</span>
+  <span slot="date_01_08_2026">$382</span>
+  <span slot="date_01_09_2026">$560</span>
+  <span slot="popover_01_03_2026">Tickets for this day are sold out</span>
+  <span slot="popover_01_04_2026">Tickets for this day are $89</span>
+  <span slot="popover_01_05_2026">Tickets for this day are $100</span>
+  <span slot="popover_01_06_2026">Tickets for this day are $2345</span>
+  <span slot="popover_01_07_2026">Tickets for this day are $149</span>
+  <span slot="popover_01_08_2026">Tickets for this day are $382</span>
+  <span slot="popover_01_09_2026">Tickets for this day are $560</span>
+  <span slot="date_02_03_2026">Sold</span>
+  <span slot="date_02_04_2026">$89</span>
+  <span slot="date_02_05_2026">$100</span>
+  <span slot="date_02_06_2026">$2345</span>
+  <span slot="date_02_07_2026">$149</span>
+  <span slot="date_02_08_2026">$382</span>
+  <span slot="date_02_09_2026">$560</span>
+  <span slot="popover_02_03_2026">Tickets for this day are sold out</span>
+  <span slot="popover_02_04_2026">Tickets for this day are $89</span>
+  <span slot="popover_02_05_2026">Tickets for this day are $100</span>
+  <span slot="popover_02_06_2026">Tickets for this day are $2345</span>
+  <span slot="popover_02_07_2026">Tickets for this day are $149</span>
+  <span slot="popover_02_08_2026">Tickets for this day are $382</span>
+  <span slot="popover_02_09_2026">Tickets for this day are $560</span> -->
 </auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->

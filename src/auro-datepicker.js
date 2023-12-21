@@ -650,6 +650,12 @@ export class AuroDatePicker extends LitElement {
     this.configureCalendar();
     this.configureDatepicker();
     this.notifyReady();
+
+    this.calendarWrapper = this.shadowRoot.querySelector('.calendarWrapper');
+    // console.warn(this.calendars);
+    this.calendarWrapper.addEventListener('scroll', () => {
+      console.warn('scrolling');
+    });
   }
   
   // function that renders the HTML and CSS into  the scope of the component

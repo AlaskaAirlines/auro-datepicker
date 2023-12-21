@@ -9,6 +9,9 @@
 /* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before */
 
 :host {
+  background: orange;
+  display: flex;
+  flex-direction: column;
   @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
     width: 100%;
   }
@@ -56,9 +59,9 @@
 }
 
 .mobileHeader {
-  position: absolute;
-  top: 0;
-  left: 0;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
 
   display: none;
   width: 100%;
@@ -122,11 +125,11 @@
 }
 
 .mobileFooter {
+  display: none !important;
   position: absolute;
   bottom: 0;
   left: 50%;
 
-  display: none;
   width: 100%;
   height: var(--mobile-footer-height);
 
@@ -136,13 +139,22 @@
 
   padding-bottom: var(--ds-size-200, $ds-size-200);
 
-  background: var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
-
   transform: translateX(-50%);
-  pointer-events: none;
+
+  background: maroon;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: lime; // var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
+    pointer-events: none;
+  }
 }
 
 .mobileFooterActions {
+  background-color: aquamarine;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -177,14 +189,16 @@
 
   .calendars {
     position: relative;
-    top: var(--mobile-header-height);
+    // top: var(--mobile-header-height);
 
     display: flex;
+    flex: 1;
+    background-color: cadetblue;
     flex-direction: column;
 
     align-items: center;
     width: 100%;
-    height: calc(100vh - var(--mobile-header-height));
+    // height: calc(100vh - var(--mobile-header-height));
 
     overflow-y: scroll;
 

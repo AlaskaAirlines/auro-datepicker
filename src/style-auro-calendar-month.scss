@@ -18,6 +18,8 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
   position: relative;
 
   display: block;
+
+  // display: none !important;
   width: calc(100% - var(--ds-size-300, $ds-size-300));
 
   padding: var(--ds-size-200, $ds-size-200), var(--ds-size-150, $ds-size-150);
