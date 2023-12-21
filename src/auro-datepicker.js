@@ -516,11 +516,38 @@ export class AuroDatePicker extends LitElement {
     }));
   }
 
+  handleCellClick(time) {
+    this.cellClickActive = true;
+
+    const newDate = this.convertWcTimeToDate(time);
+
+    if (this.validDateStr(newDate)) {
+      if (this.inputList.length > 1) {
+        if (!this.value || !this.validDateStr(this.value)) {
+          this.value = newDate;
+        } else if (!this.valueEnd || !this.validDateStr(this.valueEnd)) {
+          this.valueEnd = newDate;
+        } else {
+          this.value = newDate;
+          this.valueEnd = '';
+        }
+      } else {
+        this.value = newDate;
+      }
+    }
+  }
+
   updated(changedProperties) {
     if (changedProperties.has('value')) {
-      if (this.value && this.validDateStr(this.value)) {
+      if (this.value && this.validDateStr(this.value) && !this.cellClickActive) {
         this.handleVisibleDate(this.value);
+      }
 
+      if (this.cellClickActive) {
+        this.cellClickActive = false;
+      }
+
+      if (this.value && this.validDateStr(this.value)) {
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
         }
@@ -651,7 +678,7 @@ export class AuroDatePicker extends LitElement {
     this.configureDatepicker();
     this.notifyReady();
   }
-  
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`

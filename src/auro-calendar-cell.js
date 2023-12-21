@@ -101,18 +101,14 @@ export class AuroCalendarCell extends LitElement {
     }
   }
 
+
   /**
-   * Handles user click events and dispatches a custom event.
+   * Handles user click events and calls datepicker to update the value(s).
    * @private
    * @returns {void}
    */
   handleTap() {
-    let _a;
-    if (!this.disabled) {
-      this.dispatchEvent(new CustomEvent('date-is-selected', {
-        detail: { date: (_a = this.day) === null || _a === void 0 ? void 0 : _a.date },
-      }));
-    }
+    this.dp.handleCellClick(this.day.date);
   }
 
   /**
@@ -246,11 +242,9 @@ export class AuroCalendarCell extends LitElement {
         slot.remove();
       });
 
-      // Get any slots for this cell from the datepicker
-      const dp = this.closestElement('auro-datepicker');
-
-      const dateSlotContent = dp.querySelector(`[slot="${dateSlotName}"]`);
-      const popoverSlotContent = dp.querySelector(`[slot="${popoverSlotName}"]`);
+      // // Get any slots for this cell from the datepicker
+      const dateSlotContent = this.dp.querySelector(`[slot="${dateSlotName}"]`);
+      const popoverSlotContent = this.dp.querySelector(`[slot="${popoverSlotName}"]`);
 
       // Insert any fetched slot content into this cell
       if (dateSlotContent) {
@@ -271,6 +265,10 @@ export class AuroCalendarCell extends LitElement {
     } catch (err) {
       //
     }
+  }
+
+  firstUpdated() {
+    this.dp = this.closestElement('auro-datepicker');
   }
 
   updated(properties) {
