@@ -753,24 +753,16 @@ In the following example, please see how pricing content is threaded into the el
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlot.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/daySlot.html -->
-  <auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+  <auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
-    <span slot="date_09_01_2023">$132</span>
-    <span slot="date_09_12_2023">$1000</span>
-    <span slot="date_09_21_2023">$242</span>
-    <span slot="date_10_11_2023">$784</span>
-    <span slot="date_10_15_2023">$567</span>
-    <span slot="date_10_16_2023">$1234</span>
-    <span slot="date_10_21_2023">$45</span>
-    <span slot="date_11_01_2023">$1000</span>
-    <span slot="date_11_02_2023">$200</span>
-    <span slot="date_11_08_2023">$200</span>
-    <span slot="date_11_18_2023">$100</span>
-    <span slot="date_12_01_2023">$23</span>
-    <span slot="date_12_06_2023">$5600</span>
-    <span slot="date_01_01_2024">$202</span>
-    <span slot="date_01_05_2024">$3022</span>
+    <span slot="date_12_03_2023">Sold</span>
+    <span slot="date_12_04_2023">$89</span>
+    <span slot="date_12_05_2023">$100</span>
+    <span slot="date_12_06_2023">$2345</span>
+    <span slot="date_12_07_2023">$149</span>
+    <span slot="date_12_08_2023">$382</span>
+    <span slot="date_12_09_2023">$560</span>
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -780,116 +772,16 @@ In the following example, please see how pricing content is threaded into the el
 <!-- The below code snippet is automatically added from ./../../apiExamples/daySlot.html -->
 
 ```html
-<auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+<auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
-  <span slot="date_09_01_2023">$132</span>
-  <span slot="date_09_12_2023">$1000</span>
-  <span slot="date_09_21_2023">$242</span>
-  <span slot="date_10_11_2023">$784</span>
-  <span slot="date_10_15_2023">$567</span>
-  <span slot="date_10_16_2023">$1234</span>
-  <span slot="date_10_21_2023">$45</span>
-  <span slot="date_11_01_2023">$1000</span>
-  <span slot="date_11_02_2023">$200</span>
-  <span slot="date_11_08_2023">$200</span>
-  <span slot="date_11_18_2023">$100</span>
-  <span slot="date_12_01_2023">$23</span>
-  <span slot="date_12_06_2023">$5600</span>
-  <span slot="date_01_01_2024">$202</span>
-  <span slot="date_01_05_2024">$3022</span>
-</auro-datepicker>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-#### Day Slot w/ Text and Range Selection
-
-The following example illustrates slotted content in combination with the `range` attribute.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotRange.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/daySlotRange.html -->
-  <auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-    <span slot="fromLabel">Departure</span>
-    <span slot="toLabel">Return</span>
-    <span slot="mobileDateLabel">Roundtrip</span>
-    <span slot="date_09_01_2023">$132</span>
-    <span slot="date_09_12_2023">$1000</span>
-    <span slot="date_09_21_2023">$242</span>
-    <span slot="date_10_11_2023">$784</span>
-    <span slot="date_10_15_2023">$567</span>
-    <span slot="date_10_16_2023">$1234</span>
-    <span slot="date_10_21_2023">$45</span>
-    <span slot="date_11_01_2023">$1000</span>
-    <span slot="date_11_02_2023">$200</span>
-    <span slot="date_11_08_2023">$200</span>
-    <span slot="date_11_18_2023">$100</span>
-    <span slot="date_12_01_2023">$23</span>
-    <span slot="date_12_06_2023">$5600</span>
-    <span slot="date_01_01_2024">$202</span>
-    <span slot="date_01_05_2024">$3022</span>
-  </auro-datepicker>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotRange.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/daySlotRange.html -->
-
-```html
-<auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-  <span slot="fromLabel">Departure</span>
-  <span slot="toLabel">Return</span>
-  <span slot="mobileDateLabel">Roundtrip</span>
-  <span slot="date_09_01_2023">$132</span>
-  <span slot="date_09_12_2023">$1000</span>
-  <span slot="date_09_21_2023">$242</span>
-  <span slot="date_10_11_2023">$784</span>
-  <span slot="date_10_15_2023">$567</span>
-  <span slot="date_10_16_2023">$1234</span>
-  <span slot="date_10_21_2023">$45</span>
-  <span slot="date_11_01_2023">$1000</span>
-  <span slot="date_11_02_2023">$200</span>
-  <span slot="date_11_08_2023">$200</span>
-  <span slot="date_11_18_2023">$100</span>
-  <span slot="date_12_01_2023">$23</span>
-  <span slot="date_12_06_2023">$5600</span>
-  <span slot="date_01_01_2024">$202</span>
-  <span slot="date_01_05_2024">$3022</span>
-</auro-datepicker>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-#### Day Slot w/ Icon
-
-The following example illustrates how the `<auro-icon>` element can be used as slotted content.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotIcon.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/daySlotIcon.html -->
-  <auro-datepicker centralDate="10/01/2023" minDate="10/01/2023" maxDate="10/31/2023">
-    <span slot="fromLabel">Choose a date</span>
-    <span slot="mobileDateLabel">Choose a date</span>
-    <auro-icon slot="date_10_01_2023" customColor customSize category="interface" name="home-stroke"></auro-icon>
-    <auro-icon slot="date_10_10_2023" customColor customSize category="interface" name="arrow-left"></auro-icon>
-    <auro-icon slot="date_10_15_2023" customColor customSize category="interface" name="heart-stroke"></auro-icon>
-  </auro-datepicker>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotIcon.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/daySlotIcon.html -->
-
-```html
-<auro-datepicker centralDate="10/01/2023" minDate="10/01/2023" maxDate="10/31/2023">
-  <span slot="fromLabel">Choose a date</span>
-  <span slot="mobileDateLabel">Choose a date</span>
-  <auro-icon slot="date_10_01_2023" customColor customSize category="interface" name="home-stroke"></auro-icon>
-  <auro-icon slot="date_10_10_2023" customColor customSize category="interface" name="arrow-left"></auro-icon>
-  <auro-icon slot="date_10_15_2023" customColor customSize category="interface" name="heart-stroke"></auro-icon>
+  <span slot="date_12_03_2023">Sold</span>
+  <span slot="date_12_04_2023">$89</span>
+  <span slot="date_12_05_2023">$100</span>
+  <span slot="date_12_06_2023">$2345</span>
+  <span slot="date_12_07_2023">$149</span>
+  <span slot="date_12_08_2023">$382</span>
+  <span slot="date_12_09_2023">$560</span>
 </auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
@@ -906,39 +798,16 @@ In the following example, please see how popover content is threaded into the el
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/popover.html -->
-  <auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+  <auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
-    <span slot="date_09_01_2023">$132</span>
-    <span slot="date_09_12_2023">$1000</span>
-    <span slot="date_09_21_2023">$242</span>
-    <span slot="date_10_11_2023">$784</span>
-    <span slot="date_10_15_2023">$567</span>
-    <span slot="date_10_16_2023">$1234</span>
-    <span slot="date_10_21_2023">$45</span>
-    <span slot="date_11_01_2023">$1000</span>
-    <span slot="date_11_02_2023">$200</span>
-    <span slot="date_11_08_2023">$200</span>
-    <span slot="date_11_18_2023">$100</span>
-    <span slot="date_12_01_2023">$23</span>
-    <span slot="date_12_06_2023">$5600</span>
-    <span slot="date_01_01_2024">$202</span>
-    <span slot="date_01_05_2024">$3022</span>
-    <span slot="popover_09_01_2023">Tickets for this date are $132</span>
-    <span slot="popover_09_12_2023">Tickets for this date are $1000</span>
-    <span slot="popover_09_21_2023">Tickets for this date are $242</span>
-    <span slot="popover_10_11_2023">Tickets for this date are $784</span>
-    <span slot="popover_10_15_2023">Tickets for this date are $567</span>
-    <span slot="popover_10_16_2023">Tickets for this date are $1234</span>
-    <span slot="popover_10_21_2023">Tickets for this date are $45</span>
-    <span slot="popover_11_01_2023">Tickets for this date are $1000</span>
-    <span slot="popover_11_02_2023">Tickets for this date are $200</span>
-    <span slot="popover_11_08_2023">Tickets for this date are $200</span>
-    <span slot="popover_11_18_2023">Tickets for this date are $100</span>
-    <span slot="popover_12_01_2023">Tickets for this date are $23</span>
-    <span slot="popover_12_06_2023">Tickets for this date are $5600</span>
-    <span slot="popover_01_01_2024">Tickets for this date are $202</span>
-    <span slot="popover_01_05_2024">Tickets for this date are $3022</span>
+    <span slot="popover_12_03_2023">Tickets for this day are sold out</span>
+    <span slot="popover_12_04_2023">Tickets for this day are $89</span>
+    <span slot="popover_12_05_2023">Tickets for this day are $100</span>
+    <span slot="popover_12_06_2023">Tickets for this day are $2345</span>
+    <span slot="popover_12_07_2023">Tickets for this day are $149</span>
+    <span slot="popover_12_08_2023">Tickets for this day are $382</span>
+    <span slot="popover_12_09_2023">Tickets for this day are $560</span>
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -948,128 +817,16 @@ In the following example, please see how popover content is threaded into the el
 <!-- The below code snippet is automatically added from ./../../apiExamples/popover.html -->
 
 ```html
-<auro-datepicker centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
+<auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
-  <span slot="date_09_01_2023">$132</span>
-  <span slot="date_09_12_2023">$1000</span>
-  <span slot="date_09_21_2023">$242</span>
-  <span slot="date_10_11_2023">$784</span>
-  <span slot="date_10_15_2023">$567</span>
-  <span slot="date_10_16_2023">$1234</span>
-  <span slot="date_10_21_2023">$45</span>
-  <span slot="date_11_01_2023">$1000</span>
-  <span slot="date_11_02_2023">$200</span>
-  <span slot="date_11_08_2023">$200</span>
-  <span slot="date_11_18_2023">$100</span>
-  <span slot="date_12_01_2023">$23</span>
-  <span slot="date_12_06_2023">$5600</span>
-  <span slot="date_01_01_2024">$202</span>
-  <span slot="date_01_05_2024">$3022</span>
-  <span slot="popover_09_01_2023">Tickets for this date are $132</span>
-  <span slot="popover_09_12_2023">Tickets for this date are $1000</span>
-  <span slot="popover_09_21_2023">Tickets for this date are $242</span>
-  <span slot="popover_10_11_2023">Tickets for this date are $784</span>
-  <span slot="popover_10_15_2023">Tickets for this date are $567</span>
-  <span slot="popover_10_16_2023">Tickets for this date are $1234</span>
-  <span slot="popover_10_21_2023">Tickets for this date are $45</span>
-  <span slot="popover_11_01_2023">Tickets for this date are $1000</span>
-  <span slot="popover_11_02_2023">Tickets for this date are $200</span>
-  <span slot="popover_11_08_2023">Tickets for this date are $200</span>
-  <span slot="popover_11_18_2023">Tickets for this date are $100</span>
-  <span slot="popover_12_01_2023">Tickets for this date are $23</span>
-  <span slot="popover_12_06_2023">Tickets for this date are $5600</span>
-  <span slot="popover_01_01_2024">Tickets for this date are $202</span>
-  <span slot="popover_01_05_2024">Tickets for this date are $3022</span>
-</auro-datepicker>
-```
-<!-- AURO-GENERATED-CONTENT:END -->
-</auro-accordion>
-
-#### Popover Slot w/ Range Selection
-
-The following example illustrates popover content in combination with the `range` attribute.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverRange.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/popoverRange.html -->
-  <auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-    <span slot="fromLabel">Departure</span>
-    <span slot="toLabel">Return</span>
-    <span slot="mobileDateLabel">Roundtrip</span>
-    <span slot="date_09_01_2023">$132</span>
-    <span slot="date_09_12_2023">$1000</span>
-    <span slot="date_09_21_2023">$242</span>
-    <span slot="date_10_11_2023">$784</span>
-    <span slot="date_10_15_2023">$567</span>
-    <span slot="date_10_16_2023">$1234</span>
-    <span slot="date_10_21_2023">$45</span>
-    <span slot="date_11_01_2023">$1000</span>
-    <span slot="date_11_02_2023">$200</span>
-    <span slot="date_11_08_2023">$200</span>
-    <span slot="date_11_18_2023">$100</span>
-    <span slot="date_12_01_2023">$23</span>
-    <span slot="date_12_06_2023">$5600</span>
-    <span slot="date_01_01_2024">$202</span>
-    <span slot="date_01_05_2024">$3022</span>
-    <span slot="popover_09_01_2023">Tickets for this date are $132</span>
-    <span slot="popover_09_12_2023">Tickets for this date are $1000</span>
-    <span slot="popover_09_21_2023">Tickets for this date are $242</span>
-    <span slot="popover_10_11_2023">Tickets for this date are $784</span>
-    <span slot="popover_10_15_2023">Tickets for this date are $567</span>
-    <span slot="popover_10_16_2023">Tickets for this date are $1234</span>
-    <span slot="popover_10_21_2023">Tickets for this date are $45</span>
-    <span slot="popover_11_01_2023">Tickets for this date are $1000</span>
-    <span slot="popover_11_02_2023">Tickets for this date are $200</span>
-    <span slot="popover_11_08_2023">Tickets for this date are $200</span>
-    <span slot="popover_11_18_2023">Tickets for this date are $100</span>
-    <span slot="popover_12_01_2023">Tickets for this date are $23</span>
-    <span slot="popover_12_06_2023">Tickets for this date are $5600</span>
-    <span slot="popover_01_01_2024">Tickets for this date are $202</span>
-    <span slot="popover_01_05_2024">Tickets for this date are $3022</span>
-  </auro-datepicker>
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverRange.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/popoverRange.html -->
-
-```html
-<auro-datepicker range centralDate="10/01/2023" minDate="09/01/2023" maxDate="01/31/2024">
-  <span slot="fromLabel">Departure</span>
-  <span slot="toLabel">Return</span>
-  <span slot="mobileDateLabel">Roundtrip</span>
-  <span slot="date_09_01_2023">$132</span>
-  <span slot="date_09_12_2023">$1000</span>
-  <span slot="date_09_21_2023">$242</span>
-  <span slot="date_10_11_2023">$784</span>
-  <span slot="date_10_15_2023">$567</span>
-  <span slot="date_10_16_2023">$1234</span>
-  <span slot="date_10_21_2023">$45</span>
-  <span slot="date_11_01_2023">$1000</span>
-  <span slot="date_11_02_2023">$200</span>
-  <span slot="date_11_08_2023">$200</span>
-  <span slot="date_11_18_2023">$100</span>
-  <span slot="date_12_01_2023">$23</span>
-  <span slot="date_12_06_2023">$5600</span>
-  <span slot="date_01_01_2024">$202</span>
-  <span slot="date_01_05_2024">$3022</span>
-  <span slot="popover_09_01_2023">Tickets for this date are $132</span>
-  <span slot="popover_09_12_2023">Tickets for this date are $1000</span>
-  <span slot="popover_09_21_2023">Tickets for this date are $242</span>
-  <span slot="popover_10_11_2023">Tickets for this date are $784</span>
-  <span slot="popover_10_15_2023">Tickets for this date are $567</span>
-  <span slot="popover_10_16_2023">Tickets for this date are $1234</span>
-  <span slot="popover_10_21_2023">Tickets for this date are $45</span>
-  <span slot="popover_11_01_2023">Tickets for this date are $1000</span>
-  <span slot="popover_11_02_2023">Tickets for this date are $200</span>
-  <span slot="popover_11_08_2023">Tickets for this date are $200</span>
-  <span slot="popover_11_18_2023">Tickets for this date are $100</span>
-  <span slot="popover_12_01_2023">Tickets for this date are $23</span>
-  <span slot="popover_12_06_2023">Tickets for this date are $5600</span>
-  <span slot="popover_01_01_2024">Tickets for this date are $202</span>
-  <span slot="popover_01_05_2024">Tickets for this date are $3022</span>
+  <span slot="popover_12_03_2023">Tickets for this day are sold out</span>
+  <span slot="popover_12_04_2023">Tickets for this day are $89</span>
+  <span slot="popover_12_05_2023">Tickets for this day are $100</span>
+  <span slot="popover_12_06_2023">Tickets for this day are $2345</span>
+  <span slot="popover_12_07_2023">Tickets for this day are $149</span>
+  <span slot="popover_12_08_2023">Tickets for this day are $382</span>
+  <span slot="popover_12_09_2023">Tickets for this day are $560</span>
 </auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->

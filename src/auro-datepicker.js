@@ -650,14 +650,13 @@ export class AuroDatePicker extends LitElement {
     this.configureCalendar();
     this.configureDatepicker();
     this.notifyReady();
-
-    this.parseDateContent();
   }
   
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
       <div part="datepickerContainer">
+        <slot @slotchange="${this.handleSlotChange}"></slot>
         <auro-dropdown
           for="dropdownMenu"
           bordered

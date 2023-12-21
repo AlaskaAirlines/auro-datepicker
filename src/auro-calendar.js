@@ -378,9 +378,10 @@ export class AuroCalendar extends RangeDatepicker {
         </div>
         <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
       </div>
-      <div class="mobileFooter"></div>
-      <div class="mobileFooterActions">
-        <auro-button fluid @click="${this.requestDismiss}">Done</auro-button>
+      <div class="mobileFooter">
+        <div class="mobileFooterActions">
+          <auro-button fluid @click="${this.requestDismiss}">Done</auro-button>
+        </div>
       </div>
     `;
   }

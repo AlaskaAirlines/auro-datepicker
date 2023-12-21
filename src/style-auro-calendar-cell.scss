@@ -106,7 +106,9 @@
   font-size: var(--ds-text-body-size-xxs, $ds-text-body-size-xxs);
 }
 
-::slotted(*) {
+::slotted([slot^="date_"]) {
+  color: var(--ds-color-text-link-default, $ds-color-text-link-default);
+
   position: absolute;
   top: 80%;
   left: 50%;
@@ -119,12 +121,16 @@
   transform: translate(-50%, -50%);
 }
 
+:host([disabled]) ::slotted([slot^="date_"]) {
+  color: var(--ds-color-text-disabled-default, $ds-color-text-disabled-default);
+}
+
 ::slotted(auro-icon) {
   max-height: 24px;
   max-width: 24px;
 }
 
-:host([hasDateSlotContent]) {
+:host([renderForDateSlot]) {
   .buttonWrapper {
     position: relative;
     width: 100%;

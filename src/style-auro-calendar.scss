@@ -149,7 +149,6 @@
 
   display: none;
   width: calc(100% - calc(var(--ds-size-200, $ds-size-200) * 2));
-  height: var(--mobile-footer-height);
 
   align-items: flex-end;
   flex-direction: column;
