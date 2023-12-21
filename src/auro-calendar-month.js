@@ -8,12 +8,7 @@ import './auro-calendar-cell';
 
 /* eslint-disable no-self-assign, no-magic-numbers, dot-location */
 
-// class AuroCalendar extends LitElement {
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
-  constructor() {
-    super();
-  }
-
   static get styles() {
     return [
       // ...super.styles,

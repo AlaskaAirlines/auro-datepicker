@@ -7,7 +7,7 @@ import styleCss from "./style-auro-calendar-cell-css";
 
 import '@alaskaairux/auro-popover';
 
-/* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines */
+/* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines, line-comment-position, no-inline-comments */
 
 export class AuroCalendarCell extends LitElement {
   constructor() {
@@ -27,7 +27,7 @@ export class AuroCalendarCell extends LitElement {
     this.isCurrentDate = false;
     this._locale = null;
     this.dateStr = null;
-    this.hasDateSlotContent = false;
+    this.renderForDateSlot = false; // When false, the numerical date will render vertically centered. When true, the date will render off-center to the top and leave room below for the slot content.
   }
 
   // This function is to define props used within the scope of this component
@@ -50,7 +50,7 @@ export class AuroCalendarCell extends LitElement {
       isCurrentDate: { type: Boolean },
       locale:        { type: Object },
       dateStr:       { type: String },
-      hasDateSlotContent: { type: Boolean }
+      renderForDateSlot: { type: Boolean }
     };
   }
 
@@ -102,17 +102,12 @@ export class AuroCalendarCell extends LitElement {
   }
 
   /**
-   * Handles user click events and dispatches a custom event.
+   * Handles user click events and calls datepicker to update the value(s).
    * @private
    * @returns {void}
    */
   handleTap() {
-    let _a;
-    if (!this.disabled) {
-      this.dispatchEvent(new CustomEvent('date-is-selected', {
-        detail: { date: (_a = this.day) === null || _a === void 0 ? void 0 : _a.date },
-      }));
-    }
+    this.datepicker.handleCellClick(this.day.date);
   }
 
   /**
@@ -137,10 +132,11 @@ export class AuroCalendarCell extends LitElement {
    * @returns {Boolean} - True if the date is disabled.
    */
   isEnabled(day, min, max, disabledDays) {
-    this.disabled = false;
+    this.removeAttribute('disabled');
+
     if (disabledDays && day && day.date) {
       if (day.date < min || day.date > max || disabledDays.findIndex(disabledDay => parseInt(disabledDay, 10) === day.date) !== -1) {
-        this.disabled = true;
+        this.setAttribute('disabled', true);
         return true;
       }
     }
@@ -197,7 +193,7 @@ export class AuroCalendarCell extends LitElement {
    * @private
    * @returns {void}
    */
-  getDateSlotName() {
+  setDateSlotName() {
     const date = new Date(this.day.date * 1000);
 
     let month = date.getMonth() + 1;
@@ -213,12 +209,19 @@ export class AuroCalendarCell extends LitElement {
 
     const year = date.getFullYear();
 
-    this.dateStr = `date_${month}_${day}_${year}`;
+    this.dateStr = `${month}_${day}_${year}`;
   }
 
   /* eslint-disable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
-  // THIS SHOULD BE MOVED INTO AURO-LIBRARY AS A HELPER FUNCTION
-  // declared as method on a Custom Element:
+  // FIX - This function needs to be pulled from the auro-library utilities once the import functionality is fixed.
+  /**
+   * Finds and returns the closest HTML Element based on a selector.
+   * @private
+   * @param {String} selector - The selector to find.
+   * @param {HTMLElement} base - The base element to start the search from.
+   * @param {Function} __Closest - The recursive function to find the closest element.
+   * @returns {HTMLElement} Returns closest HTML Element to the this element.
+   */
   closestElement(
     selector, // selector like in .closest()
     base = this, // extra functionality to skip a parent
@@ -233,7 +236,13 @@ export class AuroCalendarCell extends LitElement {
   }
   /* eslint-enable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
 
-  getSlotContent() {
+
+  /**
+   * Remove existing cell slot content and clone any current slot content from the root `auro-datepicker` which matches this cells date.
+   * @private
+   * @returns {void}
+   */
+  handleSlotContent() {
     try {
       // Get the slot names for this cell
       const dateSlotName = `date_${this.dateStr}`;
@@ -246,11 +255,9 @@ export class AuroCalendarCell extends LitElement {
         slot.remove();
       });
 
-      // Get any slots for this cell from the datepicker
-      const dp = this.closestElement('auro-datepicker');
-
-      const dateSlotContent = dp.querySelector(`[slot="${dateSlotName}"]`);
-      const popoverSlotContent = dp.querySelector(`[slot="${popoverSlotName}"]`);
+      // // Get any slots for this cell from the datepicker
+      const dateSlotContent = this.datepicker.querySelector(`[slot="${dateSlotName}"]`);
+      const popoverSlotContent = this.datepicker.querySelector(`[slot="${popoverSlotName}"]`);
 
       // Insert any fetched slot content into this cell
       if (dateSlotContent) {
@@ -273,13 +280,17 @@ export class AuroCalendarCell extends LitElement {
     }
   }
 
+  firstUpdated() {
+    this.datepicker = this.closestElement('auro-datepicker');
+  }
+
   updated(properties) {
     if (properties.has('dateFrom') || properties.has('dateTo') || properties.has('hoveredDate') || properties.has('day')) {
       this.dateChanged(this.dateFrom, this.dateTo, this.hoveredDate, this.day);
     }
 
-    this.getDateSlotName();
-    this.getSlotContent();
+    this.setDateSlotName();
+    this.handleSlotContent();
   }
 
   render() {
@@ -308,8 +319,8 @@ export class AuroCalendarCell extends LitElement {
           tabindex="-1">
           <div class="buttonWrapper">
             <div class="currentDayMarker">${(_b = this.day) === null || _b === void 0 ? void 0 : _b.title}</div>
-            <div class="daySlot" part="daySlot">
-              <slot name="${this.dateStr}"></slot>
+            <div class="dateSlot" part="dateSlot">
+              <slot name="date_${this.dateStr}"></slot>
             </div>
           </div>
         </button>
