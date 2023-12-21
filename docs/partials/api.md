@@ -375,38 +375,6 @@ In the following example, please see how pricing content is threaded into the el
 
 </auro-accordion>
 
-#### Day Slot w/ Text and Range Selection
-
-The following example illustrates slotted content in combination with the `range` attribute.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotRange.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotRange.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
-#### Day Slot w/ Icon
-
-The following example illustrates how the `<auro-icon>` element can be used as slotted content.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlotIcon.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlotIcon.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
 #### Popover Slot
 
 Each day within the calendar has a slot that allows a user to add content into an `auro-popover` that will appear when hovering or adding focus to a calendar cell. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `popover_{month}_{day}_{fullYear}`. 
@@ -426,23 +394,6 @@ In the following example, please see how popover content is threaded into the el
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
-
-#### Popover Slot w/ Range Selection
-
-The following example illustrates popover content in combination with the `range` attribute.
-
-<div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverRange.html) -->
-  <!-- AURO-GENERATED-CONTENT:END -->
-</div>
-<auro-accordion lowProfile justifyRight>
-  <span slot="trigger">See code</span>
-
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverRange.html) -->
-<!-- AURO-GENERATED-CONTENT:END -->
-
-</auro-accordion>
-
 
 ## Functional Examples
 
