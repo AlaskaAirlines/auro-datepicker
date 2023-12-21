@@ -79,11 +79,13 @@
   flex-direction: column;
   justify-content: center;
 
-  padding: 0 var(--ds-size-100, $ds-size-100) 0 var(--ds-size-200, $ds-size-200);
+  padding: 0 var(--ds-size-150, $ds-size-150) 0 var(--ds-size-200, $ds-size-200);
 }
 
 .mobileDateLabel {
   color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
+
+  padding-bottom: var(--ds-size-50, $ds-size-50);
 
   font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
 }
@@ -122,40 +124,50 @@
 }
 
 .mobileFooter {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 50%;
 
   display: none;
   width: 100%;
-  height: var(--mobile-footer-height);
 
   align-items: flex-end;
   flex-direction: column;
   justify-content: flex-end;
 
-  padding-bottom: var(--ds-size-200, $ds-size-200);
+  &:before {
+    $gradient-height: calc(var(--mobile-footer-height) - (var(--ds-size-150, $ds-size-150) * 2) - var(--ds-size-600, $ds-size-600));
 
-  background: var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
+    content: '';
 
-  transform: translateX(-50%);
-  pointer-events: none;
+    position: absolute;
+    top: calc(-1 * $gradient-height);
+    left: 0;
+
+    display: block;
+
+    height: $gradient-height;
+    width: 100%;
+
+    background-image: var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
+    pointer-events: none;
+  }
 }
 
 .mobileFooterActions {
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 50%;
 
+  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
+
   display: none;
   width: calc(100% - calc(var(--ds-size-200, $ds-size-200) * 2));
-  height: var(--mobile-footer-height);
 
   align-items: flex-end;
   flex-direction: column;
   justify-content: flex-end;
 
-  padding: 0 var(--ds-size-200, $ds-size-200) calc(var(--ds-size-200, $ds-size-200) + var(--ds-size-50, $ds-size-50));
+  padding: var(--ds-size-150) calc(var(--ds-size-200, $ds-size-200));
 
   transform: translateX(-50%);
 
@@ -188,6 +200,7 @@
     height: calc(100vh - var(--mobile-header-height));
 
     overflow-y: scroll;
+    overscroll-behavior: contain;
 
     &:after {
       display: block;

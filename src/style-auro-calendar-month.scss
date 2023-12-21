@@ -12,6 +12,7 @@
 /* stylelint-disable selector-class-pattern, property-no-vendor-prefix, order/properties-order, no-descending-specificity, color-function-notation, max-line-length, declaration-empty-line-before */
 
 $calendar-width: 336px;
+$calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 
 :host {
   position: relative;
@@ -19,20 +20,41 @@ $calendar-width: 336px;
   display: block;
   width: calc(100% - var(--ds-size-300, $ds-size-300));
 
-  padding: var(--ds-size-200, $ds-size-200), var(--ds-size-150, $ds-size-150);
+  padding: 0 var(--ds-size-200, $ds-size-200);
 
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
 
   @include auro_grid-breakpoint--sm {
     width: $calendar-width;
 
-    padding: var(--ds-size-200, $ds-size-200);
+    padding: $calendar-padding-desktop;
+  }
+}
+
+:host(:last-of-type) {
+  margin-bottom: 150px; // This value is derived from the height of the mobile-footer
+
+  @include auro_grid-breakpoint--sm {
+    margin-bottom: 0;
   }
 }
 
 :host(:not(:last-of-type)) {
   @include auro_grid-breakpoint--sm {
-    border-right: 1px solid var(--ds-color-border-divider-default, $ds-color-border-divider-default);
+    &:after {
+      position: absolute;
+
+      top: $calendar-padding-desktop;
+      right: 0;
+
+      height: calc(100% - $calendar-padding-desktop - $calendar-padding-desktop);
+
+      display: block;
+      width: 1px;
+      background-color: var(--ds-color-border-divider-default, $ds-color-border-divider-default);
+
+      content: '';
+    }
   }
 }
 

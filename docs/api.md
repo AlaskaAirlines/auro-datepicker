@@ -39,9 +39,22 @@
 
 | Name                 | Description                                      |
 |----------------------|--------------------------------------------------|
-| `date_MM/DD/YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. |
+| `date_MM_DD_YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. |
 | `fromLabel`          | Defines the label content for the first input.   |
 | `helpText`           | Defines the content of the helpText.             |
 | `mobileDateLabel`    | Defines the content to display above selected dates in the mobile layout. |
-| `popover_MM/DD/YYYY` | Defines the content to display in the auro-calendar-cell popover for the specified date. |
+| `popover_MM_DD_YYYY` | Defines the content to display in the auro-calendar-cell popover for the specified date. |
 | `toLabel`            | Defines the label content for the second input when the `range` attribute is used. |
+
+## CSS Shadow Parts
+
+| Part                  | Description                                      |
+|-----------------------|--------------------------------------------------|
+| `calendar`            | Use for customizing the style of the calendar.   |
+| `calendarWrapper`     | Use for customizing the style of the calendar container. |
+| `datepickerContainer` | Use for customizing the style of the datepicker container. |
+| `dropdown`            | Use for customizing the style of the dropdown.   |
+| `helpText`            | Use for customizing the style of the datepicker help text. |
+| `helpTextSpan`        | Use for customizing the style of the datepicker help text span. |
+| `input`               | Use for customizing the style of the datepicker inputs. |
+| `trigger`             | Use for customizing the style of the datepicker trigger. |
