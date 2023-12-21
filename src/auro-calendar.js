@@ -37,9 +37,6 @@ export class AuroCalendar extends RangeDatepicker {
     this.numCalendars = 1;
     this.showPrevMonthBtn = true;
     this.showNextMonthBtn = true;
-
-    this.dateSlotMap = new Map();
-    this.popoverSlotMap = new Map();
   }
 
   static get styles() {
@@ -216,8 +213,6 @@ export class AuroCalendar extends RangeDatepicker {
     if (changedProperties.has('locale')) {
       this.localeChanged();
     }
-
-    this.parseDateContentByMonth();
   }
 
   /**
@@ -299,86 +294,6 @@ export class AuroCalendar extends RangeDatepicker {
       this.numCalendars = calendarCount;
       this.requestUpdate();
     }
-  }
-
-  /**
-   * Parses the date and popover slot content and separates it by month.
-   * @private
-   * @returns {void}
-   */
-  parseDateContentByMonth() {
-    this.dateSlotContent = [...this.querySelectorAll('[slot^="date_"]')];
-    this.popoverSlotContent = [...this.querySelectorAll('[slot^="popover_"]')];
-
-    if (this.dateSlotContent && this.dateSlotContent.length > 0) {
-      const items = [];
-
-      this.dateSlotContent.forEach((content) => {
-        this.dateSlotMap.set(content.getAttribute('date'), content);
-
-        const date = new Date(content.getAttribute('date'));
-
-        items.push({
-          date,
-          content
-        });
-      });
-
-      this.dateSlotContentByMonth = _.groupBy(items, ({date}) => date.getMonth()); // eslint-disable-line no-undef
-
-      this.insertSlotContentByMonth(this.dateSlotContentByMonth, this.dateSlotMap);
-    }
-
-    if (this.popoverSlotContent && this.popoverSlotContent.length > 0) {
-      const items = [];
-
-      this.popoverSlotContent.forEach((content) => {
-        this.popoverSlotMap.set(content.getAttribute('date'), content);
-
-        const date = new Date(content.getAttribute('date'));
-
-        items.push({
-          date,
-          content
-        });
-      });
-
-      this.popoverSlotContentByMonth = _.groupBy(items, ({date}) => date.getMonth()); // eslint-disable-line no-undef
-
-      this.insertSlotContentByMonth(this.popoverSlotContentByMonth, this.popoverSlotMap);
-    }
-  }
-
-  /**
-   * Passes the date and popover slot content down to the auro-calendar-month.
-   * @private
-   * @param {Object} slotContentByMonth - Slot content grouped by month.
-   * @param {Object} slotMap - Map of containing slot content and it's corresponding date.
-   * @returns {void}
-   */
-  insertSlotContentByMonth(slotContentByMonth, slotMap) {
-    const renderedMonths = [...this.shadowRoot.querySelectorAll('[month]')];
-
-    renderedMonths.forEach((month) => {
-      if (slotContentByMonth) {
-        const monthSlotContent = slotContentByMonth[month.getAttribute('month') - 1];
-
-        if (monthSlotContent) {
-          const dateSlotName = 'date';
-          const popoverSlotName = 'popover';
-
-          monthSlotContent.forEach((monthContent) => {
-            if (monthContent.content.getAttribute('slot').includes(dateSlotName)) {
-              month.dateSlotMap = slotMap;
-            } else if (monthContent.content.getAttribute('slot').includes(popoverSlotName)) {
-              month.popoverSlotMap = slotMap;
-            }
-
-            month.appendChild(monthContent.content);
-          });
-        }
-      }
-    });
   }
 
   /**
