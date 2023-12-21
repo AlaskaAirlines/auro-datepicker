@@ -41,8 +41,16 @@ import '@aurodesignsystem/auro-dropdown';
  * @slot mobileDateLabel - Defines the content to display above selected dates in the mobile layout.
  * @slot toLabel - Defines the label content for the second input when the `range` attribute is used.
  * @slot fromLabel - Defines the label content for the first input.
- * @slot date_MM/DD/YYYY - Defines the content to display in the auro-calendar-cell for the specified date.
- * @slot popover_MM/DD/YYYY - Defines the content to display in the auro-calendar-cell popover for the specified date.
+ * @slot date_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell for the specified date.
+ * @slot popover_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell popover for the specified date.
+ * @csspart datepickerContainer - Use for customizing the style of the datepicker container.
+ * @csspart dropdown - Use for customizing the style of the dropdown.
+ * @csspart trigger - Use for customizing the style of the datepicker trigger.
+ * @csspart input - Use for customizing the style of the datepicker inputs.
+ * @csspart calendarWrapper - Use for customizing the style of the calendar container.
+ * @csspart calendar - Use for customizing the style of the calendar.
+ * @csspart helpTextSpan - Use for customizing the style of the datepicker help text span.
+ * @csspart helpText - Use for customizing the style of the datepicker help text.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
  * @fires auroDatepicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
@@ -329,14 +337,13 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
-   * Changes the calendar's visibility to reflect an updated date.
+   * Changes the calendar's visibility to reflect the value of the central date attribute.
    * @private
-   * @param {String} date - Date to be displayed in the calendar.
    * @returns {void}
    */
-  handleVisibleDate(date) {
-    this.calendar.month = Number(date.charAt(0) === '0' ? date.charAt(1) : date.substring(0, 2));
-    this.calendar.year = Number(date.substring(6));
+  handleCentralDateChange() {
+    this.calendar.month = Number(this.centralDate.charAt(0) === '0' ? this.centralDate.charAt(1) : this.centralDate.substring(0, 2));
+    this.calendar.year = Number(this.centralDate.substring(6));
   }
 
   /**
@@ -492,8 +499,7 @@ export class AuroDatePicker extends LitElement {
 
     if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
       this.calendar.dateFrom = new Date(this.value).getTime();
-      this.calendar.month = new Date(this.value).getMonth() + 1;
-      this.calendar.year = new Date(this.value).getFullYear();
+      this.centralDate = this.value;
     }
 
     if (this.hasAttribute('valueEnd') && this.getAttribute('valueEnd').length > 0) {
@@ -516,11 +522,44 @@ export class AuroDatePicker extends LitElement {
     }));
   }
 
+  /**
+   * Sets the datepicker's values to the auro-calendar-cell that was clicked.
+   * @private
+   * @param {Number} time - Unix timestamp to be converted to a date.
+   * @returns {void}
+   */
+  handleCellClick(time) {
+    this.cellClickActive = true;
+
+    const newDate = this.convertWcTimeToDate(time);
+
+    if (this.validDateStr(newDate)) {
+      if (this.inputList.length > 1) {
+        if (!this.value || !this.validDateStr(this.value)) {
+          this.value = newDate;
+        } else if (!this.valueEnd || !this.validDateStr(this.valueEnd)) {
+          this.valueEnd = newDate;
+        } else {
+          this.value = newDate;
+          this.valueEnd = '';
+        }
+      } else {
+        this.value = newDate;
+      }
+    }
+  }
+
   updated(changedProperties) {
     if (changedProperties.has('value')) {
-      if (this.value && this.validDateStr(this.value)) {
-        this.handleVisibleDate(this.value);
+      if (this.value && this.validDateStr(this.value) && !this.cellClickActive) {
+        this.centralDate = this.value;
+      }
 
+      if (this.cellClickActive) {
+        this.cellClickActive = false;
+      }
+
+      if (this.value && this.validDateStr(this.value)) {
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
         }
@@ -640,7 +679,7 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('centralDate')) {
-      this.handleVisibleDate(this.centralDate);
+      this.handleCentralDateChange();
     }
   }
 
@@ -650,10 +689,8 @@ export class AuroDatePicker extends LitElement {
     this.configureCalendar();
     this.configureDatepicker();
     this.notifyReady();
-
-    this.parseDateContent();
   }
-  
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
@@ -666,8 +703,8 @@ export class AuroDatePicker extends LitElement {
           ?error="${this.validity !== undefined && this.validity !== 'valid'}"
           disableEventShow
           noHideOnThisFocusLoss
-          part="datepickerDropdown">
-          <div slot="trigger" class="dpTriggerContent" part="datepickerTrigger">
+          part="dropdown">
+          <div slot="trigger" class="dpTriggerContent" part="trigger">
             <auro-input
               id="${this.generateRandomString(12)}"
               bordered
@@ -682,7 +719,7 @@ export class AuroDatePicker extends LitElement {
               setCustomValidityRangeUnderflow="${this.setCustomValidityRangeUnderflow}"
               ?disabled="${this.disabled}"
               .type="${this.type}"
-              part="datepickerInput">
+              part="input">
               <span slot="label"><slot name="fromLabel"></slot></span>
             </auro-input>
             ${this.range ? html`
@@ -698,7 +735,8 @@ export class AuroDatePicker extends LitElement {
                 setCustomValidityRangeOverflow="${this.setCustomValidityRangeOverflow}"
                 setCustomValidityRangeUnderflow="${this.setCustomValidityRangeUnderflow}"
                 ?disabled="${this.disabled}"
-                .type="${this.type}">
+                .type="${this.type}"
+                part="input">
                 <span slot="label"><slot name="toLabel"></slot></span>
               </auro-input>
             ` : undefined}
@@ -717,7 +755,7 @@ export class AuroDatePicker extends LitElement {
               ${this.range ? html`<span slot="mobileDateToStr">${this.valueEnd ? this.getMobileDateStr(this.valueEnd) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>` : undefined}
             </auro-calendar>
           </div>
-          <span slot="helpText" part="datepickerHelpText">
+          <span slot="helpText" part="helpTextSpan">
             <!-- Help text and error message template -->
             ${!this.validity || this.validity === undefined || this.validity === 'valid'
               ? html`

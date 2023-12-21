@@ -151,7 +151,7 @@ export class AuroCalendar extends RangeDatepicker {
       }
     }
 
-    // if maxDate is defined and its earlier than the current month move the view back to the minDate month
+    // if maxDate is defined and its earlier than the current month move the view back to the maxDate month
     if (this.maxDate) {
       const maxAsDateObj = new Date(this.maxDate);
       const maxDateMonth = maxAsDateObj.getMonth() + 1;
@@ -378,9 +378,10 @@ export class AuroCalendar extends RangeDatepicker {
         </div>
         <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
       </div>
-      <div class="mobileFooter"></div>
-      <div class="mobileFooterActions">
-        <auro-button fluid @click="${this.requestDismiss}">Done</auro-button>
+      <div class="mobileFooter">
+        <div class="mobileFooterActions">
+          <auro-button fluid @click="${this.requestDismiss}">Done</auro-button>
+        </div>
       </div>
     `;
   }
