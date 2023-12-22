@@ -351,37 +351,31 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 </auro-accordion>
 
-#### Day Slot
+#### Date Slot
 
-Each day within the calendar has a slot that allows a user to add custom content. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `date_{month}_{day}_{fullYear}`. 
+Custom content can be added to any day in the calendar using a `slot` named following the pattern `date_{MM}_{DD}_{YYYY}` (e.g. `date_01_08_2024`).
 
-**Note**: When the month is a single digit, a zero will need to be added to the front of the month. For example, January would be `01` and not `1`.
+Slot content support is limited to text only and a maximum of five (5) characters.
 
-In order to style your slot content, we recommend using in-line styles on your component, as the day slot content is passed down multiple levels within the component. Another way to style the component is to target the `part="daySlot"` attribute that is added to the container around the slot content.
-
-**Disclaimer**: This element only supports the use of default text or Auro icons to be slotted in the calendar at this time.
-
-In the following example, please see how pricing content is threaded into the element's `<slot>`.
+Slot content can be styled using [inline styles](https://www.codecademy.com/article/html-inline-styles) or [CSS Parts](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/) (`part="dateSlot"`).
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/daySlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/dateSlot.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/daySlot.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/dateSlot.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
 
 #### Popover Slot
 
-Each day within the calendar has a slot that allows a user to add content into an `auro-popover` that will appear when hovering or adding focus to a calendar cell. The user will add their slot content withtin the `auro-datepicker`, with the slot name needing to be in the format of `popover_{month}_{day}_{fullYear}`. 
+Custom content can be added to any day's `auro-popover` in the calendar using a `slot` named following the pattern `popover_{MM}_{DD}_{YYYY}` (e.g. `popover_01_08_2024`).
 
-**Note**: When the month is a single digit, a zero will need to be added to the front of the month. For example, January would be `01` and not `1`.
-
-In the following example, please see how popover content is threaded into the element's `<slot>`.
+The popover slot is intended for use with calendar dates that are `disabled` (e.g. before minimum date or after maximum date).
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
@@ -396,6 +390,26 @@ In the following example, please see how popover content is threaded into the el
 </auro-accordion>
 
 ## Functional Examples
+
+#### Dynamic Slot Content
+
+This example demonstrates data driven slot content for days in the calendar.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/dynamicSlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/dynamicSlot.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/dynamicSlot.js) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
 
 ### Watch for value changes
 
