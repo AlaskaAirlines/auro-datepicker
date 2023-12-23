@@ -116,6 +116,8 @@ export class AuroCalendarCell extends LitElement {
    * @returns {void}
    */
   handleHover() {
+    this.hovered = true;
+
     let _a;
     this.dispatchEvent(new CustomEvent('date-is-hovered', {
       detail: { date: (_a = this.day) === null || _a === void 0 ? void 0 : _a.date },

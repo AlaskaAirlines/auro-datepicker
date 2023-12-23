@@ -289,12 +289,10 @@ export class RangeDatepickerCalendar extends LitElement {
         this.year = parseInt(selected === null || selected === void 0 ? void 0 : selected.value, 10);
     }
     handleDateHovered(e) {
-        if (!this.noRange) {
-            this.hoveredDate = e.detail.date;
-            this.dispatchEvent(new CustomEvent('hovered-date-changed', {
-                detail: { value: this.hoveredDate },
-            }));
-        }
+        this.hoveredDate = e.detail.date;
+        this.dispatchEvent(new CustomEvent('hovered-date-changed', {
+            detail: { value: this.hoveredDate },
+        }));
     }
     handleNextMonth() {
         var _a, _b;
