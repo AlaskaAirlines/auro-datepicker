@@ -541,7 +541,7 @@ describe('auro-datepicker', () => {
     await expect(dropdown.isPopoverVisible).to.be.true;
   });
 
-  it('closes the mobile bib when clickig the bottom done', async () => {
+  it('closes the mobile bib when clicking the bottom done', async () => {
     window.innerWidth = 600;
 
     const el = await fixture(html`
@@ -574,31 +574,64 @@ describe('auro-datepicker', () => {
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
     const calendarCell = [...calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell')];
 
+    const dateData = [...el.querySelectorAll('[slot^="date_"]')];
+
     for (const cell of calendarCell) {
       const span = cell.querySelector('span');
+      let spanContentMatch = false;
 
       if (span) {
-        const formattedDate = await calendarMonth.getFormattedDate(cell);
-        await expect(span.getAttribute('date')).to.be.equal(formattedDate);
+        dateData.forEach((item) => {
+          if (item.innerHTML === span.innerHTML) {
+            spanContentMatch = true;
+          }
+        });
+
+        await expect(spanContentMatch).to.be.true;
       }
     }
   });
 
-  it('datepicker correctly parses popover slot name and passes content down to cell correctly', async () => {
+  it('datepicker passes popover slot content down to cell correctly', async () => {
     const el = await popoverSlotFixture();
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
     const calendarCell = [...calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell')];
 
+    const popoverData = [...el.querySelectorAll('[slot^="popover_"]')];
+
     for (const cell of calendarCell) {
       const span = cell.querySelector('span');
+      let spanContentMatch = false;
 
       if (span) {
-        const formattedDate = await calendarMonth.getFormattedDate(cell);
-        await expect(span.getAttribute('date')).to.be.equal(formattedDate);
+        popoverData.forEach((item) => {
+          if (item.innerHTML === span.innerHTML) {
+            spanContentMatch = true;
+          }
+        });
+
+        await expect(spanContentMatch).to.be.true;
       }
     }
+  });
+
+  it('auro-calendar-cells handles hover event correctly', async () => {
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+    const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
+    const calendarCell = [...calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell')];
+
+    const cell = calendarCell[0];
+    const cellButton = cell.shadowRoot.querySelector('button');
+
+    cellButton.dispatchEvent(new MouseEvent('mouseover'));
+
+    await expect(cell.hovered).to.be.true;
   });
 });
 
