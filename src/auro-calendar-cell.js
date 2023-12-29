@@ -7,6 +7,8 @@ import styleCss from "./style-auro-calendar-cell-css";
 
 import '@alaskaairux/auro-popover';
 
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 /* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines, line-comment-position, no-inline-comments */
 
 export class AuroCalendarCell extends LitElement {
@@ -28,6 +30,7 @@ export class AuroCalendarCell extends LitElement {
     this._locale = null;
     this.dateStr = null;
     this.renderForDateSlot = false; // When false, the numerical date will render vertically centered. When true, the date will render off-center to the top and leave room below for the slot content.
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
   }
 
   // This function is to define props used within the scope of this component
@@ -214,31 +217,6 @@ export class AuroCalendarCell extends LitElement {
     this.dateStr = `${month}_${day}_${year}`;
   }
 
-  /* eslint-disable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
-  // FIX - This function needs to be pulled from the auro-library utilities once the import functionality is fixed.
-  /**
-   * Finds and returns the closest HTML Element based on a selector.
-   * @private
-   * @param {String} selector - The selector to find.
-   * @param {HTMLElement} base - The base element to start the search from.
-   * @param {Function} __Closest - The recursive function to find the closest element.
-   * @returns {HTMLElement} Returns closest HTML Element to the this element.
-   */
-  closestElement(
-    selector, // selector like in .closest()
-    base = this, // extra functionality to skip a parent
-    __Closest = (el, found = el && el.closest(selector)) =>
-      !el || el === document || el === window
-        ? null // standard .closest() returns null for non-found selectors also
-        : found
-          ? found // found a selector INside this element
-          : __Closest(el.getRootNode().host) // recursion!! break out to parent DOM
-  ) {
-    return __Closest(base);
-  }
-  /* eslint-enable line-comment-position, no-inline-comments, no-confusing-arrow, no-nested-ternary, implicit-arrow-linebreak */
-
-
   /**
    * Remove existing cell slot content and clone any current slot content from the root `auro-datepicker` which matches this cells date.
    * @private
@@ -283,7 +261,7 @@ export class AuroCalendarCell extends LitElement {
   }
 
   firstUpdated() {
-    this.datepicker = this.closestElement('auro-datepicker');
+    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
   }
 
   updated(properties) {
