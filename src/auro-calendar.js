@@ -1,9 +1,6 @@
 import { html } from 'lit';
 import styleCss from "./style-auro-calendar-css";
 
-// lodash is being used to group the slot content by month
-import 'lodash';
-
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker';
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6.js';

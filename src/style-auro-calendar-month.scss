@@ -59,13 +59,13 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 }
 
 .header {
+  $header-padding: calc(var(--ds-size-100, $ds-size-100) + var(--ds-size-50, $ds-size-50) + var(--ds-size-25, $ds-size-25));
   display: flex;
-  height: calc(var(--ds-size-500, $ds-size-500) + var(--ds-size-50, $ds-size-50));
 
   align-items: center;
   flex-direction: row;
 
-  margin: 0 0 var(--ds-size-50, $ds-size-50);
+  padding: $header-padding 0 $header-padding;
 
   color: var(--range-datepicker-month-text);
 

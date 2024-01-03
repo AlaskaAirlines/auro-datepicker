@@ -153,14 +153,13 @@ export class AuroCalendarCell extends LitElement {
    * @private
    * @param {Object} day - An object containing the dateFrom and day of month values.
    * @param {Number} dateFrom - Depart date.
-   * @param {Number} dateTo - Return date.
    * @returns {Boolean} True if the date is the depart date.
    */
-  isDepartDate(day, dateFrom, dateTo) {
+  isDepartDate(day, dateFrom) {
     const parsedDateFrom = parseInt(dateFrom, 10);
     const departTimestamp = startOfDay(parsedDateFrom * 1000) / 1000;
 
-    return this.selected && day.date === departTimestamp && dateTo;
+    return this.selected && day.date === departTimestamp;
   }
 
   /**
@@ -176,6 +175,39 @@ export class AuroCalendarCell extends LitElement {
     const returnTimestamp = startOfDay(parsedDateTo * 1000) / 1000;
 
     return this.selected && day.date === returnTimestamp && dateFrom;
+  }
+
+  /**
+   * Checks if the current date is between dateFrom and dateTo.
+   * @private
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @param {Number} dateFrom - Depart date.
+   * @param {Number} dateTo - Return date.
+   * @returns {Boolean} True if the current date is between dateFrom and dateTo.
+   */
+  isInRange(day, dateFrom, dateTo) {
+    if (!dateFrom || (dateFrom && day.date <= dateFrom)) {
+      return false;
+    }
+
+    if (dateTo && day.date >= dateTo) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Determines the hovered date appearing latest in the calendar.
+   * @private
+   * @param {Object} day - An object containing the dateFrom and day of month values.
+   * @param {Number} dateFrom - Depart date.
+   * @param {Number} dateTo - Return date.
+   * @param {Number} hoveredDate - Hovered date.
+   * @returns {Boolean} True if the hovered date is the latest hovered date in the calendar.
+   */
+  isLastHoveredDate(day, dateFrom, dateTo, hoveredDate) {
+    return dateFrom && hoveredDate > dateFrom && day.date === hoveredDate && !dateTo;
   }
 
   /**
@@ -278,9 +310,10 @@ export class AuroCalendarCell extends LitElement {
       'day': true,
       'currentDate': this.currentDate,
       'selected': this.selected,
-      'inRange': this.hovered,
+      'inRange': this.hovered && this.isInRange(this.day, this.dateFrom, this.dateTo),
+      'lastHoveredDate': this.isLastHoveredDate(this.day, this.dateFrom, this.dateTo, this.hoveredDate),
       'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays),
-      'rangeDepartDate': this.isDepartDate(this.day, this.dateFrom, this.dateTo),
+      'rangeDepartDate': this.isDepartDate(this.day, this.dateFrom) && (this.hoveredDate > this.dateFrom || this.dateTo),
       'rangeReturnDate': this.isReturnDate(this.day, this.dateFrom, this.dateTo)
     };
 

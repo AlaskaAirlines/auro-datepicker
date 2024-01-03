@@ -43,7 +43,6 @@ import '@aurodesignsystem/auro-dropdown';
  * @slot fromLabel - Defines the label content for the first input.
  * @slot date_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell for the specified date.
  * @slot popover_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell popover for the specified date.
- * @csspart datepickerContainer - Use for customizing the style of the datepicker container.
  * @csspart dropdown - Use for customizing the style of the dropdown.
  * @csspart trigger - Use for customizing the style of the datepicker trigger.
  * @csspart input - Use for customizing the style of the datepicker inputs.
@@ -694,7 +693,7 @@ export class AuroDatePicker extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <div part="datepickerContainer">
+      <div>
         <auro-dropdown
           for="dropdownMenu"
           bordered
