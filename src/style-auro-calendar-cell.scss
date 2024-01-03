@@ -66,35 +66,40 @@
     background-color: var(--ds-color-background-darker, $ds-color-background-darker);
     box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
     color: var(--ds-color-background-lightest, $ds-color-background-lightest);
+  }
 
-    &.rangeDepartDate::before {
-      @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
-        @include in-range-pseudo-elem;
+  &.inRange::before {
+    @include in-range-pseudo-elem;
 
-        width: calc(calc(100vw / 7) / 2);
-
-        transform: translate(0%, -50%);
-      }
+    @include auro_grid-breakpoint--sm {
+      width: var(--ds-size-600, $ds-size-600);
     }
+  }
 
-    &.rangeReturnDate::before {
-      @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
-        @include in-range-pseudo-elem;
+  &.rangeDepartDate {
+    &::before {
+      @include in-range-pseudo-elem;
 
-        width: calc(calc(100vw / 7) / 2);
+      width: calc(calc(100vw / 7) / 2);
 
-        transform: translate(-100%, -50%);
+      transform: translate(0%, -50%);
+
+      @include auro_grid-breakpoint--sm {
+        width: calc(var(--ds-size-600, $ds-size-600) / 2);
       }
     }
   }
 
-  &.inRange {
-    &:before {
-      @include in-range-pseudo-elem;
+  &.rangeReturnDate::before,
+  &.lastHoveredDate::before {
+    @include in-range-pseudo-elem;
 
-      @include auro_grid-breakpoint--sm {
-        width: var(--ds-size-600, $ds-size-600);
-      }
+    width: calc(calc(100vw / 7) / 2);
+
+    transform: translate(-100%, -50%);
+
+    @include auro_grid-breakpoint--sm {
+      width: calc(var(--ds-size-600, $ds-size-600) / 2);
     }
   }
 }

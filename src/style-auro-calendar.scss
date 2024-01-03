@@ -15,7 +15,7 @@
 
   --calendar-width: 336px;
   --mobile-footer-height: 150px;
-  --mobile-header-height: 86px;
+  --mobile-header-height: 68px;
 }
 
 .calendarNavBtn {
@@ -85,8 +85,6 @@
 .mobileDateLabel {
   color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 
-  padding-bottom: var(--ds-size-50, $ds-size-50);
-
   font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
 }
 
@@ -133,24 +131,6 @@
   align-items: flex-end;
   flex-direction: column;
   justify-content: flex-end;
-
-  &:before {
-    $gradient-height: calc(var(--mobile-footer-height) - (var(--ds-size-150, $ds-size-150) * 2) - var(--ds-size-600, $ds-size-600));
-
-    content: '';
-
-    position: absolute;
-    top: calc(-1 * $gradient-height);
-    left: 0;
-
-    display: block;
-
-    height: $gradient-height;
-    width: 100%;
-
-    background-image: var(--ds-color-background-gradient-default, $ds-color-background-gradient-default);
-    pointer-events: none;
-  }
 }
 
 .mobileFooterActions {

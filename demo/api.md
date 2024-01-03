@@ -51,16 +51,15 @@
 
 ## CSS Shadow Parts
 
-| Part                  | Description                                      |
-|-----------------------|--------------------------------------------------|
-| [calendar](#calendar)            | Use for customizing the style of the calendar.   |
-| [calendarWrapper](#calendarWrapper)     | Use for customizing the style of the calendar container. |
-| [datepickerContainer](#datepickerContainer) | Use for customizing the style of the datepicker container. |
-| [dropdown](#dropdown)            | Use for customizing the style of the dropdown.   |
-| [helpText](#helpText)            | Use for customizing the style of the datepicker help text. |
-| [helpTextSpan](#helpTextSpan)        | Use for customizing the style of the datepicker help text span. |
-| [input](#input)               | Use for customizing the style of the datepicker inputs. |
-| [trigger](#trigger)             | Use for customizing the style of the datepicker trigger. |
+| Part              | Description                                      |
+|-------------------|--------------------------------------------------|
+| [calendar](#calendar)        | Use for customizing the style of the calendar.   |
+| [calendarWrapper](#calendarWrapper) | Use for customizing the style of the calendar container. |
+| [dropdown](#dropdown)        | Use for customizing the style of the dropdown.   |
+| [helpText](#helpText)        | Use for customizing the style of the datepicker help text. |
+| [helpTextSpan](#helpTextSpan)    | Use for customizing the style of the datepicker help text span. |
+| [input](#input)           | Use for customizing the style of the datepicker inputs. |
+| [trigger](#trigger)         | Use for customizing the style of the datepicker trigger. |
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Examples

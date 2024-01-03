@@ -43,6 +43,26 @@ describe('auro-datepicker', () => {
     await expect(dropdown.isPopoverVisible).to.be.true;
   });
 
+  it('hides dropdown the dropdown or its children lose focus', async () => {
+    const el = await fixture(html`
+      <auro-datepicker></auro-datepicker>
+    `);
+
+    const input = el.shadowRoot.querySelector('auro-input');
+    input.click();
+
+    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
+
+    await expect(dropdown.isPopoverVisible).to.be.true;
+
+    const button = document.createElement('button');
+    document.body.appendChild(button);
+
+    button.click();
+
+    await expect(dropdown.isPopoverVisible).to.be.false;
+  });
+
   it('handles the required state being set', async () => {
     const el = await fixture(html`
       <auro-datepicker required></auro-datepicker>
