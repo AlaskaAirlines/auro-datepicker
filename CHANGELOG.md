@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.1.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.1.0...v2.1.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* **styles:** update style issue for range support ([db02456](https://github.com/AlaskaAirlines/auro-datepicker/commit/db0245601ac1dacbb41a33f8744354fa8a296253))
+
 # [2.1.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.10...v2.1.0) (2024-01-04)
 
 
