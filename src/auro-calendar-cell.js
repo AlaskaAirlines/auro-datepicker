@@ -186,11 +186,16 @@ export class AuroCalendarCell extends LitElement {
    * @returns {Boolean} True if the current date is between dateFrom and dateTo.
    */
   isInRange(day, dateFrom, dateTo) {
-    if (!dateFrom || (dateFrom && day.date <= dateFrom)) {
-      return false;
-    }
 
-    if (dateTo && day.date >= dateTo) {
+    /**
+     * Cell is in not range if any of the following are true:
+     * - Datepicker does not support range selection.
+     * - First date has not been selected.
+     * - Cell date is before or equal first date.
+     * - Both range dates selected and current cell is after the second date.
+     */
+
+    if (!this.datepicker.hasAttribute('range') || (!dateFrom || day.date <= dateFrom) || (dateTo && day.date >= dateTo)) {
       return false;
     }
 
@@ -311,7 +316,7 @@ export class AuroCalendarCell extends LitElement {
       'currentDate': this.currentDate,
       'selected': this.selected,
       'inRange': this.hovered && this.isInRange(this.day, this.dateFrom, this.dateTo),
-      'lastHoveredDate': this.isLastHoveredDate(this.day, this.dateFrom, this.dateTo, this.hoveredDate),
+      'lastHoveredDate': this.isLastHoveredDate(this.day, this.dateFrom, this.dateTo, this.hoveredDate) && this.datepicker.hasAttribute('range'),
       'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays),
       'rangeDepartDate': this.isDepartDate(this.day, this.dateFrom) && (this.hoveredDate > this.dateFrom || this.dateTo),
       'rangeReturnDate': this.isReturnDate(this.day, this.dateFrom, this.dateTo)
