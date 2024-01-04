@@ -1,5 +1,46 @@
 # Semantic Release Automated Changelog
 
+# [2.1.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.10...v2.1.0) (2024-01-04)
+
+
+### Bug Fixes
+
+* **centralDate:** correct centralDate attribute functionality ([2155f66](https://github.com/AlaskaAirlines/auro-datepicker/commit/2155f66dd10443eb47e48b27a5e7ec194c79cc09))
+* **docs:** fix rendering of api docs [#162](https://github.com/AlaskaAirlines/auro-datepicker/issues/162) ([1bfba2f](https://github.com/AlaskaAirlines/auro-datepicker/commit/1bfba2fca0b205b4c3eb1e45b0b947d64b676355))
+* **input:** update date visibility when date is typed [#170](https://github.com/AlaskaAirlines/auro-datepicker/issues/170) ([7f1e872](https://github.com/AlaskaAirlines/auro-datepicker/commit/7f1e872baafef410103776b88813f8e6fa1758bc))
+* **layout:** update cell layout with slot content ([ea171e3](https://github.com/AlaskaAirlines/auro-datepicker/commit/ea171e38ea6f020126e46dc4525cdec5e52c0f1a))
+* **PR:** update code based on design and code review ([f50add4](https://github.com/AlaskaAirlines/auro-datepicker/commit/f50add4b3b2e9efdf5f42ba56d7c14ae911141e9))
+* **range:** fix in range styles [#151](https://github.com/AlaskaAirlines/auro-datepicker/issues/151) ([6993124](https://github.com/AlaskaAirlines/auro-datepicker/commit/69931242266022130c9e16e78796a28d4e758079))
+* **styles:** exclude stylelint rule after deps update ([52b14d1](https://github.com/AlaskaAirlines/auro-datepicker/commit/52b14d119d10cb2fb10e64378d504b6bf94436d5))
+
+
+### Features
+
+* **mobile:** implement 320px mobile design [#151](https://github.com/AlaskaAirlines/auro-datepicker/issues/151) ([2a8601a](https://github.com/AlaskaAirlines/auro-datepicker/commit/2a8601a5365274dcb89edd04f08284afd07ebe05))
+* **popover:** add popover slot functionality [#153](https://github.com/AlaskaAirlines/auro-datepicker/issues/153) ([d1a7e72](https://github.com/AlaskaAirlines/auro-datepicker/commit/d1a7e722efcd4494b0d73aba649277539f184ea2))
+* **slot:** add slot and functionality for date cells [#128](https://github.com/AlaskaAirlines/auro-datepicker/issues/128) ([62dad65](https://github.com/AlaskaAirlines/auro-datepicker/commit/62dad6517a992bb4226885350d449ec9c2b5c44e))
+
+
+### Performance Improvements
+
+* **button:** refactor mobile button design [#154](https://github.com/AlaskaAirlines/auro-datepicker/issues/154) ([f7b65fa](https://github.com/AlaskaAirlines/auro-datepicker/commit/f7b65fa5b08c6be018f3d9cd157bb0be9025287f))
+* **csspart:** add cssparts to datepicker [#156](https://github.com/AlaskaAirlines/auro-datepicker/issues/156) ([09a60a8](https://github.com/AlaskaAirlines/auro-datepicker/commit/09a60a815af03998b3ac2de3ac4f43f49d27c3e1))
+* **deps:** install latest design tokens ([4a05ff3](https://github.com/AlaskaAirlines/auro-datepicker/commit/4a05ff37e23fac47030ef4ab683434c52a7c3637))
+* **deps:** update dependencies ([036940a](https://github.com/AlaskaAirlines/auro-datepicker/commit/036940a485f0c425399ffa389983fd43f21326ac))
+* **deps:** update dependencies ([891ad79](https://github.com/AlaskaAirlines/auro-datepicker/commit/891ad79cca6aecda8592e1ac09515e605a94b66e))
+* **deps:** update deps and repo to support node 20 [#147](https://github.com/AlaskaAirlines/auro-datepicker/issues/147) ([a506464](https://github.com/AlaskaAirlines/auro-datepicker/commit/a506464042d29413075a5a42cc7ec2a1c834104a))
+* **design:** update datepicker styles per design ([5cadc28](https://github.com/AlaskaAirlines/auro-datepicker/commit/5cadc283c7f8e4d5e11966e7a4fb11845256d7ed))
+* **dropdown:** update to latest version of dropdown ([cc56aa7](https://github.com/AlaskaAirlines/auro-datepicker/commit/cc56aa7fd274a58266ecc89e14db7aac411e9ad2))
+* **gradient:** update mobile gradient color [#150](https://github.com/AlaskaAirlines/auro-datepicker/issues/150) ([98d1811](https://github.com/AlaskaAirlines/auro-datepicker/commit/98d1811ba6a3142a02841b918ac4680bf4d67e00))
+* **hover:** update hovered date handling ([8a2b2dd](https://github.com/AlaskaAirlines/auro-datepicker/commit/8a2b2dd87f7493d39b49802d1057254f361892cd))
+* **jsdocs:** update jsdocs ([c9b20cb](https://github.com/AlaskaAirlines/auro-datepicker/commit/c9b20cbc7b38ce81f8615e30b29c9bbc1c20ba9b))
+* **library:** implement auro-library and use utils ([7127d65](https://github.com/AlaskaAirlines/auro-datepicker/commit/7127d651c0eaa644120e29545a8db2e6e62f41a7))
+* **mobile:** remove mobile header back button [#154](https://github.com/AlaskaAirlines/auro-datepicker/issues/154) ([dca0d32](https://github.com/AlaskaAirlines/auro-datepicker/commit/dca0d32c12b34ee422d17aea1507a5f306d8961e))
+* **PR:** update code based on PR review ([c0b808f](https://github.com/AlaskaAirlines/auro-datepicker/commit/c0b808f91aceef48031eb74446b97798031ca1f5))
+* **slot:** handle slot content with less code ([5d5d7be](https://github.com/AlaskaAirlines/auro-datepicker/commit/5d5d7bea9cf05146290b021b1c06a2273cdb5907))
+* **styles:** add styles to day slot content [#128](https://github.com/AlaskaAirlines/auro-datepicker/issues/128) ([740e65a](https://github.com/AlaskaAirlines/auro-datepicker/commit/740e65a33d935e61b5c6dfad87ebb5f4eeaddfef))
+* **theme:** update token prefixes [#159](https://github.com/AlaskaAirlines/auro-datepicker/issues/159) ([25e3092](https://github.com/AlaskaAirlines/auro-datepicker/commit/25e3092fff858dad9c689bd0d723976cc8d74926))
+
 ## [2.0.10](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.0.9...v2.0.10) (2023-11-30)
 
 
