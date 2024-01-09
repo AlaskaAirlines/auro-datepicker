@@ -22,7 +22,7 @@
     "@alaskaairux/auro-popover": "^2.3.0",
     "@alaskaairux/icons": "^4.31.0",
     "@aurodesignsystem/auro-dropdown": "^2.9.11",
-    "@aurodesignsystem/auro-input": "^2.15.1",
+    "@aurodesignsystem/auro-input": "^2.15.2",
     "@aurodesignsystem/auro-library": "^2.1.1",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
@@ -33,7 +33,8 @@
   },
   "peerDependencies": {
     "@alaskaairux/design-tokens": "^3.15.5",
-    "@aurodesignsystem/webcorestylesheets": "^4.2.0"
+    "@aurodesignsystem/design-tokens": "^4.3.0",
+    "@aurodesignsystem/webcorestylesheets": "^5.0.5"
   },
   "devDependencies": {
     "@alaskaairux/design-tokens": "^3.15.5",
