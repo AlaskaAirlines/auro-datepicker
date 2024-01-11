@@ -1,7 +1,14 @@
-const path = require('path');
-const markdownMagic = require('markdown-magic');
-const fs = require('fs');
-const https = require('https');
+/**
+ * This version is sans dependencies
+ * Create for use with the SSR updates
+ */
+
+import path from 'path';
+import markdownMagic from 'markdown-magic';
+import fs from 'fs';
+import https from 'https';
+
+const __dirname = new URL('.', import.meta.url).pathname;
 
 const readmeTemplateUrl = 'https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/README.md';
 const dirDocTemplates = './docTemplates';
@@ -11,29 +18,29 @@ const readmeFilePath = dirDocTemplates + '/README.md';
  * Extract NPM, NAMESPACE and NAME from package.json
  */
 
- function nameExtraction() {
-  const packageJson = fs.readFileSync('package.json', 'utf8', function(err, data) {
-    if (err) {
-      console.log('ERROR: Unable to read package.json file', err);
-    }
-  })
+function nameExtraction() {
+ const packageJson = fs.readFileSync('package.json', 'utf8', function(err, data) {
+   if (err) {
+     console.log('ERROR: Unable to read package.json file', err);
+   }
+ })
 
-  pName = JSON.parse(packageJson).name;
+ let pName = JSON.parse(packageJson).name;
 
-  let npmStart = pName.indexOf('@');
-  let namespaceStart = pName.indexOf('/');
-  let nameStart = pName.indexOf('-');
+ let npmStart = pName.indexOf('@');
+ let namespaceStart = pName.indexOf('/');
+ let nameStart = pName.indexOf('-');
 
-  let result = {
-    'npm': pName.substring(npmStart, namespaceStart),
-    'namespace': pName.substring(namespaceStart + 1, nameStart),
-    'namespaceCap': pName.substring(namespaceStart + 1)[0].toUpperCase() + pName.substring(namespaceStart + 2, nameStart),
-    'name': pName.substring(nameStart + 1),
-    'nameCap': pName.substring(nameStart + 1)[0].toUpperCase() + pName.substring(nameStart + 2)
-  };
+ let result = {
+   'npm': pName.substring(npmStart, namespaceStart),
+   'namespace': pName.substring(namespaceStart + 1, nameStart),
+   'namespaceCap': pName.substring(namespaceStart + 1)[0].toUpperCase() + pName.substring(namespaceStart + 2, nameStart),
+   'name': pName.substring(nameStart + 1),
+   'nameCap': pName.substring(nameStart + 1)[0].toUpperCase() + pName.substring(nameStart + 2)
+ };
 
-  return result;
-};
+ return result;
+}
 
 /**
  * Replace all instances of [npm], [name], [Name], [namespace] and [Namespace] accordingly
@@ -47,8 +54,8 @@ function formatTemplateFileContents(content, destination) {
    * Replace placeholder strings
    */
   result = result.replace(/\[npm]/g, nameExtractionData.npm);
-  result = result.replace(/\[name](?!\()/g, nameExtractionData.name);
-  result = result.replace(/\[Name](?!\()/g, nameExtractionData.nameCap);
+  result = result.replace(/\[name]/g, nameExtractionData.name);
+  result = result.replace(/\[Name]/g, nameExtractionData.nameCap);
   result = result.replace(/\[namespace]/g, nameExtractionData.namespace);
   result = result.replace(/\[Namespace]/g, nameExtractionData.namespaceCap);
 
@@ -65,7 +72,7 @@ function formatTemplateFileContents(content, destination) {
    * Write the result to the destination file
    */
   fs.writeFileSync(destination, result, { encoding: 'utf8'});
-};
+}
 
 function formatApiTableContents(content, destination) {
   const nameExtractionData = nameExtraction();
@@ -112,17 +119,17 @@ function processReadme() {
 }
 
 /**
- * Compiles `./docs/partials/index.md` -> `./demo/index.md`
+ * Compiles `./docTemplates/demo.md` -> `./demo/demo.md`
  */
 
 function processDemo() {
   const callback = function(updatedContent, outputConfig) {
-    if (fs.existsSync('./demo/index.md')) {
-      fs.readFile('./demo/index.md', 'utf8', function(err, data) {
-        formatTemplateFileContents(data, './demo/index.md');
+    if (fs.existsSync('./demo/demo.md')) {
+      fs.readFile('./demo/demo.md', 'utf8', function(err, data) {
+        formatTemplateFileContents(data, './demo/demo.md');
       });
     } else {
-      console.log('ERROR: ./demo/index.md file is missing');
+      console.log('ERROR: ./demo/demo.md file is missing');
     }
   };
 
@@ -131,13 +138,13 @@ function processDemo() {
     outputDir: './demo'
   };
 
-  const markdownPath = path.join(__dirname, '../docs/partials/index.md');
+  const markdownPath = path.join(__dirname, '../docs/partials/demo.md');
 
   markdownMagic(markdownPath, configDemo, callback);
 }
 
 /**
- * Compiles `./docs/partials/api.md` -> `./demo/api.md`
+ * Compiles `./docTemplates/apiExamples.md` -> `./demo/apiExamples.md`
  */
 
 function processApiExamples() {
