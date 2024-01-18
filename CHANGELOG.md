@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.2.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.1.2...v2.2.0) (2024-01-18)
+
+
+### Features
+
+* add suport for SSR projects ([64e4aa7](https://github.com/AlaskaAirlines/auro-datepicker/commit/64e4aa7fbc64f18ab93a4fb064a2dba8abaf5276))
+
 ## [2.1.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.1.1...v2.1.2) (2024-01-09)
 
 
