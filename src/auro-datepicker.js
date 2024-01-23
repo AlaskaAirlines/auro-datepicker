@@ -391,10 +391,8 @@ export class AuroDatePicker extends LitElement {
     }
 
     this.inputList[0].addEventListener('input', () => {
-      if (this.value !== this.inputList[0].value) {
-        this.value = this.inputList[0].value;
-        this.notifyValueChanged();
-      }
+      this.value = this.inputList[0].value;
+      this.notifyValueChanged();
     });
 
     this.inputList[0].addEventListener('auroInput-validated', () => {
@@ -407,10 +405,8 @@ export class AuroDatePicker extends LitElement {
 
     if (this.inputList.length > 1) {
       this.inputList[1].addEventListener('input', () => {
-        if (this.valueEnd !== this.inputList[1].value) {
-          this.valueEnd = this.inputList[1].value;
-          this.notifyValueChanged();
-        }
+        this.valueEnd = this.inputList[1].value;
+        this.notifyValueChanged();
       });
 
       this.inputList[1].addEventListener('auroInput-validated', () => {
