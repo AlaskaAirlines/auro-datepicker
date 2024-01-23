@@ -5,7 +5,7 @@ import { enUS } from 'date-fns/esm/locale';
 
 import styleCss from "./style-auro-calendar-cell-css";
 
-import '@alaskaairux/auro-popover';
+import '@aurodesignsystem/auro-popover';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
