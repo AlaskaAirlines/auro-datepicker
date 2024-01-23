@@ -75,7 +75,7 @@
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -103,7 +103,7 @@ Date that determines the currently visible month.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/centralDate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/centralDate.html -->
@@ -128,7 +128,7 @@ If set, disables the datepicker.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/disabled.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/disabled.html -->
@@ -156,7 +156,7 @@ Sets a persistent error state (e.g. an error state returned from the server). Th
   <auro-button id="undefinedValueExampleBtnRemoveError">Remove Error</auro-button>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/error.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/error.html -->
@@ -185,7 +185,7 @@ To give a higher limit you can bind a date to the `maxDate` property. It is reco
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/maxDate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/maxDate.html -->
@@ -215,7 +215,7 @@ This example demonstrates that behavior.
   <auro-button id="resetMaxDate">Reset Datepicker to Initial Example</auro-button>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMaxDate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/updateMaxDate.html -->
@@ -284,7 +284,7 @@ To give a lower limit you can bind a date to the `minDate` property. It is recom
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/minDate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/minDate.html -->
@@ -314,7 +314,7 @@ This example demonstrates that behavior.
   <auro-button id="resetMinDate">Reset Datepicker to Initial Example</auro-button>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/updateMinDate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/updateMinDate.html -->
@@ -384,7 +384,7 @@ May be used to provide localized month names. These names will only be shown in 
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/monthNames.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/monthNames.html -->
@@ -422,7 +422,7 @@ When set, the datepicker will not validate when navigating away from the compone
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/noValidate.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/noValidate.html -->
@@ -449,7 +449,7 @@ When used, the datepicker will display two inputs and the component will support
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basicRange.html -->
@@ -482,7 +482,7 @@ Populates the `required` attribute on the input. Used for client-side validation
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/required.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/required.html -->
@@ -514,7 +514,7 @@ Specifies the `validityState` the element is in. Upon first interaction, or pres
   <auro-button id="validityExampleBtn">Get validity</auro-button>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/validity.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/validity.html -->
@@ -555,7 +555,7 @@ Value selected for the datepicker. Can be used to pre-set the value of the datep
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/value.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/value.html -->
@@ -580,7 +580,7 @@ Value of the second input (end date), selected for the datepicker. Can be used t
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/valueEnd.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/valueEnd.html -->
@@ -609,7 +609,7 @@ The focus method will apply focus state to the datepicker's input field.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/focus.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/focus.html -->
@@ -653,7 +653,7 @@ Sets the label used for the input. When the `range` attribute is used this is th
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -680,7 +680,7 @@ Sets the help text displayed below the trigger. The `helpText` slot can be used 
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/helpText.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/helpText.html -->
@@ -707,7 +707,7 @@ Sets the label used for the selected date display at the top of the bib when vie
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -735,7 +735,7 @@ Only for use with the `range` attribute. Sets the label for the second input.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basicRange.html -->
@@ -774,7 +774,7 @@ Slot content can be styled using [inline styles](https://www.codecademy.com/arti
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/dateSlot.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/dateSlot.html -->
@@ -817,7 +817,7 @@ The popover slot is intended for use with calendar dates that are `disabled` (e.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popover.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/popover.html -->
@@ -853,7 +853,7 @@ This example demonstrates data driven slot content for days in the calendar.
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/dynamicSlot.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/dynamicSlot.html -->
@@ -924,7 +924,7 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/alertValue.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/alertValue.html -->

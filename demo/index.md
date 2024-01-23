@@ -28,7 +28,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -54,7 +54,7 @@ The `<auro-datepicker>` element should be used in situations where users may:
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basicRange.html -->
