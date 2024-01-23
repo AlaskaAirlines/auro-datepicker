@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.2.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.0...v2.2.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* **event:** always fire notify event when value changes [#188](https://github.com/AlaskaAirlines/auro-datepicker/issues/188) ([9108e46](https://github.com/AlaskaAirlines/auro-datepicker/commit/9108e46857e2189edb3c611fdc1e9fa8c2a351ba))
+
 # [2.2.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.1.2...v2.2.0) (2024-01-18)
 
 
