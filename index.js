@@ -1,4 +1,4 @@
-import { AuroDatePicker } from "./src/auro-datepicker";
+import { AuroDatePicker } from "./src/auro-datepicker.js";
 
 /**
  * Register Custom Element.
