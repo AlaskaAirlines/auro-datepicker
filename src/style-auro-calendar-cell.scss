@@ -102,6 +102,10 @@
       width: calc(var(--ds-size-600, $ds-size-600) / 2);
     }
   }
+
+  &.sameDateTrip::before {
+    background-color: unset;
+  }
 }
 
 .dateSlot {
