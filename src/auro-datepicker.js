@@ -51,8 +51,9 @@ import '@aurodesignsystem/auro-dropdown';
  * @csspart helpTextSpan - Use for customizing the style of the datepicker help text span.
  * @csspart helpText - Use for customizing the style of the datepicker help text.
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
- * @fires auroDatepicker-validated - Notifies that the component value(s) have been validated.
+ * @fires auroDatePicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
+ * @fires auroDatePicker-calendarOpened - Notifies that the calendar popover has been opened.
  */
 
 // build the component class
@@ -221,7 +222,7 @@ export class AuroDatePicker extends LitElement {
 
     // notify listener that validation logic was executed
     if (shouldValidate) {
-      this.dispatchEvent(new CustomEvent('auroDatepicker-validated', {
+      this.dispatchEvent(new CustomEvent('auroDatePicker-validated', {
         bubbles: true,
         composed: true,
         detail: {
@@ -346,6 +347,22 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * Sends event notifying that the calendar popover has been opened.
+   * @private
+   * @returns {void}
+   */
+  notifyCalendarOpened() {
+    this.dispatchEvent(new CustomEvent('auroDatePicker-calendarOpened', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        month: this.calendar.month,
+        year: this.calendar.year,
+      }
+    }));
+  }
+
+  /**
    * Binds all behavior needed to the dropdown after rendering.
    * @private
    * @returns {void}
@@ -361,6 +378,9 @@ export class AuroDatePicker extends LitElement {
 
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
+      if (this.dropdown.isPopoverVisible) {
+        this.notifyCalendarOpened();
+      }
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
