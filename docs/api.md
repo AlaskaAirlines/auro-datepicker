@@ -33,7 +33,9 @@
 |----------------------------|-----------------------------------|--------------------------------------------------|
 | `auroDatePicker-ready`     | `CustomEvent<any>`                | Notifies that the component has finished initializing. |
 | `auroDatePicker-valueSet`  |                                   | Notifies that the component has a new value set. |
-| `auroDatepicker-validated` | `CustomEvent<{ validity: any; }>` | Notifies that the component value(s) have been validated. |
+| `auroDatePicker-validated` | `CustomEvent<{ validity: any; }>` | Notifies that the component value(s) have been validated. |
+| `auroDatePicker-calendarOpened` | `CustomEvent<{ month: number; year: number; }>` | Notifies that the calendar popover has been opened. |
+| `auroCalendar-monthChanged` | `CustomEvent<{ direction: 'forward' \| 'backward'; month: number; year: number; }>` | Notifies that the visible calendar month(s) have changed |
 
 ## Slots
 
