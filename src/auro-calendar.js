@@ -22,6 +22,7 @@ import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_
  * Default is 'short'.
  * @fires auroCalendar-dateSelected - Notifies that a date has been selected in the calendar.
  * @fires auroCalendar-ready - Notifies that the component has finished initializing.
+ * @fires auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
 /* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines */
@@ -213,6 +214,28 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   /**
+   * Sends event notifying that the visible calendar month(s) have changed.
+   * @private
+   * @param {'forward' | 'backward'} direction - The direction that the calendar was navigated.
+   * @returns {void}
+   */
+  notifyMonthChanged(direction) {
+    let monthChangeEvent = null;
+
+    monthChangeEvent = new CustomEvent('auroCalendar-monthChanged', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        direction,
+        month: this.month,
+        year: this.year,
+      },
+    });
+
+    this.dispatchEvent(monthChangeEvent);
+  }
+
+  /**
    * Updates the month and year when the user navigates to the previous calendar month.
    * @private
    * @returns {void}
@@ -225,6 +248,7 @@ export class AuroCalendar extends RangeDatepicker {
       this.month -= 1;
     }
 
+    this.notifyMonthChanged('backward');
     this.requestUpdate();
   }
 
@@ -241,6 +265,7 @@ export class AuroCalendar extends RangeDatepicker {
       this.month += 1;
     }
 
+    this.notifyMonthChanged('forward');
     this.requestUpdate();
   }
 
