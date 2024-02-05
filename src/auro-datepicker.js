@@ -518,6 +518,11 @@ export class AuroDatePicker extends LitElement {
     }));
   }
 
+  /**
+   * Sets the readonly attribute on the inputs based on the window width.
+   * @private
+   * @returns {void}
+   */
   handleReadOnly() {
     // --ds-grid-breakpoint-sm
     const mobileBreakpoint = 576;
