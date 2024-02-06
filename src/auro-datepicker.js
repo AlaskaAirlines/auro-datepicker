@@ -54,6 +54,7 @@ import '@aurodesignsystem/auro-dropdown';
  * @fires auroDatePicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
  * @fires auroDatePicker-calendarOpened - Notifies that the calendar popover has been opened.
+ * @fires auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
 // build the component class
