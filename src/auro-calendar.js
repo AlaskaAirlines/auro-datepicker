@@ -199,6 +199,7 @@ export class AuroCalendar extends RangeDatepicker {
     ) {
       if (changedProperties.has("month") || changedProperties.has("year")) {
         this.monthChanged(this.month, this.year);
+        this.notifyMonthChanged(this.month, this.year, this.numCalendars);
       }
       this.assessNavigationButtonVisibility();
     }
@@ -216,23 +217,21 @@ export class AuroCalendar extends RangeDatepicker {
   /**
    * Sends event notifying that the visible calendar month(s) have changed.
    * @private
-   * @param {'forward' | 'backward'} direction - The direction that the calendar was navigated.
+   * @param {Number} month - Month the calendar displays.
+   * @param {Number} year - Year the calendar displays.
+   * @param {Number} numCalendars - Number of calendars displayed.
    * @returns {void}
    */
-  notifyMonthChanged(direction) {
-    let monthChangeEvent = null;
-
-    monthChangeEvent = new CustomEvent('auroCalendar-monthChanged', {
-      bubbles: true,
+  notifyMonthChanged(month, year, numCalendars) {
+    this.dispatchEvent(new CustomEvent('auroCalendar-monthChanged', {
+      bubbles: false,
       composed: true,
       detail: {
-        direction,
-        month: this.month,
-        year: this.year,
+        month,
+        year,
+        numCalendars,
       },
-    });
-
-    this.dispatchEvent(monthChangeEvent);
+    }));
   }
 
   /**
@@ -248,7 +247,6 @@ export class AuroCalendar extends RangeDatepicker {
       this.month -= 1;
     }
 
-    this.notifyMonthChanged('backward');
     this.requestUpdate();
   }
 
@@ -265,7 +263,6 @@ export class AuroCalendar extends RangeDatepicker {
       this.month += 1;
     }
 
-    this.notifyMonthChanged('forward');
     this.requestUpdate();
   }
 
