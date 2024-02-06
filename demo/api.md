@@ -32,13 +32,13 @@
 
 ## Events
 
-| Event                      | Type                              | Description                                      |
-|----------------------------|-----------------------------------|--------------------------------------------------|
-| `auroDatePicker-ready`     | `CustomEvent<any>`                | Notifies that the component has finished initializing. |
-| `auroDatePicker-valueSet`  |                                   | Notifies that the component has a new value set. |
-| `auroDatePicker-validated` | `CustomEvent<{ validity: any; }>` | Notifies that the component value(s) have been validated. |
-| `auroDatepicker-calendarOpened` | `CustomEvent<{ month: number; year: number; }>` | Notifies that the calendar popover has been opened. |
-| `auroCalendar-monthChanged` | `CustomEvent<{ direction: 'forward' \| 'backward'; month: number; year: number; }>` | Notifies that the visible calendar month(s) have changed |
+| Event                           | Type                                             | Description                                      |
+|---------------------------------|--------------------------------------------------|--------------------------------------------------|
+| `auroDatePicker-calendarOpened` | `CustomEvent<{ month: any; year: any; numCalendars: any; }>` | Notifies that the calendar popover has been opened. |
+| `auroDatePicker-monthChanged`   | `CustomEvent<{ month: any; year: any; numCalendars: any; }>` |                                                  |
+| `auroDatePicker-ready`          | `CustomEvent<any>`                               | Notifies that the component has finished initializing. |
+| `auroDatePicker-validated`      | `CustomEvent<{ validity: any; }>`                | Notifies that the component value(s) have been validated. |
+| `auroDatePicker-valueSet`       |                                                  | Notifies that the component has a new value set. |
 
 ## Slots
 
