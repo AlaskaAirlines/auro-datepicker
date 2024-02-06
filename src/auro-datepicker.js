@@ -398,6 +398,7 @@ export class AuroDatePicker extends LitElement {
 
     this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
 
+    this.handleReadOnly();
 
     // auto-show bib when manually editing the input value
     for (let index = 0; index < this.inputList.length; index += 1) {
@@ -535,6 +536,24 @@ export class AuroDatePicker extends LitElement {
       cancelable: false,
       composed: true,
     }));
+  }
+
+  /**
+   * Sets the readonly attribute on the inputs based on the window width.
+   * @private
+   * @returns {void}
+   */
+  handleReadOnly() {
+    // --ds-grid-breakpoint-sm
+    const mobileBreakpoint = 576;
+
+    for (let index = 0; index < this.inputList.length; index += 1) {
+      if (window.innerWidth < mobileBreakpoint) {
+        this.inputList[index].setAttribute('readonly', true);
+      } else {
+        this.inputList[index].removeAttribute('readonly');
+      }
+    }
   }
 
   /**
@@ -704,6 +723,10 @@ export class AuroDatePicker extends LitElement {
     this.configureCalendar();
     this.configureDatepicker();
     this.notifyReady();
+
+    window.addEventListener('resize', () => {
+      this.handleReadOnly();
+    });
   }
 
   // function that renders the HTML and CSS into  the scope of the component

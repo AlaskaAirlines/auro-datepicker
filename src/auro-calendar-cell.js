@@ -319,7 +319,8 @@ export class AuroCalendarCell extends LitElement {
       'lastHoveredDate': this.isLastHoveredDate(this.day, this.dateFrom, this.dateTo, this.hoveredDate) && this.datepicker.hasAttribute('range'),
       'disabled': this.isEnabled(this.day, this.min, this.max, this.disabledDays),
       'rangeDepartDate': this.isDepartDate(this.day, this.dateFrom) && (this.hoveredDate > this.dateFrom || this.dateTo),
-      'rangeReturnDate': this.isReturnDate(this.day, this.dateFrom, this.dateTo)
+      'rangeReturnDate': this.isReturnDate(this.day, this.dateFrom, this.dateTo),
+      'sameDateTrip': this.dateFrom === this.dateTo
     };
 
     let _a, _b;

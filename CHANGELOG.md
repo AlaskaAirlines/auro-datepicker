@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+## [2.2.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.4...v2.2.5) (2024-02-05)
+
+
+### Bug Fixes
+
+* **keyboard:** stop mobile keyboard from displaying [#192](https://github.com/AlaskaAirlines/auro-datepicker/issues/192) ([b7d9d9c](https://github.com/AlaskaAirlines/auro-datepicker/commit/b7d9d9c2cd7eca6983ca7a126b39c3d6141159b1))
+* **range:** update range class styles [#192](https://github.com/AlaskaAirlines/auro-datepicker/issues/192) ([6fca8c5](https://github.com/AlaskaAirlines/auro-datepicker/commit/6fca8c516af4f149687f41fe67499a4f28e0fdf8))
+
+
+### Performance Improvements
+
+* **deps:** update dependencies ([68d0100](https://github.com/AlaskaAirlines/auro-datepicker/commit/68d0100a237d39de0efe230f363cd1629c1c9914))
+
 ## [2.2.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.3...v2.2.4) (2024-01-31)
 
 
