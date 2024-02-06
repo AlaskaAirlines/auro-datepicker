@@ -358,7 +358,26 @@ export class AuroDatePicker extends LitElement {
       detail: {
         month: this.calendar.month,
         year: this.calendar.year,
-      }
+        numCalendars: this.calendar.numCalendars,
+      },
+    }));
+  }
+
+  /**
+   * Sends event notifying that the calendar's visible month has changed.
+   * @param {Object} event - Event passed in from auro-calendar when the event triggered this function.
+   * @private
+   * @returns {void}
+   */
+  notifyMonthChanged(event) {
+    this.dispatchEvent(new CustomEvent('auroDatePicker-monthChanged', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        month: event.detail.month,
+        year: event.detail.year,
+        numCalendars: event.detail.numCalendars,
+      },
     }));
   }
 
@@ -460,6 +479,10 @@ export class AuroDatePicker extends LitElement {
 
     this.calendar.addEventListener('auroCalendar-dismissRequest', () => {
       this.dropdown.hide();
+    });
+
+    this.calendar.addEventListener('auroCalendar-monthChanged', (event) => {
+      this.notifyMonthChanged(event);
     });
   }
 
