@@ -53,7 +53,7 @@ import '@aurodesignsystem/auro-dropdown';
  * @fires auroDatePicker-ready - Notifies that the component has finished initializing.
  * @fires auroDatePicker-validated - Notifies that the component value(s) have been validated.
  * @fires auroDatePicker-valueSet - Notifies that the component has a new value set.
- * @fires auroDatePicker-calendarOpened - Notifies that the calendar popover has been opened.
+ * @fires auroDatePicker-toggled - Notifies that the calendar dropdown has been opened/closed.
  * @fires auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
@@ -352,14 +352,12 @@ export class AuroDatePicker extends LitElement {
    * @private
    * @returns {void}
    */
-  notifyCalendarOpened() {
-    this.dispatchEvent(new CustomEvent('auroDatePicker-calendarOpened', {
+  notifyDatepickerToggled() {
+    this.dispatchEvent(new CustomEvent('auroDatePicker-toggled', {
       bubbles: true,
       composed: true,
       detail: {
-        month: this.calendar.month,
-        year: this.calendar.year,
-        numCalendars: this.calendar.numCalendars,
+        expanded: this.dropdown.isPopoverVisible,
       },
     }));
   }
@@ -399,7 +397,7 @@ export class AuroDatePicker extends LitElement {
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
       if (this.dropdown.isPopoverVisible) {
-        this.notifyCalendarOpened();
+        this.notifyDatepickerToggled();
       }
     });
 
