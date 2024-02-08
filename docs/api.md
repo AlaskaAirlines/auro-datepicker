@@ -29,13 +29,13 @@
 
 ## Events
 
-| Event                           | Type                                             | Description                                      |
-|---------------------------------|--------------------------------------------------|--------------------------------------------------|
-| `auroDatePicker-calendarOpened` | `CustomEvent<{ month: any; year: any; numCalendars: any; }>` | Notifies that the calendar popover has been opened. |
-| `auroDatePicker-monthChanged`   | `CustomEvent<{ month: any; year: any; numCalendars: any; }>` | Notifies that the visible calendar month(s) have changed. |
-| `auroDatePicker-ready`          | `CustomEvent<any>`                               | Notifies that the component has finished initializing. |
-| `auroDatePicker-validated`      | `CustomEvent<{ validity: any; }>`                | Notifies that the component value(s) have been validated. |
-| `auroDatePicker-valueSet`       |                                                  | Notifies that the component has a new value set. |
+| Event                         | Type                                             | Description                                      |
+|-------------------------------|--------------------------------------------------|--------------------------------------------------|
+| `auroDatePicker-monthChanged` | `CustomEvent<{ month: any; year: any; numCalendars: any; }>` | Notifies that the visible calendar month(s) have changed. |
+| `auroDatePicker-ready`        | `CustomEvent<any>`                               | Notifies that the component has finished initializing. |
+| `auroDatePicker-toggled`      | `CustomEvent<{ expanded: any; }>`                | Notifies that the calendar dropdown has been opened/closed. |
+| `auroDatePicker-validated`    | `CustomEvent<{ validity: any; }>`                | Notifies that the component value(s) have been validated. |
+| `auroDatePicker-valueSet`     |                                                  | Notifies that the component has a new value set. |
 
 ## Slots
 
