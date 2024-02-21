@@ -396,9 +396,7 @@ export class AuroDatePicker extends LitElement {
 
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
-      if (this.dropdown.isPopoverVisible) {
-        this.notifyDatepickerToggled();
-      }
+      this.notifyDatepickerToggled();
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
