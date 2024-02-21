@@ -199,7 +199,6 @@ export class AuroCalendar extends RangeDatepicker {
     ) {
       if (changedProperties.has("month") || changedProperties.has("year")) {
         this.monthChanged(this.month, this.year);
-        this.notifyMonthChanged(this.month, this.year, this.numCalendars);
       }
       this.assessNavigationButtonVisibility();
     }
@@ -211,6 +210,18 @@ export class AuroCalendar extends RangeDatepicker {
     }
     if (changedProperties.has('locale')) {
       this.localeChanged();
+    }
+  }
+
+  monthChanged(month, year) {
+    if (year && month) {
+      this.monthPlus = (month % 12) + 1;
+      if (this.monthPlus === 1) {
+        this.yearPlus = year + 1;
+      } else {
+        this.yearPlus = year;
+      }
+      this.notifyMonthChanged(this.month, this.year, this.numCalendars);
     }
   }
 
