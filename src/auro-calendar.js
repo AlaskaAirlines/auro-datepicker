@@ -20,9 +20,9 @@ import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_
  * - 'short' (e.g., Thu)
  * - 'narrow' (e.g., T).
  * Default is 'short'.
- * @fires auroCalendar-dateSelected - Notifies that a date has been selected in the calendar.
- * @fires auroCalendar-ready - Notifies that the component has finished initializing.
- * @fires auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
+ * @event auroCalendar-dateSelected - Notifies that a date has been selected in the calendar.
+ * @event auroCalendar-ready - Notifies that the component has finished initializing.
+ * @event auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
 /* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines */
@@ -222,7 +222,7 @@ export class AuroCalendar extends RangeDatepicker {
    */
   monthChanged(month, year) {
     if (year && month) {
-      this.monthPlus = (month % 12) + 1;
+      this.monthPlus = (month % 12) + 1; // eslint-disable-line no-extra-parens
       if (this.monthPlus === 1) {
         this.yearPlus = year + 1;
       } else {
