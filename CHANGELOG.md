@@ -1,5 +1,21 @@
 # Semantic Release Automated Changelog
 
+# [2.3.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.7...v2.3.0) (2024-02-27)
+
+
+### Bug Fixes
+
+* create "monthChanged" in auro-calendar ([3f88608](https://github.com/AlaskaAirlines/auro-datepicker/commit/3f886084329f3463a363851eb21af0a79fda51fb))
+* dispatch monthChanged event from datepicker ([4d359da](https://github.com/AlaskaAirlines/auro-datepicker/commit/4d359dab239092a814d0340401a84929a49381b6))
+* **lint:** fix linting issues blocking release ([5039bcb](https://github.com/AlaskaAirlines/auro-datepicker/commit/5039bcbc1224950c74fff27a7a7a199d61ff35d6))
+* rename calendarOpened to toggled ([e6463a7](https://github.com/AlaskaAirlines/auro-datepicker/commit/e6463a72924d6eef472a9a0c060a9c86b159f14d))
+
+
+### Features
+
+* **calendar:** add 'auroCalendar-monthChanged' event ([f46b3d0](https://github.com/AlaskaAirlines/auro-datepicker/commit/f46b3d0a040c212cc9fbf3c045503120a673adb0))
+* **datepicker:** add 'auroDatePicker-calendarOpened' event ([9d6f0b2](https://github.com/AlaskaAirlines/auro-datepicker/commit/9d6f0b24ac4845722b61c443a0d0c09bfaf5fee3))
+
 ## [2.2.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.6...v2.2.7) (2024-02-13)
 
 
