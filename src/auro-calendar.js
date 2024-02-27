@@ -213,6 +213,13 @@ export class AuroCalendar extends RangeDatepicker {
     }
   }
 
+  /**
+   * Handles decrementing and incrementing the rendered calendar month and year.
+   * @private
+   * @param {Number} month - Month the calendar displays.
+   * @param {Number} year - Year the calendar displays.
+   * @returns {void}
+   */
   monthChanged(month, year) {
     if (year && month) {
       this.monthPlus = (month % 12) + 1;
