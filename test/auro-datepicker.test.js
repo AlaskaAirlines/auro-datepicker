@@ -23,7 +23,7 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
 
     el.focus();
 
@@ -35,12 +35,10 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
     input.click();
 
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-
-    await expect(dropdown.isPopoverVisible).to.be.true;
+    await expect(el.dropdown.isPopoverVisible).to.be.true;
   });
 
   it('hides dropdown the dropdown or its children lose focus', async () => {
@@ -48,19 +46,17 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
     input.click();
 
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-
-    await expect(dropdown.isPopoverVisible).to.be.true;
+    await expect(el.dropdown.isPopoverVisible).to.be.true;
 
     const button = document.createElement('button');
     document.body.appendChild(button);
 
     button.click();
 
-    await expect(dropdown.isPopoverVisible).to.be.false;
+    await expect(el.dropdown.isPopoverVisible).to.be.false;
   });
 
   it('handles the required state being set', async () => {
@@ -95,7 +91,7 @@ describe('auro-datepicker', () => {
       <auro-datepicker required></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
 
     await expect(el.hasAttribute('required')).to.be.true;
     await expect(input.hasAttribute('required')).to.be.true;
@@ -108,7 +104,7 @@ describe('auro-datepicker', () => {
 
     await elementUpdated(el);
 
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
 
     const setDate = new Date('01/01/2022').toDateString();
     const inputDate = new Date(input.value).toDateString();
@@ -551,14 +547,13 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
-    const input = el.shadowRoot.querySelector('auro-input');
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
+    const input = getInput(el, 0);
 
     input.dispatchEvent(new KeyboardEvent('keyup', { key: '0' }));
 
     await elementUpdated(el);
 
-    await expect(dropdown.isPopoverVisible).to.be.true;
+    await expect(el.dropdown.isPopoverVisible).to.be.true;
   });
 
   it('closes the mobile bib when clicking the bottom done', async () => {
@@ -569,8 +564,7 @@ describe('auro-datepicker', () => {
     `);
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
-    const dropdown = el.shadowRoot.querySelector('auro-dropdown');
-    const input = el.shadowRoot.querySelector('auro-input');
+    const input = getInput(el, 0);
 
     const closeBtn = calendar.shadowRoot.querySelector('.mobileFooterActions auro-button');
 
@@ -578,13 +572,13 @@ describe('auro-datepicker', () => {
 
     await elementUpdated();
 
-    await expect(dropdown.isPopoverVisible).to.be.true;
+    await expect(el.dropdown.isPopoverVisible).to.be.true;
 
     closeBtn.click();
 
     await elementUpdated();
 
-    await expect(dropdown.isPopoverVisible).to.be.false;
+    await expect(el.dropdown.isPopoverVisible).to.be.false;
   });
 
   it('datepicker correctly parses date slot name and passes content down to cell correctly', async () => {
@@ -684,5 +678,5 @@ function setInputValue(auroInput, value) {
 }
 
 function getInput(el, index) {
-  return [...el.shadowRoot.querySelectorAll('auro-input')][index];
+  return el.inputList[index];
 }

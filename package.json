@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@alaskaairux/icons": "^4.38.0",
-    "@aurodesignsystem/auro-dropdown": "^2.10.2",
-    "@aurodesignsystem/auro-input": "^2.17.4",
+    "@aurodesignsystem/auro-dropdown": "^2.10.5",
+    "@aurodesignsystem/auro-input": "^2.17.6",
     "@aurodesignsystem/auro-popover": "^3.1.5",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
@@ -139,7 +139,7 @@
     "web components"
   ],
   "scripts": {
-    "build": "npm-run-all build:sass sass:render build:docs build:api bundler build:demoScripts postinstall types",
+    "build": "npm-run-all build:version build:sass sass:render build:docs build:api bundler build:demoScripts postinstall types",
     "build:ci": "npm-run-all sweep build",
     "build:api": "wca analyze 'src/auro-datepicker.js' --outFiles docs/api.md",
     "build:demo": "npm-run-all build demo:rm:build demo:new:build demo:copy:index demo:copy:demo demo:update:index",
@@ -150,6 +150,7 @@
     "build:sass:demo": "sass --no-source-map demo:demo",
     "build:sass:component": "sass --no-source-map src:src",
     "build:watch": "nodemon -e scss,js --watch src --exec npm run build:dev:assets",
+    "build:version": "node scripts/version.mjs",
     "bundler": "rollup -c",
     "bundler:test": "rollup -c -w",
     "scssLint": "stylelint \"./src/**/*.scss\"",
@@ -159,7 +160,7 @@
     "demo:rm:build": "rm -rf ./build",
     "demo:update:index": "node ./scripts/prepForBuild",
     "dev": "concurrently --kill-others \"npm run build:watch\" \"npm run serve\"",
-    "esLint": "./node_modules/.bin/eslint src/**/*.js",
+    "esLint": "./node_modules/.bin/eslint src/**/*.js --ignore-pattern 'src/**/*Version.js'",
     "linters": "npm-run-all scssLint esLint",
     "preCommit": "node scripts/pre-commit.mjs",
     "postCss:component": "node ./scripts/postCss.mjs",
