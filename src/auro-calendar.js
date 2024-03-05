@@ -6,6 +6,8 @@ import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicke
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6.js';
 import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6.js';
 
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {Object} firstDayOfWeek - Weekday that will be displayed in first column of month grid.
@@ -35,6 +37,7 @@ export class AuroCalendar extends RangeDatepicker {
     this.numCalendars = 1;
     this.showPrevMonthBtn = true;
     this.showNextMonthBtn = true;
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
   }
 
   static get styles() {
@@ -118,7 +121,7 @@ export class AuroCalendar extends RangeDatepicker {
       const maxYear = new Date(this.maxDate).getFullYear();
 
       if (maxYear > this.year) {
-        this.showNextMonthBtn = true;
+        this.showNextMonthBtn = !this.datepicker.hasAttribute('range');
       } else {
         let lastViewedMonth = this.month + this.numCalendars - 1;
 
@@ -126,16 +129,14 @@ export class AuroCalendar extends RangeDatepicker {
           lastViewedMonth -= 12;
         }
 
-        if (lastViewedMonth === maxMonth) {
-          this.showNextMonthBtn = false;
-        } else {
-          this.showNextMonthBtn = true;
-        }
+        this.showNextMonthBtn = lastViewedMonth !== maxMonth;
       }
     }
   }
 
   firstUpdated() {
+    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
+
     // if minDate is defined and it's later than the current month make the calendar view start on the minDate
     if (this.minDate) {
       const minAsDateObj = new Date(this.minDate);
