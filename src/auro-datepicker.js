@@ -3,10 +3,13 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call */
+/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions, lit/no-invalid-html */
 
 // If using litElement base class
-import { LitElement, html } from "lit";
+import { LitElement } from "lit";
+import { html } from 'lit/static-html.js';
+
+import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
@@ -16,8 +19,11 @@ import { LitElement, html } from "lit";
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
 
-import '@aurodesignsystem/auro-input';
-import '@aurodesignsystem/auro-dropdown';
+import { AuroDropdown } from '@aurodesignsystem/auro-dropdown/src/auro-dropdown.js';
+import dropdownVersion from './dropdownVersion';
+
+import { AuroInput } from '@aurodesignsystem/auro-input/src/auro-input.js';
+import inputVersion from './inputVersion';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -93,6 +99,13 @@ export class AuroDatePicker extends LitElement {
      * @private
      */
     this.dateSlotContent = [];
+
+    /**
+     * Generate unique names for dependency components.
+     */
+    const versioning = new AuroDependencyVersioning();
+    this.dropdownTag = versioning.generateTag('auro-dropdown', dropdownVersion, AuroDropdown);
+    this.inputTag = versioning.generateTag('auro-input', inputVersion, AuroInput);
   }
 
   // This function is to define props used within the scope of this component
@@ -166,7 +179,27 @@ export class AuroDatePicker extends LitElement {
       },
       monthNames: {
         type: Array
-      }
+      },
+
+      /**
+       * @private
+       */
+      dropdownElementName: { type: String },
+
+      /**
+       * @private
+       */
+      dropdownTag: { type: Object },
+
+      /**
+       * @private
+       */
+      inputElementName: { type: String },
+
+      /**
+       * @private
+       */
+      inputTag: { type: Object }
     };
   }
 
@@ -189,8 +222,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   focus() {
-    this.shadowRoot.querySelector('auro-dropdown').querySelector('auro-input').
-      focus();
+    this.inputList[0].focus();
   }
 
   /**
@@ -386,7 +418,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   configureDropdown() {
-    this.dropdown = this.shadowRoot.querySelector('auro-dropdown');
+    this.dropdown = this.shadowRoot.querySelector(this.dropdownTag._$litStatic$);
 
     this.dropdown.addEventListener('auroDropdown-triggerClick', () => {
       if (!this.isPopoverVisible) {
@@ -412,7 +444,7 @@ export class AuroDatePicker extends LitElement {
   configureInput() {
     this.triggerInput = this.dropdown.querySelector('[slot="trigger"');
 
-    this.inputList = [...this.dropdown.querySelectorAll('auro-input')];
+    this.inputList = [...this.dropdown.querySelectorAll(this.inputTag._$litStatic$)];
 
     this.handleReadOnly();
 
@@ -753,7 +785,7 @@ export class AuroDatePicker extends LitElement {
   render() {
     return html`
       <div>
-        <auro-dropdown
+        <${this.dropdownTag}
           for="dropdownMenu"
           bordered
           rounded
@@ -763,7 +795,8 @@ export class AuroDatePicker extends LitElement {
           noHideOnThisFocusLoss
           part="dropdown">
           <div slot="trigger" class="dpTriggerContent" part="trigger">
-            <auro-input
+            <${this.inputTag}
+              auro-input
               id="${this.generateRandomString(12)}"
               bordered
               class="dateFrom"
@@ -779,9 +812,10 @@ export class AuroDatePicker extends LitElement {
               .type="${this.type}"
               part="input">
               <span slot="label"><slot name="fromLabel"></slot></span>
-            </auro-input>
+            </${this.inputTag}>
             ${this.range ? html`
-              <auro-input
+              <${this.inputTag}
+                auro-input
                 id="${this.generateRandomString(12)}"
                 bordered
                 class="dateTo"
@@ -796,7 +830,7 @@ export class AuroDatePicker extends LitElement {
                 .type="${this.type}"
                 part="input">
                 <span slot="label"><slot name="toLabel"></slot></span>
-              </auro-input>
+              </${this.inputTag}>
             ` : undefined}
           </div>
           <div class="calendarWrapper" part="calendarWrapper">
@@ -824,7 +858,7 @@ export class AuroDatePicker extends LitElement {
                 </p>`
             }
           </span>
-        </auro-dropdown>
+        </${this.dropdownTag}>
       </div>
     `;
   }
