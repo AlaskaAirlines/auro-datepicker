@@ -27,7 +27,7 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
  * @event auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
-/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines */
+/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines, no-extra-parens */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendar extends RangeDatepicker {
@@ -123,7 +123,7 @@ export class AuroCalendar extends RangeDatepicker {
       if (maxYear > this.year) {
         this.showNextMonthBtn = !this.datepicker.hasAttribute('range');
       } else {
-        let lastViewedMonth = this.month + this.numCalendars - 1;
+        const lastViewedMonth = (this.month + this.numCalendars - 1) % 12;
 
         if (lastViewedMonth > 12) {
           lastViewedMonth -= 12;
