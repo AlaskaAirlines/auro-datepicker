@@ -8,7 +8,7 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
 
-auro-input {
+[auro-input] {
   &::part(iconContainer) {
     top: 0;
 
@@ -45,7 +45,7 @@ auro-input {
   display: flex;
   flex-direction: row;
 
-  auro-input {
+  [auro-input] {
     flex: 1;
 
     &:first-of-type {
