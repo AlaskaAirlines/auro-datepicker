@@ -299,6 +299,10 @@ export class AuroCalendarCell extends LitElement {
 
   firstUpdated() {
     this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
+
+    this.datepicker.addEventListener('auroDatePicker-toggled', () => {
+      this.handleSlotContent();
+    });
   }
 
   updated(properties) {
