@@ -844,12 +844,12 @@ The popover slot is intended for use with calendar dates that are `disabled` (e.
 
 #### Dynamic Slot Content
 
-This example demonstrates data driven slot content for days in the calendar.
+This example demonstrates data driven slot content for days in the calendar. In this example, the slot content is inserted into each `auro-calendar-cell` after the bib of the `auro-datepicker` is opened, simulating an API call on a dynamic data source.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/dynamicSlot.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/dynamicSlot.html -->
-  <auro-datepicker id="slotContentExample" minDate="12/10/2023" maxDate="12/13/2023">
+  <auro-datepicker id="slotContentExample" centralDate="12/13/2023" minDate="12/13/2023" maxDate="01/18/2024" range>
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -861,7 +861,7 @@ This example demonstrates data driven slot content for days in the calendar.
 <!-- The below code snippet is automatically added from ./../../apiExamples/dynamicSlot.html -->
 
 ```html
-<auro-datepicker id="slotContentExample" minDate="12/10/2023" maxDate="12/13/2023">
+<auro-datepicker id="slotContentExample" centralDate="12/13/2023" minDate="12/13/2023" maxDate="01/18/2024" range>
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
@@ -874,40 +874,114 @@ This example demonstrates data driven slot content for days in the calendar.
 export function populateSlotContentExample() {
   const populateSlotContentExample = document.querySelector('#slotContentExample');
 
-  // Array of object(s) containing key, value pairs defining what slot content to render
-  const data = [
-    {slot: 'date', month: 12, day: 10, year: 2023, content: '$89'},
-    {slot: 'date', month: 12, day: 11, year: 2023, content: '$100'},
-    {slot: 'date', month: 12, day: 12, year: 2023, content: '$2345'},
-    {slot: 'date', month: 12, day: 13, year: 2023, content: '$560'},
-    {slot: 'date', month: 12, day: 14, year: 2023, content: 'Sold'},
-    {slot: 'date', month: 12, day: 15, year: 2023, content: 'Sold'},
-    {slot: 'date', month: 12, day: 16, year: 2023, content: 'Sold'},
-    {slot: 'popover', month: 12, day: 10, year: 2023, content: 'Tickets for this date are $89'},
-    {slot: 'popover', month: 12, day: 11, year: 2023, content: 'Tickets for this date are $100'},
-    {slot: 'popover', month: 12, day: 12, year: 2023, content: 'Tickets for this date are $2345'},
-    {slot: 'popover', month: 12, day: 13, year: 2023, content: 'Tickets for this date are $560'},
-    {slot: 'popover', month: 12, day: 14, year: 2023, content: 'Tickets for this date are sold out'},
-    {slot: 'popover', month: 12, day: 15, year: 2023, content: 'Tickets for this date are sold out'},
-    {slot: 'popover', month: 12, day: 16, year: 2023, content: 'Tickets for this date are sold out'}
+  // Insert slot content when the datepicker has been opened
+  populateSlotContentExample.addEventListener('auroDatePicker-toggled', (event) => {
+    if (event.detail.expanded) {
+      // Array of object(s) containing key, value pairs defining what slot content to render
+      const data = [
+        {slot: 'date', month: 12, day: 1, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 2, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 3, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 4, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 5, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 6, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 7, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 8, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 9, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 10, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 11, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 12, year: 2023, content: 'Sold'},
+        {slot: 'date', month: 12, day: 13, year: 2023, content: '$560'},
+        {slot: 'date', month: 12, day: 14, year: 2023, content: '$89'},
+        {slot: 'date', month: 12, day: 15, year: 2023, content: '$100'},
+        {slot: 'date', month: 12, day: 16, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 17, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 18, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 19, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 20, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 21, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 22, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 23, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 24, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 25, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 26, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 27, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 28, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 29, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 30, year: 2023, content: '$2345'},
+        {slot: 'date', month: 12, day: 31, year: 2023, content: '$2345'},
+        {slot: 'date', month: 1, day: 14, year: 2024, content: '$83'},
+        {slot: 'date', month: 1, day: 15, year: 2024, content: '$203'},
+        {slot: 'date', month: 1, day: 16, year: 2024, content: '$4444'},
+        {slot: 'date', month: 1, day: 17, year: 2024, content: '$83'},
+        {slot: 'date', month: 1, day: 18, year: 2024, content: '$96'},
+        {slot: 'date', month: 1, day: 19, year: 2024, content: 'Sold'},
+        {slot: 'date', month: 1, day: 20, year: 2024, content: 'Sold'},
+        {slot: 'popover', month: 12, day: 1, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 2, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 3, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 4, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 5, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 6, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 7, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 8, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 9, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 10, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 11, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 12, year: 2023, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 12, day: 13, year: 2023, content: 'Tickets for this date are $560'},
+        {slot: 'popover', month: 12, day: 14, year: 2023, content: 'Tickets for this date are $89'},
+        {slot: 'popover', month: 12, day: 15, year: 2023, content: 'Tickets for this date are $100'},
+        {slot: 'popover', month: 12, day: 16, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 17, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 18, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 19, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 20, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 21, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 22, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 23, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 24, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 25, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 26, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 27, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 28, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 29, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 30, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 12, day: 31, year: 2023, content: 'Tickets for this date are $2345'},
+        {slot: 'popover', month: 1, day: 14, year: 2024, content: 'Tickets for this date are $83'},
+        {slot: 'popover', month: 1, day: 15, year: 2024, content: 'Tickets for this date are $203'},
+        {slot: 'popover', month: 1, day: 16, year: 2024, content: 'Tickets for this date are $4444'},
+        {slot: 'popover', month: 1, day: 17, year: 2024, content: 'Tickets for this date are $83'},
+        {slot: 'popover', month: 1, day: 18, year: 2024, content: 'Tickets for this date are $96'},
+        {slot: 'popover', month: 1, day: 19, year: 2024, content: 'Tickets for this date are sold out'},
+        {slot: 'popover', month: 1, day: 20, year: 2024, content: 'Tickets for this date are sold out'}
+      ];
 
-  ];
+      // For each item in the array, parse the keys into an HTML element and insert it into the DOM
+      data.forEach((item) => {
 
-  // For each item in the array, parse the keys into an HTML element and insert it into the DOM
-  data.forEach((item) => {
+        // Create the new element for the slot content
+        const slotElement = document.createElement('span');
 
-    // Create the new element for the slot content
-    const slotElement = document.createElement('span');
+        if (item.month.toString().length === 1) {
+          item.month = `0` + item.month;
+        }
 
-    // Create the slot name from the item's keys
-    const slotName = `${item.slot}_${item.month}_${item.day}_${item.year}`;
+        if (item.day.toString().length === 1) {
+          item.day = `0` + item.day;
+        }
 
-    // Set the slot name and content
-    slotElement.setAttribute('slot', slotName);
-    slotElement.textContent = item.content;
+        // Create the slot name from the item's keys
+        const slotName = `${item.slot}_${item.month}_${item.day}_${item.year}`;
 
-    // Append the new element to the DOM
-    populateSlotContentExample.appendChild(slotElement);
+        // Set the slot name and content
+        slotElement.setAttribute('slot', slotName);
+        slotElement.textContent = item.content;
+
+        // Append the new element to the DOM
+        populateSlotContentExample.appendChild(slotElement);
+      });
+    }
   });
 }
 ```

@@ -393,7 +393,7 @@ The popover slot is intended for use with calendar dates that are `disabled` (e.
 
 #### Dynamic Slot Content
 
-This example demonstrates data driven slot content for days in the calendar.
+This example demonstrates data driven slot content for days in the calendar. In this example, the slot content is inserted into each `auro-calendar-cell` after the bib of the `auro-datepicker` is opened, simulating an API call on a dynamic data source.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/dynamicSlot.html) -->
