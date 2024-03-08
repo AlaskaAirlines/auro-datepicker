@@ -219,10 +219,11 @@ export class AuroDatePicker extends LitElement {
 
   /**
    * Focuses the datepicker trigger input.
+   * @param {String} focusInput - Pass in 'returnInput' to focus on the return input. No parameter is needed to focus on the depart input.
    * @returns {void}
    */
-  focus() {
-    this.inputList[0].focus();
+  focus(focusInput) {
+    this.range && (focusInput === 'returnInput') ? this.inputList[1].focus() : this.inputList[0].focus();
   }
 
   /**
