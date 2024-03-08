@@ -30,6 +30,18 @@ describe('auro-datepicker', () => {
     await expect(el.shadowRoot.activeElement).to.be.equal(input);
   });
 
+  it('can programmatically apply focus to input desired input with range support', async () => {
+    const el = await fixture(html`
+      <auro-datepicker range></auro-datepicker>
+    `);
+
+    const input = getInput(el, 1);
+
+    el.focus('returnInput');
+
+    await expect(el.shadowRoot.activeElement).to.be.equal(input);
+  });
+
   it('opens the bib when clicking on the dropdown trigger', async () => {
     const el = await fixture(html`
       <auro-datepicker></auro-datepicker>
