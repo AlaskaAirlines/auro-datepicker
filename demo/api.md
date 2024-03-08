@@ -26,9 +26,9 @@
 
 ## Methods
 
-| Method  | Type                              | Description                                      |
-|---------|-----------------------------------|--------------------------------------------------|
-| [focus](#focus) | `(focusInput: HTMLElement): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: The input to focus on when range support is enabled. |
+| Method  | Type                         | Description                                      |
+|---------|------------------------------|--------------------------------------------------|
+| [focus](#focus) | `(focusInput: string): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: Pass in 'returnInput' to focus on the return input. No parameter is needed to focus on the depart input. |
 
 ## Events
 
