@@ -1003,7 +1003,7 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/alertValue.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/alertValue.html -->
   <auro-datepicker id="datePickerValueAlert">
-    <span slot="label">Choose a date</span>
+    <span slot="fromLabel">Choose a date</span>
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -1014,7 +1014,7 @@ The following example listens for the `auroDatePicker-valueSet` event. Once trig
 
 ```html
 <auro-datepicker id="datePickerValueAlert">
-  <span slot="label">Choose a date</span>
+  <span slot="fromLabel">Choose a date</span>
 </auro-datepicker>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
