@@ -37,7 +37,7 @@ describe('auro-datepicker', () => {
 
     const input = getInput(el, 1);
 
-    el.focus('returnInput');
+    el.focus('endDate');
 
     await expect(el.shadowRoot.activeElement).to.be.equal(input);
   });
