@@ -123,7 +123,7 @@ export class AuroCalendar extends RangeDatepicker {
       if (maxYear > this.year) {
         this.showNextMonthBtn = !this.datepicker.hasAttribute('range');
       } else {
-        const lastViewedMonth = (this.month + this.numCalendars - 1) % 12;
+        let lastViewedMonth = (this.month + this.numCalendars - 1) % 12;
 
         if (lastViewedMonth > 12) {
           lastViewedMonth -= 12;
