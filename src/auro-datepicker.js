@@ -3,7 +3,8 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions, lit/no-invalid-html */
+/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions,
+   lit/no-invalid-html, no-unused-expressions */
 
 // If using litElement base class
 import { LitElement } from "lit";
@@ -223,7 +224,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   focus(focusInput) {
-    this.range && (focusInput === 'returnInput') ? this.inputList[1].focus() : this.inputList[0].focus();
+    this.range && focusInput === 'returnInput' ? this.inputList[1].focus() : this.inputList[0].focus();
   }
 
   /**
