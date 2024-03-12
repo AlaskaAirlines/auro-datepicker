@@ -28,7 +28,7 @@
 
 | Method  | Type                         | Description                                      |
 |---------|------------------------------|--------------------------------------------------|
-| [focus](#focus) | `(focusInput: string): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: Pass in 'returnInput' to focus on the return input. No parameter is needed to focus on the depart input. |
+| [focus](#focus) | `(focusInput: string): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: Pass in `endDate` to focus on the return input. No parameter is needed to focus on the depart input. |
 
 ## Events
 
@@ -605,8 +605,9 @@ The focus method will apply focus state to the datepicker's input field.
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/focus.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/focus.html -->
   <auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
+  <auro-button id="focusExampleBtnTwo">Apply focus to the second input in datepicker</auro-button>
   <br /><br />
-  <auro-datepicker id="focusExample">
+  <auro-datepicker id="focusExampleElem" range>
     <span slot="label">Choose a date</span>
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -618,8 +619,9 @@ The focus method will apply focus state to the datepicker's input field.
 
 ```html
 <auro-button id="focusExampleBtn">Apply focus to datepicker</auro-button>
+<auro-button id="focusExampleBtnTwo">Apply focus to the second input in datepicker</auro-button>
 <br /><br />
-<auro-datepicker id="focusExample">
+<auro-datepicker id="focusExampleElem" range>
   <span slot="label">Choose a date</span>
 </auro-datepicker>
 ```
@@ -629,11 +631,16 @@ The focus method will apply focus state to the datepicker's input field.
 
 ```js
 export function focusExample() {
-  const focusExample = document.querySelector('#focusExample');
+  const focusExampleElem = document.querySelector('#focusExampleElem');
   const focusExampleBtn = document.querySelector('#focusExampleBtn');
+  const focusExampleBtnTwo = document.querySelector('#focusExampleBtnTwo');
 
   focusExampleBtn.addEventListener('click', () => {
-    focusExample.focus();
+    focusExampleElem.focus();
+  });
+
+  focusExampleBtnTwo.addEventListener('click', () => {
+    focusExampleElem.focus('endDate');
   });
 }
 ```

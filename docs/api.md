@@ -25,7 +25,7 @@
 
 | Method  | Type                         | Description                                      |
 |---------|------------------------------|--------------------------------------------------|
-| `focus` | `(focusInput: string): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: Pass in 'returnInput' to focus on the return input. No parameter is needed to focus on the depart input. |
+| `focus` | `(focusInput: string): void` | Focuses the datepicker trigger input.<br /><br />**focusInput**: Pass in `endDate` to focus on the return input. No parameter is needed to focus on the depart input. |
 
 ## Events
 

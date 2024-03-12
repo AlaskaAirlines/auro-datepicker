@@ -1,8 +1,13 @@
 export function focusExample() {
-  const focusExample = document.querySelector('#focusExample');
+  const focusExampleElem = document.querySelector('#focusExampleElem');
   const focusExampleBtn = document.querySelector('#focusExampleBtn');
+  const focusExampleBtnTwo = document.querySelector('#focusExampleBtnTwo');
 
   focusExampleBtn.addEventListener('click', () => {
-    focusExample.focus();
+    focusExampleElem.focus();
+  });
+
+  focusExampleBtnTwo.addEventListener('click', () => {
+    focusExampleElem.focus('endDate');
   });
 }
