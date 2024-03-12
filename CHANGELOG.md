@@ -1,5 +1,31 @@
 # Semantic Release Automated Changelog
 
+# [2.4.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.3.0...v2.4.0) (2024-03-12)
+
+
+### Bug Fixes
+
+* **linters:** fix linting errors ([545875e](https://github.com/AlaskaAirlines/auro-datepicker/commit/545875e21638156e5c4fab3ae77b9face9c4e697))
+* **popover:** update overflow boundary for popover [#197](https://github.com/AlaskaAirlines/auro-datepicker/issues/197) ([3bc0616](https://github.com/AlaskaAirlines/auro-datepicker/commit/3bc061622634cc3cc49bcc17f73339d97a5148fc))
+
+
+### Features
+
+* **focus:** update input focus handling method [#202](https://github.com/AlaskaAirlines/auro-datepicker/issues/202) ([f66159e](https://github.com/AlaskaAirlines/auro-datepicker/commit/f66159eeaadda2d2e41f7e315ca1f0565a0034e9))
+* **versioning:** implement component dependency versioning [#163](https://github.com/AlaskaAirlines/auro-datepicker/issues/163) [#166](https://github.com/AlaskaAirlines/auro-datepicker/issues/166) ([4fc7bd0](https://github.com/AlaskaAirlines/auro-datepicker/commit/4fc7bd0695722bcb703f29f18f71d9bdca912403))
+
+
+### Performance Improvements
+
+* **deps:** update dependencies ([f60a640](https://github.com/AlaskaAirlines/auro-datepicker/commit/f60a64099c1448dc9f6945c091c30f8596757a87))
+* **deps:** update dependencies ([4e020ad](https://github.com/AlaskaAirlines/auro-datepicker/commit/4e020ad309e073b9553f2f63ebd330d7ecd701dd))
+* **deps:** update dependency operator for auro components ([6b86fca](https://github.com/AlaskaAirlines/auro-datepicker/commit/6b86fcab8aea63ed6f9a4e6f1188aacb1e599eef))
+* **icon:** update render icon handling for year crossover ([190e0be](https://github.com/AlaskaAirlines/auro-datepicker/commit/190e0beff89f2d081e9e526aa640ee23f40f5a26))
+* **icon:** update render icon handling for year crossover ([d948b1c](https://github.com/AlaskaAirlines/auro-datepicker/commit/d948b1cce66cd95341b3fbd4530d2cb1f2e5c4e8))
+* **popover:** update popover dependency ([0238382](https://github.com/AlaskaAirlines/auro-datepicker/commit/0238382296e0536aa68cdea341a24ef1175e3e8c))
+* **slot:** update handling of slot content insertion [#198](https://github.com/AlaskaAirlines/auro-datepicker/issues/198) ([cc73303](https://github.com/AlaskaAirlines/auro-datepicker/commit/cc733034a8ebdb1fecf1c16f921a2c14e7abd271))
+* **tests:** fix broken tests causing them to time out ([dc74d00](https://github.com/AlaskaAirlines/auro-datepicker/commit/dc74d00620947441d9621cc268678345fb63fd78))
+
 # [2.3.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.2.7...v2.3.0) (2024-02-27)
 
 
