@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.4.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.4.0...v2.4.1) (2024-03-13)
+
+
+### Performance Improvements
+
+* **docs:** make JS examples execute in the new component standard [#207](https://github.com/AlaskaAirlines/auro-datepicker/issues/207) ([6230ae0](https://github.com/AlaskaAirlines/auro-datepicker/commit/6230ae027cd008f019e2750bb4ae400064fd8f6e))
+
 # [2.4.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.3.0...v2.4.0) (2024-03-12)
 
 
