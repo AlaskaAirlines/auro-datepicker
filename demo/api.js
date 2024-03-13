@@ -7,7 +7,7 @@ import { updateMaxDateExample } from './../apiExamples/updateMaxDate';
 import { updateMinDateExample } from './../apiExamples/updateMinDate';
 import { validityExample } from './../apiExamples/validity';
 
-export function initDatepickerApiExamples(initCount) {
+export function initExamples(initCount) {
   initCount = initCount || 0;
 
   try {
@@ -19,11 +19,11 @@ export function initDatepickerApiExamples(initCount) {
     updateMaxDateExample();
     updateMinDateExample();
     validityExample();
-  } catch {
+  } catch (error) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called
       setTimeout(() => {
-        initDatepickerApiExamples(initCount + 1);
+        initExamples(initCount + 1);
       }, 100);
     }
   }

@@ -1,6 +1,6 @@
 // import { example } from '../apiExamples/example';
 
-export function initDatepickerIndexExamples(initCount) {
+export function initExamples(initCount) {
   initCount = initCount || 0;
 
   try {
@@ -9,7 +9,7 @@ export function initDatepickerIndexExamples(initCount) {
     if (initCount <= 20) {
       // setTimeout handles issue where content is sometimes loaded after the functions get called
       setTimeout(() => {
-        initDatepickerIndexExamples(initCount + 1);
+        initExamples(initCount + 1);
       }, 100);
     }
   }
