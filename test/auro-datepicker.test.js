@@ -87,7 +87,6 @@ describe('auro-datepicker', () => {
 
     await expect(el.getAttribute('validity')).to.be.equal('valueMissing');
 
-
     input.value = '03/03/2023';
 
     el.focus();
