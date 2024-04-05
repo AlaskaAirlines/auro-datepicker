@@ -12,6 +12,13 @@ describe('auro-datepicker', () => {
     });
   });
 
+  it('web component is successfully created in the document', async () => {
+    // This test fails when attributes are put onto the component before it is attached to the DOM
+    const el = document.createElement('auro-datepicker');
+
+    await expect(el.localName).to.equal('auro-datepicker');
+  });
+
   it('custom element is defined', async () => {
     const el = await !!customElements.get("auro-datepicker");
 
