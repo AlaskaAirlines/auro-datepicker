@@ -61,7 +61,7 @@ import inputVersion from './inputVersion';
  * @csspart helpTextSpan - Use for customizing the style of the datepicker help text span.
  * @csspart helpText - Use for customizing the style of the datepicker help text.
  * @event auroDatePicker-ready - Notifies that the component has finished initializing.
- * @event auroDatePicker-validated - Notifies that the component value(s) have been validated.
+ * @event auroDatepicker-validated - Notifies that the component value(s) have been validated.
  * @event auroDatePicker-valueSet - Notifies that the component has a new value set.
  * @event auroDatePicker-toggled - Notifies that the calendar dropdown has been opened/closed.
  * @event auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
