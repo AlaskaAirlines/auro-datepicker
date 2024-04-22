@@ -11,6 +11,7 @@ import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
+import { AuroDatepickerUtilities } from './utilities';
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
@@ -35,7 +36,10 @@ import inputVersion from './inputVersion';
  * @attr {String} setCustomValidity - Sets a custom help text message to display for all validityStates.
  * @attr {String} setCustomValidityRangeUnderflow - Custom help text message to display when validity = `rangeUnderflow`.
  * @attr {String} setCustomValidityRangeOverflow - Custom help text message to display when validity = `rangeOverflow`.
- * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`;
+ * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`.
+ * @attr {String} calendarStartDate - The first date that may be displayed in the calendar.
+ * @attr {String} calendarEndDate - The last date that may be displayed in the calendar
+ * @attr {String} calendarFocusDate - The date that may be visually rendered to the user in the calendar.
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} noValidate - If set, disables auto-validation on blur.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
@@ -69,6 +73,11 @@ export class AuroDatePicker extends LitElement {
   constructor() {
     super();
 
+    /**
+     * @private
+     */
+    this.util = new AuroDatepickerUtilities();
+
     this.disabled = false;
     this.required = false;
     this.range = false;
@@ -76,6 +85,9 @@ export class AuroDatePicker extends LitElement {
     this.validity = undefined;
     this.value = undefined;
     this.valueEnd = undefined;
+    this.calendarStartDate = undefined;
+    this.calendarEndDate = undefined;
+    this.calendarFocusDate = this.value;
     this.monthNames = [
       'January',
       'February',
@@ -90,6 +102,11 @@ export class AuroDatePicker extends LitElement {
       'November',
       'December'
     ];
+
+    /**
+     * @private
+     */
+    this.centralDate = new Date();
 
     /**
      * @private
@@ -167,8 +184,7 @@ export class AuroDatePicker extends LitElement {
         reflect: true
       },
       centralDate: {
-        type: String,
-        reflect: true
+        type: String
       },
       maxDate: {
         type: String,
@@ -180,6 +196,18 @@ export class AuroDatePicker extends LitElement {
       },
       monthNames: {
         type: Array
+      },
+      calendarStartDate: {
+        type: String,
+        reflect: true
+      },
+      calendarEndDate: {
+        type: String,
+        reflect: true
+      },
+      calendarFocusDate: {
+        type: String,
+        reflect: true
       },
 
       /**
@@ -206,6 +234,17 @@ export class AuroDatePicker extends LitElement {
 
   static get styles() {
     return [styleCss];
+  }
+
+  /**
+   * Force the calendar view to the focus date when it changes.
+   * @private
+   * @returns {void}
+   */
+  handleFocusDateChange() {
+    if (this.calendarFocusDate) {
+      this.centralDate = this.calendarFocusDate;
+    }
   }
 
   /**
@@ -377,8 +416,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   handleCentralDateChange() {
-    this.calendar.month = Number(this.centralDate.charAt(0) === '0' ? this.centralDate.charAt(1) : this.centralDate.substring(0, 2));
-    this.calendar.year = Number(this.centralDate.substring(6));
+    this.calendar.setAttribute('centralDate', this.centralDate);
   }
 
   /**
@@ -569,7 +607,6 @@ export class AuroDatePicker extends LitElement {
 
     if (this.hasAttribute('value') && this.getAttribute('value').length > 0) {
       this.calendar.dateFrom = new Date(this.value).getTime();
-      this.centralDate = this.value;
     }
 
     if (this.hasAttribute('valueEnd') && this.getAttribute('valueEnd').length > 0) {
@@ -611,6 +648,20 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * Keep the datepicker in sync with the calendar's central date.
+   * @private
+   * @param {Number} event - Event received from calendar with the new central date.
+   * @returns {void}
+   */
+  handleCalendarCentralDateChange(event) {
+    const match = this.util.datesMatch(event.detail.date, this.centralDate);
+
+    if (!match) {
+      this.centralDate = event.detail.date;
+    }
+  }
+
+  /**
    * Sets the datepicker's values to the auro-calendar-cell that was clicked.
    * @private
    * @param {Number} time - Unix timestamp to be converted to a date.
@@ -638,9 +689,27 @@ export class AuroDatePicker extends LitElement {
   }
 
   updated(changedProperties) {
+    if (changedProperties.has('calendarFocusDate')) {
+      this.handleFocusDateChange();
+    }
+
+    if (changedProperties.has('calendarStartDate')) {
+      this.calendar.setAttribute('calendarStartDate', this.getAttribute('calendarStartDate'));
+    }
+
+    if (changedProperties.has('calendarEndDate')) {
+      this.calendar.setAttribute('calendarEndDate', this.getAttribute('calendarEndDate'));
+    }
+
+    if (changedProperties.has('minDate')) {
+      if (!this.calendarFocusDate && !this.value) {
+        this.calendarFocusDate = this.minDate;
+      }
+    }
+
     if (changedProperties.has('value')) {
-      if (this.value && this.validDateStr(this.value) && !this.cellClickActive) {
-        this.centralDate = this.value;
+      if (!this.calendarFocusDate) {
+        this.calendarFocusDate = this.value;
       }
 
       if (this.cellClickActive) {
@@ -843,6 +912,7 @@ export class AuroDatePicker extends LitElement {
               .maxDate="${this.maxDate}"
               .minDate="${this.minDate}"
               part="calendar"
+              @auroCalendar-centralDateChanged="${this.handleCalendarCentralDateChange}"
             >
               <slot slot="mobileDateLabel" name="mobileDateLabel"></slot>
               <span slot="mobileDateFromStr">${this.value ? this.getMobileDateStr(this.value) : html`<span class="placeholderDate">MM/DD/YYYY</span>`}</span>

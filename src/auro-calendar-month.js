@@ -86,12 +86,6 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     `;
   }
 
-  updated(changedProperties) {
-    if (changedProperties.has('year') || changedProperties.has('month')) {
-      this.yearAndMonthChanged(this.year, this.month);
-    }
-  }
-
   /* Disabling linter for render as this code is directly from range-datepicker-calendar */
   /* eslint-disable */
   render() {

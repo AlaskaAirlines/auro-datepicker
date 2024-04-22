@@ -290,6 +290,8 @@ describe('auro-datepicker', () => {
       <auro-datepicker></auro-datepicker>
     `);
 
+    await elementUpdated(el);
+
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
 
@@ -312,6 +314,8 @@ describe('auro-datepicker', () => {
     const el = await fixture(html`
     <auro-datepicker range></auro-datepicker>
   `);
+
+  await elementUpdated(el);
 
   const calendar = el.shadowRoot.querySelector('auro-calendar');
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
@@ -346,7 +350,7 @@ describe('auro-datepicker', () => {
     const fullDate = `${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + (date.getDate())).slice(-2)}/${date.getFullYear()}`;
 
     const el = await fixture(html`
-      <auro-datepicker minDate="${fullDate}"></auro-datepicker>
+      <auro-datepicker calendarStartDate="${fullDate}"></auro-datepicker>
     `);
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
@@ -418,22 +422,22 @@ describe('auro-datepicker', () => {
     await expect(el.getAttribute('validity')).to.be.equal('rangeOverflow');
   });
 
-  it('changing centralDate changes month visibility', async () => {
+  it('changing calendarFocusDate changes month visibility', async () => {
     const el = await fixture(html`
-      <auro-datepicker centralDate="03/23/2023"></auro-datepicker>
+      <auro-datepicker calendarFocusDate="03/23/2023"></auro-datepicker>
     `);
-
-    const calendar = el.shadowRoot.querySelector('auro-calendar');
-
-    await expect(calendar.month).to.be.equal(3);
-    await expect(calendar.year).to.be.equal(2023);
-
-    el.centralDate = '04/25/2024';
 
     await elementUpdated(el);
 
-    await expect(calendar.month).to.be.equal(4);
-    await expect(calendar.year).to.be.equal(2024);
+    const calendar = el.shadowRoot.querySelector('auro-calendar');
+
+    await expect(calendar.centralDate).to.be.equal('03/23/2023');
+
+    el.calendarFocusDate = '04/25/2024';
+
+    await elementUpdated(el);
+
+    await expect(calendar.centralDate).to.be.equal('04/25/2024');
   });
 
   it('renders a single calendar by default', async () => {
@@ -494,9 +498,9 @@ describe('auro-datepicker', () => {
     expect(input2.value).to.equal('');
   });
 
-  it('render correct number of calendars with minDate and maxDate', async () => {
+  it('render correct number of calendars with calendarStartDate and calendarEndDate', async () => {
     const el = await fixture(html`
-      <auro-datepicker range minDate="03/04/2023" maxDate="05/05/2023"></auro-datepicker>
+      <auro-datepicker range calendarStartDate="03/04/2023" calendarEndDate="05/05/2023"></auro-datepicker>
     `);
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
@@ -514,19 +518,19 @@ describe('auro-datepicker', () => {
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const prevMonthBth = calendar.shadowRoot.querySelector('.prevMonth');
 
-    await expect(calendar.month).to.equal(2);
+    await expect(calendar.centralDate).to.equal('02/01/2023');
 
     prevMonthBth.click();
 
     await elementUpdated(el);
 
-    await expect(calendar.month).to.equal(1);
+    await expect(calendar.centralDate).to.equal('Sun Jan 01 2023 00:00:00 GMT-0800 (Pacific Standard Time)');
 
     prevMonthBth.click();
 
     await elementUpdated(el);
 
-    await expect(calendar.month).to.equal(12);
+    await expect(calendar.centralDate).to.equal('Thu Dec 01 2022 00:00:00 GMT-0800 (Pacific Standard Time)');
   });
 
   it('handleNextMonth changes current calendar month', async () => {
@@ -539,19 +543,17 @@ describe('auro-datepicker', () => {
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const nextMonthBth = calendar.shadowRoot.querySelector('.nextMonth');
 
-    await expect(calendar.month).to.equal(11);
+    await expect(calendar.centralDate).to.equal('11/01/2023');
 
     nextMonthBth.click();
 
     await elementUpdated(el);
-
-    await expect(calendar.month).to.equal(12);
+    await expect(calendar.centralDate).to.equal('Fri Dec 01 2023 00:00:00 GMT-0800 (Pacific Standard Time)');
 
     nextMonthBth.click();
 
     await elementUpdated(el);
-
-    await expect(calendar.month).to.equal(1);
+    await expect(calendar.centralDate).to.equal('Mon Jan 01 2024 00:00:00 GMT-0800 (Pacific Standard Time)');
   });
 
   it('shows dropdown when user is typing in input', async () => {
@@ -647,6 +649,8 @@ describe('auro-datepicker', () => {
     const el = await fixture(html`
       <auro-datepicker></auro-datepicker>
     `);
+
+    await elementUpdated(el);
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');

@@ -59,6 +59,7 @@
   display: none;
   width: 100%;
   height: var(--mobile-header-height);
+  z-index: +1;
 
   align-items: center;
   flex-direction: row;
