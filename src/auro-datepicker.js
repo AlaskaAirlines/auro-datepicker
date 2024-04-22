@@ -119,6 +119,11 @@ export class AuroDatePicker extends LitElement {
     this.dateSlotContent = [];
 
     /**
+     * @private
+     */
+    this.forceScrollOnNextMobileCalendarRender = false;
+
+    /**
      * Generate unique names for dependency components.
      */
     const versioning = new AuroDependencyVersioning();
@@ -244,6 +249,8 @@ export class AuroDatePicker extends LitElement {
   handleFocusDateChange() {
     if (this.calendarFocusDate) {
       this.centralDate = this.calendarFocusDate;
+
+      this.forceScrollOnNextMobileCalendarRender = true;
     }
   }
 
@@ -469,6 +476,13 @@ export class AuroDatePicker extends LitElement {
     this.dropdown.addEventListener('auroDropdown-toggled', () => {
       this.setAttribute('aria-expanded', this.dropdown.isPopoverVisible);
       this.notifyDatepickerToggled();
+
+      if (this.dropdown.getAttribute('data-show')) {
+        if (this.forceScrollOnNextMobileCalendarRender) {
+          this.calendar.scrollMonthIntoView(this.calendarFocusDate);
+          this.forceScrollOnNextMobileCalendarRender = false;
+        }
+      }
     });
 
     if (!this.dropdown.hasAttribute('aria-expanded')) {
