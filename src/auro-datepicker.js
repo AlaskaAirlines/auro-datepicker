@@ -106,7 +106,7 @@ export class AuroDatePicker extends LitElement {
     /**
      * @private
      */
-    this.centralDate = new Date();
+    this.centralDate = this.getAttribute('calendarStartDate') || new Date();
 
     /**
      * @private
