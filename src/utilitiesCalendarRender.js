@@ -119,9 +119,10 @@ export class UtilitiesCalendarRender {
   renderCalendar(elem, month, year) {
     return html`
       <auro-calendar-month
+        id="${`month-${month}-${year}`}"
         .disabledDays="${elem.disabledDays}"
-        min="${elem.min}"
-        max="${elem.max}"
+        .min="${elem.min}"
+        .max="${elem.max}"
         ?noRange="${elem.noRange}"
         .hoveredDate="${elem.hoveredDate}"
         .dateTo="${elem.dateTo}"

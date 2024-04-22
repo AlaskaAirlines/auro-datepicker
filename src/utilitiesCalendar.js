@@ -5,6 +5,22 @@ export class CalendarUtilities {
     this.util = new AuroDatepickerUtilities();
   }
 
+
+  /**
+   * Scroll the calendar month list to a given date.
+   * @param {Object} elem - The calendar element.
+   * @param {String} date - The date to scroll into view.
+   * @returns {void}
+   */
+  scrollMonthIntoView(elem, date) {
+    const month = new Date(date).getMonth() + 1;
+    const year = new Date(date).getFullYear();
+    const selector = `#month-${month}-${year}`;
+    const monthElem = elem.shadowRoot.querySelector(selector);
+
+    monthElem.scrollIntoView();
+  }
+
   /**
    * Sends an event requesting the dropdown bib be closed.
    * @private

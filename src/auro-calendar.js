@@ -203,6 +203,15 @@ export class AuroCalendar extends RangeDatepicker {
     return renderedHtml;
   }
 
+  /**
+   * Request the calendar be scrolled to a given date.
+   * @param {String} date - The date to scroll into view.
+   * @returns {void}
+   */
+  scrollMonthIntoView(date) {
+    this.utilCal.scrollMonthIntoView(this, date);
+  }
+
   firstUpdated() {
     this.addEventListener('date-from-changed', () => {
       this.dispatchEvent(new CustomEvent('auroCalendar-dateSelected', {
