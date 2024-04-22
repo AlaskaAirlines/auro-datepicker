@@ -56,10 +56,6 @@
 }
 
 .mobileHeader {
-  position: absolute;
-  top: 0;
-  left: 0;
-
   display: none;
   width: 100%;
   height: var(--mobile-header-height);
@@ -122,9 +118,6 @@
 }
 
 .mobileFooter {
-  position: fixed;
-  bottom: 0;
-
   display: none;
   width: 100%;
 
@@ -168,16 +161,21 @@
     display: flex;
   }
 
-  .calendars {
-    position: relative;
-    top: var(--mobile-header-height);
+  .calendarWrapper {
+    display: flex;
+    height: 100%;
 
+    flex-direction: column;
+    overflow: auto hidden;
+  }
+
+  .calendars {
     display: flex;
     flex-direction: column;
+    flex: 1;
 
     align-items: center;
     width: 100%;
-    height: calc(100vh - var(--mobile-header-height));
 
     overflow-y: scroll;
     overscroll-behavior: contain;
