@@ -59,7 +59,6 @@ export class AuroCalendar extends RangeDatepicker {
     this.utilCalRender = new UtilitiesCalendarRender();
 
     this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
-
     this.calendarStartDate = undefined;
     this.calendarEndDate = undefined;
     this.centralDate = undefined;
@@ -185,19 +184,37 @@ export class AuroCalendar extends RangeDatepicker {
       this.firstRenderedMonth = this.firstMonthRenderable;
     }
 
-    // Loop through the number of calendars to render and add the HTML
-    for (let cal = 0; cal < this.numCalendars; cal += 1) {
-      const date = this.firstRenderedMonth;
-      const newMonthDate = new Date(date.setMonth(date.getMonth() + 1));
+    // Add the first calendar to the HTML
+    const firstMonth = this.firstRenderedMonth.getMonth() + 1;
+    const firstYear = this.firstRenderedMonth.getFullYear();
 
-      const year = newMonthDate.getFullYear();
-      let month = newMonthDate.getMonth();
+    renderedHtml = html`${renderedHtml}${this.utilCalRender.renderCalendar(this, firstMonth, firstYear)}`;
 
-      if (month === 0) {
-        month = 12;
+    // Loop through the number of remaining calendars to render and add the HTML
+    let newMonthDate = undefined;
+
+    for (let cal = 0; cal < this.numCalendars - 1; cal += 1) {
+
+      const date = newMonthDate || this.firstRenderedMonth;
+
+      const oldMonth = date.getMonth() + 1;
+      const oldYear = date.getFullYear();
+
+      let newMonth = undefined;
+      let newYear = undefined;
+
+      if (oldMonth === 12) {
+        newMonth = 1;
+        newYear = oldYear + 1;
+      } else {
+        newMonth = oldMonth + 1;
+        newYear = oldYear;
       }
 
-      renderedHtml = html`${renderedHtml}${this.utilCalRender.renderCalendar(this, month, year)}`;
+      const newMonthDateStr = `${newMonth}/1/${newYear}`;
+      newMonthDate = new Date(newMonthDateStr);
+
+      renderedHtml = html`${renderedHtml}${this.utilCalRender.renderCalendar(this, newMonth, newYear)}`;
     }
 
     return renderedHtml;

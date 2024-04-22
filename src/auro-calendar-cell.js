@@ -300,9 +300,11 @@ export class AuroCalendarCell extends LitElement {
   firstUpdated() {
     this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
 
-    this.datepicker.addEventListener('auroDatePicker-toggled', () => {
-      this.handleSlotContent();
-    });
+    if (this.datepicker) {
+      this.datepicker.addEventListener('auroDatePicker-toggled', () => {
+        this.handleSlotContent();
+      });
+    }
 
     this.calendarMonth = this.runtimeUtils.closestElement('auro-calendar-month', this);
     this.auroPopover = this.shadowRoot.querySelector('auro-popover');
