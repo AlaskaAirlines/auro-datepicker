@@ -1,11 +1,11 @@
 name: General support
 description: Suggestions that are not related to bugs or new features
-title: 'wc-generator: [issue]'
+title: 'auro-datepicker: [issue]'
 labels:
   - 'Type: Question'
   - 'Type: Feature'
   - not-reviewed
-  - wc-generator
+  - 'auro-datepicker'
 body:
   - type: textarea
     id: request

@@ -1,10 +1,10 @@
 name: Feature request
 description: Suggest an idea for this project
-title: 'wc-generator: [feature summary]'
+title: 'auro-datepicker: [feature summary]'
 labels:
   - 'Type: Feature'
   - not-reviewed
-  - wc-generator
+  - 'auro-datepicker'
 body:
   - type: textarea
     id: request
