@@ -8,6 +8,10 @@ import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
+import { AuroDatepickerUtilities } from './utilities';
+import { CalendarUtilities } from './utilitiesCalendar';
+import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * @prop {Object} firstDayOfWeek - Weekday that will be displayed in first column of month grid.
@@ -34,22 +38,61 @@ export class AuroCalendar extends RangeDatepicker {
   constructor() {
     super();
 
-    this.numCalendars = 1;
+    /**
+     * @private
+     */
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
+
+    /**
+     * @private
+     */
+    this.util = new AuroDatepickerUtilities();
+
+    /**
+     * @private
+     */
+    this.utilCal = new CalendarUtilities();
+
+    /**
+     * @private
+     */
+    this.utilCalRender = new UtilitiesCalendarRender();
+
+    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
+
+    this.calendarStartDate = undefined;
+    this.calendarEndDate = undefined;
+    this.centralDate = undefined;
     this.showPrevMonthBtn = true;
     this.showNextMonthBtn = true;
-    this.runtimeUtils = new AuroLibraryRuntimeUtils();
+
+    /**
+     * @private
+     */
+    this.firstMonthRenderable = undefined;
+
+    /**
+     * @private
+     */
+    this.calendarRangeMonths = null;
+
+    /**
+     * @private
+     */
+    this.numCalendars = undefined;
+
+    /**
+     * @private
+     */
+    this.mobileBreakpoint = 660;
   }
 
   static get styles() {
-    return [
-      // ...super.styles,
-      styleCss
-    ];
+    return [styleCss];
   }
 
   static get properties() {
     return {
-      // ...super.properties,
       numCalendars: {
         type: Number
       },
@@ -66,103 +109,101 @@ export class AuroCalendar extends RangeDatepicker {
       minDate: {
         type: String,
         reflect: true
-      }
+      },
+      calendarStartMonth: {
+        type: String,
+        reflect: true
+      },
+      calendarEndMonth: {
+        type: String,
+        reflect: true
+      },
+      centralDate: {
+        type: String,
+        reflect: true
+      },
     };
   }
 
-  requestDismiss() {
-    this.dispatchEvent(new CustomEvent('auroCalendar-dismissRequest', {
-      bubbles: true,
-      cancelable: false,
-      composed: true,
-    }));
-  }
-
   /**
-   * Marks the component as ready and sends event.
+   * Updates the month and year when the user navigates to the previous calendar month.
    * @private
    * @returns {void}
    */
-  notifyReady() {
-    this.ready = true;
-
-    this.dispatchEvent(new CustomEvent('auroCalendar-ready', {
-      bubbles: true,
-      cancelable: false,
-      composed: true,
-    }));
+  handlePrevMonth() {
+    this.utilCal.handleMonthChange(this, 'prev');
   }
 
   /**
-   * Handles the visibility of the previous and next month buttons.
+   * Updates the month and year when the user navigates to the next calendar month.
    * @private
    * @returns {void}
    */
-  assessNavigationButtonVisibility() {
-    // handle earliest month
-    if (this.minDate) {
-      const firstMonthYear = new Date(`${this.month}/01/${this.year}`);
-      const minDateMonth = new Date(this.minDate).getMonth() + 1;
-      const minDateYear = new Date(this.minDate).getFullYear();
-      const minDateMonthYear = new Date(`${minDateMonth}/01/${minDateYear}`);
+  handleNextMonth() {
+    this.utilCal.handleMonthChange(this, 'next');
+  }
 
-      if (firstMonthYear <= minDateMonthYear) {
-        this.showPrevMonthBtn = false;
-      } else {
-        this.showPrevMonthBtn = true;
-      }
+  /**
+   * Renders all of the auro-calendar-months HTML.
+   * @private
+   * @returns {Object} Returns the auro-calendar-months HTML.
+   */
+  renderAllCalendars() {
+    this.utilCalRender.setFirstRenderableMonthDate(this);
 
-      this.requestUpdate();
-    }
+    const mobileLayout = window.innerWidth < this.mobileBreakpoint;
+    let renderedHtml = undefined;
 
-    // handle latest month
-    if (this.maxDate) {
-      const maxMonth = new Date(this.maxDate).getMonth() + 1;
-      const maxYear = new Date(this.maxDate).getFullYear();
+    // Determine which month to render first
+    let dateMatches = undefined;
 
-      if (maxYear > this.year) {
-        this.showNextMonthBtn = !this.datepicker.hasAttribute('range');
-      } else {
-        let lastViewedMonth = (this.month + this.numCalendars - 1) % 12;
+    if (!mobileLayout && this.centralDate) {
+      // On Desktop start the calendar at the central date if it exists, then minDate and finally the current date.
+      if (this.centralDate) {
+        dateMatches = this.util.datesMatch(this.firstRenderedMonth, this.util.convertDateToFirstOfMonth(this.centralDate));
 
-        if (lastViewedMonth > 12) {
-          lastViewedMonth -= 12;
+        if (!dateMatches) {
+          this.firstRenderedMonth = this.util.convertDateToFirstOfMonth(this.centralDate);
         }
+      } else if (this.minDate) {
+        dateMatches = this.util.datesMatch(this.firstRenderedMonth, this.util.convertDateToFirstOfMonth(this.minDate));
 
-        this.showNextMonthBtn = lastViewedMonth !== maxMonth;
+        if (!dateMatches) {
+          this.firstRenderedMonth = this.util.convertDateToFirstOfMonth(this.minDate);
+        }
+      } else {
+        const now = new Date();
+
+        dateMatches = this.util.datesMatch(this.firstRenderedMonth, this.util.convertDateToFirstOfMonth(now));
+
+        if (!dateMatches) {
+          this.firstRenderedMonth = this.util.convertDateToFirstOfMonth(now);
+        }
       }
+    } else {
+      // On mobile start the calendar at the previously determined first renderable month.
+      this.firstRenderedMonth = this.firstMonthRenderable;
     }
+
+    // Loop through the number of calendars to render and add the HTML
+    for (let cal = 0; cal < this.numCalendars; cal += 1) {
+      const date = this.firstRenderedMonth;
+      const newMonthDate = new Date(date.setMonth(date.getMonth() + 1));
+
+      const year = newMonthDate.getFullYear();
+      let month = newMonthDate.getMonth();
+
+      if (month === 0) {
+        month = 12;
+      }
+
+      renderedHtml = html`${renderedHtml}${this.utilCalRender.renderCalendar(this, month, year)}`;
+    }
+
+    return renderedHtml;
   }
 
   firstUpdated() {
-    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
-
-    // if minDate is defined and it's later than the current month make the calendar view start on the minDate
-    if (this.minDate) {
-      const minAsDateObj = new Date(this.minDate);
-      const minDateMonth = minAsDateObj.getMonth() + 1;
-      const minDateYear = minAsDateObj.getFullYear();
-      const firstOfMonthForMinDate = new Date(`${minDateMonth}/01/${minDateYear}`);
-
-      if (firstOfMonthForMinDate > new Date(`${this.month}/01/${this.year}`)) {
-        this.month = minDateMonth;
-        this.year = minDateYear;
-      }
-    }
-
-    // if maxDate is defined and its earlier than the current month move the view back to the maxDate month
-    if (this.maxDate) {
-      const maxAsDateObj = new Date(this.maxDate);
-      const maxDateMonth = maxAsDateObj.getMonth() + 1;
-      const maxDateYear = maxAsDateObj.getFullYear();
-      const firstOfMonthForMaxDate = new Date(`${maxDateMonth}/01/${maxDateYear}`);
-
-      if (firstOfMonthForMaxDate < new Date(`${this.month}/01/${this.year}`)) {
-        this.month = maxDateMonth;
-        this.year = maxDateYear;
-      }
-    }
-
     this.addEventListener('date-from-changed', () => {
       this.dispatchEvent(new CustomEvent('auroCalendar-dateSelected', {
         bubbles: true,
@@ -182,244 +223,59 @@ export class AuroCalendar extends RangeDatepicker {
       }));
     });
 
-    this.notifyReady();
-
-    this.determineNumCalendars();
+    this.utilCalRender.determineNumCalendarsToRender(this);
 
     window.addEventListener('resize', () => {
-      this.determineNumCalendars();
+      this.utilCalRender.determineNumCalendarsToRender(this);
     });
   }
 
   updated(changedProperties) {
-    if (
-      changedProperties.has("minDate") ||
-      changedProperties.has("maxDate") ||
-      changedProperties.has("month") ||
-      changedProperties.has("year")
-    ) {
-      if (changedProperties.has("month") || changedProperties.has("year")) {
-        this.monthChanged(this.month, this.year);
-      }
-      this.assessNavigationButtonVisibility();
-    }
     if (changedProperties.has('noRange')) {
       this.noRangeChanged(this.noRange, changedProperties.get('noRange'));
     }
+
     if (changedProperties.has('narrow')) {
       this.dispatchEvent(new CustomEvent('narrow-changedProperties', { detail: { value: this.narrow } }));
     }
+
     if (changedProperties.has('locale')) {
       this.localeChanged();
     }
-  }
 
-  /**
-   * Handles decrementing and incrementing the rendered calendar month and year.
-   * @private
-   * @param {Number} month - Month the calendar displays.
-   * @param {Number} year - Year the calendar displays.
-   * @returns {void}
-   */
-  monthChanged(month, year) {
-    if (year && month) {
-      this.monthPlus = (month % 12) + 1; // eslint-disable-line no-extra-parens
-      if (this.monthPlus === 1) {
-        this.yearPlus = year + 1;
-      } else {
-        this.yearPlus = year;
-      }
-      this.notifyMonthChanged(this.month, this.year, this.numCalendars);
+    if (changedProperties.has('centralDate')) {
+      this.utilCal.centralDateChanged(this);
     }
-  }
-
-  /**
-   * Sends event notifying that the visible calendar month(s) have changed.
-   * @private
-   * @param {Number} month - Month the calendar displays.
-   * @param {Number} year - Year the calendar displays.
-   * @param {Number} numCalendars - Number of calendars displayed.
-   * @returns {void}
-   */
-  notifyMonthChanged(month, year, numCalendars) {
-    this.dispatchEvent(new CustomEvent('auroCalendar-monthChanged', {
-      bubbles: false,
-      composed: true,
-      detail: {
-        month,
-        year,
-        numCalendars,
-      },
-    }));
-  }
-
-  /**
-   * Updates the month and year when the user navigates to the previous calendar month.
-   * @private
-   * @returns {void}
-   */
-  handlePrevMonth() {
-    if (this.month === 1) {
-      this.year -= 1;
-      this.month = 12;
-    } else {
-      this.month -= 1;
-    }
-
-    this.requestUpdate();
-  }
-
-  /**
-   * Updates the month and year when the user navigates to the next calendar month.
-   * @private
-   * @returns {void}
-   */
-  handleNextMonth() {
-    if (this.month === 12) {
-      this.year += 1;
-      this.month = 1;
-    } else {
-      this.month += 1;
-    }
-
-    this.requestUpdate();
-  }
-
-  /**
-   * Determines the number of months rendered inside the calendar.
-   * @private
-   * @returns {void}
-   */
-  determineNumCalendars() {
-    const vw = window.innerWidth;
-    let calendarCount = 1;
-    let maxCalendars = 1;
-
-    if (!this.noRange) {
-      maxCalendars = 2;
-    }
-
-    // This numerical value comes from the SCSS variable 'ds-grid-breakpoint-sm' and needs to be changed to use the variable name
-    if (vw < 660) {
-      maxCalendars = 12;
-    }
-
-    // Add calculation to restrict number of calendars based off of min/max date
-    if (this.minDate && this.maxDate) {
-      const maxAsDate = new Date(this.maxDate);
-      const minAsDate = new Date(this.minDate);
-
-      let monthsInRange = undefined;
-      monthsInRange = (maxAsDate.getFullYear() - minAsDate.getFullYear()) * 12;
-      monthsInRange -= minAsDate.getMonth();
-      monthsInRange += maxAsDate.getMonth();
-      monthsInRange += 1;
-
-      if (monthsInRange < 1) {
-        monthsInRange = 1;
-      }
-
-      calendarCount = monthsInRange;
-    } else {
-      calendarCount = maxCalendars;
-    }
-
-    if (calendarCount > maxCalendars) {
-      calendarCount = maxCalendars;
-    }
-
-    if (this.numCalendars !== calendarCount) {
-      this.numCalendars = calendarCount;
-      this.requestUpdate();
-    }
-  }
-
-  /**
-   * Renders the auro-calendar-month HTML.
-   * @private
-   * @param {Number} month - Month the calendar displays.
-   * @param {Number} year - Year the calendar displays.
-   * @returns {Object} Returns the auro-calendar-month HTML.
-   */
-  renderCalendar(month, year) {
-    if (month > 12) {
-      month -= 12;
-    }
-
-    if (this.month !== 1 && month < this.month) {
-      year += 1;
-    }
-
-    return html`
-      <auro-calendar-month
-        .disabledDays="${this.disabledDays}"
-        min="${this.min}"
-        max="${this.max}"
-        ?noRange="${this.noRange}"
-        .hoveredDate="${this.hoveredDate}"
-        .dateTo="${this.dateTo}"
-        .dateFrom="${this.dateFrom}"
-        .locale="${this.locale}"
-        month="${month}"
-        year="${year}"
-        @hovered-date-changed="${this.hoveredDateChanged}"
-        @date-from-changed="${this.dateFromChanged}"
-        @date-to-changed="${this.dateToChanged}"
-      >
-      </auro-calendar-month>
-    `;
-  }
-
-  /**
-   * Function to generate checkmark svg.
-   * @private
-   * @param {Object} icon - Icon object containing the SVG.
-   * @returns {Object} Returns the svg portion of the icon object.
-   */
-  generateIconHtml(icon) {
-    this.dom = new DOMParser().parseFromString(icon.svg, 'text/html');
-    this.svg = this.dom.body.firstChild;
-
-    return this.svg;
   }
 
   render() {
     return html`
-      <div class="calendars">
-        ${this.renderCalendar(this.month, this.year)}
-        ${this.numCalendars > 1 ? this.renderCalendar(this.month + 1, this.year) : undefined}
-        ${this.numCalendars > 2 ? this.renderCalendar(this.month + 2, this.year) : undefined}
-        ${this.numCalendars > 3 ? this.renderCalendar(this.month + 3, this.year) : undefined}
-        ${this.numCalendars > 4 ? this.renderCalendar(this.month + 4, this.year) : undefined}
-        ${this.numCalendars > 5 ? this.renderCalendar(this.month + 5, this.year) : undefined}
-        ${this.numCalendars > 6 ? this.renderCalendar(this.month + 6, this.year) : undefined}
-        ${this.numCalendars > 7 ? this.renderCalendar(this.month + 7, this.year) : undefined}
-        ${this.numCalendars > 8 ? this.renderCalendar(this.month + 8, this.year) : undefined}
-        ${this.numCalendars > 9 ? this.renderCalendar(this.month + 9, this.year) : undefined}
-        ${this.numCalendars > 10 ? this.renderCalendar(this.month + 10, this.year) : undefined}
-        ${this.numCalendars > 11 ? this.renderCalendar(this.month + 11, this.year) : undefined}
-      </div>
-      ${this.showPrevMonthBtn ? html`
-        <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
-          ${this.generateIconHtml(chevronLeft)}
-        </button>
-      ` : undefined}
-      ${this.showNextMonthBtn ? html`
-        <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
-          ${this.generateIconHtml(chevronRight)}
-        </button>
-      ` : undefined}
-      <div class="mobileHeader">
-        <div class="headerDateFrom">
-          <span class="mobileDateLabel"><slot name="mobileDateLabel"></slot></span>
-          <slot name="mobileDateFromStr"></slot>
+      <div class="calendarWrapper">
+        <div class="mobileHeader">
+          <div class="headerDateFrom">
+            <span class="mobileDateLabel"><slot name="mobileDateLabel"></slot></span>
+            <slot name="mobileDateFromStr"></slot>
+          </div>
+          <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
         </div>
-        <div class="headerDateTo"><slot name="mobileDateToStr"></slot></div>
-      </div>
-      <div class="mobileFooter">
-        <div class="mobileFooterActions">
-          <auro-button fluid @click="${this.requestDismiss}">Done</auro-button>
+        <div class="calendars">
+          ${this.renderAllCalendars(this)}
         </div>
+        <div class="mobileFooter">
+          <div class="mobileFooterActions">
+            <auro-button fluid @click="${this.utilCal.requestDismiss}">Done</auro-button>
+          </div>
+        </div>
+        ${this.showPrevMonthBtn ? html`
+          <button class="calendarNavBtn prevMonth" @click="${this.handlePrevMonth}">
+            ${this.util.generateIconHtml(chevronLeft)}
+          </button>
+        ` : undefined}
+        ${this.showNextMonthBtn ? html`
+          <button class="calendarNavBtn nextMonth" @click="${this.handleNextMonth}">
+            ${this.util.generateIconHtml(chevronRight)}
+          </button>
+        ` : undefined}
       </div>
     `;
   }

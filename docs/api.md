@@ -4,7 +4,9 @@
 
 | Property                          | Attribute                         | Type      | Default                                          | Description                                      |
 |-----------------------------------|-----------------------------------|-----------|--------------------------------------------------|--------------------------------------------------|
-| `centralDate`                     | `centralDate`                     | `String`  |                                                  | The date that determines the currently visible month. |
+| `calendarEndDate`                 | `calendarEndDate`                 | `array`   | "undefined"                                      |                                                  |
+| `calendarFocusDate`               | `calendarFocusDate`               | `string`  | "value"                                          |                                                  |
+| `calendarStartDate`               | `calendarStartDate`               | `array`   | "undefined"                                      |                                                  |
 | `disabled`                        | `disabled`                        | `Boolean` | false                                            | If set, disables the datepicker.                 |
 | `error`                           | `error`                           | `String`  |                                                  | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
 | `maxDate`                         | `maxDate`                         | `String`  |                                                  | Maximum date. All dates after will be disabled.  |

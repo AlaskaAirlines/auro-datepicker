@@ -7,7 +7,9 @@
 
 | Property                          | Attribute                         | Type      | Default                                          | Description                                      |
 |-----------------------------------|-----------------------------------|-----------|--------------------------------------------------|--------------------------------------------------|
-| [centralDate](#centralDate)                     | `centralDate`                     | `String`  |                                                  | The date that determines the currently visible month. |
+| [calendarEndDate](#calendarEndDate)                 | `calendarEndDate`                 | `array`   | "undefined"                                      |                                                  |
+| [calendarFocusDate](#calendarFocusDate)               | `calendarFocusDate`               | `string`  | "value"                                          |                                                  |
+| [calendarStartDate](#calendarStartDate)               | `calendarStartDate`               | `array`   | "undefined"                                      |                                                  |
 | [disabled](#disabled)                        | `disabled`                        | `Boolean` | false                                            | If set, disables the datepicker.                 |
 | [error](#error)                           | `error`                           | `String`  |                                                  | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
 | [maxDate](#maxDate)                         | `maxDate`                         | `String`  |                                                  | Maximum date. All dates after will be disabled.  |
@@ -71,7 +73,7 @@
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-datepicker>
+  <auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -83,7 +85,7 @@
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-datepicker>
+<auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
@@ -656,7 +658,7 @@ Sets the label used for the input. When the `range` attribute is used this is th
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-datepicker>
+  <auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -668,7 +670,7 @@ Sets the label used for the input. When the `range` attribute is used this is th
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-datepicker>
+<auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
@@ -710,7 +712,7 @@ Sets the label used for the selected date display at the top of the bib when vie
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
   <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-  <auro-datepicker>
+  <auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -722,7 +724,7 @@ Sets the label used for the selected date display at the top of the bib when vie
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-datepicker>
+<auro-datepicker range calendarStartDate="01/11/2024" calendarEndDate="11/01/2024" minDate="02/12/2024" maxDate="09/20/2024" centralDate="07/20/2024" value="06/20/2024" valueEnd="09/04/2024">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
