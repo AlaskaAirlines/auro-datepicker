@@ -18,9 +18,9 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
   position: relative;
 
   display: block;
-  width: calc(100% - var(--ds-size-300, $ds-size-300));
+  width: calc(100% - var(--ds-size-200, $ds-size-200) - var(--ds-size-200, $ds-size-200));
 
-  padding: 0 var(--ds-size-200, $ds-size-200);
+  margin: 0 var(--ds-size-200, $ds-size-200);
 
   background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
 
@@ -28,14 +28,6 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
     width: $calendar-width;
 
     padding: $calendar-padding-desktop;
-  }
-}
-
-:host(:last-of-type) {
-  margin-bottom: 150px; // This value is derived from the height of the mobile-footer
-
-  @include auro_grid-breakpoint--sm {
-    margin-bottom: 0;
   }
 }
 
