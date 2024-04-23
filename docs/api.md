@@ -4,9 +4,9 @@
 
 | Property                          | Attribute                         | Type      | Default                                          | Description                                      |
 |-----------------------------------|-----------------------------------|-----------|--------------------------------------------------|--------------------------------------------------|
-| `calendarEndDate`                 | `calendarEndDate`                 | `array`   | "undefined"                                      |                                                  |
-| `calendarFocusDate`               | `calendarFocusDate`               | `string`  | "value"                                          |                                                  |
-| `calendarStartDate`               | `calendarStartDate`               | `array`   | "undefined"                                      |                                                  |
+| `calendarEndDate`                 | `calendarEndDate`                 | `String`  | "undefined"                                      | The last date that may be displayed in the calendar |
+| `calendarFocusDate`               | `calendarFocusDate`               | `String`  | "value"                                          | The date that will first be visually rendered to the user in the calendar. |
+| `calendarStartDate`               | `calendarStartDate`               | `String`  | "undefined"                                      | The first date that may be displayed in the calendar. |
 | `disabled`                        | `disabled`                        | `Boolean` | false                                            | If set, disables the datepicker.                 |
 | `error`                           | `error`                           | `String`  |                                                  | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
 | `maxDate`                         | `maxDate`                         | `String`  |                                                  | Maximum date. All dates after will be disabled.  |
@@ -18,7 +18,7 @@
 | `setCustomValidity`               | `setCustomValidity`               | `String`  |                                                  | Sets a custom help text message to display for all validityStates. |
 | `setCustomValidityRangeOverflow`  | `setCustomValidityRangeOverflow`  | `String`  |                                                  | Custom help text message to display when validity = `rangeOverflow`. |
 | `setCustomValidityRangeUnderflow` | `setCustomValidityRangeUnderflow` | `String`  |                                                  | Custom help text message to display when validity = `rangeUnderflow`. |
-| `setCustomValidityValueMissing`   | `setCustomValidityValueMissing`   | `String`  |                                                  | Help text message to display when validity = `valueMissing`; |
+| `setCustomValidityValueMissing`   | `setCustomValidityValueMissing`   | `String`  |                                                  | Help text message to display when validity = `valueMissing`. |
 | `validity`                        | `validity`                        | `String`  | "undefined"                                      | Specifies the `validityState` this element is in. |
 | `value`                           | `value`                           | `String`  | "undefined"                                      | Value selected for the date picker.              |
 | `valueEnd`                        | `valueEnd`                        | `String`  | "undefined"                                      | Value selected for the second date picker when using date range. |

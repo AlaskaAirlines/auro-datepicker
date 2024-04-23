@@ -39,7 +39,7 @@ import inputVersion from './inputVersion';
  * @attr {String} setCustomValidityValueMissing - Help text message to display when validity = `valueMissing`.
  * @attr {String} calendarStartDate - The first date that may be displayed in the calendar.
  * @attr {String} calendarEndDate - The last date that may be displayed in the calendar
- * @attr {String} calendarFocusDate - The date that may be visually rendered to the user in the calendar.
+ * @attr {String} calendarFocusDate - The date that will first be visually rendered to the user in the calendar.
  * @attr {Boolean} disabled - If set, disables the datepicker.
  * @attr {Boolean} noValidate - If set, disables auto-validation on blur.
  * @attr {Boolean} required - Populates the `required` attribute on the input. Used for client-side validation.
