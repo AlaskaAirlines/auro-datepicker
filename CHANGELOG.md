@@ -1,5 +1,23 @@
 # Semantic Release Automated Changelog
 
+# [2.5.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.4.1...v2.5.0) (2024-04-24)
+
+
+### Bug Fixes
+
+* **layout:** adjust mobile layout issue discovered during dev ([7fcafb8](https://github.com/AlaskaAirlines/auro-datepicker/commit/7fcafb8b49efa7935b0fa478610ce4850cb7f955))
+
+
+### Features
+
+* **calendar:** add new feature and improve control of rendered calendar months [#213](https://github.com/AlaskaAirlines/auro-datepicker/issues/213) ([9d1d955](https://github.com/AlaskaAirlines/auro-datepicker/commit/9d1d9555fb8dc95e030fb81c239ced10d49bf181))
+* **scrolling:** auto-scroll to focusdate when opening the mobile datepicker the first time ([c6f44fd](https://github.com/AlaskaAirlines/auro-datepicker/commit/c6f44fd5a14f13fe7bbb4a588b6b9b45f46835ce))
+
+
+### Performance Improvements
+
+* **tests:** update time comparison to tests to work in any time zone. ([186f16d](https://github.com/AlaskaAirlines/auro-datepicker/commit/186f16de297fd6291bb0e304ddada458bfb36965))
+
 ## [2.4.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.4.0...v2.4.1) (2024-03-13)
 
 
