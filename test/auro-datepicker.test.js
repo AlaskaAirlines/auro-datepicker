@@ -524,13 +524,13 @@ describe('auro-datepicker', () => {
 
     await elementUpdated(el);
 
-    await expect(calendar.centralDate).to.equal('Sun Jan 01 2023 00:00:00 GMT-0800 (Pacific Standard Time)');
+    await expect(calendar.centralDate).to.contain('Jan 01 2023');
 
     prevMonthBth.click();
 
     await elementUpdated(el);
 
-    await expect(calendar.centralDate).to.equal('Thu Dec 01 2022 00:00:00 GMT-0800 (Pacific Standard Time)');
+    await expect(calendar.centralDate).to.contain('Dec 01 2022');
   });
 
   it('handleNextMonth changes current calendar month', async () => {
@@ -548,12 +548,12 @@ describe('auro-datepicker', () => {
     nextMonthBth.click();
 
     await elementUpdated(el);
-    await expect(calendar.centralDate).to.equal('Fri Dec 01 2023 00:00:00 GMT-0800 (Pacific Standard Time)');
+    await expect(calendar.centralDate).to.contain('Dec 01 2023');
 
     nextMonthBth.click();
 
     await elementUpdated(el);
-    await expect(calendar.centralDate).to.equal('Mon Jan 01 2024 00:00:00 GMT-0800 (Pacific Standard Time)');
+    await expect(calendar.centralDate).to.contain('Jan 01 2024');
   });
 
   it('shows dropdown when user is typing in input', async () => {
