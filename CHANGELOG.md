@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.5.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.0...v2.5.1) (2024-04-26)
+
+
+### Bug Fixes
+
+* **mobile:** correct height calculation to account for dynamic display of mobile address bar [#222](https://github.com/AlaskaAirlines/auro-datepicker/issues/222) ([483de44](https://github.com/AlaskaAirlines/auro-datepicker/commit/483de44b8e5eaa503392e8c41e8cbf0632e057c1))
+
 # [2.5.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.4.1...v2.5.0) (2024-04-24)
 
 
