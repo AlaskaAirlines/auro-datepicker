@@ -16,6 +16,10 @@
   --calendar-width: 336px;
   --mobile-footer-height: 150px;
   --mobile-header-height: 68px;
+
+  height: 100vh;
+  // stylelint-disable-next-line declaration-block-no-duplicate-properties
+  height: 100dvh; /* dvh = dynamic viewport height */
 }
 
 .calendarNavBtn {
