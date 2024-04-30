@@ -33,6 +33,15 @@
     box-shadow: unset !important;
     outline: unset !important;
   }
+
+  &::part(wrapper) {
+    &:before {
+      border-bottom-color: transparent;
+    }
+    border-color: transparent;
+    background-color: unset;
+    box-shadow: none;
+  }
 }
 
 .datepickerElement-helpText {
@@ -58,6 +67,12 @@
       &::part(accentIcon) {
         display: none;
       }
+
+      // &::part(wrapper) {
+      //   .typeIcon {
+      //     background-color: red !important;
+      //   }
+      // }
 
       &::part(label) {
         left: 0;

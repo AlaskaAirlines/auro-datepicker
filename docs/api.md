@@ -38,7 +38,7 @@
 | `auroDatePicker-ready`        | `CustomEvent<any>`                               | Notifies that the component has finished initializing. |
 | `auroDatePicker-toggled`      | `CustomEvent<{ expanded: any; }>`                | Notifies that the calendar dropdown has been opened/closed. |
 | `auroDatePicker-valueSet`     |                                                  | Notifies that the component has a new value set. |
-| `auroDatepicker-validated`    |                                                  | Notifies that the component value(s) have been validated. |
+| `auroFormElement-validated`   |                                                  | Notifies that the component value(s) have been validated. |
 
 ## Slots
 

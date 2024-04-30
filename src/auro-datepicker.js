@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions,
-   lit/no-invalid-html, no-unused-expressions */
+   lit/no-invalid-html, no-unused-expressions, no-lonely-if */
 
 // If using litElement base class
 import { LitElement } from "lit";
@@ -61,10 +61,10 @@ import inputVersion from './inputVersion';
  * @csspart helpTextSpan - Use for customizing the style of the datepicker help text span.
  * @csspart helpText - Use for customizing the style of the datepicker help text.
  * @event auroDatePicker-ready - Notifies that the component has finished initializing.
- * @event auroDatepicker-validated - Notifies that the component value(s) have been validated.
  * @event auroDatePicker-valueSet - Notifies that the component has a new value set.
  * @event auroDatePicker-toggled - Notifies that the calendar dropdown has been opened/closed.
  * @event auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
+ * @event auroFormElement-validated - Notifies that the component value(s) have been validated.
  */
 
 // build the component class
@@ -471,19 +471,26 @@ export class AuroDatePicker extends LitElement {
       input.addEventListener('input', () => {
         if (index === 0) {
           this.value = input.value;
-          this.notifyValueChanged();
         } else if (index === 1) {
           this.valueEnd = input.value;
-          this.notifyValueChanged();
         }
+
+        this.notifyValueChanged();
       });
 
-      input.addEventListener('auroInput-validated', () => {
-        this.validity = input.validity;
-      });
-
-      input.addEventListener('auroInput-helpText', (evt) => {
-        this.getErrorMessage(evt);
+      input.addEventListener('auroFormElement-validated', (evt) => {
+        if (evt.target.validity === 'customError') {
+          this.validity = evt.detail.validity;
+          this.errorMessage = evt.detail.message;
+        } else {
+          if (evt.target === this.inputList[0]) {
+            this.validity = evt.detail.validity;
+            this.errorMessage = evt.detail.message;
+          } else if (evt.target === this.inputList[1] && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
+            this.validity = evt.detail.validity;
+            this.errorMessage = evt.detail.message;
+          }
+        }
       });
     });
   }
@@ -759,23 +766,20 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('error')) {
-      if (this.error) {
-        this.dropdown.error = this.error;
+      // Error attribute is passed down to the last input in the list to control the error state
+      // This is done to prevent error icon from displaying on both inputs in range support
+      const lastInput = this.inputList[this.inputList.length - 1];
 
-        this.inputList.forEach((input) => {
-          input.error = this.error;
-        });
+      if (this.error) {
+        // Set the error attribute on the last input
+        lastInput.setAttribute('error', this.getAttribute('error'));
       } else {
-        this.dropdown.removeAttribute('error');
-        this.inputList.forEach((input) => {
-          input.removeAttribute('error');
-          this.validation.validate(input);
-          this.validity = input.validity;
-        });
-        this.errorMessage = undefined;
+        // Remove the error attribute on the last input
+        lastInput.removeAttribute('error');
       }
 
-      this.requestUpdate();
+      // Validate the last input
+      this.validation.validate(lastInput, true);
     }
 
     if (this.value && this.valueEnd && this.util.validDateStr(this.value) && this.util.validDateStr(this.valueEnd)) {
@@ -866,7 +870,6 @@ export class AuroDatePicker extends LitElement {
               class="dateFrom"
               ?required="${this.required}"
               noValidate
-              .error="${this.error}"
               .max="${this.maxDate}"
               .min="${this.minDate}"
               setCustomValidityValueMissing="${this.setCustomValidityValueMissing}"
