@@ -16,6 +16,8 @@ import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts
 import { AuroDatepickerUtilities } from './utilities';
 import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
 
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 // Import touch detection lib
 import styleCss from "./style-css.js";
 import './auro-calendar.js';
@@ -128,6 +130,11 @@ export class AuroDatePicker extends LitElement {
      * @private
      */
     this.validation = new AuroFormValidation();
+
+    /**
+     * @private
+     */
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
 
     /**
      * @private
@@ -838,6 +845,9 @@ export class AuroDatePicker extends LitElement {
   }
 
   firstUpdated() {
+    // Add the tag name as an attribute if it is different than the component name
+    this.runtimeUtils.handleComponentTagRename(this, 'auro-datepicker');
+
     this.configureDropdown();
     this.configureInput();
     this.configureCalendar();
@@ -864,7 +874,6 @@ export class AuroDatePicker extends LitElement {
           part="dropdown">
           <div slot="trigger" class="dpTriggerContent" part="trigger">
             <${this.inputTag}
-              auro-input
               id="${this.generateRandomString(12)}"
               bordered
               class="dateFrom"
@@ -882,7 +891,6 @@ export class AuroDatePicker extends LitElement {
             </${this.inputTag}>
             ${this.range ? html`
               <${this.inputTag}
-                auro-input
                 id="${this.generateRandomString(12)}"
                 bordered
                 class="dateTo"
