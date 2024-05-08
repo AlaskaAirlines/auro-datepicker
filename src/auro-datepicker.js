@@ -488,13 +488,13 @@ export class AuroDatePicker extends LitElement {
       input.addEventListener('auroFormElement-validated', (evt) => {
         if (evt.detail.validity === 'customError') {
           this.validity = evt.detail.validity;
-          this.errorMessage = evt.detail.message;
+          this.setCustomValidity = evt.detail.message;
         } else if (evt.target === this.inputList[0]) {
           this.validity = evt.detail.validity;
-          this.errorMessage = evt.detail.message;
+          this.setCustomValidity = evt.detail.message;
         } else if (this.inputList.length > 1 && evt.target === this.inputList[1] && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
           this.validity = evt.detail.validity;
-          this.errorMessage = evt.detail.message;
+          this.setCustomValidity = evt.detail.message;
         }
       });
     });
@@ -928,7 +928,7 @@ export class AuroDatePicker extends LitElement {
                 <slot name="helpText"></slot>
               ` : html`
                 <p class="datepickerElement-helpText" id="${this.uniqueId}" role="alert" aria-live="assertive" part="helpText">
-                  ${this.errorMessage}
+                  ${this.setCustomValidity}
                 </p>`
             }
           </span>
