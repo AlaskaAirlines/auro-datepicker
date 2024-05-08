@@ -26,21 +26,12 @@
     display: none;
   }
 
-  &::part(input) {
+  &::part(wrapper) {
     border-width: 0 !important;
     border-color: unset !important;
     background-color: unset !important;
     box-shadow: unset !important;
     outline: unset !important;
-  }
-
-  &::part(wrapper) {
-    &:before {
-      border-bottom-color: transparent;
-    }
-    border-color: transparent;
-    background-color: unset;
-    box-shadow: none;
   }
 }
 
