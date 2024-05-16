@@ -109,9 +109,9 @@ In <strong>desktop</strong>, the calendar month navigation will be restricted by
 Note: This does not restrict setting a value outside of those date constraints. These properties _only_ define which months can be rendered in the calendar. A user may still type any date into the input field. If actual value selection restrictions are needed, see the `minDate` and `maxDate` properties which may be used standalone, or in conjunction with `calendarStartDate` and `calendarEndDate`.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/calendarFocusDate.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/calendarFocusDate.html -->
-  <auro-datepicker calendarStartDate="01/01/2022" calendarEndDate="12/01/2023" calendarFocusDate="11/01/2022">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/calendarStartAndEndDate.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/calendarStartAndEndDate.html -->
+  <auro-datepicker calendarStartDate="01/01/2022" calendarEndDate="06/01/2022">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
   </auro-datepicker>
@@ -119,11 +119,11 @@ Note: This does not restrict setting a value outside of those date constraints. 
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/calendarFocusDate.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/calendarFocusDate.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/calendarStartAndEndDate.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/calendarStartAndEndDate.html -->
 
 ```html
-<auro-datepicker calendarStartDate="01/01/2022" calendarEndDate="12/01/2023" calendarFocusDate="11/01/2022">
+<auro-datepicker calendarStartDate="01/01/2022" calendarEndDate="06/01/2022">
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
 </auro-datepicker>
