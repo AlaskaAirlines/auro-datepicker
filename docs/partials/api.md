@@ -33,13 +33,13 @@ In <strong>desktop</strong>, the calendar month navigation will be restricted by
 Note: This does not restrict setting a value outside of those date constraints. These properties _only_ define which months can be rendered in the calendar. A user may still type any date into the input field. If actual value selection restrictions are needed, see the `minDate` and `maxDate` properties which may be used standalone, or in conjunction with `calendarStartDate` and `calendarEndDate`.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/calendarFocusDate.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/calendarStartAndEndDate.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/calendarFocusDate.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/calendarStartAndEndDate.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
