@@ -271,10 +271,8 @@ describe('auro-datepicker', () => {
 
   it('updates centralDate when minDate is later than centralDate', async () => {
     const el = await fixture(html`
-      <auro-datepicker></auro-datepicker>
+      <auro-datepicker calendarFocusDate="03/02/2023"></auro-datepicker>
     `);
-
-    el.centralDate = '03/02/2023';
 
     await elementUpdated(el);
 
@@ -282,7 +280,10 @@ describe('auro-datepicker', () => {
 
     await elementUpdated(el);
 
-    await expect(el.centralDate).to.be.equal(el.minDate);
+    const central = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+    const min = el.minDate;
+
+    await expect(min).to.be.equal(central);
   });
 
   it('selecting a dateFrom date by clicking on the calendar sets the correct value', async () => {
@@ -431,13 +432,17 @@ describe('auro-datepicker', () => {
 
     const calendar = el.shadowRoot.querySelector('auro-calendar');
 
-    await expect(calendar.centralDate).to.be.equal('03/23/2023');
+    const central = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(central).to.be.equal('03/23/2023');
 
     el.calendarFocusDate = '04/25/2024';
 
     await elementUpdated(el);
 
-    await expect(calendar.centralDate).to.be.equal('04/25/2024');
+    const centralAfter = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(centralAfter).to.be.equal('04/25/2024');
   });
 
   it('renders a single calendar by default', async () => {
@@ -518,19 +523,25 @@ describe('auro-datepicker', () => {
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const prevMonthBth = calendar.shadowRoot.querySelector('.prevMonth');
 
-    await expect(calendar.centralDate).to.equal('02/01/2023');
+    const central = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(central).to.equal('02/01/2023');
 
     prevMonthBth.click();
 
     await elementUpdated(el);
 
-    await expect(calendar.centralDate).to.contain('Jan 01 2023');
+    const centralAfter = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(centralAfter).to.contain('01/01/2023');
 
     prevMonthBth.click();
 
     await elementUpdated(el);
 
-    await expect(calendar.centralDate).to.contain('Dec 01 2022');
+    const centralAfterAgain = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(centralAfterAgain).to.contain('12/01/2022');
   });
 
   it('handleNextMonth changes current calendar month', async () => {
@@ -543,17 +554,25 @@ describe('auro-datepicker', () => {
     const calendar = el.shadowRoot.querySelector('auro-calendar');
     const nextMonthBth = calendar.shadowRoot.querySelector('.nextMonth');
 
-    await expect(calendar.centralDate).to.equal('11/01/2023');
+    const central = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(central).to.equal('11/01/2023');
 
     nextMonthBth.click();
 
     await elementUpdated(el);
-    await expect(calendar.centralDate).to.contain('Dec 01 2023');
+    
+    const centralAfter = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(centralAfter).to.contain('12/01/2023');
 
     nextMonthBth.click();
 
     await elementUpdated(el);
-    await expect(calendar.centralDate).to.contain('Jan 01 2024');
+
+    const centralAfterAgain = `${("0" + (new Date(el.centralDate).getMonth() + 1)).slice(-2)}/${("0" + new Date(el.centralDate).getDate()).slice(-2)}/${new Date(el.centralDate).getFullYear()}`;
+
+    await expect(centralAfterAgain).to.contain('01/01/2024');
   });
 
   it('shows dropdown when user is typing in input', async () => {
