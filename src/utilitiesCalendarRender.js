@@ -7,6 +7,20 @@ export class UtilitiesCalendarRender {
   }
 
   /**
+   * Attempt to update the central date but only if the date is a valid date.
+   * @param {Object} elem - The element to set the centralDate on.
+   * @param {String} date - The date to set the centralDate to.
+   * @private
+   */
+  updateCentralDate(elem, date) {
+    const dateObj = new Date(date);
+
+    if (!isNaN(dateObj)) {
+      elem.centralDate = dateObj;
+    }
+  }
+
+  /**
    * Determine how many months to render based on the defined calendar range.
    * @param {Object} elem - The auro-calendar element.
    * @private

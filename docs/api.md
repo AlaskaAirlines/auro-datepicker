@@ -7,6 +7,7 @@
 | `calendarEndDate`                 | `calendarEndDate`                 | `String`  | "undefined"                                      | The last date that may be displayed in the calendar |
 | `calendarFocusDate`               | `calendarFocusDate`               | `String`  | "value"                                          | The date that will first be visually rendered to the user in the calendar. |
 | `calendarStartDate`               | `calendarStartDate`               | `String`  | "undefined"                                      | The first date that may be displayed in the calendar. |
+| `centralDate`                     | `centralDate`                     | `String`  |                                                  | The date that determines the currently visible month. |
 | `disabled`                        | `disabled`                        | `Boolean` | false                                            | If set, disables the datepicker.                 |
 | `error`                           | `error`                           | `String`  |                                                  | When defined, sets persistent validity to `customError` and sets `setCustomValidity` = attribute value. |
 | `maxDate`                         | `maxDate`                         | `String`  |                                                  | Maximum date. All dates after will be disabled.  |

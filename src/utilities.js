@@ -1,6 +1,22 @@
 export class AuroDatepickerUtilities {
 
   /**
+   * Returns true if value passed in is a valid date.
+   * @private
+   * @param {String} date - Date to validate.
+   * @returns {Boolean}
+   */
+  validDateStr(date) {
+    const dateStrLength = 10;
+
+    if (date.length === dateStrLength && Date.parse(date)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Converts any date object to a date object representing the first day of the month.
    * @param {Object} date - Date to convert to the first day of the month.
    * @returns {Object} Returns the auro-calendar-months HTML.

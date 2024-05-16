@@ -12,6 +12,7 @@ import { html } from 'lit/static-html.js';
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 import { AuroDatepickerUtilities } from './utilities';
+import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
 
 // If using auroElement base class
 // See instructions for importing auroElement base class https://git.io/JULq4
@@ -78,6 +79,18 @@ export class AuroDatePicker extends LitElement {
      */
     this.util = new AuroDatepickerUtilities();
 
+    /**
+     * @private
+     */
+    this.calendarRenderUtil = new UtilitiesCalendarRender();
+
+    // If `calendarStartDate` is set, use that as the central date. Otherwise, use the current date.
+    if (this.getAttribute('calendarStartDate') && this.util.validDateStr(this.getAttribute('calendarStartDate'))) {
+      this.calendarRenderUtil.updateCentralDate(this, this.getAttribute('calendarStartDate'));
+    } else {
+      this.calendarRenderUtil.updateCentralDate(this, new Date());
+    }
+
     this.disabled = false;
     this.required = false;
     this.range = false;
@@ -102,11 +115,6 @@ export class AuroDatePicker extends LitElement {
       'November',
       'December'
     ];
-
-    /**
-     * @private
-     */
-    this.centralDate = this.getAttribute('calendarStartDate') || new Date();
 
     /**
      * @private
@@ -248,7 +256,7 @@ export class AuroDatePicker extends LitElement {
    */
   handleFocusDateChange() {
     if (this.calendarFocusDate) {
-      this.centralDate = this.calendarFocusDate;
+      this.calendarRenderUtil.updateCentralDate(this, this.calendarFocusDate);
 
       this.forceScrollOnNextMobileCalendarRender = true;
     }
@@ -364,7 +372,7 @@ export class AuroDatePicker extends LitElement {
     let dateStr = '';
     const dateObj = new Date(date);
 
-    if (date && this.validDateStr(date)) {
+    if (date && this.util.validDateStr(date)) {
       dateStr += this.monthNames[dateObj.getMonth()].substring(0, 3);
       dateStr += ' ';
       dateStr += dateObj.getDate();
@@ -377,20 +385,6 @@ export class AuroDatePicker extends LitElement {
     }
 
     return dateStr;
-  }
-
-  /**
-   * Returns true if value passed in is a valid date.
-   * @private
-   * @param {String} date - Date to validate.
-   * @returns {Boolean}
-   */
-  validDateStr(date) {
-    if (date.length === 10 && Date.parse(date)) {
-      return true;
-    }
-
-    return false;
   }
 
   /**
@@ -671,7 +665,7 @@ export class AuroDatePicker extends LitElement {
     const match = this.util.datesMatch(event.detail.date, this.centralDate);
 
     if (!match) {
-      this.centralDate = event.detail.date;
+      this.calendarRenderUtil.updateCentralDate(this, event.detail.date);
     }
   }
 
@@ -686,11 +680,11 @@ export class AuroDatePicker extends LitElement {
 
     const newDate = this.convertWcTimeToDate(time);
 
-    if (this.validDateStr(newDate)) {
+    if (this.util.validDateStr(newDate)) {
       if (this.inputList.length > 1) {
-        if (!this.value || !this.validDateStr(this.value)) {
+        if (!this.value || !this.util.validDateStr(this.value)) {
           this.value = newDate;
-        } else if (!this.valueEnd || !this.validDateStr(this.valueEnd)) {
+        } else if (!this.valueEnd || !this.util.validDateStr(this.valueEnd)) {
           this.valueEnd = newDate;
         } else {
           this.value = newDate;
@@ -716,13 +710,21 @@ export class AuroDatePicker extends LitElement {
     }
 
     if (changedProperties.has('minDate')) {
-      if (!this.calendarFocusDate && !this.value) {
-        this.calendarFocusDate = this.minDate;
+      // If the minDate was set to a valid date
+      if (this.util.validDateStr(this.minDate)) {
+        // When there is no focusDate and no value, set the focusDate to the minDate
+        const nothingSet = !this.calendarFocusDate && !this.value;
+        const earlierThanMinDate = new Date(this.calendarFocusDate) < new Date(this.minDate);
+
+        if (nothingSet || earlierThanMinDate) {
+          this.calendarFocusDate = this.minDate;
+        }
       }
     }
 
     if (changedProperties.has('value')) {
-      if (!this.calendarFocusDate) {
+      // Change the calendar focus to the first valid date value only the first time the value is set
+      if (!this.calendarFocusDate && this.util.validDateStr(this.value)) {
         this.calendarFocusDate = this.value;
       }
 
@@ -730,7 +732,7 @@ export class AuroDatePicker extends LitElement {
         this.cellClickActive = false;
       }
 
-      if (this.value && this.validDateStr(this.value)) {
+      if (this.value && this.util.validDateStr(this.value)) {
         if (this.calendar.dateFrom !== this.value) {
           this.calendar.dateFrom = this.convertToWcValidTime(this.value);
         }
@@ -760,7 +762,7 @@ export class AuroDatePicker extends LitElement {
 
     if (changedProperties.has('valueEnd') && this.inputList[1]) {
       // update the calendar
-      if (this.valueEnd && this.validDateStr(this.valueEnd)) {
+      if (this.valueEnd && this.util.validDateStr(this.valueEnd)) {
         this.calendar.dateTo = this.convertToWcValidTime(this.valueEnd);
       } else {
         if (this.inputList[1].value !== this.valueEnd) {
@@ -799,7 +801,7 @@ export class AuroDatePicker extends LitElement {
       this.requestUpdate();
     }
 
-    if (this.value && this.valueEnd && this.validDateStr(this.value) && this.validDateStr(this.valueEnd)) {
+    if (this.value && this.valueEnd && this.util.validDateStr(this.value) && this.util.validDateStr(this.valueEnd)) {
       if (new Date(this.value) > new Date(this.valueEnd)) {
         this.valueEnd = undefined;
       }
@@ -814,7 +816,7 @@ export class AuroDatePicker extends LitElement {
         // This sets the visible month of the calendar to the minDate when the minDate is later
         // than the current visible date
         if (minDateMonth > this.calendar.month) {
-          this.centralDate = this.minDate;
+          this.calendarRenderUtil.updateCentralDate(this, this.minDate);
         }
 
         if (this.value) {
@@ -825,7 +827,7 @@ export class AuroDatePicker extends LitElement {
               this.valueEnd = undefined;
             }
 
-            this.centralDate = this.minDate;
+            this.calendarRenderUtil.updateCentralDate(this, this.minDate);
           }
         }
       }
@@ -843,7 +845,7 @@ export class AuroDatePicker extends LitElement {
               this.valueEnd = undefined;
             }
 
-            this.centralDate = this.maxDate;
+            this.calendarRenderUtil.updateCentralDate(this, this.maxDate);
           }
         }
       }
