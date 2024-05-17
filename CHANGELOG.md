@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.5.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.1...v2.5.2) (2024-05-17)
+
+
+### Bug Fixes
+
+* correctly handle focus date when values are set [#225](https://github.com/AlaskaAirlines/auro-datepicker/issues/225) ([242bdc4](https://github.com/AlaskaAirlines/auro-datepicker/commit/242bdc4bf25fc5d3e97f4acc408bc2079f6d7d68))
+
 ## [2.5.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.0...v2.5.1) (2024-04-26)
 
 
