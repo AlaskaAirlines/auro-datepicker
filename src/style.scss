@@ -86,6 +86,12 @@
   color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 }
 
+:host([range]) {
+  [auro-input] {
+    max-width: 50%;
+  }
+}
+
 @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
   ::part(popover) {
     position: fixed !important;
