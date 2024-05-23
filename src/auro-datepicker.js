@@ -629,20 +629,6 @@ export class AuroDatePicker extends LitElement {
     const match = this.util.datesMatch(event.detail.date, this.centralDate);
 
     if (!match) {
-      this.centralDate = event.detail.date;
-    }
-  }
-
-  /**
-   * Keep the datepicker in sync with the calendar's central date.
-   * @private
-   * @param {Number} event - Event received from calendar with the new central date.
-   * @returns {void}
-   */
-  handleCalendarCentralDateChange(event) {
-    const match = this.util.datesMatch(event.detail.date, this.centralDate);
-
-    if (!match) {
       this.calendarRenderUtil.updateCentralDate(this, event.detail.date);
     }
   }
@@ -662,8 +648,12 @@ export class AuroDatePicker extends LitElement {
       if (this.inputList.length > 1) {
         if (!this.value || !this.util.validDateStr(this.value)) {
           this.value = newDate;
-        } else if (!this.valueEnd || !this.util.validDateStr(this.valueEnd)) {
-          this.valueEnd = newDate;
+        } else if (!this.valueEnd || !this.validDateStr(this.valueEnd)) {
+
+          // verify the date is after this.value to insure we are setting a proper range
+          if (new Date(newDate) >= new Date(this.value)) {
+            this.valueEnd = newDate;
+          }
         } else {
           this.value = newDate;
           this.valueEnd = '';

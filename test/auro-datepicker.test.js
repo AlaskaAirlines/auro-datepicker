@@ -352,6 +352,39 @@ describe('auro-datepicker', () => {
     await expect(el.valueEnd).to.equal(dateToSelected);
   });
 
+  it('attempting to set the dateTo to a date earlier than dateFrom by clicking on the calendar does not set the valueFrom', async () => {
+    const el = await fixture(html`
+    <auro-datepicker range></auro-datepicker>
+  `);
+
+  await elementUpdated(el);
+
+  const calendar = el.shadowRoot.querySelector('auro-calendar');
+    const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
+
+    const calendarCell = calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell');
+
+    const dateFrom = calendarCell[10];
+    const dateFromBtn = dateFrom.shadowRoot.querySelector('button');
+
+    dateFromBtn.click();
+
+    const dateFromSelected = el.convertWcTimeToDate(dateFrom.day.date);
+
+    await elementUpdated(el);
+
+    await expect(el.value).to.equal(dateFromSelected);
+
+    const dateTo = calendarCell[8];
+    const dateToBtn = dateTo.shadowRoot.querySelector('button');
+
+    dateToBtn.click();
+
+    await elementUpdated(el);
+
+    await expect(el.valueEnd).to.equal(undefined);
+  });
+
   it('hides the prev month button when viewing the first available month', async () => {
     const date = new Date();
     const fullDate = `${("0" + (date.getMonth() + 1)).slice(-2)}/${("0" + (date.getDate())).slice(-2)}/${date.getFullYear()}`;
