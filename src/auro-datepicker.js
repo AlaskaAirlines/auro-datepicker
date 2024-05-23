@@ -522,6 +522,7 @@ export class AuroDatePicker extends LitElement {
 
     if (this.inputList.length > 1) {
       this.inputList[1].addEventListener('input', () => {
+        console.warn('inputList[1].value', this.inputList[1].value);
         this.valueEnd = this.inputList[1].value;
         this.notifyValueChanged();
       });
@@ -685,7 +686,10 @@ export class AuroDatePicker extends LitElement {
         if (!this.value || !this.util.validDateStr(this.value)) {
           this.value = newDate;
         } else if (!this.valueEnd || !this.util.validDateStr(this.valueEnd)) {
-          this.valueEnd = newDate;
+          // verify the date is after this.value to insure we are setting a proper range
+          if (new Date(newDate) >= new Date(this.value)) {
+            this.valueEnd = newDate;
+          }
         } else {
           this.value = newDate;
           this.valueEnd = '';
