@@ -522,7 +522,6 @@ export class AuroDatePicker extends LitElement {
 
     if (this.inputList.length > 1) {
       this.inputList[1].addEventListener('input', () => {
-        console.warn('inputList[1].value', this.inputList[1].value);
         this.valueEnd = this.inputList[1].value;
         this.notifyValueChanged();
       });
