@@ -12,6 +12,13 @@ describe('auro-datepicker', () => {
     });
   });
 
+  it('web component is successfully created in the document', async () => {
+    // This test fails when attributes are put onto the component before it is attached to the DOM
+    const el = document.createElement('auro-datepicker');
+
+    await expect(el.localName).to.equal('auro-datepicker');
+  });
+
   it('custom element is defined', async () => {
     const el = await !!customElements.get("auro-datepicker");
 
@@ -86,7 +93,6 @@ describe('auro-datepicker', () => {
     await elementUpdated(el);
 
     await expect(el.getAttribute('validity')).to.be.equal('valueMissing');
-
 
     input.value = '03/03/2023';
 
@@ -344,6 +350,39 @@ describe('auro-datepicker', () => {
     await elementUpdated(el);
 
     await expect(el.valueEnd).to.equal(dateToSelected);
+  });
+
+  it('attempting to set the dateTo to a date earlier than dateFrom by clicking on the calendar does not set the valueFrom', async () => {
+    const el = await fixture(html`
+    <auro-datepicker range></auro-datepicker>
+  `);
+
+  await elementUpdated(el);
+
+  const calendar = el.shadowRoot.querySelector('auro-calendar');
+    const calendarMonth = calendar.shadowRoot.querySelector('auro-calendar-month');
+
+    const calendarCell = calendarMonth.shadowRoot.querySelectorAll('auro-calendar-cell');
+
+    const dateFrom = calendarCell[10];
+    const dateFromBtn = dateFrom.shadowRoot.querySelector('button');
+
+    dateFromBtn.click();
+
+    const dateFromSelected = el.convertWcTimeToDate(dateFrom.day.date);
+
+    await elementUpdated(el);
+
+    await expect(el.value).to.equal(dateFromSelected);
+
+    const dateTo = calendarCell[8];
+    const dateToBtn = dateTo.shadowRoot.querySelector('button');
+
+    dateToBtn.click();
+
+    await elementUpdated(el);
+
+    await expect(el.valueEnd).to.equal(undefined);
   });
 
   it('hides the prev month button when viewing the first available month', async () => {
