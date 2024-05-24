@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.5.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.2...v2.5.3) (2024-05-24)
+
+
+### Bug Fixes
+
+* address date selection issues ([b35e058](https://github.com/AlaskaAirlines/auro-datepicker/commit/b35e058b53f173dad234528bb9fb797e93838d98))
+
 ## [2.5.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.1...v2.5.2) (2024-05-17)
 
 
