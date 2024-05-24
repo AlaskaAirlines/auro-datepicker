@@ -26,7 +26,7 @@
     display: none;
   }
 
-  &::part(input) {
+  &::part(wrapper) {
     border-width: 0 !important;
     border-color: unset !important;
     background-color: unset !important;
@@ -84,6 +84,12 @@
 
 .placeholderDate {
   color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
+}
+
+:host([range]) {
+  [auro-input] {
+    max-width: 50%;
+  }
 }
 
 @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
