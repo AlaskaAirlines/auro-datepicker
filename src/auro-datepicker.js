@@ -4,19 +4,19 @@
 // ---------------------------------------------------------------------
 
 /* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions,
-   lit/no-invalid-html, no-unused-expressions */
+   lit/no-invalid-html, no-unused-expressions, no-lonely-if */
 
 // If using litElement base class
 import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 
+import AuroFormValidation from '@aurodesignsystem/auro-formvalidation/src/validation.js';
+
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 import { AuroDatepickerUtilities } from './utilities';
 import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
 
-// If using auroElement base class
-// See instructions for importing auroElement base class https://git.io/JULq4
-// import AuroElement from '@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // Import touch detection lib
 import styleCss from "./style-css.js";
@@ -63,10 +63,10 @@ import inputVersion from './inputVersion';
  * @csspart helpTextSpan - Use for customizing the style of the datepicker help text span.
  * @csspart helpText - Use for customizing the style of the datepicker help text.
  * @event auroDatePicker-ready - Notifies that the component has finished initializing.
- * @event auroDatePicker-validated - Notifies that the component value(s) have been validated.
  * @event auroDatePicker-valueSet - Notifies that the component has a new value set.
  * @event auroDatePicker-toggled - Notifies that the calendar dropdown has been opened/closed.
  * @event auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
+ * @event auroFormElement-validated - Notifies that the component value(s) have been validated.
  */
 
 // build the component class
@@ -125,6 +125,16 @@ export class AuroDatePicker extends LitElement {
      * @private
      */
     this.dateSlotContent = [];
+
+    /**
+     * @private
+     */
+    this.validation = new AuroFormValidation();
+
+    /**
+     * @private
+     */
+    this.runtimeUtils = new AuroLibraryRuntimeUtils();
 
     /**
      * @private
@@ -281,45 +291,6 @@ export class AuroDatePicker extends LitElement {
     this.range && focusInput === 'endDate' ? this.inputList[1].focus() : this.inputList[0].focus();
   }
 
-  /**
-   * Determines the validity state of the element.
-   * @private
-   * @returns {void}
-   */
-  validate() {
-    const shouldValidate = !this.contains(document.activeElement) && !this.noValidate;
-
-    if (shouldValidate) {
-      this.validity = this.inputList[0].validity;
-
-      // If the first input is valid, set validity to equal the second input.
-      if (this.validity === 'valid' && this.inputList[1] && this.inputList[1].validity !== undefined && this.inputList[1].validity !== 'valid') {
-        this.validity = this.inputList[1].validity;
-      }
-    }
-
-    // pass correct error state to dropdown based on validity state
-    if (this.validity) {
-      if (this.validity !== 'valid') {
-        this.dropdown.setAttribute('error', '');
-      } else {
-        this.dropdown.removeAttribute('error');
-      }
-    } else {
-      this.dropdown.removeAttribute('error');
-    }
-
-    // notify listener that validation logic was executed
-    if (shouldValidate) {
-      this.dispatchEvent(new CustomEvent('auroDatePicker-validated', {
-        bubbles: true,
-        composed: true,
-        detail: {
-          validity: this.validity
-        }
-      }));
-    }
-  }
 
   /**
    * Converts valid time number to format used by wc-date-range API.
@@ -496,44 +467,37 @@ export class AuroDatePicker extends LitElement {
 
     this.handleReadOnly();
 
-    // auto-show bib when manually editing the input value
-    for (let index = 0; index < this.inputList.length; index += 1) {
-      const input = this.inputList[index];
-
+    this.inputList.forEach((input, index) => {
+      // auto-show bib when manually editing the input value
       input.addEventListener('keyup', (evt) => {
         if (evt.key.length === 1 || evt.key === 'Delete' || evt.key === 'Backspace') {
           this.dropdown.show();
         }
       });
-    }
 
-    this.inputList[0].addEventListener('input', () => {
-      this.value = this.inputList[0].value;
-      this.notifyValueChanged();
-    });
+      input.addEventListener('input', () => {
+        if (index === 0) {
+          this.value = input.value;
+        } else if (index === 1) {
+          this.valueEnd = input.value;
+        }
 
-    this.inputList[0].addEventListener('auroInput-validated', () => {
-      this.validate();
-    });
-
-    this.inputList[0].addEventListener('auroInput-helpText', (evt) => {
-      this.getErrorMessage(evt);
-    });
-
-    if (this.inputList.length > 1) {
-      this.inputList[1].addEventListener('input', () => {
-        this.valueEnd = this.inputList[1].value;
         this.notifyValueChanged();
       });
 
-      this.inputList[1].addEventListener('auroInput-validated', () => {
-        this.validate();
+      input.addEventListener('auroFormElement-validated', (evt) => {
+        if (evt.detail.validity === 'customError') {
+          this.validity = evt.detail.validity;
+          this.setCustomValidity = evt.detail.message;
+        } else if (evt.target === this.inputList[0]) {
+          this.validity = evt.detail.validity;
+          this.setCustomValidity = evt.detail.message;
+        } else if (this.inputList.length > 1 && evt.target === this.inputList[1] && (this.inputList[0].validity === 'valid' || this.inputList[0].validity === undefined)) {
+          this.validity = evt.detail.validity;
+          this.setCustomValidity = evt.detail.message;
+        }
       });
-
-      this.inputList[1].addEventListener('auroInput-helpText', (evt) => {
-        this.getErrorMessage(evt);
-      });
-    }
+    });
   }
 
   /**
@@ -591,10 +555,10 @@ export class AuroDatePicker extends LitElement {
 
       if (!this.noValidate && !evt.detail.expanded && this.inputList[0].value !== undefined) {
         if (!this.contains(document.activeElement)) {
-          this.inputList[0].validate();
+          this.validation.validate(this.inputList[0]);
 
           if (this.inputList[1] && this.inputList[1].value !== undefined) {
-            this.inputList[1].validate();
+            this.validation.validate(this.inputList[1]);
           }
         }
       }
@@ -646,13 +610,13 @@ export class AuroDatePicker extends LitElement {
     // --ds-grid-breakpoint-sm
     const mobileBreakpoint = 576;
 
-    for (let index = 0; index < this.inputList.length; index += 1) {
+    this.inputList.forEach((input) => {
       if (window.innerWidth < mobileBreakpoint) {
-        this.inputList[index].setAttribute('readonly', true);
+        input.setAttribute('readonly', true);
       } else {
-        this.inputList[index].removeAttribute('readonly');
+        input.removeAttribute('readonly');
       }
-    }
+    });
   }
 
   /**
@@ -685,7 +649,11 @@ export class AuroDatePicker extends LitElement {
         if (!this.value || !this.util.validDateStr(this.value)) {
           this.value = newDate;
         } else if (!this.valueEnd || !this.util.validDateStr(this.valueEnd)) {
-          this.valueEnd = newDate;
+
+          // verify the date is after this.value to insure we are setting a proper range
+          if (new Date(newDate) >= new Date(this.value)) {
+            this.valueEnd = newDate;
+          }
         } else {
           this.value = newDate;
           this.valueEnd = '';
@@ -758,6 +726,8 @@ export class AuroDatePicker extends LitElement {
           this.inputList[0].value = '';
         }
       }
+
+      this.validation.validate(this);
     }
 
     if (changedProperties.has('valueEnd') && this.inputList[1]) {
@@ -786,19 +756,25 @@ export class AuroDatePicker extends LitElement {
           this.inputList[1].value = '';
         }
       }
+
+      this.validation.validate(this);
     }
 
     if (changedProperties.has('error')) {
+      // Error attribute is passed down to the last input in the list to control the error state
+      // This is done to prevent error icon from displaying on both inputs in range support
+      const lastInput = this.inputList[this.inputList.length - 1];
+
       if (this.error) {
-        this.inputList[0].error = this.error;
+        // Set the error attribute on the last input
+        lastInput.setAttribute('error', this.getAttribute('error'));
       } else {
-        this.dropdown.removeAttribute('error');
-        this.inputList[0].removeAttribute('error');
-        this.errorMessage = undefined;
-        this.inputList[0].validate();
+        // Remove the error attribute on the last input
+        lastInput.removeAttribute('error');
       }
 
-      this.requestUpdate();
+      // Validate the last input
+      this.validation.validate(lastInput, true);
     }
 
     if (this.value && this.valueEnd && this.util.validDateStr(this.value) && this.util.validDateStr(this.valueEnd)) {
@@ -857,6 +833,9 @@ export class AuroDatePicker extends LitElement {
   }
 
   firstUpdated() {
+    // Add the tag name as an attribute if it is different than the component name
+    this.runtimeUtils.handleComponentTagRename(this, 'auro-datepicker');
+
     this.configureDropdown();
     this.configureInput();
     this.configureCalendar();
@@ -883,13 +862,11 @@ export class AuroDatePicker extends LitElement {
           part="dropdown">
           <div slot="trigger" class="dpTriggerContent" part="trigger">
             <${this.inputTag}
-              auro-input
               id="${this.generateRandomString(12)}"
               bordered
               class="dateFrom"
               ?required="${this.required}"
               noValidate
-              .error="${this.error}"
               .max="${this.maxDate}"
               .min="${this.minDate}"
               setCustomValidityValueMissing="${this.setCustomValidityValueMissing}"
@@ -902,7 +879,6 @@ export class AuroDatePicker extends LitElement {
             </${this.inputTag}>
             ${this.range ? html`
               <${this.inputTag}
-                auro-input
                 id="${this.generateRandomString(12)}"
                 bordered
                 class="dateTo"
@@ -942,7 +918,7 @@ export class AuroDatePicker extends LitElement {
                 <slot name="helpText"></slot>
               ` : html`
                 <p class="datepickerElement-helpText" id="${this.uniqueId}" role="alert" aria-live="assertive" part="helpText">
-                  ${this.errorMessage}
+                  ${this.setCustomValidity}
                 </p>`
             }
           </span>
