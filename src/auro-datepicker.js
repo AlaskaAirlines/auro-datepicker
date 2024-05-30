@@ -850,7 +850,7 @@ export class AuroDatePicker extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <div>
+      <div class="outerWrapper">
         <${this.dropdownTag}
           for="dropdownMenu"
           bordered
