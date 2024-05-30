@@ -35,6 +35,10 @@
   }
 }
 
+.outerWrapper {
+  position: relative;
+}
+
 .datepickerElement-helpText {
   margin: var(--ds-size-50, $ds-size-50) 0;
   font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
