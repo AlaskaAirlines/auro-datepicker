@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.5.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.3...v2.5.4) (2024-06-10)
+
+
+### Bug Fixes
+
+* add relative positioning to div wrapper ([190e89d](https://github.com/AlaskaAirlines/auro-datepicker/commit/190e89d497a0b4b8ac846a0e377f5a74876c29b7)), closes [AuroSelect#187](https://github.com/AuroSelect/issues/187)
+
 ## [2.5.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.2...v2.5.3) (2024-05-24)
 
 
