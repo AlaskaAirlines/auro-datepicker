@@ -301,7 +301,7 @@ export class AuroCalendarCell extends LitElement {
     this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
 
     if (this.datepicker) {
-      this.datepicker.addEventListener('auroDatePicker-toggled', () => {
+      this.datepicker.addEventListener('auroDatepicker-newSlotContent', () => {
         this.handleSlotContent();
       });
     }
