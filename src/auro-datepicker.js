@@ -522,7 +522,7 @@ export class AuroDatePicker extends LitElement {
       this.dropdown.hide();
     });
 
-    this.calendar.addEventListener('auroCalendar-monthChanged', (event) => {
+    this.calendar.addEventListener('auroCalendar-centralDateChanged', (event) => {
       this.notifyMonthChanged(event);
     });
   }
