@@ -664,6 +664,14 @@ export class AuroDatePicker extends LitElement {
     }
   }
 
+  /**
+   * Emits an event to notify the calendar cells to fetch their slot content.
+   * @returns {void}
+   */
+  pushSlotContent() {
+    this.dispatchEvent(new CustomEvent('auroDatepicker-newSlotContent'));
+  }
+
   updated(changedProperties) {
     if (changedProperties.has('calendarFocusDate')) {
       this.handleFocusDateChange();
