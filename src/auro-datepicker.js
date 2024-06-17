@@ -67,6 +67,7 @@ import inputVersion from './inputVersion';
  * @event auroDatePicker-toggled - Notifies that the calendar dropdown has been opened/closed.
  * @event auroDatePicker-monthChanged - Notifies that the visible calendar month(s) have changed.
  * @event auroFormElement-validated - Notifies that the component value(s) have been validated.
+ * @event auroDatePicker-newSlotContent - Notifies that new slot content has been added to the datepicker.
  */
 
 // build the component class
@@ -669,7 +670,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {void}
    */
   pushSlotContent() {
-    this.dispatchEvent(new CustomEvent('auroDatepicker-newSlotContent'));
+    this.dispatchEvent(new CustomEvent('auroDatePicker-newSlotContent'));
   }
 
   updated(changedProperties) {
