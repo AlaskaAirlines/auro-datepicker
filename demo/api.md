@@ -1033,6 +1033,8 @@ export function populateSlotContentExample() {
         populateSlotContentExample.appendChild(slotElement);
       });
     }
+
+    populateSlotContentExample.pushSlotContent();
   });
 }
 ```
