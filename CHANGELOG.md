@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [2.6.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.4...v2.6.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* **event:** correctly send month changed event [#234](https://github.com/AlaskaAirlines/auro-datepicker/issues/234) ([420e12a](https://github.com/AlaskaAirlines/auro-datepicker/commit/420e12acdc5c223e305622eaa1cc3ab5cf90569d))
+
+
+### Features
+
+* **slots:** provide a public method to force cells to fetch their slot content [#233](https://github.com/AlaskaAirlines/auro-datepicker/issues/233) ([9fd7c1c](https://github.com/AlaskaAirlines/auro-datepicker/commit/9fd7c1cc00b423ee1007040ed29e39e919b4ba17))
+
 ## [2.5.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.3...v2.5.4) (2024-06-10)
 
 
