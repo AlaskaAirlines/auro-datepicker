@@ -6,7 +6,7 @@ import './auro-calendar-cell';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 
-/* eslint-disable no-self-assign, no-magic-numbers, dot-location */
+/* eslint-disable no-magic-numbers, dot-location */
 
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
   static get styles() {

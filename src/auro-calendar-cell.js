@@ -292,8 +292,8 @@ export class AuroCalendarCell extends LitElement {
       } else {
         popover.setAttribute('disabled', true);
       }
-    } catch (err) {
-      //
+    } finally {
+      return; // eslint-disable-line no-unsafe-finally
     }
   }
 
