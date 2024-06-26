@@ -3,8 +3,8 @@
 
 // ---------------------------------------------------------------------
 
-/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, no-undef-init, require-unicode-regexp, newline-per-chained-call, no-underscore-dangle, lit/binding-positions,
-   lit/no-invalid-html, no-unused-expressions, no-lonely-if */
+/* eslint-disable max-lines, max-depth, no-magic-numbers, complexity, newline-per-chained-call, no-underscore-dangle, lit/binding-positions,
+   lit/no-invalid-html, no-unused-expressions */
 
 // If using litElement base class
 import { LitElement } from "lit";
@@ -279,7 +279,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {string}
    */
   generateRandomString(length) {
-    const result = Math.random().toString(36).substring(2, length + 2); // eslint-disable-line newline-per-chained-call
+    const result = Math.random().toString(36).substring(2, length + 2);
     return result;
   }
 
