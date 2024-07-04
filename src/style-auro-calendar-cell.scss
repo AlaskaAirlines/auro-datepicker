@@ -6,7 +6,7 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before, scss/selector-nest-combinators, selector-pseudo-element-colon-notation, max-nesting-depth, at-rule-empty-line-before */
+/* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before, scss/selector-nest-combinators, selector-pseudo-element-colon-notation, max-nesting-depth, at-rule-empty-line-before, no-descending-specificity */
 
 @mixin in-range-pseudo-elem {
   position: absolute;
@@ -66,6 +66,12 @@
     background-color: var(--ds-color-background-darker, $ds-color-background-darker);
     box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
     color: var(--ds-color-background-lightest, $ds-color-background-lightest);
+
+    &:not(:hover) {
+      ::slotted([slot^="date_"]) {
+        color: var(--ds-color-text-primary-inverse, $ds-color-text-primary-inverse);
+      }
+    }
   }
 
   &.inRange::before {
