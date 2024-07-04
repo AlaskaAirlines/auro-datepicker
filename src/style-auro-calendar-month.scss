@@ -37,7 +37,7 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
       position: absolute;
 
       top: $calendar-padding-desktop;
-      right: 0;
+      right: calc(-1 * var(--ds-size-200, $ds-size-200));
 
       height: calc(100% - $calendar-padding-desktop - $calendar-padding-desktop);
 
