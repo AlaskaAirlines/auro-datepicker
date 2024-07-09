@@ -1,5 +1,13 @@
 # Semantic Release Automated Changelog
 
+## [2.6.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.0...v2.6.1) (2024-07-09)
+
+
+### Bug Fixes
+
+* **calendar:** make divider center correctly with range support [#242](https://github.com/AlaskaAirlines/auro-datepicker/issues/242) ([542c0fc](https://github.com/AlaskaAirlines/auro-datepicker/commit/542c0fc45a465e9e43bc403f2be1664222da9337))
+* **day:** selected date price is now the right color [#239](https://github.com/AlaskaAirlines/auro-datepicker/issues/239) ([fa9968e](https://github.com/AlaskaAirlines/auro-datepicker/commit/fa9968e2314ef5b91d1f51c297107642277f8c3c))
+
 # [2.6.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.5.4...v2.6.0) (2024-06-17)
 
 
