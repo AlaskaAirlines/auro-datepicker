@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.6.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.1...v2.6.2) (2024-07-17)
+
+
+### Performance Improvements
+
+* update icon endpoint 244 ([ccd9253](https://github.com/AlaskaAirlines/auro-datepicker/commit/ccd9253bb3ac6c8593f157bd1a6e53c72235fa1c))
+
 ## [2.6.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.0...v2.6.1) (2024-07-09)
 
 
