@@ -2,9 +2,9 @@ import { html } from 'lit';
 import styleCss from "./style-auro-calendar-css";
 
 import './auro-calendar-month.js';
-import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker';
-import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left_es6.js';
-import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right_es6.js';
+import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker.js';
+import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left.mjs';
+import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right.mjs';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
