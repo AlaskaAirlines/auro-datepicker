@@ -122,7 +122,7 @@
 }
 
 ::slotted([slot^="date_"]) {
-  color: var(--ds-color-text-link-default, $ds-color-text-link-default);
+  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
 
   position: absolute;
   top: 80%;
@@ -134,6 +134,10 @@
   white-space: nowrap;
 
   transform: translate(-50%, -50%);
+}
+
+::slotted([slot^="date_"][highlight]) {
+  color: var(--ds-color-text-success-default, $ds-color-text-success-default);
 }
 
 :host([disabled]) ::slotted([slot^="date_"]) {
