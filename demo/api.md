@@ -49,7 +49,7 @@
 
 | Name                 | Description                                      |
 |----------------------|--------------------------------------------------|
-| `date_MM_DD_YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. |
+| `date_MM_DD_YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. The content text is highlighted green when the `highlight` attribute is used on the slot. |
 | [fromLabel](#fromLabel)          | Defines the label content for the first input.   |
 | [helpText](#helpText)           | Defines the content of the helpText.             |
 | [mobileDateLabel](#mobileDateLabel)    | Defines the content to display above selected dates in the mobile layout. |
@@ -809,6 +809,8 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 Custom content can be added to any day in the calendar using a `slot` named following the pattern `date_{MM}_{DD}_{YYYY}` (e.g. `date_01_08_2024`).
 
+Adding the `highlight` attribute to the slot will change the slot content's color to `var(--ds-color-text-success-default`.
+
 Slot content support is limited to text only and a maximum of five (5) characters.
 
 Slot content can be styled using [inline styles](https://www.codecademy.com/article/html-inline-styles) or [CSS Parts](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/) (`part="dateSlot"`).
@@ -820,7 +822,7 @@ Slot content can be styled using [inline styles](https://www.codecademy.com/arti
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
     <span slot="date_12_03_2023">Sold</span>
-    <span slot="date_12_04_2023">$89</span>
+    <span highlight slot="date_12_04_2023">$89</span>
     <span slot="date_12_05_2023">$100</span>
     <span slot="date_12_06_2023">$2345</span>
     <span slot="date_12_07_2023">$149</span>
@@ -839,7 +841,7 @@ Slot content can be styled using [inline styles](https://www.codecademy.com/arti
   <span slot="fromLabel">Choose a date</span>
   <span slot="mobileDateLabel">Choose a date</span>
   <span slot="date_12_03_2023">Sold</span>
-  <span slot="date_12_04_2023">$89</span>
+  <span highlight slot="date_12_04_2023">$89</span>
   <span slot="date_12_05_2023">$100</span>
   <span slot="date_12_06_2023">$2345</span>
   <span slot="date_12_07_2023">$149</span>
