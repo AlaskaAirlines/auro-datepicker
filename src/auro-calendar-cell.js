@@ -4,6 +4,8 @@ import { format, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
 
 import styleCss from "./style-auro-calendar-cell-css";
+import colorCss from './color-cell-css';
+import tokensCss from './tokens-css';
 
 import '@aurodesignsystem/auro-popover';
 
@@ -70,7 +72,9 @@ export class AuroCalendarCell extends LitElement {
   static get styles() {
     return [
       // ...super.styles,
-      styleCss
+      styleCss,
+      colorCss,
+      tokensCss
     ];
   }
 

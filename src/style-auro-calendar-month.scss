@@ -22,8 +22,6 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 
   margin: 0 var(--ds-size-200, $ds-size-200);
 
-  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
-
   @include auro_grid-breakpoint--sm {
     width: $calendar-width;
 
@@ -43,7 +41,6 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 
       display: block;
       width: 1px;
-      background-color: var(--ds-color-border-divider-default, $ds-color-border-divider-default);
 
       content: '';
     }
@@ -58,8 +55,6 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
   flex-direction: row;
 
   padding: $header-padding 0 $header-padding;
-
-  color: var(--range-datepicker-month-text);
 
   text-align: center;
 }
@@ -95,22 +90,9 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 
   border-width: 1px;
   border-style: solid;
-  border-color: transparent;
   border-radius: 50%;
 
-  color: transparent;
-
   cursor: pointer;
-
-  &:focus {
-    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
-  }
-
-  &:active {
-    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
-
-    box-shadow: inset 0 0 0 1px var(--ds-color-border-active-default, $ds-color-border-active-default);
-  }
 }
 
 .table {
