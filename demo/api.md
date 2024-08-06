@@ -49,7 +49,7 @@
 
 | Name                 | Description                                      |
 |----------------------|--------------------------------------------------|
-| `date_MM_DD_YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. The content text is highlighted green when the `highlight` attribute is used on the slot. |
+| `date_MM_DD_YYYY`    | Defines the content to display in the auro-calendar-cell for the specified date. The content text is colored using the success state token when the `highlight` attribute is applied to the slot. |
 | [fromLabel](#fromLabel)          | Defines the label content for the first input.   |
 | [helpText](#helpText)           | Defines the content of the helpText.             |
 | [mobileDateLabel](#mobileDateLabel)    | Defines the content to display above selected dates in the mobile layout. |

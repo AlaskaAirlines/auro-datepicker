@@ -383,6 +383,8 @@ Only for use with the `range` attribute. Sets the label for the second input.
 
 Custom content can be added to any day in the calendar using a `slot` named following the pattern `date_{MM}_{DD}_{YYYY}` (e.g. `date_01_08_2024`).
 
+Adding the `highlight` attribute to the slot will change the slot content's color to `var(--ds-color-text-success-default)`.
+
 Slot content support is limited to text only and a maximum of five (5) characters.
 
 Slot content can be styled using [inline styles](https://www.codecademy.com/article/html-inline-styles) or [CSS Parts](https://css-tricks.com/styling-in-the-shadow-dom-with-css-shadow-parts/) (`part="dateSlot"`).
