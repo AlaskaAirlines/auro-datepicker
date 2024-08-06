@@ -6,7 +6,7 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before */
+/* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before, declaration-block-no-duplicate-properties */
 
 :host {
   @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
@@ -18,7 +18,6 @@
   --mobile-header-height: 68px;
 
   height: 100vh;
-  // stylelint-disable-next-line declaration-block-no-duplicate-properties
   height: 100dvh; /* dvh = dynamic viewport height */
 }
 

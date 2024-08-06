@@ -53,7 +53,7 @@ import inputVersion from './inputVersion';
  * @slot mobileDateLabel - Defines the content to display above selected dates in the mobile layout.
  * @slot toLabel - Defines the label content for the second input when the `range` attribute is used.
  * @slot fromLabel - Defines the label content for the first input.
- * @slot date_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell for the specified date.
+ * @slot date_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell for the specified date. The content text is colored using the success state token when the `highlight` attribute is applied to the slot.
  * @slot popover_MM_DD_YYYY - Defines the content to display in the auro-calendar-cell popover for the specified date.
  * @csspart dropdown - Use for customizing the style of the dropdown.
  * @csspart trigger - Use for customizing the style of the datepicker trigger.
