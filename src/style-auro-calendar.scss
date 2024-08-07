@@ -9,16 +9,16 @@
 /* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before, declaration-block-no-duplicate-properties */
 
 :host {
-  @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
-    width: 100%;
-  }
-
   --calendar-width: 336px;
   --mobile-footer-height: 150px;
   --mobile-header-height: 68px;
 
   height: 100vh;
   height: 100dvh; /* dvh = dynamic viewport height */
+
+  @include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
+    width: 100%;
+  }
 }
 
 .calendarNavBtn {
