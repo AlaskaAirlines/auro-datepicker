@@ -134,14 +134,14 @@ $calendar-padding-desktop: var(--ds-size-200, $ds-size-200);
 }
 
 .tbody {
-  @include auro_grid-breakpoint--sm {
-    height: 384px; // height is fixed to always leave room for months spanning 6 rows
-  }
-
   width: 100%;
 
   transition: all 0ms;
   transform: translateX(0);
+  
+  @include auro_grid-breakpoint--sm {
+    height: 384px; // height is fixed to always leave room for months spanning 6 rows
+  }
 }
 
 .td {
