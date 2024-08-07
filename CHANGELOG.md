@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [2.7.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.2...v2.7.0) (2024-08-07)
+
+
+### Features
+
+* update dependencies and docs for date slot changes [#241](https://github.com/AlaskaAirlines/auro-datepicker/issues/241) ([1500b41](https://github.com/AlaskaAirlines/auro-datepicker/commit/1500b41a4df5c74d065956eb9f6ece1374f6c1d0))
+
+
+### Performance Improvements
+
+* update deps and refactor scripts to run auro-library versions ([ec0431b](https://github.com/AlaskaAirlines/auro-datepicker/commit/ec0431b86615cabb955c9a7bebdd8225e7a88b2d))
+
 ## [2.6.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.1...v2.6.2) (2024-07-17)
 
 
