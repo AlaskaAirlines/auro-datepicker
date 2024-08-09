@@ -1,0 +1,51 @@
+// // Copyright (c) 2024 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// // See LICENSE in the project root for license information.
+
+// // ---------------------------------------------------------------------
+
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+
+.calendarNavBtn {
+  border-color: var(--ds-auro-calendar-nav-btn-border-color);
+  background-color: var(--ds-auro-calendar-nav-btn-container-color);
+  color: var(--ds-auro-calendar-nav-btn-chevron-color);
+
+  &:hover,
+  &:focus {
+    --ds-auro-calendar-nav-btn-border-color: var(--ds-color-border-ui-default-default, #{$ds-color-border-ui-default-default});
+  }
+
+  &:active {
+    --ds-auro-calendar-nav-btn-border-color: var(--ds-color-border-ui-default-default, #{$ds-color-border-ui-default-default});
+    
+    box-shadow: inset 0 0 0 1px var(--ds-auro-calendar-nav-btn-border-color);
+  }
+}
+
+.mobileHeader {
+  background-color: var(--ds-auro-calendar-mobile-header-container-color);
+  box-shadow: 0 0 10px var(--ds-auro-calendar-mobile-header-boxshadow-color);
+}
+
+.mobileDateLabel {
+  color: var(--ds-auro-calendar-mobile-header-text-color);
+}
+
+:host(:not([noRange])) {
+  .headerDateTo {
+    &:after {
+      background-color: var(--ds-auro-calendar-mobile-header-divider-color);
+    }
+  }
+}
+
+.mobileFooterActions {
+  background-color: var(--ds-auro-calendar-mobile-footer-container-color);
+}
+
+@include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
+  .calendarNavBtn {
+    --ds-auro-calendar-nav-btn-border-color: var(--ds-color-border-ui-default-default, #{$ds-color-border-ui-default-default});
+  }
+}

@@ -1,5 +1,8 @@
 import { html } from 'lit';
+
 import styleCss from "./style-auro-calendar-css";
+import colorCss from "./color-calendar-css";
+import tokensCss from './tokens-css';
 
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker.js';
@@ -31,7 +34,7 @@ import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
  * @event auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
-/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines, no-extra-parens */
+/* eslint-disable no-magic-numbers, no-undef-init, max-lines */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendar extends RangeDatepicker {
@@ -87,7 +90,11 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   static get styles() {
-    return [styleCss];
+    return [
+      styleCss,
+      colorCss,
+      tokensCss
+    ];
   }
 
   static get properties() {

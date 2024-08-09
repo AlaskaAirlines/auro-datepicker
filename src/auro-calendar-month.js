@@ -1,4 +1,7 @@
 import styleCss from "./style-auro-calendar-month-css";
+import colorCss from "./color-month-css";
+import tokensCss from "./tokens-css";
+
 import { html } from 'lit';
 
 import { RangeDatepickerCalendar } from './../vendor/wc-range-datepicker/range-datepicker-calendar';
@@ -6,13 +9,15 @@ import './auro-calendar-cell';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 
-/* eslint-disable no-self-assign, no-magic-numbers, dot-location */
+/* eslint-disable no-magic-numbers, dot-location */
 
 export class AuroCalendarMonth extends RangeDatepickerCalendar {
   static get styles() {
     return [
       // ...super.styles,
-      styleCss
+      styleCss,
+      colorCss,
+      tokensCss
     ];
   }
 
