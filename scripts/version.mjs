@@ -2,3 +2,4 @@ import versionWriter from '@aurodesignsystem/auro-library/scripts/build/versionW
 
 versionWriter.writeDepVersionFile('@aurodesignsystem/auro-dropdown');
 versionWriter.writeDepVersionFile('@aurodesignsystem/auro-input');
+versionWriter.writeDepVersionFile('@aurodesignsystem/auro-popover');
