@@ -31,7 +31,7 @@ import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
  * @event auroCalendar-monthChanged - Notifies that the visible calendar month(s) have changed.
  */
 
-/* eslint-disable no-self-assign, no-magic-numbers, no-undef-init, no-param-reassign, max-lines, no-extra-parens */
+/* eslint-disable no-magic-numbers, no-undef-init, max-lines */
 
 // class AuroCalendar extends LitElement {
 export class AuroCalendar extends RangeDatepicker {
