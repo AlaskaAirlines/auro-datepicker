@@ -6,7 +6,7 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-/* stylelint-disable selector-max-class, color-function-notation, order/properties-order, declaration-empty-line-before, scss/selector-nest-combinators, selector-pseudo-element-colon-notation, max-nesting-depth, at-rule-empty-line-before, no-descending-specificity */
+/* stylelint-disable selector-max-class, order/properties-order, declaration-empty-line-before, scss/selector-nest-combinators, selector-pseudo-element-colon-notation, max-nesting-depth, at-rule-empty-line-before, no-descending-specificity */
 
 @mixin in-range-pseudo-elem {
   position: absolute;
@@ -17,8 +17,6 @@
   display: block;
   width: calc(100vw / 7);
   height: var(--ds-size-600, $ds-size-600);
-
-  background-color: var(--ds-color-background-lighter, $ds-color-background-lighter);
 
   content: '';
   transform: translate(-50%, -50%);
@@ -41,11 +39,7 @@
 
   border-width: 1px;
   border-style: solid;
-  border-color: transparent;
   border-radius: var(--ds-size-300, $ds-size-300);
-
-  background-color: transparent;
-  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
 
   cursor: pointer;
 
@@ -55,23 +49,7 @@
   user-select: none;
 
   &.disabled {
-    color: var(--ds-color-text-secondary-inverse, $ds-color-text-secondary-inverse);
-
     pointer-events: none;
-  }
-
-  &.selected {
-    border-color: var(--ds-color-background-darker, $ds-color-background-darker);
-
-    background-color: var(--ds-color-background-darker, $ds-color-background-darker);
-    box-shadow: 0 .1px 5px rgba(0, 0, 0, .12), 0 5px 10px rgba(0, 0, 0, .1);
-    color: var(--ds-color-background-lightest, $ds-color-background-lightest);
-
-    &:not(:hover) {
-      ::slotted([slot^="date_"]) {
-        color: var(--ds-color-text-primary-inverse, $ds-color-text-primary-inverse);
-      }
-    }
   }
 
   &.inRange::before {
@@ -108,10 +86,6 @@
       width: calc(var(--ds-size-600, $ds-size-600) / 2);
     }
   }
-
-  &.sameDateTrip::before {
-    background-color: unset;
-  }
 }
 
 .dateSlot {
@@ -122,8 +96,6 @@
 }
 
 ::slotted([slot^="date_"]) {
-  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
-
   position: absolute;
   top: 80%;
   left: 50%;
@@ -134,14 +106,6 @@
   white-space: nowrap;
 
   transform: translate(-50%, -50%);
-}
-
-::slotted([slot^="date_"][highlight]) {
-  color: var(--ds-color-text-success-default, $ds-color-text-success-default);
-}
-
-:host([disabled]) ::slotted([slot^="date_"]) {
-  color: var(--ds-color-text-disabled-default, $ds-color-text-disabled-default);
 }
 
 ::slotted(auro-icon) {
@@ -170,26 +134,13 @@
     height: var(--ds-size-800, $ds-size-800);
 
     font-size: var(--ds-text-body-size-lg, $ds-text-body-size-lg);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .dateSlot {
     font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
-  }
-}
-
-@media (hover: hover) {
-  .day {
-    &:hover {
-      background-color: #f0f0f0; // var(--ds-color-ui-bkg-hover-default); - this token was part of the design but caused a problem with the `inRange` date styles so we had to switch to a solid color for hover.
-      color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
-
-      cursor: pointer;
-    }
-
-    &.selected {
-      &:hover {
-        background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
-      }
-    }
   }
 }
