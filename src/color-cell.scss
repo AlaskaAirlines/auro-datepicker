@@ -23,11 +23,6 @@
   background-color: var(--ds-auro-calendar-cell-container-color);
   color: var(--ds-auro-calendar-cell-text-color);
 
-
-  &.disabled {
-    --ds-auro-calendar-cell-text-color: var(--ds-color-text-ui-disabled-default, #{$ds-color-text-ui-disabled-default});
-  }
-
   &.selected {
     --ds-auro-calendar-border-color: var(--ds-color-border-ui-active-default, #{$ds-color-border-ui-active-default});
     --ds-auro-calendar-cell-container-color: var(--ds-color-container-ui-primary-active-default, #{$ds-color-container-ui-primary-active-default});
@@ -50,6 +45,11 @@
   &:hover {
     --ds-auro-calendar-cell-container-color: var(--ds-color-container-ui-secondary-hover-default, #{$ds-color-container-ui-secondary-hover-default});
     --ds-auro-calendar-cell-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+  }
+
+  &.disabled {
+    --ds-auro-calendar-cell-text-color: var(--ds-color-text-ui-disabled-default, #{$ds-color-text-ui-disabled-default});
+    --ds-auro-calendar-cell-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
   }
 
   &.inRange,
