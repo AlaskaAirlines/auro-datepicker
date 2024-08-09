@@ -3,8 +3,8 @@
 
 // // ---------------------------------------------------------------------
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 
 /* stylelint-disable color-function-notation, at-rule-empty-line-before, order/properties-order, declaration-empty-line-before, declaration-block-no-duplicate-properties */
 
@@ -31,11 +31,7 @@
 
   border-width: 1px;
   border-style: solid;
-  border-color: transparent;
   border-radius: 50%;
-
-  background-color: transparent;
-  color: var(--ds-color-border-active-default, $ds-color-border-active-default);
 
   cursor: pointer;
 }
@@ -66,9 +62,6 @@
 
   align-items: center;
   flex-direction: row;
-
-  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .15);
 }
 
 .headerDateFrom {
@@ -83,8 +76,6 @@
 }
 
 .mobileDateLabel {
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
-
   font-size: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
 }
 
@@ -113,8 +104,6 @@
       width: 1px;
       height: var(--ds-size-300, $ds-size-300);
 
-      background-color: var(--ds-color-border-divider-default, $ds-color-border-divider-default);
-
       content: '';
       transform: translateY(-50%);
     }
@@ -134,8 +123,6 @@
   position: relative;
   bottom: 0;
   left: 50%;
-
-  background-color: var(--ds-color-background-lightest, $ds-color-background-lightest);
 
   display: none;
   width: calc(100% - calc(var(--ds-size-200, $ds-size-200) * 2));
@@ -199,19 +186,5 @@
     display: flex;
 
     flex-direction: row;
-  }
-}
-
-@include auro_breakpoint($max: $ds-grid-breakpoint-sm) {
-  .calendarNavBtn {
-    border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
-  }
-}
-
-@media (hover: hover) {
-  .calendarNavBtn {
-    &:hover {
-      border-color: var(--ds-color-border-active-default, $ds-color-border-active-default);
-    }
   }
 }
