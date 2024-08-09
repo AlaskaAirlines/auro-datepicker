@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.7.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.0...v2.7.1) (2024-08-09)
+
+
+### Bug Fixes
+
+* revert input version to fix button ui error ([b36fa76](https://github.com/AlaskaAirlines/auro-datepicker/commit/b36fa76492b812f0ba663a642eae9280a8652544))
+
 # [2.7.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.6.2...v2.7.0) (2024-08-07)
 
 
