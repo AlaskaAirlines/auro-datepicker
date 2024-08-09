@@ -23,7 +23,7 @@
     "@alaskaairux/icons": "^4.42.0",
     "@aurodesignsystem/auro-dropdown": "^2.10.6",
     "@aurodesignsystem/auro-formvalidation": "^1.0.3",
-    "@aurodesignsystem/auro-input": "^3.1.1",
+    "@aurodesignsystem/auro-input": "^3.0.1",
     "@aurodesignsystem/auro-popover": "^3.2.3",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
