@@ -1083,3 +1083,40 @@ export function alertValueExample() {
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
+
+### Theme Support
+
+The component may be restyled using the following code sample and changing the values of the following token(s).
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../src/tokens.scss) -->
+<!-- The below code snippet is automatically added from ./../../src/tokens.scss -->
+
+```scss
+/* stylelint-disable color-function-notation */
+
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+
+:host {
+  --ds-auro-datepicker-placeholder-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-datepicker-range-input-divider-color: var(--ds-color-border-primary-default, #{$ds-color-border-primary-default});
+  --ds-auro-calendar-mobile-footer-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
+  --ds-auro-calendar-mobile-header-boxshadow-color: var(--ds-color-base-black-300, #{$ds-color-base-black-300});
+  --ds-auro-calendar-mobile-header-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
+  --ds-auro-calendar-mobile-header-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
+  --ds-auro-calendar-mobile-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-calendar-nav-btn-border-color: transparent;
+  --ds-auro-calendar-nav-btn-chevron-color: var(--ds-color-icon-ui-default-default, #{$ds-color-icon-ui-default-default});
+  --ds-auro-calendar-nav-btn-container-color: transparent;
+  --ds-auro-calendar-month-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
+  --ds-auro-calendar-month-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
+  --ds-auro-calendar-month-header-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+  --ds-auro-calendar-cell-border-color: transparent;
+  --ds-auro-calendar-cell-boxshadow-color-one: var(--ds-color-base-black-300, #{$ds-color-base-black-300});
+  --ds-auro-calendar-cell-boxshadow-color-two: var(--ds-color-base-black-100, #{$ds-color-base-black-100});
+  --ds-auro-calendar-cell-container-color: transparent;
+  --ds-auro-calendar-cell-in-range-color: var(--ds-color-container-secondary-default, #{$ds-color-container-secondary-default});
+  --ds-auro-calendar-cell-price-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+  --ds-auro-calendar-cell-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+}
+```
+<!-- AURO-GENERATED-CONTENT:END -->

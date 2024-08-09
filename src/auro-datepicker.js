@@ -20,6 +20,9 @@ import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/util
 
 // Import touch detection lib
 import styleCss from "./style-css.js";
+import colorCss from "./color-css";
+import tokensCss from "./tokens-css";
+
 import './auro-calendar.js';
 
 import { AuroDropdown } from '@aurodesignsystem/auro-dropdown/src/auro-dropdown.js';
@@ -257,7 +260,11 @@ export class AuroDatePicker extends LitElement {
   }
 
   static get styles() {
-    return [styleCss];
+    return [
+      styleCss,
+      colorCss,
+      tokensCss
+    ];
   }
 
   /**

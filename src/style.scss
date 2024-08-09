@@ -28,10 +28,6 @@
 
   &::part(wrapper) {
     border-width: 0 !important;
-    border-color: unset !important;
-    background-color: unset !important;
-    box-shadow: unset !important;
-    outline: unset !important;
   }
 }
 
@@ -79,15 +75,10 @@
         display: block;
         width: 1px;
         height: 2rem;
-        background: var(--ds-color-border-primary-default, $ds-color-border-primary-default);
         content: '';
       }
     }
   }
-}
-
-.placeholderDate {
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 }
 
 :host([range]) {

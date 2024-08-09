@@ -1,5 +1,8 @@
 import { html } from 'lit';
+
 import styleCss from "./style-auro-calendar-css";
+import colorCss from "./color-calendar-css";
+import tokensCss from './tokens-css';
 
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker.js';
@@ -87,7 +90,11 @@ export class AuroCalendar extends RangeDatepicker {
   }
 
   static get styles() {
-    return [styleCss];
+    return [
+      styleCss,
+      colorCss,
+      tokensCss
+    ];
   }
 
   static get properties() {
