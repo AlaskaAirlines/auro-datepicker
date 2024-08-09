@@ -1,4 +1,5 @@
-import { LitElement, html } from 'lit';
+import { LitElement } from "lit";
+import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { format, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
@@ -7,11 +8,14 @@ import styleCss from "./style-auro-calendar-cell-css";
 import colorCss from './color-cell-css';
 import tokensCss from './tokens-css';
 
-import '@aurodesignsystem/auro-popover';
+import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
+
+import { AuroPopover } from '@aurodesignsystem/auro-popover/src/auro-popover.js';
+import popoverVersion from './popoverVersion';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-/* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines, line-comment-position, no-inline-comments */
+/* eslint-disable max-lines, no-underscore-dangle, no-magic-numbers, no-underscore-dangle, max-params, no-void, init-declarations, no-extra-parens, arrow-parens, max-lines, line-comment-position, no-inline-comments, lit/binding-positions, lit/no-invalid-html */
 
 export class AuroCalendarCell extends LitElement {
   constructor() {
@@ -33,6 +37,12 @@ export class AuroCalendarCell extends LitElement {
     this.dateStr = null;
     this.renderForDateSlot = false; // When false, the numerical date will render vertically centered. When true, the date will render off-center to the top and leave room below for the slot content.
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
+
+    /**
+     * Generate unique names for dependency components.
+     */
+    const versioning = new AuroDependencyVersioning();
+    this.popoverTag = versioning.generateTag('auro-popover', popoverVersion, AuroPopover);
   }
 
   // This function is to define props used within the scope of this component
@@ -114,7 +124,9 @@ export class AuroCalendarCell extends LitElement {
    * @returns {void}
    */
   handleTap() {
-    this.datepicker.handleCellClick(this.day.date);
+    if (!this.disabled) {
+      this.datepicker.handleCellClick(this.day.date);
+    }
   }
 
   /**
@@ -288,13 +300,11 @@ export class AuroCalendarCell extends LitElement {
         this.removeAttribute('renderForDateSlot');
       }
 
-      const popover = this.shadowRoot.querySelector('auro-popover');
-
       if (popoverSlotContent) {
         this.appendChild(popoverSlotContent.cloneNode(true));
-        popover.removeAttribute('disabled');
+        this.auroPopover.removeAttribute('disabled');
       } else {
-        popover.setAttribute('disabled', true);
+        this.auroPopover.setAttribute('disabled', true);
       }
     } finally {
       return; // eslint-disable-line no-unsafe-finally
@@ -311,7 +321,7 @@ export class AuroCalendarCell extends LitElement {
     }
 
     this.calendarMonth = this.runtimeUtils.closestElement('auro-calendar-month', this);
-    this.auroPopover = this.shadowRoot.querySelector('auro-popover');
+    this.auroPopover = this.shadowRoot.querySelector(this.popoverTag._$litStatic$);
 
     this.auroPopover.boundary = this.calendarMonth;
   }
@@ -340,7 +350,7 @@ export class AuroCalendarCell extends LitElement {
 
     let _a, _b;
     return html`
-      <auro-popover>
+      <${this.popoverTag}>
         <slot name="popover_${this.dateStr}"></slot>
         <button
           slot="trigger"
@@ -358,7 +368,7 @@ export class AuroCalendarCell extends LitElement {
             </div>
           </div>
         </button>
-      </auro-popover>
+      </${this.popoverTag}>
     `;
   }
 }
