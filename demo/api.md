@@ -825,8 +825,8 @@ Slot content can be styled using [inline styles](https://www.codecademy.com/arti
     <span highlight slot="date_12_04_2023">$89</span>
     <span slot="date_12_05_2023">$100</span>
     <span slot="date_12_06_2023">$2345</span>
-    <span slot="date_12_07_2023">$149</span>
-    <span slot="date_12_08_2023">$382</span>
+    <span highlight slot="date_12_07_2023">$149</span>
+    <span highlight slot="date_12_08_2023">$382</span>
     <span slot="date_12_09_2023">$560</span>
   </auro-datepicker>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -844,8 +844,8 @@ Slot content can be styled using [inline styles](https://www.codecademy.com/arti
   <span highlight slot="date_12_04_2023">$89</span>
   <span slot="date_12_05_2023">$100</span>
   <span slot="date_12_06_2023">$2345</span>
-  <span slot="date_12_07_2023">$149</span>
-  <span slot="date_12_08_2023">$382</span>
+  <span highlight slot="date_12_07_2023">$149</span>
+  <span highlight slot="date_12_08_2023">$382</span>
   <span slot="date_12_09_2023">$560</span>
 </auro-datepicker>
 ```
@@ -859,8 +859,8 @@ Custom content can be added to any day's `auro-popover` in the calendar using a 
 The popover slot is intended for use with calendar dates that are `disabled` (e.g. before minimum date or after maximum date).
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/popover.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverSlot.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/popoverSlot.html -->
   <auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
@@ -876,8 +876,8 @@ The popover slot is intended for use with calendar dates that are `disabled` (e.
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popover.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/popover.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverSlot.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/popoverSlot.html -->
 
 ```html
 <auro-datepicker centralDate="12/03/2023" minDate="12/04/2023" maxDate="12/09/2023">
@@ -947,7 +947,7 @@ export function populateSlotContentExample() {
         {slot: 'date', month: 12, day: 11, year: 2023, content: 'Sold'},
         {slot: 'date', month: 12, day: 12, year: 2023, content: 'Sold'},
         {slot: 'date', month: 12, day: 13, year: 2023, content: '$560'},
-        {slot: 'date', month: 12, day: 14, year: 2023, content: '$89'},
+        {slot: 'date', month: 12, day: 14, year: 2023, content: '$89', highlight: true},
         {slot: 'date', month: 12, day: 15, year: 2023, content: '$100'},
         {slot: 'date', month: 12, day: 16, year: 2023, content: '$2345'},
         {slot: 'date', month: 12, day: 17, year: 2023, content: '$2345'},
@@ -965,11 +965,11 @@ export function populateSlotContentExample() {
         {slot: 'date', month: 12, day: 29, year: 2023, content: '$2345'},
         {slot: 'date', month: 12, day: 30, year: 2023, content: '$2345'},
         {slot: 'date', month: 12, day: 31, year: 2023, content: '$2345'},
-        {slot: 'date', month: 1, day: 14, year: 2024, content: '$83'},
+        {slot: 'date', month: 1, day: 14, year: 2024, content: '$83', highlight: true},
         {slot: 'date', month: 1, day: 15, year: 2024, content: '$203'},
         {slot: 'date', month: 1, day: 16, year: 2024, content: '$4444'},
-        {slot: 'date', month: 1, day: 17, year: 2024, content: '$83'},
-        {slot: 'date', month: 1, day: 18, year: 2024, content: '$96'},
+        {slot: 'date', month: 1, day: 17, year: 2024, content: '$83', highlight: true},
+        {slot: 'date', month: 1, day: 18, year: 2024, content: '$96', highlight: true},
         {slot: 'date', month: 1, day: 19, year: 2024, content: 'Sold'},
         {slot: 'date', month: 1, day: 20, year: 2024, content: 'Sold'},
         {slot: 'popover', month: 12, day: 1, year: 2023, content: 'Tickets for this date are sold out'},
@@ -1014,7 +1014,6 @@ export function populateSlotContentExample() {
 
       // For each item in the array, parse the keys into an HTML element and insert it into the DOM
       data.forEach((item) => {
-
         // Create the new element for the slot content
         const slotElement = document.createElement('span');
 
@@ -1032,6 +1031,11 @@ export function populateSlotContentExample() {
         // Set the slot name and content
         slotElement.setAttribute('slot', slotName);
         slotElement.textContent = item.content;
+
+        // Set the 'highlight' attribute on date slot content
+        if (item.slot === 'date' && item.highlight) {
+          slotElement.setAttribute('highlight', item.highlight);
+        }
 
         // Append the new element to the DOM
         populateSlotContentExample.appendChild(slotElement);
