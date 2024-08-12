@@ -286,8 +286,7 @@ export class AuroDatePicker extends LitElement {
    * @returns {string}
    */
   generateRandomString(length) {
-    const result = Math.random().toString(36).substring(2, length + 2);
-    return result;
+    return Math.random().toString(36).substring(2, length + 2);
   }
 
   /**
