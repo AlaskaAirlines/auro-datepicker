@@ -408,13 +408,13 @@ Custom content can be added to any day's `auro-popover` in the calendar using a 
 The popover slot is intended for use with calendar dates that are `disabled` (e.g. before minimum date or after maximum date).
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popover.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/popoverSlot.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popover.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/popoverSlot.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
