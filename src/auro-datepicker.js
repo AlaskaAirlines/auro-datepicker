@@ -18,18 +18,17 @@ import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-// Import touch detection lib
 import styleCss from "./style-css.js";
 import colorCss from "./color-css";
 import tokensCss from "./tokens-css";
-
-import './auro-calendar.js';
 
 import { AuroDropdown } from '@aurodesignsystem/auro-dropdown/src/auro-dropdown.js';
 import dropdownVersion from './dropdownVersion';
 
 import { AuroInput } from '@aurodesignsystem/auro-input/src/auro-input.js';
 import inputVersion from './inputVersion';
+
+import './auro-calendar.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
