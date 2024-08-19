@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+# [2.8.0-beta.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.1...v2.8.0-beta.1) (2024-08-19)
+
+
+### Features
+
+* implement tier 3 color tokens [#206](https://github.com/AlaskaAirlines/auro-datepicker/issues/206) ([563b498](https://github.com/AlaskaAirlines/auro-datepicker/commit/563b4985f852bc2eabbb17fa5981ceb4e1566307))
+
+
+### Performance Improvements
+
+* **deps:** update dependencies to latest versions ([43d7b62](https://github.com/AlaskaAirlines/auro-datepicker/commit/43d7b62dc9a061f12585b9684b244afda0fd7d30))
+* use custom versioned auro-popover ([8e572f4](https://github.com/AlaskaAirlines/auro-datepicker/commit/8e572f4d141dd94f1e097a39750e5255282c105b))
+
 ## [2.7.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.0...v2.7.1) (2024-08-09)
 
 
