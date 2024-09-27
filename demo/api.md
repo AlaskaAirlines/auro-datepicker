@@ -1102,7 +1102,7 @@ The component may be restyled using the following code sample and changing the v
   --ds-auro-datepicker-placeholder-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
   --ds-auro-datepicker-range-input-divider-color: var(--ds-color-border-primary-default, #{$ds-color-border-primary-default});
   --ds-auro-calendar-mobile-footer-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
-  --ds-auro-calendar-mobile-header-boxshadow-color: var(--ds-color-base-black-300, #{$ds-color-base-black-300});
+  --ds-auro-calendar-mobile-header-boxshadow-color: var(--ds-elevation-200, #{$ds-elevation-200});
   --ds-auro-calendar-mobile-header-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
   --ds-auro-calendar-mobile-header-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
   --ds-auro-calendar-mobile-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
@@ -1113,8 +1113,7 @@ The component may be restyled using the following code sample and changing the v
   --ds-auro-calendar-month-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
   --ds-auro-calendar-month-header-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
   --ds-auro-calendar-cell-border-color: transparent;
-  --ds-auro-calendar-cell-boxshadow-color-one: var(--ds-color-base-black-300, #{$ds-color-base-black-300});
-  --ds-auro-calendar-cell-boxshadow-color-two: var(--ds-color-base-black-100, #{$ds-color-base-black-100});
+  --ds-auro-calendar-cell-boxshadow-color: var(--ds-elevation-200, #{$ds-elevation-200});
   --ds-auro-calendar-cell-container-color: transparent;
   --ds-auro-calendar-cell-in-range-color: var(--ds-color-container-secondary-default, #{$ds-color-container-secondary-default});
   --ds-auro-calendar-cell-price-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
