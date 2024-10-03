@@ -1109,7 +1109,7 @@ The component may be restyled using the following code sample and changing the v
   --ds-auro-calendar-mobile-header-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
   --ds-auro-calendar-mobile-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
   --ds-auro-calendar-nav-btn-border-color: transparent;
-  --ds-auro-calendar-nav-btn-chevron-color: var(--ds-color-icon-ui-default-default, #{$ds-color-icon-ui-default-default});
+  --ds-auro-calendar-nav-btn-chevron-color: var(--ds-color-icon-ui-primary-default-default, #{$ds-color-icon-ui-primary-default-default});
   --ds-auro-calendar-nav-btn-container-color: transparent;
   --ds-auro-calendar-month-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
   --ds-auro-calendar-month-divider-color: var(--ds-color-border-divider-default, #{$ds-color-border-divider-default});
