@@ -96,8 +96,8 @@ In cases where the project is not able to process JS assets, there are pre-proce
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/bundleUseModBrowsers.md) -->
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@4.3.0/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@5.0.5/dist/bundled/essentials.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@4.10.0/dist/tokens/CSSCustomProperties.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@5.1.2/dist/bundled/essentials.css" />
 <script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-datepicker@2.7.1/dist/auro-datepicker__bundled.js" type="module"></script>
 ```
 
