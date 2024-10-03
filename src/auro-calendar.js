@@ -11,9 +11,9 @@ import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right.
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-import { AuroDatepickerUtilities } from './utilities';
-import { CalendarUtilities } from './utilitiesCalendar';
-import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
+import { AuroDatepickerUtilities } from './utilities.js';
+import { CalendarUtilities } from './utilitiesCalendar.js';
+import { UtilitiesCalendarRender } from './utilitiesCalendarRender.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
