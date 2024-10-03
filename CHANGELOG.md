@@ -1,5 +1,18 @@
 # Semantic Release Automated Changelog
 
+# [2.8.0-beta.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* resolve minor color theming issues [#206](https://github.com/AlaskaAirlines/auro-datepicker/issues/206) ([0e705de](https://github.com/AlaskaAirlines/auro-datepicker/commit/0e705de357c5c556937b3f082c5b80c5ba87619f))
+
+
+### Performance Improvements
+
+* refactor custom component registration config ([910cac2](https://github.com/AlaskaAirlines/auro-datepicker/commit/910cac2ed407086097375cfb6010e72301e0ce0c))
+* update dependencies and file extensions ([06d116a](https://github.com/AlaskaAirlines/auro-datepicker/commit/06d116a25d2c5c4b83f3f7fa38ea8523b3c7dc3f))
+
 # [2.8.0-beta.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.1...v2.8.0-beta.1) (2024-08-19)
 
 
