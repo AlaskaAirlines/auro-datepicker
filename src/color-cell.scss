@@ -28,7 +28,7 @@
     --ds-auro-calendar-cell-container-color: var(--ds-color-container-ui-primary-active-default, #{$ds-color-container-ui-primary-active-default});
     --ds-auro-calendar-cell-text-color: var(--ds-color-text-primary-inverse, #{$ds-color-text-primary-inverse});
 
-    box-shadow: 0 .1px 5px var(--ds-auro-calendar-cell-boxshadow-color-one), 0 5px 10px var(--ds-auro-calendar-cell-boxshadow-color-two);
+    box-shadow: var(--ds-auro-calendar-boxshadow-color);
 
     &:hover {
       --ds-auro-calendar-cell-container-color: var(--ds-color-container-primary-default, #{$ds-color-container-primary-default});
