@@ -1,13 +1,4 @@
 import { AuroDatePicker } from "./src/auro-datepicker.js";
+import * as RuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
-/**
- * Register Custom Element.
- * @param {String} name - Name to use for custom element.
- * @returns {void}
- */
-export function registerComponent(name) {
-  // alias definition
-  if (!customElements.get(name)) {
-    customElements.define(name, class extends AuroDatePicker {});
-  }
-}
+RuntimeUtils.default.prototype.registerComponent('custom-datepicker', AuroDatePicker);
