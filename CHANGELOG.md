@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [3.0.0-beta.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.8.0-beta.2...v3.0.0-beta.1) (2024-10-04)
+
+
+### Performance Improvements
+
+* **label:** remove github label colors ([7a933f2](https://github.com/AlaskaAirlines/auro-datepicker/commit/7a933f274d517675c5b6e8f769972dee639809f2))
+
+
+### BREAKING CHANGES
+
+* **label:** trigger major release for color theme support #206
+
 ## [2.7.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.0...v2.7.1) (2024-08-09)
 
 
