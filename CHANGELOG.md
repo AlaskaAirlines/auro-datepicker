@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.0.0...v3.0.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* moves auro library to dependencies in package.json [#261](https://github.com/AlaskaAirlines/auro-datepicker/issues/261) ([9e7f3be](https://github.com/AlaskaAirlines/auro-datepicker/commit/9e7f3be17447b79cdc6bd8dcf540b55a5107771a))
+
 # [3.0.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v2.7.1...v3.0.0) (2024-10-04)
 
 
