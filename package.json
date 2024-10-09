@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@alaskaairux/icons": "^4.43.0",
-    "@aurodesignsystem/auro-dropdown": "^3.0.0",
+    "@aurodesignsystem/auro-dropdown": "^3.0.2",
     "@aurodesignsystem/auro-formvalidation": "^1.0.3",
     "@aurodesignsystem/auro-input": "^4.0.0",
     "@aurodesignsystem/auro-library": "^2.8.0",
