@@ -1,5 +1,14 @@
 # Semantic Release Automated Changelog
 
+## [3.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.0.1...v3.0.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* change css prop to correct value and target to remove background color [#263](https://github.com/AlaskaAirlines/auro-datepicker/issues/263) ([700e278](https://github.com/AlaskaAirlines/auro-datepicker/commit/700e278400f418795cf3e1a27bcbcdb91a2ddedd))
+* remove the unnecessary use of !important on css props [#263](https://github.com/AlaskaAirlines/auro-datepicker/issues/263) ([ef66bbb](https://github.com/AlaskaAirlines/auro-datepicker/commit/ef66bbb4a4a147cb3a76222427528e26b1656c5d))
+* update the dropdown package to fix safari outline bug [#263](https://github.com/AlaskaAirlines/auro-datepicker/issues/263) ([654889b](https://github.com/AlaskaAirlines/auro-datepicker/commit/654889b525d316eefb62650659c071136a10687b))
+
 ## [3.0.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.0.0...v3.0.1) (2024-10-08)
 
 
