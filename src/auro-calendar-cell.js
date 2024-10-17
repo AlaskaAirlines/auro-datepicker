@@ -89,6 +89,18 @@ export class AuroCalendarCell extends LitElement {
   }
 
   /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-calendar-cell"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroCalendarCell.register("custom-calendar-cell") // this will register this element to <custom-calendar-cell/>
+   *
+   */
+  static register(name = "auro-calendar-cell") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroCalendarCell);
+  }
+
+  /**
    * Handles selected and hovered states of the calendar cell when the date changes.
    * @private
    * @param {Number} dateFrom - Depart date.
@@ -371,8 +383,4 @@ export class AuroCalendarCell extends LitElement {
       </${this.popoverTag}>
     `;
   }
-}
-
-if (!customElements.get('auro-calendar-cell')) {
-  customElements.define('auro-calendar-cell', AuroCalendarCell);
 }

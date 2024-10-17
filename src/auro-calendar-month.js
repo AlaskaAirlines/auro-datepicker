@@ -5,7 +5,9 @@ import tokensCss from "./tokens-css";
 import { html } from 'lit';
 
 import { RangeDatepickerCalendar } from './../vendor/wc-range-datepicker/range-datepicker-calendar';
-import './auro-calendar-cell.js';
+import { AuroCalendarCell } from './auro-calendar-cell.js';
+
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 
@@ -19,6 +21,20 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
       colorCss,
       tokensCss
     ];
+  }
+
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-calendar-month"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroCalendarMonth.register("custom-calendar-month") // this will register this element to <custom-calendar-month/>
+   *
+   */
+  static register(name = "auro-calendar-month") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroCalendarMonth);
+
+    AuroCalendarCell.register(name.replace('month', 'cell'));
   }
 
   async firstUpdated() {
@@ -121,8 +137,4 @@ export class AuroCalendarMonth extends RangeDatepickerCalendar {
     `;
   }
   /* eslint-enable */
-}
-
-if (!customElements.get('auro-calendar-month')) {
-  customElements.define('auro-calendar-month', AuroCalendarMonth);
 }

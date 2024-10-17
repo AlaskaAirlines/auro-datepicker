@@ -4,7 +4,7 @@ import styleCss from "./style-auro-calendar-css";
 import colorCss from "./color-calendar-css";
 import tokensCss from './tokens-css';
 
-import './auro-calendar-month.js';
+import { AuroCalendarMonth } from './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker.js';
 import chevronLeft from '@alaskaairux/icons/dist/icons/interface/chevron-left.mjs';
 import chevronRight from '@alaskaairux/icons/dist/icons/interface/chevron-right.mjs';
@@ -129,6 +129,20 @@ export class AuroCalendar extends RangeDatepicker {
         reflect: true
       },
     };
+  }
+
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-calendar"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroCalendar.register("custom-calendar") // this will register this element to <custom-calendar/>
+   *
+   */
+  static register(name = "auro-calendar") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroCalendar);
+
+    AuroCalendarMonth.register(`${name}-month`);
   }
 
   /**
@@ -312,8 +326,4 @@ export class AuroCalendar extends RangeDatepicker {
       </div>
     `;
   }
-}
-
-if (!customElements.get('auro-calendar')) {
-  customElements.define('auro-calendar', AuroCalendar);
 }

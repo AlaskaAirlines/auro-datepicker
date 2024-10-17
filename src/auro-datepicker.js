@@ -23,7 +23,7 @@ import styleCss from "./style-css.js";
 import colorCss from "./color-css.js";
 import tokensCss from "./tokens-css.js";
 
-import './auro-calendar.js';
+import { AuroCalendar } from './auro-calendar.js';
 
 import { AuroDropdown } from '@aurodesignsystem/auro-dropdown/src/auro-dropdown.js';
 import dropdownVersion from './dropdownVersion.js';
@@ -265,6 +265,19 @@ export class AuroDatePicker extends LitElement {
       colorCss,
       tokensCss
     ];
+  }
+
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-datepicker"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroDatePicker.register("custom-datepicker") // this will register this element to <custom-datepicker/>
+   *
+   */
+  static register(name = "auro-datepicker") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDatePicker);
+    AuroCalendar.register(name.replace('datepicker', 'calendar'));
   }
 
   /**
@@ -941,10 +954,4 @@ export class AuroDatePicker extends LitElement {
       </div>
     `;
   }
-}
-
-// define the name of the custom component
-
-if (!customElements.get('auro-datepicker')) {
-  customElements.define('auro-datepicker', AuroDatePicker);
 }
