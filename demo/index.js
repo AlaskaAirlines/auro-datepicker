@@ -1,4 +1,7 @@
-// import { example } from '../apiExamples/example';
+import { AuroDatePicker } from '../src/auro-datepicker.js';
+
+AuroDatePicker.register(); // registering to auro-datepicker
+AuroDatePicker.register('custom-datepicker');
 
 export function initExamples(initCount) {
   initCount = initCount || 0;

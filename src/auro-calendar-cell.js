@@ -210,7 +210,6 @@ export class AuroCalendarCell extends LitElement {
      * - Cell date is before or equal first date.
      * - Both range dates selected and current cell is after the second date.
      */
-
     if (!this.datepicker.hasAttribute('range') || (!dateFrom || day.date <= dateFrom) || (dateTo && day.date >= dateTo)) {
       return false;
     }
@@ -312,7 +311,8 @@ export class AuroCalendarCell extends LitElement {
   }
 
   firstUpdated() {
-    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this);
+    this.datepicker = this.runtimeUtils.closestElement('auro-datepicker', this) ||
+      this.runtimeUtils.closestElement('[auro-datepicker]', this);
 
     if (this.datepicker) {
       this.datepicker.addEventListener('auroDatePicker-newSlotContent', () => {
