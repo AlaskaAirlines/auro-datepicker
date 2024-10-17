@@ -1,5 +1,5 @@
 import { fixture, html, expect, elementUpdated } from '@open-wc/testing';
-import '../src/auro-datepicker';
+import '../index';
 
 describe('auro-datepicker', () => {
   it('auro-datepicker is accessible', async () => {
