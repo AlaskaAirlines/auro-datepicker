@@ -268,6 +268,18 @@ export class AuroDatePicker extends LitElement {
   }
 
   /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-datepicker"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroDatePicker.register("custom-datepicker") // this will register this element to <custom-datepicker/>
+   *
+   */
+  static register(name = "auro-datepicker") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroDatePicker);
+  }
+
+  /**
    * Force the calendar view to the focus date when it changes.
    * @private
    * @returns {void}
@@ -941,10 +953,4 @@ export class AuroDatePicker extends LitElement {
       </div>
     `;
   }
-}
-
-// define the name of the custom component
-
-if (!customElements.get('auro-datepicker')) {
-  customElements.define('auro-datepicker', AuroDatePicker);
 }
