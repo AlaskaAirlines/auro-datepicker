@@ -6,6 +6,7 @@ import { populateSlotContentExample } from './../apiExamples/dynamicSlot.js';
 import { updateMaxDateExample } from './../apiExamples/updateMaxDate';
 import { updateMinDateExample } from './../apiExamples/updateMinDate';
 import { validityExample } from './../apiExamples/validity';
+import '../index.js';
 
 export function initExamples(initCount) {
   initCount = initCount || 0;
