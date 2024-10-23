@@ -1,4 +1,4 @@
-import { AuroDatepickerUtilities } from './utilities';
+import { AuroDatepickerUtilities } from './utilities.js';
 
 export class CalendarUtilities {
   constructor() {

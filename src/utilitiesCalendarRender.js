@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { AuroDatepickerUtilities } from './utilities';
+import { AuroDatepickerUtilities } from './utilities.js';
 
 export class UtilitiesCalendarRender {
   constructor() {

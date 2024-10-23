@@ -4,7 +4,7 @@ import tokensCss from "./tokens-css.js";
 
 import { html } from 'lit';
 
-import { RangeDatepickerCalendar } from './../vendor/wc-range-datepicker/range-datepicker-calendar';
+import { RangeDatepickerCalendar } from './../vendor/wc-range-datepicker/range-datepicker-calendar.js';
 import './auro-calendar-cell.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
