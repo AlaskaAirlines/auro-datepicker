@@ -13,8 +13,8 @@ import { html } from 'lit/static-html.js';
 import AuroFormValidation from '@aurodesignsystem/auro-formvalidation/src/validation.js';
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
-import { AuroDatepickerUtilities } from './utilities';
-import { UtilitiesCalendarRender } from './utilitiesCalendarRender';
+import { AuroDatepickerUtilities } from './utilities.js';
+import { UtilitiesCalendarRender } from './utilitiesCalendarRender.js';
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
