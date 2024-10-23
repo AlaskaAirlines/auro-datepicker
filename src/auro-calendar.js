@@ -1,8 +1,8 @@
 import { html } from 'lit';
 
-import styleCss from "./style-auro-calendar-css";
-import colorCss from "./color-calendar-css";
-import tokensCss from './tokens-css';
+import styleCss from './style-auro-calendar-css.js';
+import colorCss from './color-calendar-css.js';
+import tokensCss from './tokens-css.js';
 
 import './auro-calendar-month.js';
 import { RangeDatepicker } from './../vendor/wc-range-datepicker/range-datepicker.js';
