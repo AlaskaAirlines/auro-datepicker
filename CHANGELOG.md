@@ -1,5 +1,23 @@
 # Semantic Release Automated Changelog
 
+# [3.1.0](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.0.2...v3.1.0) (2024-10-24)
+
+
+### Bug Fixes
+
+* add file extension for proper ESM support ([46c5b74](https://github.com/AlaskaAirlines/auro-datepicker/commit/46c5b74cca8b4a3f40aa989e45f0e2e64b70ac6c))
+* add missing file extensions on imports ([66bd441](https://github.com/AlaskaAirlines/auro-datepicker/commit/66bd441b6606d7319ee78e3eadc4c2de45c347df))
+
+
+### Features
+
+* **api:** add register static method [#265](https://github.com/AlaskaAirlines/auro-datepicker/issues/265) ([036e7d0](https://github.com/AlaskaAirlines/auro-datepicker/commit/036e7d0cd7aadb2bd23dacb3fee51293cb4d0499))
+
+
+### Performance Improvements
+
+* update dependency versions ([773d9a8](https://github.com/AlaskaAirlines/auro-datepicker/commit/773d9a801c828812528e06369ee2cea5e2a03140))
+
 ## [3.0.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.0.1...v3.0.2) (2024-10-10)
 
 
