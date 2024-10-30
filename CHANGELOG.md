@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.1.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.1...v3.1.2) (2024-10-30)
+
+
+### Bug Fixes
+
+* add correct registration process for cell ([ae9c1af](https://github.com/AlaskaAirlines/auro-datepicker/commit/ae9c1af79d9d82e4bad0c9064720d5fc58d97922))
+
 ## [3.1.1](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.0...v3.1.1) (2024-10-30)
 
 
