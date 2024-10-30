@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.1.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.2...v3.1.3) (2024-10-30)
+
+
+### Bug Fixes
+
+* refactor all vendor component registration ([cc41e31](https://github.com/AlaskaAirlines/auro-datepicker/commit/cc41e310b1270fefb63d238d27c653ac4b868759))
+
 ## [3.1.2](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.1...v3.1.2) (2024-10-30)
 
 
