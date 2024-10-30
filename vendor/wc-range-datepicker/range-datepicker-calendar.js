@@ -9,6 +9,9 @@ import { addDays, addMonths, addYears, endOfMonth, format, getDay, parse, startO
 import { enUS } from 'date-fns/esm/locale';
 import './range-date-picker-cell.js';
 import { Day } from './day.js';
+
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
+
 export class RangeDatepickerCalendar extends LitElement {
     constructor() {
         super();
@@ -549,5 +552,5 @@ __decorate([
 __decorate([
     property({ type: Array })
 ], RangeDatepickerCalendar.prototype, "daysOfMonth", void 0);
-window.customElements.define('wc-range-datepicker-calendar', RangeDatepickerCalendar);
+AuroLibraryRuntimeUtils.prototype.registerComponent('wc-range-datepicker-calendar', RangeDatepickerCalendar);
 //# sourceMappingURL=range-datepicker-calendar.js.map
