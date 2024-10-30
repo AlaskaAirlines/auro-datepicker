@@ -3,6 +3,8 @@ import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators.js';
 import { format, getTime, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
+
+import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 class RangeDatepickerCell extends LitElement {
     constructor() {
         super(...arguments);
@@ -19,6 +21,11 @@ class RangeDatepickerCell extends LitElement {
         this.hoveredDate = null;
         this.isCurrentDate = false;
         this._locale = null;
+
+        /**
+         * @private
+         */
+        this.runtimeUtils = new AuroLibraryRuntimeUtils();
     }
     get locale() {
         return this._locale ? this._locale : enUS;
@@ -219,5 +226,5 @@ __decorate([
 __decorate([
     property({ type: Object })
 ], RangeDatepickerCell.prototype, "locale", null);
-window.customElements.define('wc-range-datepicker-cell', RangeDatepickerCell);
+AuroLibraryRuntimeUtils.prototype.registerComponent('wc-range-datepicker-cell', RangeDatepickerCell);
 //# sourceMappingURL=range-date-picker-cell.js.map
