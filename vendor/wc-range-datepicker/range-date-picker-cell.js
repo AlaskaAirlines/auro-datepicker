@@ -22,10 +22,6 @@ class RangeDatepickerCell extends LitElement {
         this.isCurrentDate = false;
         this._locale = null;
 
-        /**
-         * @private
-         */
-        this.runtimeUtils = new AuroLibraryRuntimeUtils();
     }
     get locale() {
         return this._locale ? this._locale : enUS;
