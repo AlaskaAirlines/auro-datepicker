@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.1.5](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.4...v3.1.5) (2024-10-31)
+
+
+### Performance Improvements
+
+* add extensions for mwc imports ([b2389db](https://github.com/AlaskaAirlines/auro-datepicker/commit/b2389db1a442792db2df36afb9e5c8f82159f6cd))
+
 ## [3.1.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.3...v3.1.4) (2024-10-30)
 
 
