@@ -2,9 +2,9 @@ import { __decorate } from "tslib";
 /* eslint-disable import/no-duplicates */
 import { html, css, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
-import '@material/mwc-icon-button';
-import '@material/mwc-menu';
-import '@material/mwc-list/mwc-list-item';
+import '@material/mwc-icon-button/mwc-icon-button.js';
+import '@material/mwc-menu/mwc-menu.js';
+import '@material/mwc-list/mwc-list-item.js';
 import { addDays, addMonths, addYears, endOfMonth, format, getDay, parse, startOfDay, subMonths, subYears, } from 'date-fns';
 import { enUS } from 'date-fns/esm/locale';
 import './range-date-picker-cell.js';
