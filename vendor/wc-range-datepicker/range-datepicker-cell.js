@@ -2,7 +2,7 @@ import { __decorate } from "tslib";
 import { LitElement, html, css } from 'lit';
 import { property } from 'lit/decorators.js';
 import { format, getTime, startOfDay } from 'date-fns';
-import { enUS } from 'date-fns/esm/locale/index.js';
+import { enUS } from 'date-fns/locale';
 
 /* eslint-disable prefer-rest-params, no-void, no-magic-numbers, no-underscore-dangle, init-declarations, no-extra-parens, max-params */
 
