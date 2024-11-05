@@ -2,7 +2,7 @@ import { LitElement } from "lit";
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { format, startOfDay } from 'date-fns';
-import { enUS } from 'date-fns/esm/locale/index.js';
+import { enUS } from 'date-fns/locale';
 
 import styleCss from './style-auro-calendar-cell-css.js';
 import colorCss from './color-cell-css.js';

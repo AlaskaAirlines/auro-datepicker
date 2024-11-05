@@ -2,8 +2,8 @@ import { __decorate } from "tslib";
 import { html, css, LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { addDays, addMonths, addYears, endOfMonth, format, getDay, parse, startOfDay, subMonths, subYears, } from 'date-fns';
-import { enUS } from 'date-fns/esm/locale/index.js';
-import './range-date-picker-cell.js';
+import { enUS } from 'date-fns/locale';
+import './range-datepicker-cell.js';
 import { Day } from './day.js';
 
 /* eslint-disable max-lines, no-void, no-magic-numbers, no-underscore-dangle, init-declarations, no-extra-parens, prefer-destructuring, no-unused-expressions */
