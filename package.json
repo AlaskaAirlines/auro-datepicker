@@ -131,7 +131,9 @@
             "./demo/demo.md",
             "./demo/api.md",
             "./src/dropdownVersion.js",
-            "./src/inputVersion.js"
+            "./src/inputVersion.js",
+            "./demo/api.min.js",
+            "./demo/index.min.js"
           ]
         }
       ],
