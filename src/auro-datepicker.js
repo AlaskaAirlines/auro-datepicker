@@ -720,7 +720,9 @@ export class AuroDatePicker extends LitElement {
     if (changedProperties.has('value')) {
       // Change the calendar focus to the first valid date value only the first time the value is set
       if (!this.calendarFocusDate && this.util.validDateStr(this.value)) {
-        this.calendarFocusDate = this.value;
+        if (!this.dropdown.isPopoverVisible) {
+          this.calendarFocusDate = this.value;
+        }
       }
 
       if (this.cellClickActive) {
