@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.1.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.6...v3.1.7) (2024-11-05)
+
+
+### Bug Fixes
+
+* change method for importing enUS locale ([3d6abce](https://github.com/AlaskaAirlines/auro-datepicker/commit/3d6abce6ccce9fe8e6b5daa959aaeaa7e0afd181))
+
 ## [3.1.6](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.5...v3.1.6) (2024-11-05)
 
 
