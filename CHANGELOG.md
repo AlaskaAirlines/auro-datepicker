@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [3.1.8](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.7...v3.1.8) (2024-11-07)
+
+
+### Bug Fixes
+
+* dont cange rendered months when clicking on second month in desktop mode [#246](https://github.com/AlaskaAirlines/auro-datepicker/issues/246) ([3a947b7](https://github.com/AlaskaAirlines/auro-datepicker/commit/3a947b740e83d82aab3430e51bd5676426f7d46d))
+
+
+### Performance Improvements
+
+* update date-fns to enable ssr support ([5be2202](https://github.com/AlaskaAirlines/auro-datepicker/commit/5be2202f488f47a6f303447fecf2231e51f571f0))
+
 ## [3.1.7](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.1.6...v3.1.7) (2024-11-05)
 
 
