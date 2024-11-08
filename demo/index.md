@@ -1,14 +1,14 @@
 # datepicker
 
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./description.md) -->
-<!-- The below content is automatically added from ./description.md -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
+<!-- The below content is automatically added from ./../docs/partials/description.md -->
 The `<auro-datepicker>` element allows users to select a date, or a pair of dates identifying a range, either with text input or by making a section in a calendar. The `<auro-datepicker>` element is the combination of [auro-dropdown](http://auro.alaskaair.com/components/auro/dropdown), [auro-input](http://auro.alaskaair.com/components/auro/input), and Auro's extension of [wc-range-datepicker](https://www.npmjs.com/package/wc-range-datepicker).
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## auro-datepicker use cases
 
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./useCases.md) -->
-<!-- The below content is automatically added from ./useCases.md -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
+<!-- The below content is automatically added from ./../docs/partials/useCases.md -->
 The `<auro-datepicker>` element should be used in situations where users may:
 
 * select a single date
@@ -20,8 +20,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ### Basic
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/basic.html -->
   <auro-datepicker>
     <span slot="fromLabel">Choose a date</span>
     <span slot="mobileDateLabel">Choose a date</span>
@@ -30,8 +30,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
 <auro-datepicker>
@@ -45,8 +45,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 ### Range
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basicRange.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/basicRange.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basicRange.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/basicRange.html -->
   <auro-datepicker range>
     <span slot="fromLabel">Departure</span>
     <span slot="toLabel">Return</span>
@@ -56,8 +56,8 @@ The `<auro-datepicker>` element should be used in situations where users may:
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basicRange.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/basicRange.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basicRange.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basicRange.html -->
 
 ```html
 <auro-datepicker range>
@@ -84,8 +84,8 @@ AuroDatePicker.register('custom-datepicker');
 This will create a new custom element that you can use in your HTML that will function identically to the `<auro-button>` element.
 
 <div class="exampleWrapper exampleWrapper--flex">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/custom.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/custom.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/custom.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/custom.html -->
   <custom-datepicker selectedDate="06/16/2022">
       <span slot="fromLabel">Choose a date</span>
       <span slot="mobileDateLabel">Choose a date</span>
@@ -94,8 +94,8 @@ This will create a new custom element that you can use in your HTML that will fu
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/custom.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/custom.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/custom.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/custom.html -->
 
 ```html
 <custom-datepicker selectedDate="06/16/2022">

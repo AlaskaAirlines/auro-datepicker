@@ -24,7 +24,7 @@
     "@aurodesignsystem/auro-dropdown": "^3.1.3",
     "@aurodesignsystem/auro-formvalidation": "^1.0.4",
     "@aurodesignsystem/auro-input": "^4.0.0",
-    "@aurodesignsystem/auro-library": "^2.10.1",
+    "@aurodesignsystem/auro-library": "^3.0.1",
     "@aurodesignsystem/auro-popover": "^4.1.0",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
