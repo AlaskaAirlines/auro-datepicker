@@ -12,7 +12,7 @@ Feature requests stem from a business need. It is important to understand whethe
 
 A bug is defined by: _"A demonstrable problem that is caused by a file in the repository."_ Good bug reports are extremely helpful - thank you!
 
-To submit an issue, please go to [Auro's project status board](https://auro.alaskaair.com/component-status) and click on the ISSUES badge associated to project you wish to submit an issue for, or click on the GITHUB ISSUES icon at the top of every element's page in the Auro doc site.
+To submit an issue, please go to [Auro's project status board](https://auro.alaskaair.com/component-status) and click on the ISSUES link to the left of the associated project you wish to submit an issue for, or click on the GITHUB ISSUES icon at the top of every element's page in the Auro doc site.
 
 Guidelines for bug reports:
 
@@ -29,11 +29,13 @@ Poor bug reports will be closed as the team is unable to reproduce the issue.
 
 PLEASE be responsive to questions asked via the issue's comments. All attempts to communicate to the author of the issue will be made. If the author is unresponsive, the issue will be labeled as `abandoned` and will be closed upon next review.
 
+Please remember, submitting an issue is not a work request. The issue itself is a report of the situation, not a solutions statement.
+
 Please **DO NOT** start any work on a potential pull request until you have consulted with a member of the Auro team per your issue. This brief consultation, facilitated via the issue and its related comments, will help ensure the success of your pull request submission.
 
 ## Submitting pull requests
 
-No one other than repository maintainers have direct access to any repository. For non-team members, pull requests must originate from a [forked repo](https://auro.alaskaair.com/contributing/upstream) in your own Github account.
+No one other than repository maintainers and trusted committers have `write` access to any repository. For others a pull request must originate from a [forked repo](https://auro.alaskaair.com/contributing/upstream) in your own Github account. If you are interested in `write` access to Auro, please submit a request to the team's leadership.
 
 All new work that is to be considered for merging with the `main` branch must start from a new feature branch of work. This feature branch should be in response to either a [reported bug](https://auro.alaskaair.com/bugs) or a [requested features](https://auro.alaskaair.com/help-wanted).
 
@@ -75,31 +77,53 @@ This project utilizes [Conventional Commits](https://www.conventionalcommits.org
 
 **NOTE:** Before working in your project, be sure to run `$ npm i` to ensure that all packages are installed.
 
-Submitting pull requests that do not conform to the Conventional Commits standard, the team will assume that development dependencies were not installed and no tests were validated prior to submission. **This may result in immediate disqualification of the pull request**.
+#### Commit Message Format
+
+Each commit message consists of a **header**, a **body** and a **footer**. The header has a special format that includes a **type**, a **scope** and a **subject**:
 
 ```html
-<type>[optional scope]: <description>
+<type>(<scope>): <subject>  <!-- header -->
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
 ```
+
+**Any line of the commit message cannot be longer 100 characters!** This allows the message to be easier to read on GitHub as well as in various git tools. The **header** MUST use an **imperative mood**. The **body**, freeform text is allowed. Please see the **Git commit messages** section below. 
+
+The header is mandatory and the scope of the header is optional. Please see this [example commit](https://github.com/AlaskaAirlines/WC-Generator/commit/8e24c16461ca71349c8986da2a2f33b88426e015) from the WC-Generator repo.
+
+Submitting pull requests that do not conform to the Conventional Commits standard, the team will assume that development dependencies were not installed and no tests were validated prior to submission. **This may result in immediate disqualification of the pull request**.
+
+#### Prefixes
 
 **All commit messages** must be prefixed with a specific type so that the semver release configuration can analyze the commit and apply the correct version release. Please see the following types with their respective meanings.
 
 #### MAJOR
 
-For a MAJOR release, you MUST follow this template. The use `BREAKING CHANGE:` in conjunction with any other commit type is required in order to push a major release.
+For a **MAJOR** release, you **MUST** follow this template. The use `BREAKING CHANGE:` in conjunction with any other commit type is required in order to push a major release.
+
+A `BREAKING CHANGE` body message can be appended to any prefix that is descriptive of the change. 
 
 ```
-perf(pencil): remove graphiteWidth option #80
+refactor(pencil): remove graphiteWidth option #80
 
 BREAKING CHANGE: The graphiteWidth option has been removed.
 The default graphite width of 10mm is always used for performance reasons.
 ```
 
 #### MINOR
+
+Using the `feat` prefix will result in a `0.1.0` SemVer release update.
+
 ```
 feat(pencil): add 'graphiteWidth' option #80
 ```
 
 #### PATCH
+
+Using the `fix` or `perf` prefix will result in a `0.0.1` SemVer release update.
+
 ```
 fix(pencil): stop graphite breaking when too much pressure applied #80
 ```
