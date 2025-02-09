@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "@alaskaairux/icons": "^4.44.1",
-    "@aurodesignsystem/auro-dropdown": "^3.2.2",
+    "@aurodesignsystem/auro-dropdown": "^3.2.5",
     "@aurodesignsystem/auro-formvalidation": "^1.0.4",
-    "@aurodesignsystem/auro-input": "^4.3.0",
+    "@aurodesignsystem/auro-input": "^4.3.3",
     "@aurodesignsystem/auro-library": "^3.0.3",
-    "@aurodesignsystem/auro-popover": "^4.1.1",
+    "@aurodesignsystem/auro-popover": "^4.1.3",
     "@material/mwc-icon-button": "^0.27.0",
     "@material/mwc-list": "^0.27.0",
     "@material/mwc-menu": "^0.27.0",
@@ -35,13 +35,13 @@
     "wc-range-datepicker": "^1.3.0"
   },
   "peerDependencies": {
-    "@aurodesignsystem/design-tokens": "^4.10.0",
-    "@aurodesignsystem/webcorestylesheets": "^5.1.2"
+    "@aurodesignsystem/design-tokens": "^4.13.0",
+    "@aurodesignsystem/webcorestylesheets": "^6.0.2"
   },
   "devDependencies": {
-    "@aurodesignsystem/design-tokens": "^4.12.0",
+    "@aurodesignsystem/design-tokens": "^4.13.0",
     "@aurodesignsystem/eslint-config": "^1.3.3",
-    "@aurodesignsystem/webcorestylesheets": "^5.1.2",
+    "@aurodesignsystem/webcorestylesheets": "^6.0.2",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "@open-wc/testing": "^4.0.0",
@@ -133,6 +133,7 @@
             "./demo/api.md",
             "./src/dropdownVersion.js",
             "./src/inputVersion.js",
+            "./src/popoverVersion.js",
             "./demo/api.min.js",
             "./demo/index.min.js"
           ]
