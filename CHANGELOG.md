@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.2.4](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.2.3...v3.2.4) (2025-02-09)
+
+
+### Performance Improvements
+
+* update dependencies ([e58aef7](https://github.com/AlaskaAirlines/auro-datepicker/commit/e58aef7ad4546e70c97096fa8d4af0b27242d629))
+
 ## [3.2.3](https://github.com/AlaskaAirlines/auro-datepicker/compare/v3.2.2...v3.2.3) (2024-12-23)
 
 
